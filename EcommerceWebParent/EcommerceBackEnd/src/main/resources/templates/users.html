@@ -4,7 +4,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>Home - Ecommerce Admin</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} "/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{style.css} "/>
+
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </head>
@@ -83,14 +86,20 @@
                 <tbody>
                     <tr th:each="user : ${listUsers}">
                         <td>[[${user.id}]]</td>
-                        <td></td>
+                        <td><span class="fas fa-portrait fa-3x color icon-silver"></span></td>
                         <td>[[${user.email}]]</td>
                         <td>[[${user.firstName}]]</td>
                         <td>[[${user.lastName}]]</td>
                         <td>[[${user.roles}]]</td>
-                        <td>[[${user.enabled}]]</td>
                         <td>
-                            Edit &nbsp; Delete
+                            <a th:if="${user.enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-green"></a>
+                            <a th:if="${user.enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"></a>
+
+                        </td>
+                        <td>
+                            <a class="fa-regular fa-pen-to-square fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
+                            &nbsp;
+                            <a class="fa-regular fa-trash-can fa-2x icon-dark" th:href="@{'/users/delete/' + ${user.id}}" title="Delete this user"></a>
                         </td>
                     </tr>
                 </tbody>

@@ -1,0 +1,10 @@
+*.icon-white {color:white}
+*.icon-silver {color:silver}
+*.icon-green {color:green}
+*.icon-dark {color:gray}
+*.icon-dark:hover {
+    color: #f11755;
+}
+*.icon-green:hover {
+    color: #b8be09;
+}
