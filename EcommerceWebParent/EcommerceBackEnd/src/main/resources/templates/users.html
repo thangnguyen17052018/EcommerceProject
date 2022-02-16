@@ -6,7 +6,7 @@
     <title>Home - Ecommerce Admin</title>
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} "/>
-    <link th:rel="stylesheet" type="text/css" th:href="@{style.css} "/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
 
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
@@ -86,29 +86,99 @@
                 <tbody>
                     <tr th:each="user : ${listUsers}">
                         <td>[[${user.id}]]</td>
-                        <td><span class="fas fa-portrait fa-3x color icon-silver"></span></td>
+                        <td>
+                            <img th:src="@{/images/default-user.png}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+                        </td>
                         <td>[[${user.email}]]</td>
                         <td>[[${user.firstName}]]</td>
                         <td>[[${user.lastName}]]</td>
                         <td>[[${user.roles}]]</td>
                         <td>
-                            <a th:if="${user.enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-green"></a>
-                            <a th:if="${user.enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"></a>
+                            <a th:if="${user.enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-green"
+                               th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user"></a>
+                            <a th:if="${user.enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
+                               th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Enable this user"></a>
 
                         </td>
                         <td>
-                            <a class="fa-regular fa-pen-to-square fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}" title="Edit this user"></a>
+                            <a class="fa-regular fa-pen-to-square fa-2x icon-green" th:href="@{'/users/edit/' + ${user.id}}"
+                               title="Edit this user"></a>
                             &nbsp;
-                            <a class="fa-regular fa-trash-can fa-2x icon-dark" th:href="@{'/users/delete/' + ${user.id}}" title="Delete this user"></a>
+                            <a class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+                               th:href="@{'/users/delete/' + ${user.id}}"
+                               th:userId="${user.id}"
+                               title="Delete this user"></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+
+        <div class="text-center m-1" >
+            <span th:if="${totalItems > 0}">Showing users #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+            <span th:unless="${totalItems > 0}">No users found</span>
+        </div>
+
+        <div>
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{/users/page/1}">First</a>
+                    </li>
+                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{'/users/page/' + ${currentPage - 1}}">Previous</a>
+                    </li>
+                    <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"
+                        th:each="i : ${#numbers.sequence(1, totalPages)}">
+                        <a class="page-link" th:href="@{'/users/page/' + ${i}}">[[${i}]]</a></li>
+                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{'/users/page/' + ${currentPage + 1}}">Next</a>
+                    </li>
+                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                        <a class="page-link" th:href="@{'/users/page/' + ${totalPages}}">Last</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="modal fade text-center" id="confirmModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modalTitle">Delete Confirmation</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+                        <span id="confirmedText"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a class="btn btn-success" href="" id="yesBtn">Yes</a>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="text-center">
             <p>Ecommerce Control Panel - Copyright &copy; EcommerceFurniture</p>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(() => {
+            $(".link-delete").on("click", (e) => {
+                e.preventDefault();
+                selectedUser = $(e.target);
+                userId = selectedUser.attr("userId");
+                $("#yesBtn").attr("href", selectedUser.attr("href"));
+                $("#confirmedText").text("Are you sure to delete this user ID: " + userId);
+                $("#confirmModal").modal();
+            })
+        });
+
+    </script>
 
 </body>
 </html>
