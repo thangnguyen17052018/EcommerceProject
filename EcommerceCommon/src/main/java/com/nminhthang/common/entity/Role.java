@@ -1,9 +1,18 @@
 package com.nminhthang.common.entity;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.Objects;
 
+@ToString(of = "name")
+@Setter
+@Getter
 @Entity
+@NoArgsConstructor
 @Table(name="roles")
 public class Role {
 
@@ -17,9 +26,6 @@ public class Role {
     @Column(length = 150, nullable = false)
     private String description;
 
-    public Role() {
-    }
-
     public Role(Integer id) {
         this.id = id;
     }
@@ -30,30 +36,6 @@ public class Role {
 
     public Role(String name, String description) {
         this.name = name;
-        this.description = description;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -69,11 +51,4 @@ public class Role {
     public int hashCode() {
         return Objects.hash(id);
     }
-
-    @Override
-    public String toString() {
-        return name;
-    }
-
-
 }

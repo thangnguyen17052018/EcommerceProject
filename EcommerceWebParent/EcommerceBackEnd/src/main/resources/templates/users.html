@@ -87,7 +87,7 @@
                     <tr th:each="user : ${listUsers}">
                         <td>[[${user.id}]]</td>
                         <td>
-                            <img th:src="@{/images/default-user.png}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+                            <img th:src="@{${user.photosImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
                         </td>
                         <td>[[${user.email}]]</td>
                         <td>[[${user.firstName}]]</td>

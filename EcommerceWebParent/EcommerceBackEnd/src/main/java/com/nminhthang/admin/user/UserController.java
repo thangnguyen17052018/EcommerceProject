@@ -8,14 +8,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class UserController {
@@ -35,8 +37,8 @@ public class UserController {
         Page<User> userPage = userService.listByPage(pageNum);
         List<User> listUsers = userPage.getContent();
 
-        long startCount = (pageNum - 1) * userService.USERS_PER_PAGE + 1;
-        long endCount = startCount + userService.USERS_PER_PAGE - 1;
+        long startCount = (long) (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
+        long endCount = startCount + UserService.USERS_PER_PAGE - 1;
 
         if (endCount > userPage.getTotalElements())
             endCount = userPage.getTotalElements();
@@ -67,15 +69,23 @@ public class UserController {
 
     @PostMapping("/users/save")
     public String saveUser(User user, RedirectAttributes redirectAttributes, @RequestParam("image") MultipartFile multipartFile) throws IOException {
-        System.out.println(user);
-        System.out.println(multipartFile.getOriginalFilename());
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
-        String uploadDir = "user-photos";
+        if (!multipartFile.isEmpty()){
+            String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+            user.setPhotos(fileName);
+            User savedUser = userService.save(user);
 
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-//        userService.save(user);
-//        redirectAttributes.addFlashAttribute("message", "The user was created successfully");
+            String uploadDir = FileUploadUtil.DIR_NAME + savedUser.getId() + "/";
+
+            FileUploadUtil.cleanDirectory(uploadDir);
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        } else {
+            if (user.getPhotos().isEmpty()) user.setPhotos(null);
+            userService.save(user);
+        }
+
+        redirectAttributes.addFlashAttribute("message", "The user was saved successfully");
+
         return "redirect:/users";
     }
 
