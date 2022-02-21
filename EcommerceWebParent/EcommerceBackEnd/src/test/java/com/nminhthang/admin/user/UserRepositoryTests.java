@@ -142,4 +142,20 @@ public class UserRepositoryTests {
         assertThat(usersFirstPage).size().isGreaterThan(0);
     }
 
+    @Test
+    public void testSearchUsers(){
+        String keyword = "gmail";
+        int pageNumber = 0;//first-page = 0
+        int pageSize = 2;
+
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
+
+        Page<User> usersFirstPage = userRepository.findAll(keyword, pageable);
+        List<User> listUsers = usersFirstPage.getContent();
+
+        listUsers.forEach(System.out::println);
+
+        assertThat(usersFirstPage).size().isGreaterThan(0);
+    }
+
 }

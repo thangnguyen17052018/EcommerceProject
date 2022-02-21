@@ -5,6 +5,7 @@ import com.nminhthang.common.entity.Role;
 import com.nminhthang.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -27,14 +28,20 @@ public class UserController {
 
     @GetMapping("/users")
     public String listFirstPage(Model model){
-        return listByPage(model, 1);
+        return listByPage(model, 1, "firstName", "asc", null);
     }
 
     @GetMapping("/users/page/{pageNum}")
-    public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum){
+    public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum,
+                             @Param("sortField") String sortField,
+                             @Param("sortDir") String sortDir,
+                             @Param("keyword") String keyword){
+        System.out.println("Sort field: " + sortField);
+        System.out.println("Sort order: " + sortDir);
+        System.out.println("Keyword: " + keyword);
 
+        Page<User> userPage = userService.listByPage(pageNum, sortField, sortDir, keyword);
 
-        Page<User> userPage = userService.listByPage(pageNum);
         List<User> listUsers = userPage.getContent();
 
         long startCount = (long) (pageNum - 1) * UserService.USERS_PER_PAGE + 1;
@@ -43,13 +50,18 @@ public class UserController {
         if (endCount > userPage.getTotalElements())
             endCount = userPage.getTotalElements();
 
+        String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
         model.addAttribute("totalItems", userPage.getTotalElements());
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
         model.addAttribute("listUsers", listUsers);
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", userPage.getTotalPages());
-
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortOrder", sortDir);
+        model.addAttribute("reverseSortOrder", reverseSortDir);
+        model.addAttribute("keyword", keyword);
 
         return "users";
     }
