@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -28,7 +29,7 @@ public class UserController {
 
     @GetMapping("/users")
     public String listFirstPage(Model model){
-        return listByPage(model, 1, "firstName", "asc", null);
+        return listByPage(model, 1, "id", "asc", null);
     }
 
     @GetMapping("/users/page/{pageNum}")
@@ -98,7 +99,13 @@ public class UserController {
 
         redirectAttributes.addFlashAttribute("message", "The user was saved successfully");
 
-        return "redirect:/users";
+        return getRedirectURLToAffectedUser(user);
+    }
+
+    private String getRedirectURLToAffectedUser(User user) {
+        String firstPartOfEmail = user.getEmail().split("@")[0];
+
+        return "redirect:/users/page/1?sortField=id&sortDir=asc&keyword=" + firstPartOfEmail;
     }
 
     @GetMapping("/users/edit/{id}")
@@ -146,5 +153,25 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @GetMapping("/users/export/csv")
+    public void exportToCSV(HttpServletResponse response) throws IOException {
+        List<User> listUsers = userService.listAll();
+        UserCSVExporter exporter = new UserCSVExporter();
+        exporter.export(listUsers, response);
+    }
+
+    @GetMapping("/users/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        List<User> listUsers = userService.listAll();
+        UserExcelExporter exporter = new UserExcelExporter();
+        exporter.export(listUsers, response);
+    }
+
+    @GetMapping("/users/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws IOException {
+        List<User> listUsers = userService.listAll();
+        UserPDFExporter exporter = new UserPDFExporter();
+        exporter.export(listUsers, response);
+    }
 
 }

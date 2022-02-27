@@ -30,7 +30,7 @@ public class UserService {
     PasswordEncoder passwordEncoder;
 
     public List<User> listAll(){
-        return (List<User>) userRepository.findAll();
+        return (List<User>) userRepository.findAll(Sort.by("id").ascending());
     }
 
     public Page<User> listByPage(int pageNumber, String sortField, String sortDir, String keyword){
