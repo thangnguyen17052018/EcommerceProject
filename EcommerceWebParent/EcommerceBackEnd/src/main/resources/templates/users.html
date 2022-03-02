@@ -14,7 +14,7 @@
 <body>
     <div class="container-fluid">
         <div>
-            <nav class="navbar navbar-expand-lg bg-light navbar-light">
+            <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
                 <a class="navbar-brand" th:href="@{/}">
                     <img th:src="@{/images/EcommerceAdminSmall.png}"/>
                 </a>
@@ -23,34 +23,109 @@
                 </button>
                 <div class="collapse navbar-collapse" id="topNavbar">
                     <ul class="navbar-nav">
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{/users}">Users</a>
+						<li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/users}">
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Users
+                            </a>
                         </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{/categories}">Products</a>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/categories}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Categories
+                            </a>
                         </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{/brands}">Customers</a>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/brands}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Brands
+                            </a>
                         </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{/products}">Categories</a>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/products}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Products
+                            </a>
                         </li>
-                        <li class="navbar-item">
-                            <a class="nav-link" th:href="@{/customers}">Articles</a>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/customers}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Customers
+                            </a>
+                        </li>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/shipping}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Shipping
+                            </a>
+                        </li>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/orders}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Orders
+                            </a>
+                        </li>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/salesreport}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Salesreport
+                            </a>
+                        </li>
+                        
+                        <li class="navbar-item li-hover">
+                            <a class="nav-link" th:href="@{/articles}">
+                            	<span></span>
+	                            <span></span>
+	                            <span></span>
+	                            <span></span>
+                            	Articles
+                            </a>
                         </li>
                     </ul>
                 </div>
             </nav>
         </div>
+        
         <div>
             <h2>Users Management</h2>
-            <a th:href="@{/users/new}">Create New User</a>
-            &nbsp;|&nbsp;
-            <a th:href="@{/users/export/csv}">Export to CSV</a>
-            &nbsp;|&nbsp;
-            <a th:href="@{/users/export/excel}">Export to Excel</a>
-            &nbsp;|&nbsp;
-            <a th:href="@{/users/export/pdf}">Export to PDF</a>
+            <a th:href="@{/users/new}" class="fas fa-user-plus fa-2x icon-dark colorblack"></a>
+            &nbsp;&nbsp;
+            <a th:href="@{/users/export/csv}" class="fas fa-file-csv fa-2x icon-dark colorblack"></a>
+            &nbsp;&nbsp;
+            <a th:href="@{/users/export/excel}" class="fas fa-file-excel fa-2x icon-dark colorblack"></a>
+            &nbsp;&nbsp;
+            <a th:href="@{/users/export/pdf}" class="fas fa-file-pdf fa-2x icon-dark colorblack"></a>
         </div>
 
         <div th:if="${message != null}" class="alert alert-success text-center">
@@ -115,7 +190,7 @@
             </table>
         </div>
 
-        <div class="text-center m-1" >
+        <div class="text-center m-4" >
             <span th:if="${totalItems > 0}">Showing users #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
             <span th:unless="${totalItems > 0}">No users found</span>
         </div>
