@@ -1,46 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>[[${pageTitle}]]</title>
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:replace="fragments :: header_link(${pageTitle})"></head>
+
 <body>
 <div class="container-fluid">
     <div>
-        <nav class="navbar navbar-expand-lg bg-light navbar-light">
-            <a class="navbar-brand" th:href="@{/}">
-                <img th:src="@{/images/EcommerceAdminSmall.png}"/>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="topNavbar">
-                <ul class="navbar-nav">
-                    <li class="navbar-item">
-                        <a class="nav-link" th:href="@{/users}">Users</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a class="nav-link" th:href="@{/categories}">Products</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a class="nav-link" th:href="@{/brands}">Customers</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a class="nav-link" th:href="@{/products}">Categories</a>
-                    </li>
-                    <li class="navbar-item">
-                        <a class="nav-link" th:href="@{/customers}">Articles</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div>
+        <div th:replace="fragments :: menu_link"></div>
+
         <h2>Users Management | [[${pageTitle}]]</h2>
+
     </div>
 
     <form th:action="@{/users/save}" method="post" style="max-width: 700px; margin: 0 auto"
@@ -131,17 +101,17 @@
             </div>
         </div>
     </div>
-    
-    <div class="text-center">
-        <p>Ecommerce Control Panel - Copyright &copy; EcommerceFurniture</p>
-    </div>
+
+    <div th:replace="fragments :: footer_link"></div>
+
 </div>
+
 <script type="text/javascript">
 
     $(document).ready(() => {
         $("#cancelButton").on("click", () => {
             window.location = "[[@{/users}]]"
-        })
+        });
 
         $("#fileImage").change((e) => {
             const ONE_MB = 1048576;
@@ -157,7 +127,8 @@
                 showImageThumbnail(e.target);
             }
 
-        })
+        });
+
     });
 
     const showImageThumbnail = (fileInput) => {

@@ -1,122 +1,12 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>Home - Ecommerce Admin</title>
-    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} "/>
-    <link th:rel="stylesheet" type="text/css" th:href="@{/style.css}"/>
-
-    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:replace="fragments :: header_link('Users - Ecommerce Furniture Admin')"></head>
 <body>
     <div class="container-fluid">
-        <div>
-            <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
-                <a class="navbar-brand" th:href="@{/}">
-                    <img th:src="@{/images/EcommerceAdminSmall.png}"/>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="topNavbar">
-                    <ul class="navbar-nav">
-						<li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/users}">
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Users
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/categories}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Categories
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/brands}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Brands
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/products}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Products
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/customers}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Customers
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/shipping}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Shipping
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/orders}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Orders
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/salesreport}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Salesreport
-                            </a>
-                        </li>
-                        
-                        <li class="navbar-item li-hover">
-                            <a class="nav-link" th:href="@{/articles}">
-                            	<span></span>
-	                            <span></span>
-	                            <span></span>
-	                            <span></span>
-                            	Articles
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        
+        <div th:replace="fragments :: menu_link"></div>
+
         <div>
             <h2>Users Management</h2>
             <a th:href="@{/users/new}" class="fas fa-user-plus fa-2x icon-dark colorblack"></a>
@@ -237,9 +127,8 @@
             </div>
         </div>
 
-        <div class="text-center">
-            <p>Ecommerce Control Panel - Copyright &copy; EcommerceFurniture</p>
-        </div>
+        <div th:replace="fragments :: footer_link"></div>
+
     </div>
 
     <script type="text/javascript">
@@ -252,6 +141,7 @@
                 $("#confirmedText").text("Are you sure to delete this user ID: " + userId);
                 $("#confirmModal").modal();
             })
+
         });
 
         const clearFilter = () => {
