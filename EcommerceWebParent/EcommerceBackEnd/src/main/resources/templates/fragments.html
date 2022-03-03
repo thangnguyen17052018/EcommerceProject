@@ -1,21 +1,168 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:fragment="header_link(title)">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>[[${title}]]</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} "/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/common-scripts.js}"></script>
+
 </head>
 <body>
-    <th th:fragment="column_link(fieldName, columnLabel)">
-        <a class="text-dark"
-           th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
-            [[${columnLabel}]]
+<th th:fragment="column_link(fieldName, columnLabel)">
+    <a class="text-dark"
+       th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+        [[${columnLabel}]]
+    </a>
+
+    <span th:if="${sortField == fieldName}"
+          th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+
+<a th:fragment="page_link(pageNum, pageLabel)"
+   class="page-link" th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+
+
+
+<div th:fragment="menu_link">
+    <form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
+        <input type="submit">
+    </form>
+    <nav class="navbar navbar-expand-lg bg-light navbar-light">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/EcommerceAdminSmall.png}"/>
         </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="topNavbar">
+            <ul class="navbar-nav">
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/users}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Users
+                    </a>
+                </li>
 
-        <span th:if="${sortField == fieldName}"
-              th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-    </th>
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/categories}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Categories
+                    </a>
+                </li>
 
-    <a th:fragment="page_link(pageNum, pageLabel)"
-       class="page-link" th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/brands}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Brands
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/products}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Products
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/customers}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Customers
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/shipping}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Shipping
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/orders}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Orders
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/salesreport}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Salesreport
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/articles}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Articles
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/settings}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Settings
+                    </a>
+                </li>
+
+                <li>
+                    <span class="fas fa-user fa-2x icon-silver"></span>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle"
+                       data-toggle="dropdown"
+                       sec:authentication="principal.fullName" href=""></a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" id="logoutLink" href="">Log out</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer_link" class="text-center">
+    <p>Ecommerce Control Panel - Copyright &copy; EcommerceFurniture</p>
+</div>
 
 </body>
 </html>
