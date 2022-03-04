@@ -1,4 +1,4 @@
-package com.nminhthang.admin.user;
+package com.nminhthang.admin.user.exporter;
 
 import com.nminhthang.common.entity.User;
 import org.supercsv.io.CsvBeanWriter;
@@ -6,11 +6,7 @@ import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.DateFormatter;
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 public class UserCSVExporter extends AbstractExporter{

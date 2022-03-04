@@ -1,18 +1,13 @@
-package com.nminhthang.admin.user;
+package com.nminhthang.admin.user.exporter;
 
 import com.lowagie.text.*;
 import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
-import com.lowagie.text.pdf.PdfTable;
 import com.lowagie.text.pdf.PdfWriter;
-import com.lowagie.text.pdf.draw.LineSeparator;
 import com.nminhthang.common.entity.User;
-import org.aspectj.weaver.ast.Literal;
-import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.util.List;

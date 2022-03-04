@@ -10,6 +10,13 @@
 
         <div>
             <h1>Ecommerce Control Panel</h1>
+            <p>
+                Welcome
+                <a th:href="@{/account}"
+                   sec:authentication="principal.fullName"></a>&nbsp;
+                <span sec:authentication="principal.authorities"></span>
+            </p>
+
         </div>
 
         <div th:replace="fragments :: footer_link"></div>

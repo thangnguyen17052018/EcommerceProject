@@ -1,6 +1,11 @@
-package com.nminhthang.admin.user;
+package com.nminhthang.admin.user.controller;
 
 import com.nminhthang.admin.FileUploadUtil;
+import com.nminhthang.admin.user.UserNotFoundException;
+import com.nminhthang.admin.user.UserService;
+import com.nminhthang.admin.user.exporter.UserCSVExporter;
+import com.nminhthang.admin.user.exporter.UserExcelExporter;
+import com.nminhthang.admin.user.exporter.UserPDFExporter;
 import com.nminhthang.common.entity.Role;
 import com.nminhthang.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +69,7 @@ public class UserController {
         model.addAttribute("reverseSortOrder", reverseSortDir);
         model.addAttribute("keyword", keyword);
 
-        return "users";
+        return "/user/users";
     }
 
     @GetMapping("/users/new")
@@ -77,7 +82,7 @@ public class UserController {
         model.addAttribute("listRoles", listRoles);
         model.addAttribute("pageTitle", "Create New User");
 
-        return "user_form";
+        return "/user/user_form";
     }
 
     @PostMapping("/users/save")
@@ -120,7 +125,7 @@ public class UserController {
             model.addAttribute("pageTitle", "Edit User (ID: " + id + ")");
             model.addAttribute("listRoles", listRoles);
 
-            return "user_form";
+            return "/user/user_form";
         } catch (UserNotFoundException exception) {
             redirectAttributes.addFlashAttribute("message", exception.getMessage());
             return "redirect:/users";
@@ -138,7 +143,7 @@ public class UserController {
         } catch (UserNotFoundException exception) {
             redirectAttributes.addFlashAttribute("message", exception.getMessage());
         }
-        return "redirect:/users";
+        return "redirect:/user/users";
 
     }
 
@@ -150,7 +155,7 @@ public class UserController {
         userService.updateUserEnabledStatus(id, enabled);
         String status = (enabled == true) ? "enabled" : "disabled";
         redirectAttributes.addFlashAttribute("message", "The user ID " + id + " has been " + status);
-        return "redirect:/users";
+        return "redirect:/user/users";
     }
 
     @GetMapping("/users/export/csv")
