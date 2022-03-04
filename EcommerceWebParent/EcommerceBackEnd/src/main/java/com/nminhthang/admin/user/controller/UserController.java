@@ -143,7 +143,7 @@ public class UserController {
         } catch (UserNotFoundException exception) {
             redirectAttributes.addFlashAttribute("message", exception.getMessage());
         }
-        return "redirect:/user/users";
+        return "redirect:/users";
 
     }
 

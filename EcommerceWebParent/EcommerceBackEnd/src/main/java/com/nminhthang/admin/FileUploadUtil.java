@@ -11,7 +11,7 @@ import java.nio.file.StandardCopyOption;
 
 public class FileUploadUtil {
 
-    public static final String DIR_NAME = "EcommerceProject/EcommerceWebParent/EcommerceBackEnd/user-photos/";
+    public static final String DIR_NAME = "user-photos/";
 
     public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
