@@ -1,12 +1,4 @@
-:root {
-	--primary-color: #8bc34a;
-}
-html,
-body {
-	margin:0;
-	padding:0;
-	height:100%;
-}
+
 *.icon-white {color:white}
 *.icon-silver {color:silver}
 *.icon-purple {
@@ -148,6 +140,14 @@ body {
 .a-textdecoration {
 	text-decoration: none !important;
 }
+.filter-input:focus {
+	border: none;
+	border-width: 1px;
+  	border-style: solid;
+  	border-image: linear-gradient(to right, #cc2b5e, #753a88) 0.5;
+	box-shadow: none;
+}
+
 .btn-search {
 	border: none;
 	background: linear-gradient(to right, #cc2b5e, #753a88);
@@ -183,17 +183,22 @@ body {
 
 /* Start pagination */
 
+
 .page-item.active .page-link{
-	background: linear-gradient(to right, #cc2b5e, #753a88);
-	border: 1px solid;
+	border-image: linear-gradient(to right, #cc2b5e, #753a88);;
+    background: linear-gradient(to right, #cc2b5e, #753a88);
+    color: white;
 }
-.page-link{
+.page-item .page-link{
 	background: linear-gradient(to right, #cc2b5e, #753a88);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
 
+
 /* End pagination */
+
+
 
 /*----- End User page ------*/
 
@@ -294,6 +299,10 @@ body {
 	opacity: 0.8;
 	
 }
+
+/*------ End Login page --------*/
+
+
 
 /* Start Footer */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -411,5 +420,5 @@ ul{
 
 
 /* End Footer */
-/*------ End Login page --------*/
+
 
