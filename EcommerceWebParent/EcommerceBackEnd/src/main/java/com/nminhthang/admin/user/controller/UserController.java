@@ -155,7 +155,7 @@ public class UserController {
         userService.updateUserEnabledStatus(id, enabled);
         String status = (enabled == true) ? "enabled" : "disabled";
         redirectAttributes.addFlashAttribute("message", "The user ID " + id + " has been " + status);
-        return "redirect:/user/users";
+        return "redirect:/users";
     }
 
     @GetMapping("/users/export/csv")
