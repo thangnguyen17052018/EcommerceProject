@@ -14,10 +14,31 @@
 }
 
 
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color:transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to top, #cc2b5e, #753a88);
+  border-radius: 10px;
+}
+
+
+
 *.box-shadow {
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1)
 }
 
+/* Start index page */
+.img-asset {
+	height: 500px;
+}
+
+/* End index page*/
 
 
 /*-------- Start User page -----------*/
@@ -141,11 +162,13 @@
 	text-decoration: none !important;
 }
 .filter-input:focus {
-	border: none;
-	border-width: 1px;
-  	border-style: solid;
-  	border-image: linear-gradient(to right, #cc2b5e, #753a88) 0.5;
+	border: transparent;
+	padding: 2px 2px;
+	background-image: linear-gradient(white, white), linear-gradient(to right, #cc2b5e, #753a88);
+	background-origin: border-box;
+	background-clip: content-box, border-box;
 	box-shadow: none;
+	width: 220.4px;
 }
 
 .btn-search {
@@ -153,12 +176,14 @@
 	background: linear-gradient(to right, #cc2b5e, #753a88);
 	color: white;
 } 
-
-.btn-clear{
-	  background: linear-gradient(to right, #bdc3c7, #2c3e50);
-	color: white;
-	border: none;
+.btn-search:hover {
+	  background: linear-gradient(to left, #cc2b5e, #753a88);
+  color: white;
+  transition: 1s ease;
+  opacity: 0.8;
+	
 }
+
 
 /* End header */
 
@@ -304,7 +329,10 @@
 	border: none;
 }
 .login-button:hover{
-	opacity: 0.8;
+  background: linear-gradient(to left, #cc2b5e, #753a88);
+  color: white;
+  transition: 1s ease;
+  opacity: 0.8;
 	
 }
 
@@ -406,10 +434,6 @@ ul{
   .footer-col{
     width: 100%;
 }
-}
-.container-fluid {
-	padding-left: 0 !important;
-	padding-right: 0 !important;
 }
 
 #footer {

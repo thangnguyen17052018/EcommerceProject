@@ -9,13 +9,17 @@
         <div th:replace="fragments :: menu_link"></div>
 
         <div>
-            <h1>Ecommerce Control Panel</h1>
+            <h1 class="mt-4">Ecommerce Control Panel</h1>
+            
             <p>
                 Welcome
                 <a th:href="@{/account}"
                    sec:authentication="principal.fullName"></a>&nbsp;
                 <span sec:authentication="principal.authorities"></span>
             </p>
+            <div class="text-center py-3">            
+            	<img th:src="@{/images/Asset 1.png}" class="img-asset"/>
+            </div>
 
         </div>
 
