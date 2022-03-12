@@ -185,9 +185,11 @@
 
 
 .page-item.active .page-link{
-	border-image: linear-gradient(to right, #cc2b5e, #753a88);;
-    background: linear-gradient(to right, #cc2b5e, #753a88);
-    color: white;
+	padding: 7px 12px;
+	border: 10px solid;
+	border-image-slice: 1;
+	border-width: 2px;
+	border-image-source: linear-gradient(to right, #cc2b5e, #753a88);;
 }
 .page-item .page-link{
 	background: linear-gradient(to right, #cc2b5e, #753a88);
@@ -290,6 +292,8 @@
 .login-input:focus::placeholder {
 	padding-left: 24px;
 }
+
+
 .login-button {
 	height: 52px;
 	width: 100%;

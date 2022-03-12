@@ -29,34 +29,34 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    public List<User> listAll(){
+    public List<User> listAll() {
         return (List<User>) userRepository.findAll(Sort.by("id").ascending());
     }
 
-    public Page<User> listByPage(int pageNumber, String sortField, String sortDir, String keyword){
+    public Page<User> listByPage(int pageNumber, String sortField, String sortDir, String keyword) {
         Sort sort = Sort.by(sortField);
         sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
 
         Pageable pageable = PageRequest.of(pageNumber - 1, UserService.USERS_PER_PAGE, sort);
 
-        if (keyword != null){
+        if (keyword != null) {
             return userRepository.findAll(keyword, pageable);
         }
 
         return userRepository.findAll(pageable);
     }
 
-    public List<Role> listRoles(){
+    public List<Role> listRoles() {
         return (List<Role>) roleRepository.findAll();
     }
 
     public User save(User user) {
         boolean isUpdatingUser = (user.getId() != null);
 
-        if (isUpdatingUser){
+        if (isUpdatingUser) {
             User existingUser = userRepository.findById(user.getId()).get();
 
-            if (user.getPassword().isEmpty()){
+            if (user.getPassword().isEmpty()) {
                 user.setPassword(existingUser.getPassword());
             } else {
                 encodePassword(user);
@@ -71,12 +71,12 @@ public class UserService {
     public User updateAccount(User userInForm) {
         User userInDB = userRepository.findById(userInForm.getId()).get();
 
-        if (!userInForm.getPassword().isEmpty()){
+        if (!userInForm.getPassword().isEmpty()) {
             userInDB.setPassword(userInForm.getPassword());
             encodePassword(userInDB);
         }
 
-        if (userInForm.getPhotos() != null){
+        if (userInForm.getPhotos() != null) {
             userInDB.setPhotos(userInForm.getPhotos());
         }
 
@@ -86,22 +86,22 @@ public class UserService {
         return userRepository.save(userInDB);
     }
 
-    private void encodePassword(User user){
+    private void encodePassword(User user) {
         String encodedPassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
     }
 
-    public boolean isEmailUnique(Integer id, String email){
-        User userByEmail =  userRepository.getUserByEmail(email);
+    public boolean isEmailUnique(Integer id, String email) {
+        User userByEmail = userRepository.getUserByEmail(email);
 
         if (userByEmail == null) return true;
 
         boolean isCreatingNew = (id == null);
 
-        if (isCreatingNew){
+        if (isCreatingNew) {
             if (userByEmail != null) return false;
         } else {
-            if (userByEmail.getId() != id){
+            if (userByEmail.getId() != id) {
                 return false;
             }
         }
@@ -112,20 +112,20 @@ public class UserService {
     public User get(Integer id) throws UserNotFoundException {
         try {
             return userRepository.findById(id).get();
-        } catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             throw new UserNotFoundException("Could not find any user with ID " + id);
         }
     }
 
-    public User getUserByEmail(String email) throws UserNotFoundException{
+    public User getUserByEmail(String email) throws UserNotFoundException {
         try {
             return userRepository.getUserByEmail(email);
-        } catch (NoSuchElementException exception){
+        } catch (NoSuchElementException exception) {
             throw new UserNotFoundException("Could not find any user with email " + email);
         }
     }
 
-    public void delete(Integer id) throws UserNotFoundException{
+    public void delete(Integer id) throws UserNotFoundException {
         Long userCountById = userRepository.countById(id);
 
         if (userCountById == null || userCountById == 0)
@@ -134,7 +134,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void updateUserEnabledStatus(Integer id, boolean enabled){
+    public void updateUserEnabledStatus(Integer id, boolean enabled) {
         userRepository.updateEnabledStatus(id, enabled);
     }
 

@@ -1,5 +1,6 @@
 package com.nminhthang.admin.user.exporter;
 
+import com.nminhthang.admin.AbstractExporter;
 import com.nminhthang.common.entity.User;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.xssf.usermodel.*;
@@ -9,10 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-public class UserExcelExporter extends AbstractExporter {
+public class UserExcelExporter extends AbstractExporter<User> {
 
     private XSSFWorkbook workbook;
     private XSSFSheet sheet;
+    String[] headers = {"User ID", "Email", "First Name", "Last Name", "Roles", "Enabled"};
+    String[] fieldMapping = {"id", "email", "firstName", "lastName", "roles", "enabled"};
 
     public UserExcelExporter() {
         workbook = new XSSFWorkbook();
@@ -20,7 +23,7 @@ public class UserExcelExporter extends AbstractExporter {
 
     @Override
     public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
-        super.setResponseHeader(response, "application/octet-stream", ".xlsx");
+        super.setResponseHeader(response, "application/octet-stream", ".xlsx", "user");
 
         writeHeaderLine();
         writeDataLine(listUsers);
