@@ -5,6 +5,7 @@ import com.lowagie.text.Font;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+import com.nminhthang.admin.AbstractExporter;
 import com.nminhthang.common.entity.User;
 
 import javax.servlet.http.HttpServletResponse;
@@ -12,11 +13,14 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
-public class UserPDFExporter extends AbstractExporter{
+public class UserPDFExporter extends AbstractExporter<User> {
+
+    String[] headers = {"User ID", "Email", "First Name", "Last Name", "Roles", "Enabled"};
+    String[] fieldMapping = {"id", "email", "firstName", "lastName", "roles", "enabled"};
 
     @Override
     public void export(List<User> listUsers, HttpServletResponse response) throws IOException {
-        super.setResponseHeader(response, "application/pdf",".pdf");
+        super.setResponseHeader(response, "application/pdf",".pdf", "user");
 
         Document document = new Document(PageSize.A4);
         PdfWriter.getInstance(document,response.getOutputStream());

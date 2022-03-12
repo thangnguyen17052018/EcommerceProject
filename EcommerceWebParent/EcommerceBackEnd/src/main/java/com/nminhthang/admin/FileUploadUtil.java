@@ -15,7 +15,9 @@ public class FileUploadUtil {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(FileUploadUtil.class);
 
-    public static final String DIR_NAME = "user-photos/";
+    public static final String USER_DIR_NAME = "user-photos/";
+    public static final String CATEGORY_DIR_NAME = "category-images/";
+
 
     public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
