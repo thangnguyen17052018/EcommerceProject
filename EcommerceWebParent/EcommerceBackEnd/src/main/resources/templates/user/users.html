@@ -35,11 +35,11 @@
                 <input type="hidden" name="sortField" th:value="${sortField}">
                 <input type="hidden" name="sortDir" th:value="${sortOrder}">
                 Filter: &nbsp;
-                <input type="search" name="keyword" th:value="${keyword}" class="form-control" required>
+                <input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input" required>
                 &nbsp;&nbsp;
                 <input type="submit" value="Search" class="btn btn-search">
                 &nbsp;&nbsp;
-                <input type="button" value="Clear" class="btn btn-clear" onclick="clearFilter()">
+                <input type="button" value="Clear" class="btn btn btn-secondary" onclick="clearFilter()">
             </form>
         </div>
         
