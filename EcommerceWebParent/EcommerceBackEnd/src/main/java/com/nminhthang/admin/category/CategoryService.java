@@ -1,16 +1,12 @@
 package com.nminhthang.admin.category;
 
 import com.nminhthang.common.entity.Category;
-import com.nminhthang.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.IntStream;
 
 @Service
@@ -22,11 +18,7 @@ public class CategoryService {
     CategoryRepository categoryRepository;
 
     public List<Category> listAll() {
-        return (List<Category>) categoryRepository.findAll();
-    }
-
-    public List<Category> listAllHierarchical() {
-        List<Category> rootCategories = categoryRepository.listRootCategories();
+        List<Category> rootCategories = categoryRepository.listRootCategories(Sort.by("name").ascending());
         return listHierarchicalCategories(rootCategories);
     }
 
@@ -37,7 +29,7 @@ public class CategoryService {
             if (rootCategory.getParent() == null) {
                 hierarchicalCategories.add(Category.copyFull(rootCategory));
 
-                Set<Category> children = rootCategory.getChildren();
+                Set<Category> children = sortSubCategories(rootCategory.getChildren());
 
                 children.forEach(subCategory -> {
                     hierarchicalCategories.add(Category.copyFullWithFullName(subCategory, "--" + subCategory.getName()));
@@ -53,7 +45,7 @@ public class CategoryService {
 
     private void listSubCategory(List<Category> hierarchicalCategories, Category parent, int subLevel) {
         int newSubLevel = subLevel + 1;
-        Set<Category> children = parent.getChildren();
+        Set<Category> children = sortSubCategories(parent.getChildren());
 
         for (Category subCategory : children) {
             IntStream.range(0, newSubLevel)
@@ -68,7 +60,7 @@ public class CategoryService {
 
     public List<Category> listAllCategoriesUsedInForm() {
         List<Category> categoriesUsedInForm = new ArrayList<>();
-        Iterable<Category> categories = categoryRepository.findAll();
+        Iterable<Category> categories = categoryRepository.listRootCategories(Sort.by("name").ascending());
 
         for (Category category : categories) {
             if (category.getParent() == null) {
@@ -78,7 +70,7 @@ public class CategoryService {
                         .id(category.getId())
                         .build());
 
-                Set<Category> children = category.getChildren();
+                Set<Category> children = sortSubCategories(category.getChildren());
 
                 children.forEach(subCategory -> {
                     categoriesUsedInForm.add(Category.builder()
@@ -95,7 +87,7 @@ public class CategoryService {
 
     private void listChildren(List<Category> categoriesUsedInForm, Category parent, int subLevel) {
         int newSubLevel = subLevel + 1;
-        Set<Category> children = parent.getChildren();
+        Set<Category> children = sortSubCategories(parent.getChildren());
 
         for (Category subCategory : children) {
             IntStream.range(0, newSubLevel)
@@ -139,7 +131,7 @@ public class CategoryService {
             if (rootCategory.getParent() == null) {
                 hierarchicalCategories.add(Category.copyFull(rootCategory));
 
-                Set<Category> children = rootCategory.getChildren();
+                Set<Category> children = sortSubCategories(rootCategory.getChildren());
 
                 children.forEach(subCategory -> {
                     hierarchicalCategories.add(Category.copyFullWithFullName(subCategory, "--" + subCategory.getName()));
@@ -195,15 +187,33 @@ public class CategoryService {
         boolean isCreatingNew = (id == null || id == 0);
 
         if (isCreatingNew){
-            if (categoryByName != null) return "Duplicate category name";
-            if (categoryByAlias != null) return "Duplicate category alias";
+            if (categoryByName != null)
+                return "Duplicate category name";
+            else
+                if (categoryByAlias != null)
+                    return "Duplicate category alias";
+        } else {
+            if (categoryByName != null && categoryByName.getId() != id){
+                return "Duplicate category name";
+            }
+            if (categoryByAlias != null && categoryByAlias.getId() != id){
+                return "Duplicate category alias";
+            }
         }
-//        else {
-//            if (userByEmail.getId() != id){
-//                return false;
-//            }
-//        }
 
         return "OK";
     }
+
+    private SortedSet<Category> sortSubCategories(Set<Category> children) {
+        SortedSet<Category> sortedChildren = new TreeSet<>(new Comparator<Category>() {
+            @Override
+            public int compare(Category cat1, Category cat2) {
+                return cat1.getName().compareTo(cat2.getName());
+            }
+        });
+        sortedChildren.addAll(children);
+
+        return sortedChildren;
+    }
+
 }

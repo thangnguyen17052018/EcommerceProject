@@ -33,9 +33,17 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("/categories")
-    public String listFirstPage(Model model) {
+        public String listFirstPage(Model model) {
         return listByPage(model, 1, "id", "asc", null);
     }
+//    public String listAll(@Param("sortDir") String sortDir, Model model) {
+//        List<Category> listCategories = categoryService.listAll();
+//        model.addAttribute("listCategories", listCategories);
+//
+//        return listAll(sortDir, model);
+//    }
+
+
 
     @GetMapping("/categories/page/{pageNum}")
     public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum,
