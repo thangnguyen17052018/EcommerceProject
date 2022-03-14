@@ -414,3 +414,209 @@
 2022-03-09 11:08:26.299  WARN 9276 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2022-03-09 11:08:26.311  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Started EcommerceBackEndApplication in 1.012 seconds (JVM running for 1079.531)
 2022-03-09 11:08:26.314  INFO 9276 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-03-09 11:38:51.212  INFO 9276 --- [Thread-23] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:38:51.214  INFO 9276 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown initiated...
+2022-03-09 11:38:51.260  INFO 9276 --- [Thread-23] com.zaxxer.hikari.HikariDataSource       : HikariPool-6 - Shutdown completed.
+2022-03-09 11:38:51.452  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Starting EcommerceBackEndApplication using Java 17.0.1 on DESKTOP-MH09OIH with PID 9276 (C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd\target\classes started by DELL OS in C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd)
+2022-03-09 11:38:51.453  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : No active profile set, falling back to default profiles: default
+2022-03-09 11:38:51.906  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-09 11:38:52.006  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 99 ms. Found 2 JPA repository interfaces.
+2022-03-09 11:38:52.284  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-03-09 11:38:52.286  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-09 11:38:52.287  INFO 9276 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-03-09 11:38:52.475  INFO 9276 --- [restartedMain] o.a.c.c.C.[.[.[/EcommerceAdmin]          : Initializing Spring embedded WebApplicationContext
+2022-03-09 11:38:52.475  INFO 9276 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1011 ms
+2022-03-09 11:38:52.583  INFO 9276 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-09 11:38:52.603  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Starting...
+2022-03-09 11:38:52.632  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Start completed.
+2022-03-09 11:38:52.632  INFO 9276 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-03-09 11:38:52.734  INFO 9276 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-09 11:38:52.734  INFO 9276 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:38:53.116  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/EcommerceAdmin'
+2022-03-09 11:38:53.122  INFO 9276 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-09 11:38:53.137  WARN 9276 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-09 11:38:53.150  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Started EcommerceBackEndApplication in 1.792 seconds (JVM running for 2906.371)
+2022-03-09 11:38:53.154  INFO 9276 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-03-09 11:39:16.377  INFO 9276 --- [Thread-27] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:39:16.380  INFO 9276 --- [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown initiated...
+2022-03-09 11:39:16.391  INFO 9276 --- [Thread-27] com.zaxxer.hikari.HikariDataSource       : HikariPool-7 - Shutdown completed.
+2022-03-09 11:39:16.619  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Starting EcommerceBackEndApplication using Java 17.0.1 on DESKTOP-MH09OIH with PID 9276 (C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd\target\classes started by DELL OS in C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd)
+2022-03-09 11:39:16.619  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : No active profile set, falling back to default profiles: default
+2022-03-09 11:39:17.146  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-09 11:39:17.194  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 47 ms. Found 2 JPA repository interfaces.
+2022-03-09 11:39:17.556  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-03-09 11:39:17.557  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-09 11:39:17.557  INFO 9276 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-03-09 11:39:17.630  INFO 9276 --- [restartedMain] o.a.c.c.C.[.[.[/EcommerceAdmin]          : Initializing Spring embedded WebApplicationContext
+2022-03-09 11:39:17.636  INFO 9276 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1012 ms
+2022-03-09 11:39:17.708  INFO 9276 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-09 11:39:17.743  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Starting...
+2022-03-09 11:39:17.780  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Start completed.
+2022-03-09 11:39:17.781  INFO 9276 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-03-09 11:39:17.870  INFO 9276 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-09 11:39:17.871  INFO 9276 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:39:18.097  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/EcommerceAdmin'
+2022-03-09 11:39:18.105  INFO 9276 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-09 11:39:18.117  WARN 9276 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-09 11:39:18.129  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Started EcommerceBackEndApplication in 1.646 seconds (JVM running for 2931.349)
+2022-03-09 11:39:18.133  INFO 9276 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-03-09 11:39:52.322  INFO 9276 --- [Thread-31] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:39:52.323  INFO 9276 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown initiated...
+2022-03-09 11:39:52.332  INFO 9276 --- [Thread-31] com.zaxxer.hikari.HikariDataSource       : HikariPool-8 - Shutdown completed.
+2022-03-09 11:39:52.479  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Starting EcommerceBackEndApplication using Java 17.0.1 on DESKTOP-MH09OIH with PID 9276 (C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd\target\classes started by DELL OS in C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd)
+2022-03-09 11:39:52.480  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : No active profile set, falling back to default profiles: default
+2022-03-09 11:39:53.393  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-09 11:39:53.451  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 57 ms. Found 2 JPA repository interfaces.
+2022-03-09 11:39:53.808  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-03-09 11:39:53.810  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-09 11:39:53.812  INFO 9276 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-03-09 11:39:54.014  INFO 9276 --- [restartedMain] o.a.c.c.C.[.[.[/EcommerceAdmin]          : Initializing Spring embedded WebApplicationContext
+2022-03-09 11:39:54.018  INFO 9276 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1531 ms
+2022-03-09 11:39:54.121  INFO 9276 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-09 11:39:54.135  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Starting...
+2022-03-09 11:39:54.160  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Start completed.
+2022-03-09 11:39:54.160  INFO 9276 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-03-09 11:39:54.180 ERROR 9276 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: No identifier specified for entity: com.nminhthang.common.entity.Category
+2022-03-09 11:39:54.180  WARN 9276 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.nminhthang.common.entity.Category
+2022-03-09 11:39:54.181  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown initiated...
+2022-03-09 11:39:54.191  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-9 - Shutdown completed.
+2022-03-09 11:39:54.191  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-03-09 11:39:54.205  INFO 9276 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-09 11:39:54.322 ERROR 9276 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.AnnotationException: No identifier specified for entity: com.nminhthang.common.entity.Category
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:414) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.6.3.jar:2.6.3]
+	at com.nminhthang.admin.EcommerceBackEndApplication.main(EcommerceBackEndApplication.java:12) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.3.jar:2.6.3]
+Caused by: org.hibernate.AnnotationException: No identifier specified for entity: com.nminhthang.common.entity.Category
+	at org.hibernate.cfg.InheritanceState.determineDefaultAccessType(InheritanceState.java:266) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.cfg.InheritanceState.getElementsToProcess(InheritanceState.java:211) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.cfg.AnnotationBinder.bindClass(AnnotationBinder.java:771) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.boot.model.source.internal.annotations.AnnotationMetadataSourceProcessorImpl.processEntityHierarchies(AnnotationMetadataSourceProcessorImpl.java:225) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess$1.processEntityHierarchies(MetadataBuildingProcess.java:239) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.boot.model.process.spi.MetadataBuildingProcess.complete(MetadataBuildingProcess.java:282) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.metadata(EntityManagerFactoryBuilderImpl.java:1460) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1494) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.15.jar:5.3.15]
+	... 21 common frames omitted
+
+2022-03-09 11:41:13.703  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Starting EcommerceBackEndApplication using Java 17.0.1 on DESKTOP-MH09OIH with PID 9276 (C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd\target\classes started by DELL OS in C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd)
+2022-03-09 11:41:13.703  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : No active profile set, falling back to default profiles: default
+2022-03-09 11:41:14.170  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-09 11:41:14.204  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 33 ms. Found 2 JPA repository interfaces.
+2022-03-09 11:41:14.429  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-03-09 11:41:14.430  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-09 11:41:14.431  INFO 9276 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-03-09 11:41:14.471  INFO 9276 --- [restartedMain] o.a.c.c.C.[.[.[/EcommerceAdmin]          : Initializing Spring embedded WebApplicationContext
+2022-03-09 11:41:14.471  INFO 9276 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 762 ms
+2022-03-09 11:41:14.527  INFO 9276 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-09 11:41:14.539  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Starting...
+2022-03-09 11:41:14.570  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Start completed.
+2022-03-09 11:41:14.570  INFO 9276 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-03-09 11:41:14.652  INFO 9276 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-03-09 11:41:14.653  INFO 9276 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:41:15.095  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8088 (http) with context path '/EcommerceAdmin'
+2022-03-09 11:41:15.099  INFO 9276 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-03-09 11:41:15.120  WARN 9276 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-03-09 11:41:15.132  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Started EcommerceBackEndApplication in 1.49 seconds (JVM running for 3048.352)
+2022-03-09 11:41:15.134  INFO 9276 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2022-03-09 11:41:37.550  INFO 9276 --- [Thread-35] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-03-09 11:41:37.550  INFO 9276 --- [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown initiated...
+2022-03-09 11:41:37.555  INFO 9276 --- [Thread-35] com.zaxxer.hikari.HikariDataSource       : HikariPool-10 - Shutdown completed.
+2022-03-09 11:41:37.696  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Starting EcommerceBackEndApplication using Java 17.0.1 on DESKTOP-MH09OIH with PID 9276 (C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd\target\classes started by DELL OS in C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd)
+2022-03-09 11:41:37.696  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : No active profile set, falling back to default profiles: default
+2022-03-09 11:41:38.341  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-03-09 11:41:38.374  INFO 9276 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 31 ms. Found 2 JPA repository interfaces.
+2022-03-09 11:41:38.606  INFO 9276 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8088 (http)
+2022-03-09 11:41:38.606  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-03-09 11:41:38.607  INFO 9276 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.56]
+2022-03-09 11:41:38.649  INFO 9276 --- [restartedMain] o.a.c.c.C.[.[.[/EcommerceAdmin]          : Initializing Spring embedded WebApplicationContext
+2022-03-09 11:41:38.653  INFO 9276 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 947 ms
+2022-03-09 11:41:38.776  INFO 9276 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-03-09 11:41:38.790  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Starting...
+2022-03-09 11:41:38.814  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Start completed.
+2022-03-09 11:41:38.814  INFO 9276 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2022-03-09 11:41:38.876 ERROR 9276 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: java.util.Set, at table: categories, for columns: [org.hibernate.mapping.Column(children)]
+2022-03-09 11:41:38.876  WARN 9276 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: java.util.Set, at table: categories, for columns: [org.hibernate.mapping.Column(children)]
+2022-03-09 11:41:38.877  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown initiated...
+2022-03-09 11:41:38.898  INFO 9276 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-11 - Shutdown completed.
+2022-03-09 11:41:38.899  INFO 9276 --- [restartedMain] o.apache.catalina.core.StandardService   : Stopping service [Tomcat]
+2022-03-09 11:41:38.916  INFO 9276 --- [restartedMain] ConditionEvaluationReportLoggingListener : 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-03-09 11:41:38.934 ERROR 9276 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: java.util.Set, at table: categories, for columns: [org.hibernate.mapping.Column(children)]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.getBean(AbstractApplicationContext.java:1154) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:908) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583) ~[spring-context-5.3.15.jar:5.3.15]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:414) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:302) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1303) ~[spring-boot-2.6.3.jar:2.6.3]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1292) ~[spring-boot-2.6.3.jar:2.6.3]
+	at com.nminhthang.admin.EcommerceBackEndApplication.main(EcommerceBackEndApplication.java:12) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49) ~[spring-boot-devtools-2.6.3.jar:2.6.3]
+Caused by: javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.MappingException: Could not determine type for: java.util.Set, at table: categories, for columns: [org.hibernate.mapping.Column(children)]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:421) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.afterPropertiesSet(AbstractEntityManagerFactoryBean.java:396) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.afterPropertiesSet(LocalContainerEntityManagerFactoryBean.java:341) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863) ~[spring-beans-5.3.15.jar:5.3.15]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800) ~[spring-beans-5.3.15.jar:5.3.15]
+	... 21 common frames omitted
+Caused by: org.hibernate.MappingException: Could not determine type for: java.util.Set, at table: categories, for columns: [org.hibernate.mapping.Column(children)]
+	at org.hibernate.mapping.SimpleValue.getType(SimpleValue.java:515) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.mapping.SimpleValue.isValid(SimpleValue.java:482) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.mapping.Property.isValid(Property.java:231) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.mapping.PersistentClass.validate(PersistentClass.java:627) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.mapping.RootClass.validate(RootClass.java:267) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.boot.internal.MetadataImpl.validate(MetadataImpl.java:359) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.internal.SessionFactoryImpl.<init>(SessionFactoryImpl.java:314) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.boot.internal.SessionFactoryBuilderImpl.build(SessionFactoryBuilderImpl.java:471) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.hibernate.jpa.boot.internal.EntityManagerFactoryBuilderImpl.build(EntityManagerFactoryBuilderImpl.java:1498) ~[hibernate-core-5.6.4.Final.jar:5.6.4.Final]
+	at org.springframework.orm.jpa.vendor.SpringHibernateJpaPersistenceProvider.createContainerEntityManagerFactory(SpringHibernateJpaPersistenceProvider.java:58) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean.createNativeEntityManagerFactory(LocalContainerEntityManagerFactoryBean.java:365) ~[spring-orm-5.3.15.jar:5.3.15]
+	at org.springframework.orm.jpa.AbstractEntityManagerFactoryBean.buildNativeEntityManagerFactory(AbstractEntityManagerFactoryBean.java:409) ~[spring-orm-5.3.15.jar:5.3.15]
+	... 25 common frames omitted
+
+2022-03-09 11:41:46.843  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : Starting EcommerceBackEndApplication using Java 17.0.1 on DESKTOP-MH09OIH with PID 9276 (C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd\target\classes started by DELL OS in C:\Users\DELL OS\IdeaProjects\EcommerceProject\EcommerceWebParent\EcommerceBackEnd)
+2022-03-09 11:41:46.844  INFO 9276 --- [restartedMain] c.n.admin.EcommerceBackEndApplication    : No active profile set, falling back to default profiles: default

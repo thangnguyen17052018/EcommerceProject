@@ -16,9 +16,9 @@
 
 </head>
 <body>
-<th th:fragment="column_link(fieldName, columnLabel)">
+<th th:fragment="column_link(fieldName, columnLabel, module)">
     <a class="text-dark"
-       th:href="@{'/users/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+       th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
         [[${columnLabel}]]
     </a>
 
@@ -26,8 +26,8 @@
           th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
 
-<a th:fragment="page_link(pageNum, pageLabel)"
-   class="page-link" th:href="@{'/users/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+<a th:fragment="page_link(pageNum, pageLabel, module)"
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
 
 
 
@@ -35,7 +35,7 @@
     <form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
         <input type="submit">
     </form>
-    <nav class="navbar navbar-expand-lg bg-light navbar-light">
+    <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/images/logo.jpg}"/>
         </a>

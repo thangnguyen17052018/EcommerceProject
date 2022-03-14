@@ -15,7 +15,9 @@ public class FileUploadUtil {
 
     public static final Logger LOGGER = LoggerFactory.getLogger(FileUploadUtil.class);
 
-    public static final String DIR_NAME = "user-photos/";
+    public static final String USER_DIR_NAME = "user-photos/";
+    public static final String CATEGORY_DIR_NAME = "category-images/";
+
 
     public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {
         Path uploadPath = Paths.get(uploadDir);
@@ -49,6 +51,16 @@ public class FileUploadUtil {
             });
         } catch (IOException e) {
             LOGGER.error("Could not list directory: " + directoryPath);
+        }
+    }
+
+    public static void removeDir(String dir) {
+        cleanDirectory(dir);
+
+        try {
+            Files.delete(Paths.get(dir));
+        } catch (IOException e) {
+            LOGGER.error("Could not remove directory: " + dir);
         }
     }
 
