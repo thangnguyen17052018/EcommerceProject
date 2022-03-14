@@ -3,20 +3,18 @@
 
 <head th:replace="fragments :: header_link('Login - Ecommerce Furniture Admin')">
 
-
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-	<div class="contain">
+	<div class="container-fluid container-flex">
 
-		<div class="col-md-7">
-			<img th:src="@{/images/room.png}" class="login-img">
-		</div>
-		
-		<div class="col-md-5">
-				<div class="text-center mt-5 p-2">
-					<img th:src="@{/images/logo.jpg}" class="login-logo">
+		<!-- Small screen -->
+
+		<div class="col col-res-sm" style="display: none;">
+				<div class="text-center mt-5 p-2 containerlogo-res-sm">
+					<img th:src="@{/images/logo.jpg}" class="login-logo logo-res-sm">
 				</div>
 				<form th:action="@{/login}" method="post" class="form-size">
 					<div th:if="${param.error}">
@@ -26,17 +24,17 @@
 						<p class="text-warning">You have been logged out</p>
 					</div>
 					<div class="p-3">
-						<h2 class="text-center pb-3">Access to Ecommerce Furniture</h2>
+						<h2 class="text-center pb-3 h2-res-sm">Access to Ecommerce Furniture</h2>
 						<div class="flex-container mt-3 justify-content-between m-auto">
-						
-							<a th:ref="#" class="link-fb">
-								<i class="fa-brands fa-facebook-f px-2"></i>
-								Sign in with Facebook
+							
+							<a th:ref="#" class="link-fb">							
+									<i class="fa-brands fa-facebook-f icon-fb-res-sm"></i>
+									&nbsp;
+									<span>Sign in with Facebook</span>
 							</a>
-
 							<a th:ref="#" class="link-g">
-								<i class="fa-brands fa-google px-2"></i>
-								Sign in with Google
+									<i class="fa-brands fa-google icon-g-res-sm"></i>
+									<span>Sign in with Google</span> 	
 							</a>
 
 						</div>
@@ -63,7 +61,128 @@
 							</label>
 							<input type="password" name="password" class="form-control login-input" placeholder="Password" required>
 						</div>
-						<div class="mt-5">
+						<div class="mt-5 btn-res-sm">
+							<input type="submit" value="Login" class="btn btn-primary login-button">
+						</div>
+					</div>
+				</form>
+		</div>
+		
+		<!-- Medium screen -->
+		
+		<div class="col-md-12" style="display: none;">
+				<div class="text-center mt-5 p-2 contailogo-res-sm">
+					<img th:src="@{/images/logo.jpg}" class="login-logo logo-res-sm">
+				</div>
+				<form th:action="@{/login}" method="post" class="form-size">
+					<div th:if="${param.error}">
+						<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+					</div>
+					<div th:if="${param.logout}">
+						<p class="text-warning">You have been logged out</p>
+					</div>
+					<div class="p-3">
+						<h2 class="text-center pb-3 h2-res-sm">Access to Ecommerce Furniture</h2>
+						<div class="flex-container mt-3 justify-content-between m-auto">
+						
+							<a th:ref="#" class="link-fb link-fb-res-md">
+								<i class="fa-brands fa-facebook-f px-2"></i>
+								<span>Sign in with Facebook</span>
+								
+							</a>
+							<a th:ref="#" class="link-g link-g-res-md">
+								<i class="fa-brands fa-google px-2"></i>
+								<span>Sign in with Google</span> 
+							</a>
+
+						</div>
+						<p class="text-center mt-3 mb-0">
+							<b>
+								Or
+							</b>
+						</p>
+						<div>
+							<label>
+								<b>
+									Your Email
+								</b>
+								
+							</label>
+							<input type="email" name="email" class="form-control mb-2 login-input" placeholder="Ex: email@gmail.com" required>
+						</div>
+						
+						<div class="mt-3">
+							<label>
+								<b>
+									Password
+								</b>
+							</label>
+							<input type="password" name="password" class="form-control login-input" placeholder="Password" required>
+						</div>
+						<div class="mt-5 btn-res-sm">
+							<input type="submit" value="Login" class="btn btn-primary login-button">
+						</div>
+					</div>
+				</form>
+		</div>
+		
+		
+		
+		<!-- Large screen -->
+		
+		<div class="col-md-7">
+			<img th:src="@{/images/room.png}" class="login-img">
+		</div>
+		
+		<div class="col-md-5">
+				<div class="text-center mt-5 p-2">
+					<img th:src="@{/images/logo.jpg}" class="login-logo">
+				</div>
+				<form th:action="@{/login}" method="post" class="form-size">
+					<div th:if="${param.error}">
+						<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
+					</div>
+					<div th:if="${param.logout}">
+						<p class="text-warning">You have been logged out</p>
+					</div>
+					<div class="p-3">
+						<h2 class="text-center pb-3">Access to Ecommerce Furniture</h2>
+						<div class="flex-container mt-3 justify-content-between m-auto">
+							
+							<a th:ref="#" class="link-fb">							
+									<i class="fa-brands fa-facebook-f px-2"></i>
+									<span>Sign in with Facebook</span>
+							</a>
+							<a th:ref="#" class="link-g">
+									<i class="fa-brands fa-google px-2"></i>
+									<span>Sign in with Google</span> 	
+							</a>
+
+						</div>
+						<p class="text-center mt-3 mb-0">
+							<b>
+								Or
+							</b>
+						</p>
+						<div>
+							<label>
+								<b>
+									Your Email
+								</b>
+								
+							</label>
+							<input type="email" name="email" class="form-control mb-2 login-input" placeholder="Ex: email@gmail.com" required>
+						</div>
+						
+						<div class="mt-3">
+							<label>
+								<b>
+									Password
+								</b>
+							</label>
+							<input type="password" name="password" class="form-control login-input" placeholder="Password" required>
+						</div>
+						<div class="mt-5 btn-res-sm">
 							<input type="submit" value="Login" class="btn btn-primary login-button">
 						</div>
 					</div>
