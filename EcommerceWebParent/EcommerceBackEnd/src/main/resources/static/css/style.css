@@ -47,37 +47,88 @@
 /* Start Responsive */
 
 /* small screen*/
-@media screen and (max-width: 896px){
-    div.full-details {
-        display: none;
-    }
-    div.less-details{
-        display: block;
-    }
+@media screen and (max-width: 767px){
+	.flex-container{
+		flex-direction: column;
+	}
+	
+	.col-md-5{
+		display: none !important;
+	}
+	.col-md-7{
+		display: none !important;
+	}
+	
+	.col-res-sm {
+		display: inline-block !important;
+	}
+
+
+	.containerlogo-res-sm {
+		margin-top: 20px !important;
+	}
+	.logo-res-sm {
+		width: 100px !important;
+		height: 100px !important;
+	}
+
+	.h2-res-sm{
+		font-size: 22px;
+	}
+	
+	.link-fb {
+		width: 100% !important;
+		margin-bottom: 15px;
+		justify-content: unset !important;
+	}
+	
+	.link-g
+	{
+		width: 100% !important;
+		justify-content: unset !important;
+
+	}
+	.icon-fb-res-sm {
+		padding: 0 20px 0 50px !important;
+	}
+	.icon-g-res-sm {
+		padding: 0 20px 0 50px !important;
+	}
+	.btn-res-sm {
+		margin-top: 35px !important;
+	}
+	
 }
 
 /* medium screen*/
-@media screen and (min-width: 896px) and (max-width: 1024px){
-    div.full-details {
-        display: block;
-    }
-    div.less-details{
-        display: none;
-    }
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	.col-md-7 {
+		display: none !important;
+	}
+	.col-md-5 {
+		display: none !important;
+	}
+	.col-md-12 {
+		display: inline-block !important;
+		font-size: 22px;
+	}
+	.link-fb-res-md {
+		width: 45% !important;
+		margin-right: 0 !important;
+	}
+	.link-g-res-md {
+		width: 45% !important;
+		margin-right: 0 !important;
+	}
+	::placeholder { 
+	  font-size: 20px;
+	}
+	input[type='email'] { font-size: 20px; }
 
-    th.td .hideable-column{
-        display: none;
-    }
 }
 /* large screen*/
-@media screen and (min-width: 1024px){
-    div.less-details{
-        display: none;
-    }
+@media screen and (min-width: 1025px) and (max-width: 1280px){
 
-    th.td .hideable-column{
-        display: table-cell;
-    }
 }
 
 /* End Responsive */
@@ -235,17 +286,17 @@
 
 
 
-.contain {
+.container-flex {
 	padding: 0;	
 	display: flex;
+	max-height: 900px;
 	margin: 0;
-	height: 750px;
 	padding: 0;
 }
 
 .col-md-7 {
 	padding: 0;
-	height: 100%;
+	height: auto;
 }
 
 
