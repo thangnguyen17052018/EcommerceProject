@@ -63,12 +63,14 @@
                         </td>
                         <td>
                             <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{'/categories/edit/' + ${category.id}}"
-                               title="Edit this category"></a>
+                               title="Edit this category">
+                            </a>
                             &nbsp;
-                            <a class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+                            <a th:unless="${category.hasChildren}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
                                th:href="@{'/categories/delete/' + ${category.id}}"
-                               th:categoryId="${category.id}"
-                               title="Delete this category"></a>
+                               th:entityId="${category.id}"
+                               title="Delete this category">
+                            </a>
                         </td>
                     </tr>
                 </tbody>
@@ -102,46 +104,24 @@
 <!--            </nav>-->
 <!--        </div>-->
 
-        <div class="modal fade text-center" id="confirmModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title" id="modalTitle">Delete Confirmation</h4>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <div class="modal-body">
-                        <span id="confirmedText"></span>
-                    </div>
-
-                    <div class="modal-footer">
-                        <a class="btn btn-success" href="" id="yesBtn">Yes</a>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">No</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div th:replace="modal_fragments :: modal_confirm"></div>
 
 
     </div>
     <div th:replace="fragments :: footer_link"></div>
 
+    <script type="text/javascript" th:src="@{/js/common-list.js}"></script>
     <script type="text/javascript">
+        moduleUrl = "[[@{/categories}]]";
         $(document).ready(() => {
             $(".link-delete").on("click", (e) => {
                 e.preventDefault();
                 selectedCategory = $(e.target);
-                categoryId = selectedCategory.attr("categoryId");
-                $("#yesBtn").attr("href", selectedCategory.attr("href"));
-                $("#confirmedText").text("Are you sure to delete this category ID: " + categoryId);
-                $("#confirmModal").modal();
+
+                showDeleteConfirmModal(selectedCategory, "category");
             })
 
         });
-
-        const clearFilter = () => {
-            window.location = "[[@{/categories}]]";
-        }
 
     </script>
 
