@@ -77,32 +77,32 @@
             </table>
         </div>
 
-<!--        <div class="text-center m-4" >-->
-<!--            <span th:if="${totalItems > 0}">Showing categories #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>-->
-<!--            <span th:unless="${totalItems > 0}">No categories found</span>-->
-<!--        </div>-->
+        <div class="text-center m-4" >
+            <span th:if="${totalItems > 0}">Showing categories #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+            <span th:unless="${totalItems > 0}">No categories found</span>
+        </div>
 
-<!--        <div th:if="${totalPages > 1}">-->
-<!--            <nav>-->
-<!--                <ul class="pagination justify-content-center">-->
-<!--                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">-->
-<!--                        <a th:replace="fragments :: page_link(1, 'First', 'categories')"></a>-->
-<!--                    </li>-->
-<!--                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">-->
-<!--                        <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', 'categories')"></a>-->
-<!--                    </li>-->
-<!--                    <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"-->
-<!--                        th:each="i : ${#numbers.sequence(1, totalPages)}">-->
-<!--                        <a th:replace="fragments :: page_link(${i}, ${i}, 'categories')"></a>-->
-<!--                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">-->
-<!--                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', 'categories')"></a>-->
-<!--                    </li>-->
-<!--                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">-->
-<!--                        <a th:replace="fragments :: page_link(${totalPages}, 'Last', 'categories')"></a>-->
-<!--                    </li>-->
-<!--                </ul>-->
-<!--            </nav>-->
-<!--        </div>-->
+        <div th:if="${totalPages > 1}">
+            <nav>
+                <ul class="pagination justify-content-center">
+                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                        <a th:replace="fragments :: page_link(1, 'First', 'categories')"></a>
+                    </li>
+                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                        <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', 'categories')"></a>
+                    </li>
+                    <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"
+                        th:each="i : ${#numbers.sequence(1, totalPages)}">
+                        <a th:replace="fragments :: page_link(${i}, ${i}, 'categories')"></a>
+                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', 'categories')"></a>
+                    </li>
+                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                        <a th:replace="fragments :: page_link(${totalPages}, 'Last', 'categories')"></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
 
     <div th:replace="modal_fragments :: modal_confirm"></div>
 
