@@ -18,7 +18,12 @@ public class CategoryService {
     @Autowired
     CategoryRepository categoryRepository;
 
-    public List<Category> listByPage(int pageNum, String sortDir) {
+    public List<Category> listAll() {
+        List<Category> rootCategories = categoryRepository.listRootCategories(Sort.by("name").ascending());
+        return listHierarchicalCategories(rootCategories, "asc");
+    }
+
+    public List<Category> listByPage(CategoryPageInfo categoryPageInfo ,int pageNum, String sortDir) {
         Sort sort = Sort.by("name");
 
         if (sortDir.equals("asc")) {
@@ -29,7 +34,16 @@ public class CategoryService {
 
         Pageable pageable = PageRequest.of(pageNum - 1, CategoryService.CATEGORIES_PER_PAGE, sort);
 
-        List<Category> rootCategories = categoryRepository.listRootCategories(pageable);
+        Page<Category> rootCategoriesPage = categoryRepository.listRootCategories(pageable);
+        List<Category> rootCategories = rootCategoriesPage.getContent();
+
+        System.out.println(rootCategories.size());
+
+        categoryPageInfo.setTotalElements(rootCategoriesPage.getTotalElements());
+        categoryPageInfo.setTotalElements(rootCategoriesPage.getTotalPages());
+
+        System.out.println(categoryPageInfo.getTotalElements());
+        System.out.println(categoryPageInfo.getTotalPages());
 
         return listHierarchicalCategories(rootCategories, sortDir);
     }

@@ -2,6 +2,7 @@ package com.nminhthang.admin.category.controller;
 
 import com.nminhthang.admin.FileUploadUtil;
 import com.nminhthang.admin.category.CategoryNotFoundException;
+import com.nminhthang.admin.category.CategoryPageInfo;
 import com.nminhthang.admin.category.CategoryService;
 import com.nminhthang.admin.category.exporter.CategoryCSVExporter;
 import com.nminhthang.admin.user.UserNotFoundException;
@@ -36,23 +37,23 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public String listFirstPage(@Param("sortDir") String sortDir, Model model) {
-        return listByPage(model, 1, "asc", null);
+        return listByPage(model, 1, sortDir);
     }
 
-    public String listAll(@Param("sortDir") String sortDir, Model model) {
-
-        if (sortDir == null || sortDir.isEmpty()) {
-            sortDir = "asc";
-        }
-
-        List<Category> listCategories = categoryService.listAll(sortDir);
-        String reverseSortDir = (sortDir.equals("asc")) ? "desc" : "asc";
-
-        model.addAttribute("listCategories", listCategories);
-        model.addAttribute("reverseSortDir", reverseSortDir);
-
-        return "/category/categories";
-    }
+//    public String listAll(@Param("sortDir") String sortDir, Model model) {
+//
+//        if (sortDir == null || sortDir.isEmpty()) {
+//            sortDir = "asc";
+//        }
+//
+//        List<Category> listCategories = categoryService.listAll();
+//        String reverseSortDir = (sortDir.equals("asc")) ? "desc" : "asc";
+//
+//        model.addAttribute("listCategories", listCategories);
+//        model.addAttribute("reverseSortDir", reverseSortDir);
+//
+//        return "/category/categories";
+//    }
 
     @GetMapping("/categories/page/{pageNum}")
     public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum,
@@ -60,27 +61,26 @@ public class CategoryController {
         if (sortDir == null || sortDir.isEmpty()) {
             sortDir = "asc";
         }
+        CategoryPageInfo categoryPageInfo = new CategoryPageInfo();
 
-        List<Category> categoryPage = categoryService.listByPage(pageNum, sortDir);
+        List<Category> listCategories = categoryService.listByPage(categoryPageInfo, pageNum, sortDir);
 
-//        List<Category> listCategories = categoryPage.getContent();
-//
-//        long startCount = (long) (pageNum - 1) * CategoryService.CATEGORIES_PER_PAGE + 1;
-//        long endCount = startCount + CategoryService.CATEGORIES_PER_PAGE - 1;
-//
-//        if (endCount > categoryPage.getTotalElements())
-//            endCount = categoryPage.getTotalElements();
-//
-//        String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
-//
-//        model.addAttribute("totalItems", categoryPage.getTotalElements());
-//        model.addAttribute("startCount", startCount);
-//        model.addAttribute("endCount", endCount);
-//        model.addAttribute("listCategories", listCategories);
-//        model.addAttribute("currentPage", pageNum);
-//        model.addAttribute("totalPages", categoryPage.getTotalPages());
-//        model.addAttribute("sortOrder", sortDir);
-//        model.addAttribute("reverseSortOrder", reverseSortDir);
+        long startCount = (long) (pageNum - 1) * CategoryService.CATEGORIES_PER_PAGE + 1;
+        long endCount = startCount + CategoryService.CATEGORIES_PER_PAGE - 1;
+
+        if (endCount > categoryPageInfo.getTotalElements())
+            endCount = categoryPageInfo.getTotalElements();
+
+        String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
+
+        model.addAttribute("totalItems", categoryPageInfo.getTotalElements());
+        model.addAttribute("startCount", startCount);
+        model.addAttribute("endCount", endCount);
+        model.addAttribute("listCategories", listCategories);
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", categoryPageInfo.getTotalPages());
+        model.addAttribute("sortOrder", sortDir);
+        model.addAttribute("reverseSortOrder", reverseSortDir);
 //        model.addAttribute("keyword", keyword);
 
         return "/category/categories";
@@ -129,7 +129,7 @@ public class CategoryController {
                            RedirectAttributes redirectAttributes){
         try {
             Category category = categoryService.get(id);
-            List<Category> listCategories = categoryService.listAll("asc");
+            List<Category> listCategories = categoryService.listAll();
             model.addAttribute("category", category);
             model.addAttribute("listCategories", listCategories);
             model.addAttribute("pageTitle", "Edit Category (ID: " + id + ")");
@@ -172,7 +172,7 @@ public class CategoryController {
 
     @GetMapping("/categories/export/csv")
     public void exportToCSV(HttpServletResponse response) throws IOException {
-        List<Category> listCategories = categoryService.listAll("asc");
+        List<Category> listCategories = categoryService.listAll();
         CategoryCSVExporter exporter = new CategoryCSVExporter();
         exporter.export(listCategories, response);
     }

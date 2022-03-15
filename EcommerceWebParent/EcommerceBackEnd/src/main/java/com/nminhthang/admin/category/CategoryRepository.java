@@ -18,7 +18,7 @@ public interface CategoryRepository extends PagingAndSortingRepository<Category,
     Page<Category> findAll(String keyword, Pageable pageable);
 
     @Query("SELECT c FROM Category c WHERE c.parent is null")
-    Page<Category> findRootCategories(Pageable pageable);
+    Page<Category> listRootCategories(Pageable pageable);
 
     @Query("SELECT c FROM Category c WHERE c.parent is null")
     List<Category> listRootCategories(Sort sort);
