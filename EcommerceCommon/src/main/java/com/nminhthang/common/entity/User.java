@@ -14,7 +14,8 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User {
-    @Id
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -72,5 +73,10 @@ public class User {
 
     public String idToString(){
         return id.toString();
+    }
+    
+    @Transient
+    public String getFullName() {
+    	return firstName + " " + lastName;
     }
 }

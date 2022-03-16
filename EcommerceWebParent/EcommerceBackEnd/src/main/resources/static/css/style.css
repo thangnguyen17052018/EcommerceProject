@@ -229,7 +229,6 @@
 	display: flex;
 	max-height: 56.25rem /* 46.875rem */;
 	margin: 0;
-	padding: 0;
 }
 
 .col-md-7 {
@@ -248,7 +247,6 @@
 	width: 100%;
 	height: 100%;
 }
-
 .flex-container {
 	display: flex;
 	text-align: center;
@@ -554,4 +552,21 @@ ul{
 
 /* End Footer */
 
+/* Start Responsive */
+@media screen and (max-width: 768px) {
+	/* small screen */
+	div.full-details { display: none}
+	div.less-details { display: block}
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	/* medium screen */
+	div.full-details { display: block }
+	div.less-details { display: none }
+	.hideable-column { display: none}
+}
 
+@media screen and (min-width: 1024px) {
+	/* large screen */
+	div.less-details { display: none}
+	.hideable-column { display: table-cell}
+}

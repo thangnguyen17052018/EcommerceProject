@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<th th:fragment="column_link(fieldName, columnLabel, module)">
+<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
     <a class="text-dark"
        th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
         [[${columnLabel}]]
@@ -45,6 +45,7 @@
 
 
 <div th:fragment="menu_link">
+	
     <form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
         <input type="submit">
     </form>
@@ -52,11 +53,15 @@
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/images/logo.jpg}"/>
         </a>
+         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="topNavbar">
+
             <ul class="navbar-nav">
+            	
                 <li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
                    
                     <a class="nav-link" th:href="@{/users}">
