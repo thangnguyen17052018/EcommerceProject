@@ -2,14 +2,11 @@ package com.nminhthang.admin.category.controller;
 
 import com.nminhthang.admin.FileUploadUtil;
 import com.nminhthang.admin.category.CategoryNotFoundException;
+import com.nminhthang.admin.category.CategoryPageInfo;
 import com.nminhthang.admin.category.CategoryService;
 import com.nminhthang.admin.category.exporter.CategoryCSVExporter;
-import com.nminhthang.admin.user.UserNotFoundException;
 import com.nminhthang.common.entity.Category;
-import com.nminhthang.common.entity.Role;
-import com.nminhthang.common.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,40 +30,37 @@ public class CategoryController {
     CategoryService categoryService;
 
     @GetMapping("/categories")
-    public String listFirstPage(Model model) {
-        return listByPage(model, 1, "id", "asc", null);
+    public String listFirstPage(@Param("sortDir") String sortDir, Model model) {
+        return listByPage(model, 1, sortDir, null);
     }
 
     @GetMapping("/categories/page/{pageNum}")
     public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum,
-                             @Param("sortField") String sortField,
                              @Param("sortDir") String sortDir,
                              @Param("keyword") String keyword) {
-        System.out.println("Sort field: " + sortField);
-        System.out.println("Sort order: " + sortDir);
-        System.out.println("Keyword: " + keyword);
+        if (sortDir == null || sortDir.isEmpty()) {
+            sortDir = "asc";
+        }
+        CategoryPageInfo categoryPageInfo = new CategoryPageInfo();
 
-        Page<Category> categoryPage = categoryService.listByPage(pageNum, sortField, sortDir, keyword);
+        List<Category> listCategories = categoryService.listByPage(categoryPageInfo, pageNum, sortDir, keyword);
 
-        List<Category> listCategories = categoryPage.getContent();
-        System.out.println("list size: " + listCategories.size());
+        long startCount = (long) (pageNum - 1) * CategoryService.ROOT_CATEGORIES_PER_PAGE + 1;
+        long endCount = startCount + CategoryService.ROOT_CATEGORIES_PER_PAGE - 1;
 
-        long startCount = (long) (pageNum - 1) * CategoryService.CATEGORIES_PER_PAGE + 1;
-        long endCount = startCount + CategoryService.CATEGORIES_PER_PAGE - 1;
-
-        if (endCount > categoryPage.getTotalElements())
-            endCount = categoryPage.getTotalElements();
+        if (endCount > categoryPageInfo.getTotalElements())
+            endCount = categoryPageInfo.getTotalElements();
 
         String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
 
-        model.addAttribute("totalItems", categoryPage.getTotalElements());
+        model.addAttribute("totalItems", categoryPageInfo.getTotalElements());
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
         model.addAttribute("listCategories", listCategories);
         model.addAttribute("currentPage", pageNum);
-        model.addAttribute("totalPages", categoryPage.getTotalPages());
-        model.addAttribute("sortField", sortField);
+        model.addAttribute("totalPages", categoryPageInfo.getTotalPages());
         model.addAttribute("sortOrder", sortDir);
+        model.addAttribute("sortField", "name");
         model.addAttribute("reverseSortOrder", reverseSortDir);
         model.addAttribute("keyword", keyword);
 
@@ -136,6 +130,9 @@ public class CategoryController {
                              RedirectAttributes redirectAttributes) {
         try {
             categoryService.delete(id);
+            String categoryDir = "../category-images/" + id;
+            FileUploadUtil.removeDir(categoryDir);
+
             redirectAttributes.addFlashAttribute("message", "Category by ID = " + id + " has been deleted");
         } catch (CategoryNotFoundException exception) {
             redirectAttributes.addFlashAttribute("message", exception.getMessage());

@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<th th:fragment="column_link(fieldName, columnLabel, module)">
+<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
     <a class="text-dark"
        th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
         [[${columnLabel}]]
@@ -26,12 +26,26 @@
           th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
 
+<div th:fragment="search_form(module)">
+    <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
+        <input type="hidden" name="sortField" th:value="${sortField}">
+        <input type="hidden" name="sortDir" th:value="${sortOrder}">
+        Filter: &nbsp;
+        <input type="search" name="keyword" th:value="${keyword}" class="form-control" required>
+        &nbsp;&nbsp;
+        <input type="submit" value="Search" class="btn btn-search">
+        &nbsp;&nbsp;
+        <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+    </form>
+</div>
+
 <a th:fragment="page_link(pageNum, pageLabel, module)"
    class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
 
 
 
 <div th:fragment="menu_link">
+	
     <form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
         <input type="submit">
     </form>
@@ -39,11 +53,15 @@
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/images/logo.jpg}"/>
         </a>
+         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="topNavbar">
+
             <ul class="navbar-nav">
+            	
                 <li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
                    
                     <a class="nav-link" th:href="@{/users}">
