@@ -3,7 +3,7 @@
 
 <head th:replace="fragments :: header_link('Login - Ecommerce Furniture Admin')">
 
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -71,7 +71,7 @@
 		<!-- Medium screen -->
 		
 		<div class="col-md-12" style="display: none;">
-				<div class="text-center mt-5 p-2 contailogo-res-sm">
+				<div class="text-center mt-3 p-2 contailogo-res-sm">
 					<img th:src="@{/images/logo.jpg}" class="login-logo logo-res-sm">
 				</div>
 				<form th:action="@{/login}" method="post" class="form-size">
@@ -86,13 +86,13 @@
 						<div class="flex-container mt-3 justify-content-between m-auto">
 						
 							<a th:ref="#" class="link-fb link-fb-res-md">
-								<i class="fa-brands fa-facebook-f px-2"></i>
-								<span>Sign in with Facebook</span>
+								<i class="fa-brands fa-facebook-f"></i>
+								<span class="textSignFB"> Sign in with Facebook</span>
 								
 							</a>
 							<a th:ref="#" class="link-g link-g-res-md">
-								<i class="fa-brands fa-google px-2"></i>
-								<span>Sign in with Google</span> 
+								<i class="fa-brands fa-google"></i>
+								<span class="textSignG">Sign in with Google</span> 
 							</a>
 
 						</div>
@@ -150,11 +150,11 @@
 						<div class="flex-container mt-3 justify-content-between m-auto">
 							
 							<a th:ref="#" class="link-fb">							
-									<i class="fa-brands fa-facebook-f px-2"></i>
+									<i class="fa-brands fa-facebook-f px-3"></i>
 									<span>Sign in with Facebook</span>
 							</a>
 							<a th:ref="#" class="link-g">
-									<i class="fa-brands fa-google px-2"></i>
+									<i class="fa-brands fa-google pr-3"></i>
 									<span>Sign in with Google</span> 	
 							</a>
 

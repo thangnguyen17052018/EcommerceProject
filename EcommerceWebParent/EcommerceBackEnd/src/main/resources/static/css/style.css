@@ -6,6 +6,7 @@
 	 -webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+
 *.icon-dark {
 	color:gray
 }
@@ -35,119 +36,53 @@
 
 /* Start index page */
 .img-asset {
-	height: 500px;
+	height: 31.25rem;
 }
 
+/* Responsive */
+@media screen and (max-width: 47.938rem)
+{
+	.img-asset {
+		height: 16.25rem;
+	}
+	.icon-user {
+		margin: 0 !important;
+	}
+}
+
+@media screen and (min-width: 48rem) and (max-width: 63.938rem)
+{
+	.icon-user {
+		margin: 0 !important;
+	}
+}
 /* End index page*/
 
 
 /*-------- Start User page -----------*/
 
 
-/* Start Responsive */
-
-/* small screen*/
-@media screen and (max-width: 767px){
-	.flex-container{
-		flex-direction: column;
-	}
-	
-	.col-md-5{
-		display: none !important;
-	}
-	.col-md-7{
-		display: none !important;
-	}
-	
-	.col-res-sm {
-		display: inline-block !important;
-	}
-
-
-	.containerlogo-res-sm {
-		margin-top: 20px !important;
-	}
-	.logo-res-sm {
-		width: 100px !important;
-		height: 100px !important;
-	}
-
-	.h2-res-sm{
-		font-size: 22px;
-	}
-	
-	.link-fb {
-		width: 100% !important;
-		margin-bottom: 15px;
-		justify-content: unset !important;
-	}
-	
-	.link-g
-	{
-		width: 100% !important;
-		justify-content: unset !important;
-
-	}
-	.icon-fb-res-sm {
-		padding: 0 20px 0 50px !important;
-	}
-	.icon-g-res-sm {
-		padding: 0 20px 0 50px !important;
-	}
-	.btn-res-sm {
-		margin-top: 35px !important;
-	}
-	
-}
-
-/* medium screen*/
-@media screen and (min-width: 768px) and (max-width: 1024px){
-	.col-md-7 {
-		display: none !important;
-	}
-	.col-md-5 {
-		display: none !important;
-	}
-	.col-md-12 {
-		display: inline-block !important;
-		font-size: 22px;
-	}
-	.link-fb-res-md {
-		width: 45% !important;
-		margin-right: 0 !important;
-	}
-	.link-g-res-md {
-		width: 45% !important;
-		margin-right: 0 !important;
-	}
-	::placeholder { 
-	  font-size: 20px;
-	}
-	input[type='email'] { font-size: 20px; }
-
-}
-/* large screen*/
-@media screen and (min-width: 1025px) and (max-width: 1280px){
-
-}
-
-/* End Responsive */
-
 
 
 /* Start Navbar */
 
 .userpage-logo {
-	width: 70px;
-	height: 70px;
+	width: 4.375rem;
+	height: 4.375rem;
+} 
+
+
+.navbar-nav {
+	align-items: center !important;
 }
 .li-hover {
     position: relative;
     display: inline-block;
-    padding: 5px 10px;
+    padding: 5px 18px;
     background-color: transparent;
     border: 0;
 }
+
 .li-hover span{
     position: absolute;
     background-image: linear-gradient(to right, #cc2b5e, #753a88);
@@ -193,6 +128,9 @@
 	 -webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+.icon-user {
+	margin-left: 2%;
+}
 /* End Navbar */
 
 
@@ -201,8 +139,8 @@
 
 
 .icon {
-	height: 64px;
-	width: 56px;
+	height: 4rem;
+	width: 3.5rem;
 }
 
 .icon:hover {
@@ -219,7 +157,7 @@
 	background-origin: border-box;
 	background-clip: content-box, border-box;
 	box-shadow: none;
-	width: 220.4px;
+	width: 15%;
 }
 
 .btn-search {
@@ -289,7 +227,7 @@
 .container-flex {
 	padding: 0;	
 	display: flex;
-	max-height: 900px;
+	max-height: 56.25rem /* 46.875rem */;
 	margin: 0;
 	padding: 0;
 }
@@ -301,8 +239,8 @@
 
 
 .login-logo {
-	width: 130px;
-	height: 130px;
+	width: 8.125rem;
+	height: 8.125rem;
 	padding-bottom: 5px;
 }
 
@@ -324,11 +262,10 @@
     border: 2px solid black;
 	text-align: center;
 	border-radius: 24px;
-	margin-right: 30px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	width: 212px;
+	min-width: 16rem;
 }
 
 .link-fb:hover,
@@ -349,7 +286,7 @@
 }
 
 .login-input {
-	height: 52px;
+	height: 3.25rem;
 	border-radius: 25px;
     padding: 20px;
 }
@@ -371,7 +308,7 @@
 
 
 .login-button {
-	height: 52px;
+	height: 3.25rem;
 	width: 100%;
 	border-radius: 25px;
   	background: linear-gradient(to right, #cc2b5e, #753a88);
@@ -386,6 +323,131 @@
   opacity: 0.8;
 	
 }
+
+
+/* Start Responsive */
+
+/* small screen*/
+@media screen and (max-width: 47.938rem){
+	.flex-container{
+		flex-direction: column;
+	}
+	
+	.col-md-5{
+		display: none !important;
+	}
+	.col-md-7{
+		display: none !important;
+	}
+	
+	.col-res-sm {
+		display: inline-block !important;
+	}
+
+
+	.containerlogo-res-sm {
+		margin-top: 20px !important;
+	}
+	.logo-res-sm {
+		width: 6.25rem !important;
+		height: 6.25rem !important;
+	}
+
+	.h2-res-sm{
+		font-size: 22px;
+	}
+	
+	.link-fb {
+		width: 100% !important;
+		margin-bottom: 15px;
+		justify-content: unset !important;
+	}
+	.link-fb:hover {
+		height: 3.25rem;
+		justify-content: unset !important;
+
+	}
+	.link-fb:hover .icon-fb-res-sm{
+		padding: 0 9% 0 19.5% !important;
+	}
+	
+	
+	.link-g
+	{
+		width: 100% !important;
+		justify-content: unset !important;
+
+	}
+	.link-g:hover {
+		height: 3.25rem;
+		justify-content: unset !important;
+		
+	}
+	.link-g:hover .icon-g-res-sm {
+		padding: 0 9% 0 19.5% !important;
+	}
+	
+	.icon-fb-res-sm {
+		padding: 0 10% 0 17% !important;
+	}
+	.icon-g-res-sm {
+		padding: 0 10% 0 17% !important;
+	}
+	.btn-res-sm {
+		margin-top: 35px !important;
+	}
+	
+}
+
+/* medium screen*/
+@media screen and (min-width: 48rem) and (max-width: 63.938rem){
+	.col-md-7 {
+		display: none !important;
+	}
+	.col-md-5 {
+		display: none !important;
+	}
+	.col-md-12 {
+		display: inline-block !important;
+		font-size: 22px;
+	}
+	.link-fb-res-md {
+		width: 45% !important;
+		margin-right: 0 !important;
+	}
+
+	.link-g-res-md {
+		width: 45% !important;
+		margin-right: 0 !important;
+	}
+	.textSignFB {
+		padding-left: 9%;
+	}
+	.textSignG {
+		padding-left: 12%;
+	}
+	
+	.link-fb-res-md:hover .textSignFB {
+		padding-left: 8.5%;
+	}
+	
+	.link-g-res-md:hover .textSignG {
+		padding-left: 11%;
+	}
+	
+	::placeholder { 
+	  font-size: 20px;
+	}
+
+}
+/* large screen*/
+@media screen and (min-width: 64rem){
+
+}
+
+/* End Responsive */
+
+
 
 /*------ End Login page --------*/
 
@@ -402,14 +464,7 @@ body{
 	padding:0;
 	box-sizing: border-box;
 }
-.container{
-	max-width: 1170px;
-	margin:auto;
-}
-.row{
-	display: flex;
-	flex-wrap: wrap;
-}
+
 ul{
 	list-style: none;
 }
@@ -488,12 +543,7 @@ ul{
 }
 
 #footer {
-	 /*position: absolute;*/
 	 margin-top: 20px;
-	 bottom:0;
-	 left: 0;
-	 width:100%;
-	 height:120px;   /* Height of the footer */
  }
 
 .navbar-brand img {
