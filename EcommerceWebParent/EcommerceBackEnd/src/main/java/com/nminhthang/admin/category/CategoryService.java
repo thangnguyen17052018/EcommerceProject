@@ -1,6 +1,5 @@
 package com.nminhthang.admin.category;
 
-import com.nminhthang.admin.user.UserService;
 import com.nminhthang.common.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
@@ -13,7 +12,7 @@ import java.util.stream.IntStream;
 @Service
 public class CategoryService {
 
-    public static final int CATEGORIES_PER_PAGE = 5;
+    public static final int ROOT_CATEGORIES_PER_PAGE = 3;
 
     @Autowired
     CategoryRepository categoryRepository;
@@ -23,7 +22,7 @@ public class CategoryService {
         return listHierarchicalCategories(rootCategories, "asc");
     }
 
-    public List<Category> listByPage(CategoryPageInfo categoryPageInfo ,int pageNum, String sortDir) {
+    public List<Category> listByPage(CategoryPageInfo categoryPageInfo ,int pageNum, String sortDir, String keyword) {
         Sort sort = Sort.by("name");
 
         if (sortDir.equals("asc")) {
@@ -32,20 +31,28 @@ public class CategoryService {
             sort = sort.descending();
         }
 
-        Pageable pageable = PageRequest.of(pageNum - 1, CategoryService.CATEGORIES_PER_PAGE, sort);
+        Pageable pageable = PageRequest.of(pageNum - 1, ROOT_CATEGORIES_PER_PAGE, sort);
 
-        Page<Category> rootCategoriesPage = categoryRepository.listRootCategories(pageable);
-        List<Category> rootCategories = rootCategoriesPage.getContent();
-
-        System.out.println(rootCategories.size());
+        Page<Category> rootCategoriesPage;
+        if (keyword != null) {
+            rootCategoriesPage = categoryRepository.findCategoriesWithKeyword(keyword ,pageable);
+        } else {
+            rootCategoriesPage = categoryRepository.findRootCategories(pageable);
+        }
 
         categoryPageInfo.setTotalElements(rootCategoriesPage.getTotalElements());
-        categoryPageInfo.setTotalElements(rootCategoriesPage.getTotalPages());
+        categoryPageInfo.setTotalPages(rootCategoriesPage.getTotalPages());
 
-        System.out.println(categoryPageInfo.getTotalElements());
-        System.out.println(categoryPageInfo.getTotalPages());
+        List<Category> rootCategories = rootCategoriesPage.getContent();
 
-        return listHierarchicalCategories(rootCategories, sortDir);
+        if (keyword == null) {
+            return listHierarchicalCategories(rootCategories, sortDir);
+        } else {
+            for (Category category : rootCategories) {
+                category.setHasChildren(category.getChildren().size() > 0);
+            }
+            return rootCategories;
+        }
     }
 
     private List<Category> listHierarchicalCategories(List<Category> rootCategories, String sortDir) {
@@ -128,49 +135,6 @@ public class CategoryService {
         }
 
     }
-
-//    public Page<Category> listByPage(int pageNumber, String sortField, String sortDir, String keyword) {
-//        Sort sort = Sort.by(sortField);
-//        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
-//
-//        Pageable pageable = PageRequest.of(pageNumber - 1, CATEGORIES_PER_PAGE, sort);
-//        Page<Category> categoryPage;
-//        List<Category> contentPage;
-//        if (keyword != null) {
-//            categoryPage = categoryRepository.findAll(keyword, pageable);
-//            contentPage = pageHierarchicalCategories(categoryPage, sortDir);
-//        } else {
-//            categoryPage = categoryRepository.findRootCategories(pageable);
-//            contentPage = pageHierarchicalCategories(categoryPage, sortDir);
-//        }
-//
-//        Page<Category> resultPage = new PageImpl<>(contentPage, pageable, categoryPage.getTotalElements());
-//
-//        return resultPage;
-//    }
-
-    private List<Category> pageHierarchicalCategories(Page<Category> rootCategories, String sortDir) {
-        List<Category> rootCategoriesContent = rootCategories.getContent();
-        List<Category> hierarchicalCategories = new ArrayList<>();
-
-        for (Category rootCategory : rootCategoriesContent) {
-            if (rootCategory.getParent() == null) {
-                hierarchicalCategories.add(Category.copyFull(rootCategory));
-
-                Set<Category> children = sortSubCategories(rootCategory.getChildren());
-
-                children.forEach(subCategory -> {
-                    hierarchicalCategories.add(Category.copyFullWithFullName(subCategory, "--" + subCategory.getName()));
-
-                    listSubCategory(hierarchicalCategories, subCategory, 1, sortDir);
-                });
-
-            }
-        }
-
-        return hierarchicalCategories;
-    }
-
 
     public Category save(Category category) {
         return categoryRepository.save(category);

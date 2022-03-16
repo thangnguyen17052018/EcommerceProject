@@ -25,10 +25,22 @@
     <span th:if="${sortField == fieldName}"
           th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
-<!--   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>-->
+
+<div th:fragment="search_form(module)">
+    <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
+        <input type="hidden" name="sortField" th:value="${sortField}">
+        <input type="hidden" name="sortDir" th:value="${sortOrder}">
+        Filter: &nbsp;
+        <input type="search" name="keyword" th:value="${keyword}" class="form-control" required>
+        &nbsp;&nbsp;
+        <input type="submit" value="Search" class="btn btn-search">
+        &nbsp;&nbsp;
+        <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+    </form>
+</div>
 
 <a th:fragment="page_link(pageNum, pageLabel, module)"
-   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder}}">[[${pageLabel}]]</a>
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
 
 
 

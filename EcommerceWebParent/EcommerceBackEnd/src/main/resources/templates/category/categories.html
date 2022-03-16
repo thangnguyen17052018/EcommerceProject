@@ -21,20 +21,9 @@
         <div th:if="${message != null}" class="alert alert-success text-center">
             [[${message}]]
         </div>
-        
-        <div>
-            <form th:action="@{/categories/page/1}" class="form-inline m-3">
-                <input type="hidden" name="sortField" th:value="${sortField}">
-                <input type="hidden" name="sortDir" th:value="${sortOrder}">
-                Filter: &nbsp;
-                <input type="search" name="keyword" th:value="${keyword}" class="form-control" required>
-                &nbsp;&nbsp;
-                <input type="submit" value="Search" class="btn btn-search">
-                &nbsp;&nbsp;
-                <input type="button" value="Clear" class="btn btn-clear" onclick="clearFilter()">
-            </form>
-        </div>
-        
+
+        <div th:replace="fragments :: search_form('categories')"></div>
+
         <div>
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
@@ -77,42 +66,16 @@
             </table>
         </div>
 
-        <div class="text-center m-4" >
-            <span th:if="${totalItems > 0}">Showing categories #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
-            <span th:unless="${totalItems > 0}">No categories found</span>
-        </div>
+        <div th:replace="pagination_fragments :: pagination('categories', 'root-categories')">
 
-        <div th:if="${totalPages > 1}">
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
-                        <a th:replace="fragments :: page_link(1, 'First', 'categories')"></a>
-                    </li>
-                    <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
-                        <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', 'categories')"></a>
-                    </li>
-                    <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"
-                        th:each="i : ${#numbers.sequence(1, totalPages)}">
-                        <a th:replace="fragments :: page_link(${i}, ${i}, 'categories')"></a>
-                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
-                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', 'categories')"></a>
-                    </li>
-                    <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
-                        <a th:replace="fragments :: page_link(${totalPages}, 'Last', 'categories')"></a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-
-    <div th:replace="modal_fragments :: modal_confirm"></div>
+        <div th:replace="modal_fragments :: modal_confirm"></div>
 
 
     </div>
     <div th:replace="fragments :: footer_link"></div>
 
-    <script type="text/javascript" th:src="@{/js/common-list.js}"></script>
     <script type="text/javascript">
-        moduleUrl = "[[@{/categories}]]";
+        moduleURL = "[[@{/categories}]]";
         $(document).ready(() => {
             $(".link-delete").on("click", (e) => {
                 e.preventDefault();
@@ -124,6 +87,7 @@
         });
 
     </script>
+    <script type="text/javascript" th:src="@{/js/common-list.js}"></script>
 
 </body>
 </html>
