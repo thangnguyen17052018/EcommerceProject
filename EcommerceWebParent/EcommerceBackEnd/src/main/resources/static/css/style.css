@@ -233,13 +233,11 @@
 
 /*------ Strat Login page --------*/
 
-
-
 .contain {
 	padding: 0;	
 	display: flex;
 	margin: 0;
-	height: 750px;
+	height: 900px;
 	padding: 0;
 }
 
@@ -259,7 +257,6 @@
 	width: 100%;
 	height: 100%;
 }
-
 .flex-container {
 	display: flex;
 	text-align: center;
@@ -453,4 +450,21 @@ ul{
 
 /* End Footer */
 
+/* Start Responsive */
+@media screen and (max-width: 768px) {
+	/* small screen */
+	div.full-details { display: none}
+	div.less-details { display: block}
+}
+@media screen and (min-width: 768px) and (max-width: 1024px){
+	/* medium screen */
+	div.full-details { display: block }
+	div.less-details { display: none }
+	.hideable-column { display: none}
+}
 
+@media screen and (min-width: 1024px) {
+	/* large screen */
+	div.less-details { display: none}
+	.hideable-column { display: table-cell}
+}

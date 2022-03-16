@@ -43,27 +43,34 @@
             </form>
         </div>
         
-        <div>
+        <div class="full-details">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
-                        <th th:replace="fragments :: column_link('id', 'User ID', 'users')"></th>
+                    	<th class="hideable-column">
+                        <th th:replace="fragments :: column_link('id', 'User ID', 'users', 'tag')"></th>
+                        </th>
+                        
                         <th>Photos</th>
-                        <th th:replace="fragments :: column_link('email', 'Email', 'users')"></th>
-                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'users')"></th>
-                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'users')"></th>
+                        
+                        <th class="hideable-column">
+                        <th th:replace="fragments :: column_link('email', 'Email', 'users', 'tag')"></th>
+                        </th>
+                        
+                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'users', 'none')"></th>
+                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'users', 'none')"></th>
                         <th>Roles</th>
-                        <th th:replace="fragments :: column_link('enabled', 'Enabled', 'users')"></th>
+                        <th th:replace="fragments :: column_link('enabled', 'Enabled', 'users', 'none')"></th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr th:each="user : ${listUsers}">
-                        <td>[[${user.id}]]</td>
+                        <td class="hideable-column">[[${user.id}]]</td>
                         <td>
                             <img th:src="@{${user.photosImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
                         </td>
-                        <td>[[${user.email}]]</td>
+                        <td class="hideable-column">[[${user.email}]]</td>
                         <td>[[${user.firstName}]]</td>
                         <td>[[${user.lastName}]]</td>
                         <td>[[${user.roles}]]</td>
@@ -88,6 +95,33 @@
             </table>
         </div>
 
+		<div class="less-details"> 
+			<div th:each="user : ${listUsers}" class="row m-1">
+				<div class="col-4">
+					<img th:src="@{${user.photosImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+				</div>
+				<div class="col-8">
+					<div> [[${user.fullName}]] </div>
+					<div> [[${user.roles}]] </div>
+					<div class="mt-2">
+						<a th:if="${user.enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
+                               th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user"></a>
+                           
+                            <a th:if="${user.enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
+                               th:href="@{'/users/' + ${user.id} + '/enabled/true'}" title="Enable this user"></a>
+								&nbsp;
+						<a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{'/users/edit/' + ${user.id}}"
+                               title="Edit this user"></a>
+                            &nbsp;
+                            <a class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+                               th:href="@{'/users/delete/' + ${user.id}}"
+                               th:userId="${user.id}"
+                               title="Delete this user"></a>
+					</div>
+				</div>
+				<div>&nbsp</div>
+			</div>
+		</div>
         <div class="text-center m-4" >
             <span th:if="${totalItems > 0}">Showing users #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
             <span th:unless="${totalItems > 0}">No users found</span>
@@ -95,7 +129,7 @@
 
         <div th:if="${totalPages > 1}">
             <nav>
-                <ul class="pagination justify-content-center">
+                <ul class="pagination justify-content-center flex-wrap">
                     <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
                         <a th:replace="fragments :: page_link(1, 'First', 'users')"></a>
                     </li>
