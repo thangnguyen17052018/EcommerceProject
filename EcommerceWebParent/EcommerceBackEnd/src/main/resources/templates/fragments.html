@@ -26,7 +26,7 @@
           th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
 
-<div th:fragment="search_form(module)">
+<div th:fragment="search_form_and_message(module)">
     <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
         <input type="hidden" name="sortField" th:value="${sortField}">
         <input type="hidden" name="sortDir" th:value="${sortOrder}">
@@ -37,6 +37,10 @@
         &nbsp;&nbsp;
         <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
     </form>
+
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
 </div>
 
 <a th:fragment="page_link(pageNum, pageLabel, module)"
@@ -255,6 +259,26 @@
         </div>
     </footer>
 </div>
+
+<div th:fragment="status(enabled, entityName, moduleURL)" th:remove="tag">
+    <a th:if="${enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
+       th:href="@{${moduleURL} + '/enabled/false'}" th:title="'Disable this' + ${entityName}"></a>
+    <a th:if="${enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
+       th:href="@{${moduleURL} + '/enabled/true'}" th:title="'Enable this' + ${entityName}"></a>
+</div>
+
+<div th:fragment="action(entityId, entityName, moduleURL, visible)" th:remove="tag">
+    <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{${moduleURL} + 'edit/' + ${entityId}}"
+       th:title="'Edit this' + ${entityName}">
+    </a>
+    &nbsp;
+    <a th:unless="${visible}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+       th:href="@{${moduleURL} + 'delete/' + ${entityId}}"
+       th:entityId="${entityId}"
+       th:title="'Delete this' + ${entityName}">
+    </a>
+</div>
+
 
 </body>
 </html>
