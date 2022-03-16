@@ -18,11 +18,7 @@
             </a>
         </div>
 
-        <div th:if="${message != null}" class="alert alert-success text-center">
-            [[${message}]]
-        </div>
-
-        <div th:replace="fragments :: search_form('categories')"></div>
+        <div th:replace="fragments :: search_form_and_message('categories')"></div>
 
         <div>
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
@@ -30,7 +26,7 @@
                     <tr>
                         <th>ID</th>
                         <th>Category Image</th>
-                        <th th:replace="fragments :: column_link('name', 'Category Name', 'categories')"></th>
+                        <th th:replace="fragments :: column_link('name', 'Category Name', 'categories', 'none')"></th>
                         <th>Category Alias</th>
                         <th>Enabled</th>
                         <th>Action</th>
@@ -45,28 +41,17 @@
                         <td>[[${category.name}]]</td>
                         <td>[[${category.alias}]]</td>
                         <td>
-                            <a th:if="${category.enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
-                               th:href="@{'/categories/' + ${category.id} + '/enabled/false'}" title="Disable this category"></a>
-                            <a th:if="${category.enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
-                               th:href="@{'/categories/' + ${category.id} + '/enabled/true'}" title="Enable this category"></a>
+                            <div th:replace="fragments :: status(${category.enabled}, 'category', '/categories/' + ${category.id})"></div>
                         </td>
                         <td>
-                            <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{'/categories/edit/' + ${category.id}}"
-                               title="Edit this category">
-                            </a>
-                            &nbsp;
-                            <a th:unless="${category.hasChildren}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
-                               th:href="@{'/categories/delete/' + ${category.id}}"
-                               th:entityId="${category.id}"
-                               title="Delete this category">
-                            </a>
+                            <div th:replace="fragments :: action(${category.id}, 'category', '/categories/', ${category.hasChildren})"></div>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
-        <div th:replace="pagination_fragments :: pagination('categories', 'root-categories')">
+        <div th:replace="pagination_fragments :: pagination('categories', 'root-categories')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 
