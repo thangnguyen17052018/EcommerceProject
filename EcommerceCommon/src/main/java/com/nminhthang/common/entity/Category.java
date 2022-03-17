@@ -46,6 +46,7 @@ public class Category {
                         .parent(category.getParent())
                         .children(category.getChildren())
                         .enabled(category.isEnabled())
+                        .hasChildren(category.getChildren().size() > 0)
                         .build();
     }
 
@@ -79,4 +80,8 @@ public class Category {
     public String toString() {
         return id.toString();
     }
+
+    @Transient
+    private boolean hasChildren;
+
 }
