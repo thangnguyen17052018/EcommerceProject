@@ -82,7 +82,7 @@
 .li-hover {
     position: relative;
     display: inline-block;
-    padding: 5px 0.4rem;
+    padding: 5px .4rem;
     background-color: transparent;
     border: 0;
 }
