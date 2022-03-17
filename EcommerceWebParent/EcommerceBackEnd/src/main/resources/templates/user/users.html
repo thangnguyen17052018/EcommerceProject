@@ -62,7 +62,10 @@
                         <td class="hideable-column">[[${user.email}]]</td>
                         <td>[[${user.firstName}]]</td>
                         <td>[[${user.lastName}]]</td>
-                        <td>[[${user.roles}]]</td>
+                        <td>
+                        	<span class="badge badge-pill badge-info">[[${user.roles}]]</span>
+                        	
+                        </td>
                         <td>
                             <a th:if="${user.enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
                                th:href="@{'/users/' + ${user.id} + '/enabled/false'}" title="Disable this user"></a>
