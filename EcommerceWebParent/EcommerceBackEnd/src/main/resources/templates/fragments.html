@@ -196,13 +196,14 @@
                 </li>
 
 
-                <li class="nav-item dropdown ml-1">
-                    <a class="nav-link dropdown-toggle fas fa-user fa-1x icon-silver"
+                <li id="navbar-item" class="nav-item dropdown ml-1">
+                    <a class="nav-link dropdown-toggle"
                        data-toggle="dropdown"
                        th:href="@{/account}"
-                       sec:authentication="principal.fullName"></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" id="logoutLink" href="">Log out</a>
+                       sec:authentication="principal.fullName">
+                    </a>
+                    <div class="navbarx-menu">
+                        <a class="navbarx-menu-item" id="logoutLink" href="">Log out</a>
                     </div>
                 </li>
             </ul>
@@ -268,10 +269,10 @@
        th:title="'Edit this' + ${entityName}">
     </a>
     &nbsp;
-    <a th:unless="${visible}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+    <a th:if="${visible == true}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
        th:href="@{${moduleURL} + 'delete/' + ${entityId}}"
        th:entityId="${entityId}"
-       th:title="'Delete this' + ${entityName}">
+       th:title="'Delete this ' + ${entityName}">
     </a>
 </div>
 

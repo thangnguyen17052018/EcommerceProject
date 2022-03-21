@@ -44,7 +44,7 @@
                             <div th:replace="fragments :: status(${category.enabled}, 'category', '/categories/' + ${category.id})"></div>
                         </td>
                         <td>
-                            <div th:replace="fragments :: action(${category.id}, 'category', '/categories/', ${category.hasChildren})"></div>
+                            <div th:replace="fragments :: action(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
                         </td>
                     </tr>
                 </tbody>

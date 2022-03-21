@@ -38,6 +38,10 @@
     box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1)
 }
 
+html {
+	font-size: 20px;
+}
+
 /* Start index page */
 .img-asset {
 	height: 31.25rem;
@@ -54,10 +58,16 @@
 	}
 }
 
-@media screen and (min-width: 48rem) and (max-width: 63.938rem)
+@media screen and (min-width: 768px) and (max-width: 1024px)
 {
 	.icon-user {
 		margin: 0 !important;
+	}
+}
+
+@media screen and (max-width: 1400px){
+	html{
+		font-size: 12px;
 	}
 }
 /* End index page*/
@@ -167,7 +177,7 @@
 }
 
 .icon:hover {
-	opacity: 0.6;
+ 	opacity: 0.6;
 }
 
 .a-textdecoration {
@@ -260,7 +270,7 @@
 
 .col-md-6 {
 	padding: 0;
-	height: auto;
+	height: 100%;
 	margin-right: 5rem;
 }
 .col-md-5 {
@@ -359,7 +369,7 @@
 /* Start Responsive */
 
 /* small screen*/
-@media screen and (max-width: 47.938rem){
+@media screen and (max-width: 768px){
 	.flex-container{
 		flex-direction: column;
 	}
@@ -431,7 +441,7 @@
 }
 
 /* medium screen*/
-@media screen and (min-width: 48rem) and (max-width: 63.938rem){
+@media screen and (min-width: 770px) and (max-width: 1024px){
 	.col-md-6 {
 		display: none !important;
 	}
@@ -440,7 +450,7 @@
 	}
 	.col-md-12 {
 		display: inline-block !important;
-		font-size: 22px;
+		/*font-size: 22px;*/
 	}
 	.link-fb-res-md {
 		width: 45% !important;
@@ -472,7 +482,7 @@
 
 }
 /* large screen*/
-@media screen and (min-width: 64rem){
+@media screen and (min-width: 1200px){
 
 }
 
@@ -602,4 +612,46 @@ ul{
 	/* large screen */
 	div.less-details { display: none}
 	.hideable-column { display: table-cell}
+}
+
+@media (max-width: 1199.98px) {
+	.table-responsive-xl {
+		display: table !important;
+	}
+}
+
+#navbar-item{
+	position: relative;
+}
+
+#navbar-item .navbarx-menu{
+	height: 0;
+	overflow: hidden;
+	transition: all ease .35s;
+	position: absolute;
+	padding: 0 10px;
+	width: 100%;
+}
+
+#navbar-item .navbarx-menu a{
+	text-decoration: none;
+	font-size: 1rem;
+	color: black;
+	margin-top: 10px;
+	border-radius: 5px;
+	display: block;
+	width: 100%;
+	background: white;
+	box-shadow:  0 0 5px rgba(0, 0, 0, 0.47);
+	padding: 10px;
+	transition: all linear .25s;
+}
+
+#navbar-item .navbarx-menu a:hover{
+	background: #e8e8e8;
+}
+
+#navbar-item:hover .navbarx-menu{
+	height: 55px;
+	top: 100%;
 }

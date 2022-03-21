@@ -6,12 +6,12 @@ $(document).ready(() => {
 
     accountProfile();
     
-    $(".dropdown").mouseover(() => {
-		$(".dropdown-menu").slideDown(600);
-	})
-	$(".dropdown").mouseleave(() => {
-		$(".dropdown-menu").slideUp(600);
-	})
+    // $(".dropdown").mouseenter(() => {
+	// 	$(".dropdown-menu").slideDown(600);
+	// })
+	// $(".dropdown").mouseleave(() => {
+	// 	$(".dropdown-menu").slideUp(600);
+	// })
 
 });
 

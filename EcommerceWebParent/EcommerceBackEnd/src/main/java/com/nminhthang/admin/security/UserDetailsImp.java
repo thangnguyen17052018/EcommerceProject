@@ -63,7 +63,7 @@ public class UserDetailsImp implements UserDetails {
     }
 
     public String getFullName(){
-        return this.user.getLastName() + " " + this.user.getFirstName();
+        return "<span class=\"fas fa-user fa-1x icon-silver\"></span>" + this.user.getLastName() + " " + this.user.getFirstName();
     }
 
     public void setFirstName(String firstName){
