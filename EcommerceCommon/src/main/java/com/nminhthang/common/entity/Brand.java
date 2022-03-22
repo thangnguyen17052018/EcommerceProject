@@ -60,4 +60,9 @@ public class Brand {
         return "/brand-logos/" + this.id + "/" + this.logo;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
+
 }

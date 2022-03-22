@@ -78,7 +78,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return id.toString();
+        return name;
     }
 
     @Transient
