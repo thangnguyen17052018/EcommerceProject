@@ -54,8 +54,6 @@ public class BrandController {
         Page<Brand> listBrandsPage = brandService.listByPage(pageNum, sortDir, keyword);
         List<Brand> listBrands = listBrandsPage.getContent();
 
-        listBrands.forEach(brand -> System.out.println("PATH: " + brand.getLogo()));
-
         long startCount = (long) (pageNum - 1) * brandService.BRAND_PER_PAGE + 1;
         long endCount = startCount + brandService.BRAND_PER_PAGE - 1;
 
