@@ -4,13 +4,13 @@ $(document).ready(() => {
     });
 
     $("#fileImage").change((e) => {
-        const ONE_MB = 1048576;
+        const FIVE_MB = 5242880;
         thisFileInput = e.target;
         fileSize = thisFileInput.files[0].size;
         console.log(fileSize);
 
-        if (fileSize > ONE_MB){
-            thisFileInput.setCustomValidity("You must choose the image file less than 1MB");
+        if (fileSize > FIVE_MB){
+            thisFileInput.setCustomValidity("You must choose the image file less than 5MB");
             thisFileInput.reportValidity();
         } else {
             thisFileInput.setCustomValidity("");
