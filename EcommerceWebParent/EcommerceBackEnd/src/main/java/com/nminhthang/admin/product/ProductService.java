@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -47,6 +48,19 @@ public class ProductService {
     }
 
     public Product save(Product product) {
+        if (product.getId() == null) {
+            product.setCreatedTime(new Date());
+        }
+
+        if (product.getAlias() == null || product.getAlias().isEmpty()) {
+            String defaultAlias = product.getName().replaceAll(" ", "-");
+            product.setAlias(defaultAlias);
+        } else {
+            product.setAlias(product.getAlias().replaceAll(" ", "-"));
+        }
+
+        product.setUpdatedTime(new Date());
+
         return productRepository.save(product);
     }
 

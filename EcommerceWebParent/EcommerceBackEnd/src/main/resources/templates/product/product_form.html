@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head>
+    <head th:replace="fragments :: header_link(${pageTitle}, 'tag')"></head>
+    <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}">
+    <script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div>
+        <div th:replace="fragments :: menu_link"></div>
+
+        <h2 class="my-4">Product Management | [[${pageTitle}]]</h2>
+
+    </div>
+
+    <form th:action="@{/products/save}" method="post"
+          enctype="multipart/form-data"
+          th:object="${product}"
+          onsubmit="return checkProductUnique(this);">
+        <input type="hidden" th:field="*{id}">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab">Overview</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="description-tab" data-toggle="tab" href="#description" role="tab">Description</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="images-tab" data-toggle="tab" href="#images" role="tab">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="details-tab" data-toggle="tab" href="#details" role="tab">Details</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="shipping-tab" data-toggle="tab" href="#shipping" role="tab">Shipping</a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active p-3" id="overview" role="tabpanel">
+                <div th:replace="product/product_overview :: content"></div>
+            </div>
+            <div class="tab-pane" id="description" role="tabpanel">
+                <div th:replace="product/product_description :: content"></div>
+            </div>
+            <div class="tab-pane" id="images" role="tabpanel">
+                <div th:replace="product/product_images :: content"></div>
+            </div>
+            <div class="tab-pane" id="details" role="tabpanel">...</div>
+            <div class="tab-pane" id="shipping" role="tabpanel">
+                <div th:replace="product/product_shipping :: content"></div>
+            </div>
+        </div>
+        <div class="text-center">
+            <input type="submit" value="Save" class="btn btn-primary m-3">
+            <input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton">
+        </div>
+    </form>
+
+    <div th:replace="modal_fragments :: modal_dialog"></div>
+
+</div>
+<div th:replace="fragments :: footer_link"></div>
+
+<script type="text/javascript" th:src="@{/js/common-form.js}"></script>
+<script type="text/javascript">
+    moduleUrl = "[[@{/products}]]";
+    brandModuleUrl = "[[@{/brands}]]";
+    defaultImageThumbnailSrc = "[[@{/images/product-image.png}]]";
+
+</script>
+<script type="text/javascript" th:src="@{/js/product-form.js}"></script>
+
+</body>
+
+
+
+</html>

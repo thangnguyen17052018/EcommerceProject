@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<body>
+
+<div th:fragment="content" th:remove="tag">
+    <div class="row" id="divProductImages">
+        <div class="col border m-3 p-2">
+            <div><label>Main Image</label></div>
+            <div>
+                <img class="img-fluid m-2" id="thumbnail" width="180px" height="200px"
+                     th:src="@{${product.mainImagePath}}" alt="Main image preview">
+            </div>
+            <div>
+                <input type="file" name="fileImage" id="fileImage"  th:required="${product.mainImage == null}" accept="image/png, image/jpeg">
+            </div>
+        </div>
+
+        <div class="col border m-3 p-2" id="divExtraImage1">
+            <div id="extraImageHeader1">
+                <label>Extra Image #1</label>
+            </div>
+            <div>
+                <img class="img-fluid m-2" id="extraImage1" width="180px" height="200px"
+                     th:src="@{/images/product-image.png}" alt="Extra image #1 preview">
+            </div>
+            <div>
+                <input type="file" name="extraImage" accept="image/png, image/jpeg">
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

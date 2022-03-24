@@ -1,15 +1,12 @@
 package com.nminhthang.admin.product.controller;
 
 import com.nminhthang.admin.FileUploadUtil;
-import com.nminhthang.admin.category.CategoryNotFoundException;
-import com.nminhthang.admin.category.CategoryPageInfo;
-import com.nminhthang.admin.category.CategoryService;
-import com.nminhthang.admin.category.exporter.CategoryCSVExporter;
+import com.nminhthang.admin.brand.BrandService;
 import com.nminhthang.admin.product.ProductNotFoundException;
 import com.nminhthang.admin.product.ProductService;
 import com.nminhthang.admin.product.exporter.ProductCSVExporter;
+import com.nminhthang.common.entity.Brand;
 import com.nminhthang.common.entity.Product;
-import com.nminhthang.common.entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -25,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,6 +31,9 @@ public class ProductController {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    BrandService brandService;
 
     @GetMapping("/products")
     public String listFirstPage(@Param("sortDir") String sortDir, Model model) {
@@ -75,7 +76,15 @@ public class ProductController {
 
     @GetMapping("/products/new")
     public String newProduct(Model model) {
-        model.addAttribute("product", new Product());
+        List<Brand> listBrands = brandService.listAll();
+
+        Product product = Product.builder()
+                .inStock(true)
+                .enabled(true)
+                .build();
+
+        model.addAttribute("listBrands", listBrands);
+        model.addAttribute("product", product);
         model.addAttribute("pageTitle", "Create New Product");
         model.addAttribute("mod", "new");
 
@@ -83,16 +92,20 @@ public class ProductController {
     }
 
     @PostMapping("/products/save")
-    public String saveProduct(Product product, RedirectAttributes redirectAttributes, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+    public String saveProduct(Product product, RedirectAttributes redirectAttributes,
+                              @RequestParam(name = "fileImage") MultipartFile multipartFile) throws IOException {
 
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
+            product.setMainImage(fileName);
             Product savedProduct = productService.save(product);
+
             String uploadDir = "../" + FileUploadUtil.PRODUCT_DIR_NAME + savedProduct.getId() + "/";
 
             FileUploadUtil.cleanDirectory(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         } else {
+            product.setMainImage("product-image.png");
             productService.save(product);
         }
 

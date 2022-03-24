@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.TestExecutionListeners;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -164,4 +165,19 @@ public class ProductRepositoryTests {
         assertThat(product.isPresent()).isFalse();
     }
 
+    @Test
+    public void testSaveProductWithImages() {
+        Integer productId = 1;
+        Product product = productRepository.findById(productId).get();
+
+        product.setMainImage("main image.png");
+        product.addExtraImage("extra image 1.png");
+        product.addExtraImage("extra_image_2.png");
+        product.addExtraImage("extra-image-3.png");
+
+        Product savedProduct = productRepository.save(product);
+
+        assertThat(savedProduct.getId()).isGreaterThan(0);
+
+    }
 }

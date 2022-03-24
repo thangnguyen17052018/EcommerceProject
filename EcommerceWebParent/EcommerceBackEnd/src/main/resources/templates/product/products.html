@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       lang="en">
-<head th:replace="fragments :: header_link('Products - Ecommerce Furniture Admin')"></head>
+<head th:replace="fragments :: header_link('Products - Ecommerce Furniture Admin', 'none')"></head>
 <body>
     <div class="container-fluid">
         <div th:replace="fragments :: menu_link"></div>
@@ -37,7 +37,7 @@
                     <tr th:each="product : ${listProducts}">
                         <td>[[${product.id}]]</td>
                         <td>
-                            <img th:src="@{${product.imagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+                            <img th:src="@{${product.mainImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
                         </td>
                         <td>[[${product.name}]]
                         <td>[[${product.brand.name}]]</td>
@@ -46,6 +46,8 @@
                             <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
                         </td>
                         <td>
+                            <a class="fas fa-file-alt fa-2x icon-purple mr-2"
+                               th:href="@{'/products/detail/' + ${product.id}}"></a>
                             <div th:replace="fragments :: action(${product.id}, 'product', '/products/', true)"></div>
                         </td>
                     </tr>

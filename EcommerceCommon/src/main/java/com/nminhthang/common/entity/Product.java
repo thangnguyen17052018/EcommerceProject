@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @ToString(of = {"id", "name"})
@@ -53,9 +55,25 @@ public class Product {
     @JoinColumn(name = "brand_id")
     private Brand brand;
 
+    @Column(name = "main_image", nullable = false)
+    private String mainImage;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<ProductImage> images = new HashSet<>();
+
     @Transient
     public String getImagePath() {
         return "/images/product-image.png";
     }
 
+    public void addExtraImage(String imageName) {
+        this.images.add(new ProductImage(imageName, this));
+    }
+
+    @Transient
+    public String getMainImagePath() {
+        if ("product-image.png".equals(mainImage) || mainImage == null || id == null || "".equals(mainImage)) return "/images/product-image.png";
+
+        return "/product-images/" + this.id + "/" + this.mainImage;
+    }
 }
