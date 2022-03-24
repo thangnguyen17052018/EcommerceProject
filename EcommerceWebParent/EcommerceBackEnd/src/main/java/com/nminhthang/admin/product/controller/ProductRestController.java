@@ -15,7 +15,6 @@ public class ProductRestController {
 
     @PostMapping("/products/check_product")
     public String checkDuplicateProduct(@Param("id") Integer id, @Param("name") String name, @Param("alias") String alias) {
-        System.out.println(productService.checkProductUnique(id, name, alias));
         return productService.checkProductUnique(id, name, alias);
     }
 
