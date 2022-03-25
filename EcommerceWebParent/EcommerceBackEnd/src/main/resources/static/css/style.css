@@ -28,7 +28,7 @@
   background-color:transparent;
 }
 *::-webkit-scrollbar-thumb {
-  background-image: var(--color-primary);
+  background-image: linear-gradient(to bottom, #cc2b5e, #753a88);
   border-radius: 10px;
 }
 
@@ -39,7 +39,7 @@
 }
 
 html {
-	font-size: 20px;
+	font-size: 16px;
 }
 
 /* Start index page */
@@ -48,8 +48,9 @@ html {
 }
 
 /* Responsive */
-@media screen and (max-width: 47.938rem)
+@media screen and (max-width: 767px)
 {
+
 	.img-asset {
 		height: 16.25rem;
 	}
@@ -60,14 +61,15 @@ html {
 
 @media screen and (min-width: 768px) and (max-width: 1024px)
 {
+
 	.icon-user {
 		margin: 0 !important;
 	}
 }
 
-@media screen and (max-width: 1400px){
+@media screen and (min-width: 1025px) and (max-width: 1400px){
 	html{
-		font-size: 12px;
+		font-size: 12px !important;
 	}
 }
 /* End index page*/
@@ -202,7 +204,11 @@ html {
 	background: linear-gradient(to left, #cc2b5e, #753a88);
     color: white;
     transition: 1s ease;
-    opacity: 0.8;
+    opacity: 0.6;
+}
+
+.btn-secondary:hover {
+	opacity: 0.6;
 }
 
 
@@ -246,6 +252,9 @@ html {
 	-webkit-text-fill-color: transparent;
 }
 
+.page-link:focus {
+	box-shadow: 0 0 0 0.1rem rgb(0 123 255 / 25%);
+}
 
 /* End pagination */
 
@@ -369,7 +378,10 @@ html {
 /* Start Responsive */
 
 /* small screen*/
-@media screen and (max-width: 768px){
+
+@media screen and (max-width: 767px){
+
+	
 	.flex-container{
 		flex-direction: column;
 	}
@@ -400,7 +412,7 @@ html {
 	
 	.link-fb {
 		width: 100% !important;
-		margin-bottom: 15px;
+		margin-bottom: 1.25rem;
 		justify-content: unset !important;
 	}
 	.link-fb:hover {
@@ -408,10 +420,7 @@ html {
 		justify-content: unset !important;
 
 	}
-	.link-fb:hover .icon-fb-res-sm{
-		padding: 0 9% 0 19.5% !important;
-	}
-	
+
 	
 	.link-g
 	{
@@ -424,24 +433,35 @@ html {
 		justify-content: unset !important;
 		
 	}
+	
+	
+	.link-fb:hover .icon-fb-res-sm{
+		padding: 0 2rem 0 3.75rem  !important;
+	}
+	
 	.link-g:hover .icon-g-res-sm {
-		padding: 0 9% 0 19.5% !important;
+		padding: 0 1.7rem 0 3.65rem !important;
 	}
 	
 	.icon-fb-res-sm {
-		padding: 0 10% 0 17% !important;
+		padding: 0 2rem 0 3rem !important;
 	}
 	.icon-g-res-sm {
-		padding: 0 10% 0 17% !important;
+		padding: 0 1.7rem 0 2.9rem !important;
 	}
 	.btn-res-sm {
-		margin-top: 35px !important;
+		margin-top: 2rem !important;
 	}
 	
+	.text-danger {
+		padding-left: 1rem;
+		margin-top: 0.3rem;
+	}
 }
 
 /* medium screen*/
-@media screen and (min-width: 770px) and (max-width: 1024px){
+@media screen and (min-width: 768px) and (max-width: 1024px){
+
 	.col-md-6 {
 		display: none !important;
 	}
@@ -479,11 +499,20 @@ html {
 	::placeholder { 
 	  font-size: 20px;
 	}
+	
+	.text-danger {
+		padding-left: 1rem;
+		margin-top: 0.3rem;
+	}
 
 }
 /* large screen*/
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1025px){
 
+	.text-danger {
+		padding-left: 1rem;
+		margin-top: 0.3rem;
+	}
 }
 
 /* End Responsive */
