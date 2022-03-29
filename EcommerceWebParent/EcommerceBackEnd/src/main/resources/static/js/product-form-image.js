@@ -1,9 +1,7 @@
-dropdownBrand = $("#brand");
-dropdownCategories = $("#category");
-shortDescription = $("#shortDescription");
-fullDescription = $("#fullDescription");
 var extraImageCount = 0;
+
 $(document).ready(() => {
+<<<<<<< HEAD:EcommerceWebParent/EcommerceBackEnd/src/main/resources/static/js/product-form.js
     shortDescription.richText({
 	height: 200,
 	id: "richText-editor-sizecolor"
@@ -20,6 +18,8 @@ $(document).ready(() => {
 
         getCategories();
     });
+=======
+>>>>>>> cb68e8b8e7c7784ceb9764624aed730ad9d01963:EcommerceWebParent/EcommerceBackEnd/src/main/resources/static/js/product-form-image.js
 
     $("input[name='extraImage']").each(function(index) {
         extraImageCount++;
@@ -79,40 +79,4 @@ const addExtraImageSection = (index) => {
 
 const removeExtraImage = (index) => {
     $("#divExtraImage" +  index).remove();
-}
-
-const getCategories = () => {
-    brandId = dropdownBrand.val();
-    url = brandModuleUrl + "/"+ brandId + "/categories";
-
-    $.get(url, (responseJSON) => {
-        $.each(responseJSON, (index, category) => {
-            dropdownCategories.append("<option value='"+ category.id +"'>" + category.name + "</option>");
-        });
-    });
-}
-
-const checkProductUnique = (form) => {
-    url = "[[@{/products/check_product}]]";
-    productId = $("#id").val();
-    productName = $("#name").val();
-    productAlias = $("#alias").val();
-    csrfValue = $("input[name= '_csrf']").val();
-
-    params = {id: productId, name: productName, alias: productAlias, _csrf: csrfValue};
-
-    $.post(url, params, (response) => {
-        if (response == "OK"){
-            form.submit();
-        } else if (response == "Duplicate product name"){
-            showWarningModal("There is another product having the name: " + productName + " !!!");
-        } else if (response == "Duplicate product alias"){
-            showWarningModal("There is another product having the alias: " + productAlias + " !!!");
-        } else {
-            showErrorModal("Unknown response from server");
-        }
-    }).fail(() => {
-        showErrorModal("Could not connect to the server");
-    });
-    return false;
 }

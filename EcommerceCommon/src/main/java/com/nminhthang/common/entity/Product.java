@@ -3,9 +3,7 @@ package com.nminhthang.common.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @ToString(of = {"id", "name"})
@@ -61,6 +59,9 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private Set<ProductImage> images = new HashSet<>();
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ProductDetail> details = new ArrayList<>();
+
     @Transient
     public String getImagePath() {
         return "/images/product-image.png";
@@ -68,6 +69,10 @@ public class Product {
 
     public void addExtraImage(String imageName) {
         this.images.add(new ProductImage(imageName, this));
+    }
+
+    public void addDetail(String detailName, String detailValue) {
+        this.details.add(new ProductDetail(detailName, detailValue, this));
     }
 
     @Transient
