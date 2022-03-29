@@ -1,15 +1,6 @@
 var extraImageCount = 0;
 
 $(document).ready(() => {
-<<<<<<< HEAD:EcommerceWebParent/EcommerceBackEnd/src/main/resources/static/js/product-form.js
-    shortDescription.richText({
-	height: 200,
-	id: "richText-editor-sizecolor"
-});
-    fullDescription.richText({
-	height: 400,
-	id: "richText-editor-sizecolor"
-});
 
     getCategories();
 
@@ -18,8 +9,6 @@ $(document).ready(() => {
 
         getCategories();
     });
-=======
->>>>>>> cb68e8b8e7c7784ceb9764624aed730ad9d01963:EcommerceWebParent/EcommerceBackEnd/src/main/resources/static/js/product-form-image.js
 
     $("input[name='extraImage']").each(function(index) {
         extraImageCount++;
