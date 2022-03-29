@@ -52,8 +52,13 @@
             <div class="tab-pane" id="images" role="tabpanel">
                 <div th:replace="product/product_images :: content"></div>
             </div>
-            <div class="tab-pane" id="details" role="tabpanel">...</div>
-            <div class="tab-pane" id="shipping" role="tabpanel">
+            <div class="tab-pane p-3" id="details" role="tabpanel">
+                <div th:replace="product/product_details :: content"></div>
+                <div>
+                    <input type="button" class="btn btn-secondary" value="Add more detail" onclick="addNewDetailSection()">
+                </div>
+            </div>
+            <div class="tab-pane p-3" id="shipping" role="tabpanel">
                 <div th:replace="product/product_shipping :: content"></div>
             </div>
         </div>
@@ -71,11 +76,14 @@
 <script type="text/javascript" th:src="@{/js/common-form.js}"></script>
 <script type="text/javascript">
     moduleUrl = "[[@{/products}]]";
+    checkURL = "[[@{/products/check_product}]]";
     brandModuleUrl = "[[@{/brands}]]";
     defaultImageThumbnailSrc = "[[@{/images/product-image.png}]]";
 
 </script>
-<script type="text/javascript" th:src="@{/js/product-form.js}"></script>
+<script type="text/javascript" th:src="@{/js/product-form-image.js}"></script>
+<script type="text/javascript" th:src="@{/js/product-form-overview.js}"></script>
+<script type="text/javascript" th:src="@{/js/product-form-detail.js}"></script>
 
 </body>
 
