@@ -4,8 +4,14 @@ shortDescription = $("#shortDescription");
 fullDescription = $("#fullDescription");
 
 $(document).ready(() => {
-    shortDescription.richText();
-    fullDescription.richText();
+    shortDescription.richText({
+        height: 200,
+        id: "richText-editor-sizecolor"
+    });
+    fullDescription.richText({
+        height: 400,
+        id: "richText-editor-sizecolor"
+    });
 
     getCategories();
 
