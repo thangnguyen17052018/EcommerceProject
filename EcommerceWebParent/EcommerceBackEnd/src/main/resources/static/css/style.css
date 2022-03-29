@@ -42,228 +42,6 @@ html {
 	font-size: 16px;
 }
 
-/* Start index page */
-.img-asset {
-	height: 31.25rem;
-}
-
-/* Responsive */
-@media screen and (max-width: 767px)
-{
-
-	.img-asset {
-		height: 16.25rem;
-	}
-	.icon-user {
-		margin: 0 !important;
-	}
-}
-
-@media screen and (min-width: 768px) and (max-width: 1024px)
-{
-
-	.icon-user {
-		margin: 0 !important;
-	}
-}
-
-@media screen and (min-width: 1025px) and (max-width: 1400px){
-	html{
-		font-size: 12px !important;
-	}
-}
-/* End index page*/
-
-
-/*-------- Start User page -----------*/
-
-
-
-
-/* Start Navbar */
-
-.userpage-logo {
-	width: 4.375rem;
-	height: 4.375rem;
-} 
-
-
-.navbar-nav {
-	align-items: center !important;
-}
-.li-hover {
-    position: relative;
-    display: inline-block;
-    padding: 5px .4rem;
-    background-color: transparent;
-    border: 0;
-}
-
-.li-hover span{
-    position: absolute;
-    background-image: var(--color-primary);
-    display: block;
-    transition: all 0.5s ease;
-}
-
-.li-hover span:first-child{
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-}
-
-.li-hover span:nth-child(2){
-    right: -1px;
-    top: 0;
-    width: 2px;
-    height: 0;
-}
-.li-hover span:nth-child(3){
-    bottom: 0;
-    right: -1px;
-    width: 0;
-    height: 2px;
-}
-.li-hover span:last-child{
-    bottom: 0;
-    left: 0;
-    width: 2px;
-    height: 0;
-}
-
-.li-hover:hover span:nth-child(odd){
-    width: 100%;
-}
-.li-hover:hover span:nth-child(even){
-    height: 100%;
-}
-
-.nav-link:hover {
-	 background: var(--color-primary);
-	 -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-.icon-user {
-	margin-left: 2%;
-}
-.dropdown-toggle {
-	display: flex;
-	align-items: center;
-	font-size: 0.9rem;
-	padding-top: 0.625rem;
-}
-
-.fa-user::before {
-    content: "\f007";
-    font-size: 40px;
-    padding-right: 10px;
-    margin-bottom: 5px;
-}
-.dropdown-item {
-	padding: 0.6rem 1.5rem;	
-}
-.dropdown-menu {
-	padding: 0;
-}
-/* End Navbar */
-
-
-
-/* Start header */
-
-
-.icon {
-	height: 4rem;
-	width: 3.5rem;
-}
-
-.icon:hover {
- 	opacity: 0.6;
-}
-
-.a-textdecoration {
-	text-decoration: none !important;
-}
-.filter-input:focus {
-	border: transparent;
-	padding: 2px 2px;
-	background-image: linear-gradient(white, white), var(--color-primary);
-	background-origin: border-box;
-	background-clip: content-box, border-box;
-	box-shadow: none;
-	width: 14.4vw;
-}
-
-.btn-search {
-	border: none;
-	background: var(--color-primary);
-	color: white;
-} 
-.btn-search:hover {
-	background: linear-gradient(to left, #cc2b5e, #753a88);
-    color: white;
-    transition: 1s ease;
-    opacity: 0.6;
-}
-
-.btn-secondary:hover {
-	opacity: 0.6;
-}
-
-
-/* End header */
-
-
-
-/* Start table */
-.badge-info {
-	padding: 0.5rem 1rem;
-}
-.icon-purple:hover {
-	text-decoration: none !important;
-	opacity: 0.7;
-}
-.icon-silver:hover {
-	background: var(--color-primary);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-	text-decoration: none !important;
-}
-
-/* End table */
-
-
-
-
-/* Start pagination */
-
-
-.page-item.active .page-link{
-	padding: 7px 12px;
-	border: 10px solid;
-	border-image-slice: 1;
-	border-width: 2px;
-	border-image-source: var(--color-primary);
-}
-.page-item .page-link{
-	background: var(--color-primary);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-}
-
-.page-link:focus {
-	box-shadow: 0 0 0 0.1rem rgb(0 123 255 / 25%);
-}
-
-/* End pagination */
-
-
-
-/*----- End User page ------*/
-
-
-
 /*------ Strat Login page --------*/
 
 
@@ -341,7 +119,7 @@ html {
     padding: 20px;
 }
 
-
+/*
 .login-input:focus {
 	border: transparent;
 	border-radius: 24px;
@@ -351,7 +129,7 @@ html {
 	background-clip: content-box, border-box;
 	box-shadow: none;
 }
-
+*/
 .login-input:focus::placeholder {
 	padding-left: 24px;
 }
@@ -523,7 +301,386 @@ html {
 
 
 
+
+
+
+/*---------Start index page------------*/
+.text-welcome {
+	display: flex;
+	align-items: center;
+}
+.text-name {
+	color:black;
+	padding: 0 12px;
+
+}
+.account-hover:hover {
+		text-decoration: none;
+		 background: var(--color-primary);
+	 -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+
+.img-asset {
+	height: 31.25rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 767px)
+{
+
+	.img-asset {
+		height: 16.25rem;
+	}
+	.icon-user {
+		margin: 0 !important;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px)
+{
+
+	.icon-user {
+		margin: 0 !important;
+	}
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1400px){
+	html{
+		font-size: 12px !important;
+	}
+}
+/*------------End index page---------------*/
+
+
+
+
+/*-------- Start User page -----------*/
+
+
+/* Start Navbar */
+
+.userpage-logo {
+	width: 4.375rem;
+	height: 4.375rem;
+} 
+
+
+.navbar-nav {
+	align-items: center !important;
+}
+.li-hover {
+    position: relative;
+    display: inline-block;
+    padding: 5px .4rem;
+    background-color: transparent;
+    border: 0;
+}
+
+.li-hover span{
+    position: absolute;
+    background-image: var(--color-primary);
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.li-hover span:first-child{
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+}
+
+.li-hover span:nth-child(2){
+    right: -1px;
+    top: 0;
+    width: 2px;
+    height: 0;
+}
+.li-hover span:nth-child(3){
+    bottom: 0;
+    right: -1px;
+    width: 0;
+    height: 2px;
+}
+.li-hover span:last-child{
+    bottom: 0;
+    left: 0;
+    width: 2px;
+    height: 0;
+}
+
+.li-hover:hover span:nth-child(odd){
+    width: 100%;
+}
+.li-hover:hover span:nth-child(even){
+    height: 100%;
+}
+
+.li-hover:hover {
+	 background: var(--color-primary);
+	 -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.icon-user {
+	margin-left: 2%;
+}
+.dropdown-toggle {
+	display: flex;
+	align-items: center;
+	font-size: 0.9rem;
+	padding-top: 0.625rem;
+}
+
+.fa-user::before {
+    content: "\f007";
+    font-size: 40px;
+    padding-right: 10px;
+    margin-bottom: 5px;
+}
+.dropdown-item {
+	padding: 0.6rem 1.5rem;	
+}
+.dropdown-menu {
+	padding: 0;
+}
+/* End Navbar */
+
+
+
+/* Start header */
+
+
+.icon {
+	height: 4rem;
+	width: 3.5rem;
+}
+
+.icon:hover {
+ 	opacity: 0.6;
+}
+
+.a-textdecoration {
+	text-decoration: none !important;
+}
+/*
+.filter-input:focus {
+	border: transparent;
+	padding: 2px 2px;
+	background-image: linear-gradient(white, white), var(--color-primary);
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	box-shadow: none;
+	width: 14.4vw;
+}
+*/
+.btn-primary-color {
+	border: none;
+	background: var(--color-primary);
+	color: white;
+	padding: 0.438rem 1.188rem;
+} 
+.btn-primary-color:hover {
+	background: linear-gradient(to left, #cc2b5e, #753a88);
+    color: white;
+    transition: 1s ease;
+    opacity: 0.6;
+}
+
+
+.btn-secondary:hover {
+	opacity: 0.6;
+}
+
+
+/* End header */
+
+
+
+/* Start table */
+.badge-info {
+	padding: 0.5rem 1rem;
+}
+.icon-purple:hover {
+	text-decoration: none !important;
+	opacity: 0.7;
+}
+.icon-silver:hover {
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-decoration: none !important;
+}
+
+/* End table */
+
+
+
+
+/* Start pagination */
+
+
+.page-item.active .page-link{
+	padding: 7px 12px;
+	border: 10px solid;
+	border-image-slice: 1;
+	border-width: 2px;
+	border-image-source: var(--color-primary);
+}
+.page-item .page-link{
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.page-link:focus {
+	box-shadow: 0 0 0 0.1rem rgb(0 123 255 / 25%);
+}
+
+/* End pagination */
+
+
+
+/*---------- End User page -----------*/
+
+
+/*------------Product Page----------------*/
+
+.container-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border: 1px solid #333;
+}
+
+
+/* When the checkbox is checked, add a blue background */
+.container-checkbox input:checked ~ .checkmark {
+  background: linear-gradient(to left, #cc2b5e, #753a88);
+  border: 0px;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-checkbox .checkmark:after {
+  left: 0.6rem;
+  top: 0.15rem;
+  width: 0.5rem;
+  height: 1rem;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+
+
+.form-new-product {
+	border: 1px solid #6c757d !important;
+}
+.nav-link {
+	color: black
+}
+.nav-link.active {
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+.nav-link:hover {
+	color: black;
+}
+
+.size-checkbox {
+	width: 1rem;
+	height: 1rem;
+}
+.form-control:focus {
+	box-shadow: 0 0 0 0.1rem #cc2b5e;      
+	border-color: #753a88;   
+	border-width: 1px;
+}
+.richText .richText-editor:focus{
+	border-left:none !important;
+}
+
+.richText-btn {
+	color: black;
+}
+.richText-btn:hover {
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	opacity: 0.6
+}
+.margin-top {
+	margin-top: 2rem;
+}
+.form-group {
+	margin-bottom: 2rem;
+}
+
+.richText .richText-editor:first-child{
+	height: 100px !important;
+}
+#richText-editor-sizecolor .richText-editor {
+	font-size: 18px;
+	color: red;
+}
+#description {
+	font-size: 16px;
+}
+.richText-undo,
+.richText-redo,
+.richText-help {
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+/*------------End Product Page------------*/
+
+
 /* Start Footer */
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 body{
 	line-height: 1.5;

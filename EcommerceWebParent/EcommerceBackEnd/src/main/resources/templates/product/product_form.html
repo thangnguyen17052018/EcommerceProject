@@ -20,7 +20,7 @@
     <form th:action="@{/products/save}" method="post"
           enctype="multipart/form-data"
           th:object="${product}"
-          onsubmit="return checkProductUnique(this);">
+          onsubmit="return checkProductUnique(this);" style="max-width: 900px; margin: 0 auto" class="form-new-product">
         <input type="hidden" th:field="*{id}">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -43,15 +43,19 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane active p-3" id="overview" role="tabpanel">
+            <div class="tab-pane active p-5" id="overview" role="tabpanel">
                 <div th:replace="product/product_overview :: content"></div>
             </div>
-            <div class="tab-pane" id="description" role="tabpanel">
+            <div class="tab-pane p-2" id="description" role="tabpanel">
                 <div th:replace="product/product_description :: content"></div>
             </div>
-            <div class="tab-pane" id="images" role="tabpanel">
+            <div class="tab-pane p-2" id="images" role="tabpanel">
                 <div th:replace="product/product_images :: content"></div>
             </div>
+<<<<<<< HEAD
+            <div class="tab-pane p-2" id="details" role="tabpanel">...</div>
+            <div class="tab-pane p-5" id="shipping" role="tabpanel">
+=======
             <div class="tab-pane p-3" id="details" role="tabpanel">
                 <div th:replace="product/product_details :: content"></div>
                 <div>
@@ -59,11 +63,12 @@
                 </div>
             </div>
             <div class="tab-pane p-3" id="shipping" role="tabpanel">
+>>>>>>> cb68e8b8e7c7784ceb9764624aed730ad9d01963
                 <div th:replace="product/product_shipping :: content"></div>
             </div>
         </div>
         <div class="text-center">
-            <input type="submit" value="Save" class="btn btn-primary m-3">
+            <input type="submit" value="Save" class="btn btn-primary-color m-3">
             <input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton">
         </div>
     </form>
