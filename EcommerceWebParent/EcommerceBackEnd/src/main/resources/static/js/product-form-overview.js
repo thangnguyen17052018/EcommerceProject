@@ -18,11 +18,22 @@ $(document).ready(() => {
     dropdownBrand.change(() => {
         dropdownCategories.empty();
 
-        getCategories();
+        getCategoriesForNewForm();
     });
 
 
 });
+
+const getCategoriesForNewForm = () => {
+    categoryIdField = $("#categoryId");
+    editMode = false;
+
+    if (categoryIdField.length) {
+        editMode(true);
+    }
+
+    if (!editMode) getCategories();
+}
 
 const getCategories = () => {
     brandId = dropdownBrand.val();

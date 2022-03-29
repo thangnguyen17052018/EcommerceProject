@@ -4,8 +4,22 @@
       lang="en">
 <body>
 
+
 <div th:fragment="content" id="divProductDetails">
-    <div class="form-inline" id="divDetailSection1">
+    <input type="hidden" th:value="${#lists.size(product.details)}" id="listProductDetailSize">
+    <th:block th:each="productDetail, status : ${product.details}">
+        <div class="form-inline" th:id="${'divDetailSection' + (status.index + 1)}">
+            <label class="m-3">Name:</label>
+            <input type="text" name="detailNames" class="form-control w-25" maxlength="255" th:value="${productDetail.name}">
+            <label class="m-3">Value:</label>
+            <input type="text" name="detailValues" class="form-control w-25" maxlength="255" th:value="${productDetail.value}">
+            <a class="btn fas fa-times-circle fa-2x icon-silver float-right"
+                title="Remove this section"
+                th:href="${'javascript:removeDetailSection(' + (status.index + 1) + ')'}"></a>
+        </div>
+    </th:block>
+
+    <div class="form-inline" th:id="${'divDetailSection' + (#lists.size(product.details) + 1)}">
         <label class="m-3">Name:</label>
         <input type="text" name="detailNames" class="form-control w-25" maxlength="255">
         <label class="m-3">Value:</label>

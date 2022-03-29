@@ -1,4 +1,5 @@
-var section_index = 1;
+var section_index = $("#listProductDetailSize").val();
+section_index++;
 const addNewDetailSection = () => {
     htmlDetailSectionRemove = `<a class="btn fas fa-times-circle fa-2x icon-silver float-right"
                          title="Remove this section"
