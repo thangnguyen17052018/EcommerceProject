@@ -167,13 +167,27 @@ public class ProductRepositoryTests {
 
     @Test
     public void testSaveProductWithImages() {
-        Integer productId = 1;
+        Integer productId = 12;
         Product product = productRepository.findById(productId).get();
 
         product.setMainImage("main image.png");
         product.addExtraImage("extra image 1.png");
         product.addExtraImage("extra_image_2.png");
         product.addExtraImage("extra-image-3.png");
+
+        Product savedProduct = productRepository.save(product);
+
+        assertThat(savedProduct.getId()).isGreaterThan(0);
+
+    }
+
+    @Test
+    public void testSaveProductWithDetails() {
+        Integer productId = 11;
+        Product product = productRepository.findById(productId).get();
+
+        product.addDetail("Device Memory", "128 GB");
+        product.addDetail("CPU Model", "MediaTeck");
 
         Product savedProduct = productRepository.save(product);
 
