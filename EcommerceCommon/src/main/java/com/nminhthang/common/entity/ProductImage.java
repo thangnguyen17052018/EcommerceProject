@@ -1,8 +1,6 @@
 package com.nminhthang.common.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -11,6 +9,8 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 public class ProductImage {
 
     @Id
@@ -27,5 +27,10 @@ public class ProductImage {
     public ProductImage(String name, Product product) {
         this.name = name;
         this.product = product;
+    }
+
+    @Transient
+    public String getImagePath() {
+        return "/product-images/" + product.getId() + "/extras/" + this.name;
     }
 }

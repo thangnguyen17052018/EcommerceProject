@@ -22,6 +22,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 
@@ -50,8 +52,8 @@ public class ProductController {
         Page<Product> listProductsPage = productService.listByPage(pageNum, sortDir, keyword);
         List<Product> listProducts = listProductsPage.getContent();
 
-        long startCount = (long) (pageNum - 1) * productService.PRODUCT_PER_PAGE + 1;
-        long endCount = startCount + productService.PRODUCT_PER_PAGE - 1;
+        long startCount = (long) (pageNum - 1) * ProductService.PRODUCT_PER_PAGE + 1;
+        long endCount = startCount + ProductService.PRODUCT_PER_PAGE - 1;
 
         if (endCount > listProductsPage.getTotalElements()) {
             endCount = listProductsPage.getTotalElements();
@@ -80,12 +82,16 @@ public class ProductController {
         Product product = Product.builder()
                 .inStock(true)
                 .enabled(true)
+                .images(new HashSet<>())
+                .details(new ArrayList<>())
                 .build();
 
         model.addAttribute("listBrands", listBrands);
         model.addAttribute("product", product);
         model.addAttribute("pageTitle", "Create New Product");
         model.addAttribute("mod", "new");
+        Integer numberOfExistingExtraImages = product.getImages().size();
+        model.addAttribute("numberOfExistingExtraImages", numberOfExistingExtraImages);
 
         return "/product/product_form";
     }
@@ -124,7 +130,7 @@ public class ProductController {
 
     private void saveUploadedImages(MultipartFile mainImage, MultipartFile[] extraImages, Product savedProduct) throws IOException {
         if (!mainImage.isEmpty()) {
-            String fileName = StringUtils.cleanPath(mainImage.getOriginalFilename());
+            String fileName = StringUtils.cleanPath(Objects.requireNonNull(mainImage.getOriginalFilename()));
             String uploadDir = "../" + FileUploadUtil.PRODUCT_DIR_NAME + savedProduct.getId() + "/";
 
             FileUploadUtil.cleanDirectory(uploadDir);
@@ -137,7 +143,7 @@ public class ProductController {
             for (MultipartFile extraImage : extraImages) {
                 if (extraImage.isEmpty()) continue;
 
-                String fileName = StringUtils.cleanPath(extraImage.getOriginalFilename());
+                String fileName = StringUtils.cleanPath(Objects.requireNonNull(extraImage.getOriginalFilename()));
                 FileUploadUtil.saveFile(uploadDir, fileName, extraImage);
             }
         }
@@ -172,10 +178,16 @@ public class ProductController {
                                RedirectAttributes redirectAttributes){
         try {
             Product product = productService.get(id);
+            List<Brand> listBrands = brandService.listAll();
 
+            model.addAttribute("listBrands", listBrands);
             model.addAttribute("product", product);
-            model.addAttribute("pageTitle", "Edit Product (ID: " + id + ")");
+            model.addAttribute("pageTitle", "Edit Product (ID: " + product.getId() + ")");
             model.addAttribute("mod", "edit");
+
+            Integer numberOfExistingExtraImages = product.getImages().size();
+            model.addAttribute("numberOfExistingExtraImages", numberOfExistingExtraImages);
+
 
             return "/product/product_form";
         } catch (ProductNotFoundException exception) {
