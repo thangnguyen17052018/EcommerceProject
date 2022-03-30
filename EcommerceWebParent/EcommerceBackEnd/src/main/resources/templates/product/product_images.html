@@ -21,21 +21,20 @@
 
         <th:block th:each="productImage, status : ${product.images}">
             <div class="col border m-3 p-2" th:id="${'divExtraImage' + (status.index + 1)}">
-                <div th:id="${'extraImageHeader' + (status.index + 1)}">
-                    <label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
-                    <a class="btn fas fa-times-circle fa-2x icon-silver float-right"
-                       title="Remove this image"
-                       th:href="${'javascript:removeExtraImage(' +(status.index + 1)+ ')'}"></a>
-                </div>
                 <div>
-                    <img class="img-fluid m-2" th:id="${'extraImage' + (status.index + 1)}" width="180px" height="200px"
+                    <label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
+                    <a name="linkRemoveExtraImage" class="btn fas fa-times-circle fa-2x icon-silver float-right"
+                       title="Remove this image"></a>
+                </div>
+                <div class="m-2">
+                    <img class="img-fluid" th:id="${'extraImage' + (status.index + 1)}" width="180px" height="200px"
                          th:src="@{${productImage.imagePath}}" th:alt="${'Extra image #' + (status.index + 1) + 'preview'}">
                 </div>
                 <div>
                     <input type="file" name="extraImage" accept="image/png, image/jpeg">
                 </div>
-                <input type="hidden" name="imageIDs" th:id="'imageId' + ${status.index + 1}">
-                <input type="hidden" name="imageNames" th:id="'imageName' + ${status.index + 1}">
+                <input type="hidden" name="imageIDs" th:id="'imageId' + ${status.index + 1}" th:value="${productImage.id}">
+                <input type="hidden" name="imageNames" th:id="'imageName' + ${status.index + 1}" th:value="${productImage.name}">
             </div>
         </th:block>
 
@@ -44,8 +43,8 @@
             <div th:id="${'extraImageHeader' + (numberOfExistingExtraImages + 1)}">
                 <label>Extra Image #[[${numberOfExistingExtraImages + 1}]]</label>
             </div>
-            <div>
-                <img class="img-fluid m-2" th:id="${'extraImage' + (numberOfExistingExtraImages + 1)}" width="180px" height="200px"
+            <div class="m-2">
+                <img class="img-fluid" th:id="${'extraImage' + (numberOfExistingExtraImages + 1)}" width="180px" height="200px"
                      th:src="@{/images/product-image.png}" th:alt="${'Extra image #' + (numberOfExistingExtraImages + 1) + 'preview'}">
             </div>
             <div>
