@@ -786,6 +786,9 @@ ul{
 	/* small screen */
 	div.full-details { display: none}
 	div.less-details { display: block}
+	.small-input{
+		width: 90px;
+	}
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
 	/* medium screen */
