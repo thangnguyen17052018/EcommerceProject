@@ -106,8 +106,8 @@ public class CategoryController {
 
     @GetMapping("/categories/edit/{id}")
     public String editCategory(@PathVariable(name = "id") Integer id,
-                           Model model,
-                           RedirectAttributes redirectAttributes){
+                               Model model,
+                               RedirectAttributes redirectAttributes) {
         try {
             Category category = categoryService.get(id);
             List<Category> listCategories = categoryService.listAll();
@@ -146,7 +146,7 @@ public class CategoryController {
                                       Model model,
                                       RedirectAttributes redirectAttributes) {
         categoryService.updateCategoryEnabledStatus(id, enabled);
-        String status = (enabled == true) ? "enabled" : "disabled";
+        String status = (enabled) ? "enabled" : "disabled";
         redirectAttributes.addFlashAttribute("message", "The category ID " + id + " has been " + status);
         return "redirect:/categories";
     }

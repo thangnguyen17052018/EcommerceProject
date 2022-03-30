@@ -81,4 +81,17 @@ public class Product {
 
         return "/product-images/" + this.id + "/" + this.mainImage;
     }
+
+    public boolean containsImageName(String imageName) {
+        Iterator<ProductImage> iterator = images.iterator();
+
+        while (iterator.hasNext()) {
+            ProductImage image = iterator.next();
+            if (image.getName().equals(imageName)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

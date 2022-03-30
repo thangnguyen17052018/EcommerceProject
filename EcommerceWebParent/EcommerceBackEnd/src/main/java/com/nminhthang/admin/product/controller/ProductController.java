@@ -7,6 +7,7 @@ import com.nminhthang.admin.product.ProductService;
 import com.nminhthang.admin.product.exporter.ProductCSVExporter;
 import com.nminhthang.common.entity.Brand;
 import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.ProductImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -22,10 +23,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 public class ProductController {
@@ -101,9 +99,12 @@ public class ProductController {
                               @RequestParam(name = "fileImage") MultipartFile mainImage,
                               @RequestParam(name = "extraImage") MultipartFile[] extraImages,
                               @RequestParam(name = "detailNames", required = false) String[] detailNames,
-                              @RequestParam(name = "detailValues", required = false) String[] detailValues) throws IOException {
+                              @RequestParam(name = "detailValues", required = false) String[] detailValues,
+                              @RequestParam(name = "imageIds", required = false) String[] imageIds,
+                              @RequestParam(name = "imageNames", required = false) String[] imageNames) throws IOException {
         setMainImage(mainImage, product);
-        setExtraImages(extraImages, product);
+        setExistingExtraImageNames(imageIds, imageNames, product);
+        setNewExtraImages(extraImages, product);
         setProductDetails(detailNames, detailValues, product);
 
         Product savedProduct = productService.save(product);
@@ -113,6 +114,20 @@ public class ProductController {
         redirectAttributes.addFlashAttribute("message", "The product was saved successfully");
 
         return getRedirectURLToAffectedProduct(product);
+    }
+
+    private void setExistingExtraImageNames(String[] imageIds, String[] imageNames, Product product) {
+        if (imageIds == null || imageIds.length == 0) return;
+
+        Set<ProductImage> images = new HashSet<>();
+
+        for (int count = 0; count < imageIds.length; count++) {
+            Integer id = Integer.parseInt(imageIds[count]);
+            String name = imageNames[count];
+            images.add(new ProductImage(id, name, product));
+        }
+
+        product.setImages(images);
     }
 
     private void setProductDetails(String[] detailNames, String[] detailValues, Product product) {
@@ -150,12 +165,15 @@ public class ProductController {
     }
 
 
-    private void setExtraImages(MultipartFile[] extraImageMultiparts, Product product) {
+    private void setNewExtraImages(MultipartFile[] extraImageMultiparts, Product product) {
         if (extraImageMultiparts.length > 0) {
             for (MultipartFile extraImageMultipart : extraImageMultiparts) {
                 if (!extraImageMultipart.isEmpty()) {
                     String fileName = StringUtils.cleanPath(Objects.requireNonNull(extraImageMultipart.getOriginalFilename()));
-                    product.addExtraImage(fileName);
+
+                    if (!product.containsImageName(fileName)) {
+                        product.addExtraImage(fileName);
+                    }
                 }
             }
         }

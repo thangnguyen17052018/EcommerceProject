@@ -1,5 +1,13 @@
-var section_index = $("#listProductDetailSize").val();
+var section_index = 1;
 section_index++;
+
+$(document).ready(function() {
+    $("a[name='linkRemoveDetail']").each(function(index) {
+        $(this).click(function() {
+            removeDetailSection(index + 1);
+        });
+    })
+});
 const addNewDetailSection = () => {
     htmlDetailSectionRemove = `<a class="btn fas fa-times-circle fa-2x icon-silver float-right"
                          title="Remove this section"
