@@ -7,6 +7,35 @@
 </head>
 <body>
 
+<div th:fragment="pagination(moduleUrl, entityName)" th:remove="tag">
+    <div class="text-center m-4">
+        <span th:if="${totalItems > 0}">Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+        <span th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
+    </div>
+
+    <div th:if="${totalPages > 1}">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(1, 'First', ${moduleUrl})"></a>
+                </li>
+                <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', ${moduleUrl})"></a>
+                </li>
+                <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"
+                    th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a th:replace="fragments :: page_link(${i}, ${i}, ${moduleUrl})"></a>
+                <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', ${moduleUrl})"></a>
+                </li>
+                <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${totalPages}, 'Last', ${moduleUrl})"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
 
 
 </body>

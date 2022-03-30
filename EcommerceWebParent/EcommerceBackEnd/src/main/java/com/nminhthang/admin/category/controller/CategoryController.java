@@ -31,36 +31,22 @@ public class CategoryController {
 
     @GetMapping("/categories")
     public String listFirstPage(@Param("sortDir") String sortDir, Model model) {
-        return listByPage(model, 1, sortDir);
+        return listByPage(model, 1, sortDir, null);
     }
-
-//    public String listAll(@Param("sortDir") String sortDir, Model model) {
-//
-//        if (sortDir == null || sortDir.isEmpty()) {
-//            sortDir = "asc";
-//        }
-//
-//        List<Category> listCategories = categoryService.listAll();
-//        String reverseSortDir = (sortDir.equals("asc")) ? "desc" : "asc";
-//
-//        model.addAttribute("listCategories", listCategories);
-//        model.addAttribute("reverseSortDir", reverseSortDir);
-//
-//        return "/category/categories";
-//    }
 
     @GetMapping("/categories/page/{pageNum}")
     public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum,
-                             @Param("sortDir") String sortDir) {
+                             @Param("sortDir") String sortDir,
+                             @Param("keyword") String keyword) {
         if (sortDir == null || sortDir.isEmpty()) {
             sortDir = "asc";
         }
         CategoryPageInfo categoryPageInfo = new CategoryPageInfo();
 
-        List<Category> listCategories = categoryService.listByPage(categoryPageInfo, pageNum, sortDir);
+        List<Category> listCategories = categoryService.listByPage(categoryPageInfo, pageNum, sortDir, keyword);
 
-        long startCount = (long) (pageNum - 1) * CategoryService.CATEGORIES_PER_PAGE + 1;
-        long endCount = startCount + CategoryService.CATEGORIES_PER_PAGE - 1;
+        long startCount = (long) (pageNum - 1) * CategoryService.ROOT_CATEGORIES_PER_PAGE + 1;
+        long endCount = startCount + CategoryService.ROOT_CATEGORIES_PER_PAGE - 1;
 
         if (endCount > categoryPageInfo.getTotalElements())
             endCount = categoryPageInfo.getTotalElements();
@@ -74,8 +60,9 @@ public class CategoryController {
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", categoryPageInfo.getTotalPages());
         model.addAttribute("sortOrder", sortDir);
+        model.addAttribute("sortField", "name");
         model.addAttribute("reverseSortOrder", reverseSortDir);
-//        model.addAttribute("keyword", keyword);
+        model.addAttribute("keyword", keyword);
 
         return "/category/categories";
     }
@@ -93,7 +80,7 @@ public class CategoryController {
     }
 
     @PostMapping("/categories/save")
-    public String saveUser(Category category, RedirectAttributes redirectAttributes, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
+    public String saveCategory(Category category, RedirectAttributes redirectAttributes, @RequestParam("fileImage") MultipartFile multipartFile) throws IOException {
 
         if (!multipartFile.isEmpty()) {
             String fileName = StringUtils.cleanPath(Objects.requireNonNull(multipartFile.getOriginalFilename()));
@@ -138,7 +125,7 @@ public class CategoryController {
     }
 
     @GetMapping("/categories/delete/{id}")
-    public String deleteUser(@PathVariable(name = "id") Integer id,
+    public String deleteCategory(@PathVariable(name = "id") Integer id,
                              Model model,
                              RedirectAttributes redirectAttributes) {
         try {

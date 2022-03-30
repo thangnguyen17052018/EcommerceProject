@@ -4,20 +4,22 @@ $(document).ready(() => {
         document.logoutForm.submit();
     });
 
-    customizeDropDownMenu();
+    accountProfile();
+    
+    // $(".dropdown").mouseenter(() => {
+	// 	$(".dropdown-menu").slideDown(600);
+	// })
+	// $(".dropdown").mouseleave(() => {
+	// 	$(".dropdown-menu").slideUp(600);
+	// })
+
 });
 
-const customizeDropDownMenu = () => {
-    $(".navbar .dropdown").hover(
-        (e) => {
-            $(e.target).find('.dropdown-menu').first().stop(true, true).delay(250).slideDown();
-            console.log('down');
-        },
-        (event) => {
-            $(event.target).find('.dropdown-menu').first().stop(true, true).delay(50).slideUp();
-            console.log('up');
-        }
-    );
+
+
+
+
+const accountProfile = () => {
 
     $(".dropdown > a").click((e) => {
         location.href = e.target.href;

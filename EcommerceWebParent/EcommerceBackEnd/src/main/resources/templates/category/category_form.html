@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       lang="en">
-<head th:replace="fragments :: header_link(${pageTitle})"></head>
+<head th:replace="fragments :: header_link(${pageTitle}, 'none')"></head>
 
 <body>
 <div class="container-fluid">
@@ -61,7 +61,7 @@
             </div>
 
             <div class="text-center">
-                <input type="submit" value="Save" class="btn btn-primary m-3">
+                <input type="submit" value="Save" class="btn btn-primary-color m-3">
                 <input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton">
             </div>
         </div>

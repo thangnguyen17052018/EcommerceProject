@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       lang="en">
-<head th:fragment="header_link(title)">
+<head th:fragment="header_link(title, remove)" th:remove="${remove}">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
     <title>[[${title}]]</title>
@@ -13,10 +13,9 @@
     <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     <script type="text/javascript" th:src="@{/js/common-scripts.js}"></script>
-
 </head>
 <body>
-<th th:fragment="column_link(fieldName, columnLabel, module)">
+<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
     <a class="text-dark"
        th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
         [[${columnLabel}]]
@@ -25,14 +24,31 @@
     <span th:if="${sortField == fieldName}"
           th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
-<!--   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>-->
+
+<div th:fragment="search_form_and_message(module)">
+    <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
+        <input type="hidden" name="sortField" th:value="${sortField}">
+        <input type="hidden" name="sortDir" th:value="${sortOrder}">
+        Filter: &nbsp;
+        <input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input" required>
+        &nbsp;&nbsp;
+        <input type="submit" value="Search" class="btn btn-primary-color">
+        &nbsp;&nbsp;
+        <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+    </form>
+
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+</div>
 
 <a th:fragment="page_link(pageNum, pageLabel, module)"
-   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder}}">[[${pageLabel}]]</a>
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
 
 
 
 <div th:fragment="menu_link">
+	
     <form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
         <input type="submit">
     </form>
@@ -40,12 +56,17 @@
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/images/logo.jpg}"/>
         </a>
+         
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
+        
         <div class="collapse navbar-collapse" id="topNavbar">
+
             <ul class="navbar-nav">
+            	
                 <li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
+                   
                     <a class="nav-link" th:href="@{/users}">
                         <span></span>
                         <span></span>
@@ -174,16 +195,14 @@
                 </li>
 
 
-                <li class="ml-2">
-                    <span class="fas fa-user fa-2x icon-silver"></span>
-                </li>
-                <li class="nav-item dropdown">
+                <li id="navbar-item" class="nav-item dropdown ml-1">
                     <a class="nav-link dropdown-toggle"
                        data-toggle="dropdown"
                        th:href="@{/account}"
-                       sec:authentication="principal.fullName"></a>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" id="logoutLink" href="">Log out</a>
+                       sec:authentication="principal.fullName">
+                    </a>
+                    <div class="navbarx-menu">
+                        <a class="navbarx-menu-item" id="logoutLink" href="">Log out</a>
                     </div>
                 </li>
             </ul>
@@ -236,6 +255,26 @@
         </div>
     </footer>
 </div>
+
+<div th:fragment="status(enabled, entityName, moduleURL)" th:remove="tag">
+    <a th:if="${enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
+       th:href="@{${moduleURL} + '/enabled/false'}" th:title="'Disable this' + ${entityName}"></a>
+    <a th:if="${enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
+       th:href="@{${moduleURL} + '/enabled/true'}" th:title="'Enable this' + ${entityName}"></a>
+</div>
+
+<div th:fragment="action(entityId, entityName, moduleURL, visible)" th:remove="tag">
+    <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{${moduleURL} + 'edit/' + ${entityId}}"
+       th:title="'Edit this' + ${entityName}">
+    </a>
+    &nbsp;
+    <a th:if="${visible == true}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+       th:href="@{${moduleURL} + 'delete/' + ${entityId}}"
+       th:entityId="${entityId}"
+       th:title="'Delete this ' + ${entityName}">
+    </a>
+</div>
+
 
 </body>
 </html>

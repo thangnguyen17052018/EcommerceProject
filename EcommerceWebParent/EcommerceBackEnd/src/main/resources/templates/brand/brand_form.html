@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:replace="fragments :: header_link(${pageTitle}, 'none')"></head>
+
+<body>
+<div class="container-fluid">
+    <div>
+        <div th:replace="fragments :: menu_link"></div>
+
+        <h2 class="my-4">Brand Management | [[${pageTitle}]]</h2>
+
+    </div>
+
+    <form th:action="@{/brands/save}" method="post" style="max-width: 700px; margin: 0 auto"
+          enctype="multipart/form-data"
+          th:object="${brand}"
+          onsubmit="return checkBrandUnique(this);">
+        <input type="hidden" th:field="*{id}">
+        <div class="border border-secondary rounded p-3">
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Brand Name:</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" th:field="*{name}" required minlength="2" maxlength="128">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Brand Logo:</label>
+                <div class="col-sm-8 d-flex align-items-center flex-wrap">
+                    <input type="hidden" th:field="*{logo}">
+                    <input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" class="mb-3" th:required="${brand.logo == null}">
+                    <img th:src="@{${brand.logoPath}}" id="thumbnail" class="img-fluid" alt="Logo preview">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Select one or more categories:</label>
+                <div class="col-sm-8">
+                    <select class="form-control" required th:field="*{categories}"
+                            multiple="multiple" style="resize: vertical; height: 200px">
+                        <th:block th:each="cat : ${listCategories}">
+                            <option th:value="${cat.id}">[[${cat.name}]]</option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-4 col-form-label">Chosen categories:</label>
+                <div class="col-sm-8">
+                    <div id="chosenCategories">
+                        <th:block th:each="cat : ${brand.categories}">
+                            <span th:value="${cat.id}" class="badge badge-secondary mr-1">[[${cat.name}]]</span>
+                        </th:block>                                                                                 
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <input type="submit" value="Save" class="btn btn-primary-color m-3">
+                <input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton">
+            </div>
+        </div>
+    </form>
+
+    <div th:replace="modal_fragments :: modal_dialog"></div>
+
+</div>
+<div th:replace="fragments :: footer_link"></div>
+
+<script type="text/javascript" th:src="@{/js/common-form.js}"></script>
+<script type="text/javascript">
+    moduleUrl = "[[@{/brands}]]";
+
+    $(document).ready(() => {
+        dropdownCategories = $("#categories");
+        divChosenCategories = $("#chosenCategories");
+
+        dropdownCategories.change(() => {
+           divChosenCategories.empty();
+           showChosenCategories();
+        });
+    });
+
+    showChosenCategories = () => {
+        dropdownCategories.children("option:selected").each(function(){
+            selectedCategory = $(this);
+            
+            catId = selectedCategory.val();
+            catName = selectedCategory.text().replace(/-/g, "");
+
+            divChosenCategories.append("<span value='" + catId + "' class='badge badge-secondary mr-1'>" + catName + "</span>");
+
+        });
+    }
+
+
+    const checkBrandUnique = (form) => {
+        url = "[[@{/brands/check_brand}]]";
+        brandId = $("#id").val();
+        brandName = $("#name").val();
+        csrfValue = $("input[name= '_csrf']").val();
+
+        params = {id: brandId, name: brandName, _csrf: csrfValue};
+        $.post(url, params, (response) => {
+            console.log(params);
+
+            if (response == "OK"){
+                form.submit();
+            } else if (response == "Duplicate brand name"){
+                showWarningModal("There is another brand having the name: " + brandName + " !!!");
+            } else {
+                showErrorModal("Unknown response from server");
+            }
+        }).fail(() => {
+            showErrorModal("Could not connect to the server");
+        });
+        return false;
+    }
+
+</script>
+</body>
+
+
+
+</html>
