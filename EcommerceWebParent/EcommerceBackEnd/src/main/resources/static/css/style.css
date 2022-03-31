@@ -39,7 +39,7 @@
 }
 
 html {
-	font-size: 16px;
+	font-size: 18px;
 }
 
 /*------ Strat Login page --------*/
@@ -116,7 +116,7 @@ html {
 .login-input {
 	height: 3.25rem;
 	border-radius: 25px;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 /*
@@ -130,9 +130,6 @@ html {
 	box-shadow: none;
 }
 */
-.login-input:focus::placeholder {
-	padding-left: 24px;
-}
 
 
 .login-button {
@@ -274,9 +271,6 @@ html {
 		padding-left: 11%;
 	}
 	
-	::placeholder { 
-	  font-size: 20px;
-	}
 	
 	.text-danger {
 		padding-left: 1rem;
@@ -522,7 +516,7 @@ html {
 
 
 .page-item.active .page-link{
-	padding: 7px 12px;
+	padding: 0.5rem 0.75rem;
 	border: 10px solid;
 	border-image-slice: 1;
 	border-width: 2px;
@@ -786,6 +780,9 @@ ul{
 	/* small screen */
 	div.full-details { display: none}
 	div.less-details { display: block}
+	.small-input{
+		width: 90px;
+	}
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
 	/* medium screen */
