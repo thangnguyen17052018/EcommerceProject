@@ -56,10 +56,10 @@ public class Product {
     @Column(name = "main_image", nullable = false)
     private String mainImage;
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ProductImage> images = new HashSet<>();
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductDetail> details = new ArrayList<>();
 
     @Transient
@@ -73,6 +73,10 @@ public class Product {
 
     public void addDetail(String detailName, String detailValue) {
         this.details.add(new ProductDetail(detailName, detailValue, this));
+    }
+
+    public void addDetail(Integer id ,String detailName, String detailValue) {
+        this.details.add(new ProductDetail(id, detailName, detailValue, this));
     }
 
     @Transient

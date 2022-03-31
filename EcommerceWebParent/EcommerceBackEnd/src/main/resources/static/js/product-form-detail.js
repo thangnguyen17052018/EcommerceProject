@@ -1,22 +1,21 @@
-var section_index = 1;
-section_index++;
 
-$(document).ready(function() {
+$(document).ready(() => {
+
     $("a[name='linkRemoveDetail']").each(function(index) {
         $(this).click(function() {
-            removeDetailSection(index + 1);
+            removeDetailSectionByIndex(index + 1);
         });
     })
+
 });
 const addNewDetailSection = () => {
-    htmlDetailSectionRemove = `<a class="btn fas fa-times-circle fa-2x icon-silver float-right"
-                         title="Remove this section"
-                         href="javascript:removeDetailSection(${section_index})"></a>`;
-    $("#divDetailSection" + section_index).append(htmlDetailSectionRemove);
+    counter = parseInt($("#counter").val());
+    allDivDetails = $("[id^='divDetailSection']");
+    divDetailCount = allDivDetails.length + counter;
 
-    section_index++;
     htmlDetailSection = `
-        <div class="form-inline" id="divDetailSection${section_index}">
+        <div class="form-inline" id="divDetailSection${divDetailCount + 1}">
+            <input type="hidden" name="detailIDs" value="0">
             <label class="m-3">Name:</label>
             <input type="text" name="detailNames" class="form-control w-25" maxlength="255">
             <label class="m-3">Value:</label>
@@ -25,8 +24,25 @@ const addNewDetailSection = () => {
 
     $("#divProductDetails").append(htmlDetailSection);
     $("input[name='detailNames']").last().focus();
+
+    var previousDetailSection = allDivDetails.last();
+    var previousDetailId = previousDetailSection.attr("id");
+
+    htmlDetailSectionRemove = `<a class="btn fas fa-times-circle fa-2x icon-silver float-right"
+                         title="Remove this section"
+                         href="javascript:removeDetailSectionById(${previousDetailId})"
+                         ></a>`;
+    $("#" + previousDetailId).append(htmlDetailSectionRemove);
 }
 
-const removeDetailSection = (index) => {
+const removeDetailSectionById = (index) => {
+    $("#" + index.id).remove();
+    counter = parseInt($("#counter").val()) + 1;
+    $("#counter").val(counter);
+}
+
+const removeDetailSectionByIndex = (index) => {
     $("#divDetailSection" + index).remove();
+    counter = parseInt($("#counter").val()) + 1;
+    $("#counter").val(counter);
 }
