@@ -55,10 +55,11 @@
 			<div th:each="category : ${listCategories}" class="row m-1">
 				<div class="col-4">
 					<img th:src="@{${category.imagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
-					<div> [[${category.name}]] </div>
+					
 				</div>
 				
 				<div class="col-8">
+				<div> [[${category.name}]] </div>
 					<div class="mt-2">
                         <div th:replace="fragments :: status(${category.enabled}, 'category', '/categories/' + ${category.id})"></div>
 						&nbsp;
