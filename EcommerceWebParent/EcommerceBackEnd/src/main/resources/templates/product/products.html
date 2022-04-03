@@ -39,15 +39,20 @@
                         <td>
                             <img th:src="@{${product.mainImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
                         </td>
-                        <td>[[${product.name}]]
+                        <td>
+                            <a class="icon-purple mr-2 link-detail"
+                               th:href="@{'/products/detail/' + ${product.id}}"
+                                alt="View detail of this product"
+                            >[[${product.name}]]</a>
+                        </td>
                         <td>[[${product.brand.name}]]</td>
                         <td>[[${product.category.name}]]</td>
                         <td>
                             <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
                         </td>
                         <td>
-                            <a class="fas fa-file-alt fa-2x icon-purple mr-2"
-                               th:href="@{'/products/detail/' + ${product.id}}"></a>
+                            <a class="link-detail fas fa-file-alt fa-2x icon-purple mr-2"
+                               th:href="@{'/products/detail/' + ${product.id}}" alt="View detail of this product"></a>
                             <div th:replace="fragments :: action(${product.id}, 'product', '/products/', true)"></div>
                         </td>
                     </tr>
@@ -76,6 +81,13 @@
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 
+        <div class="modal fade" id="detailModal">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+
+                </div>
+            </div>
+        </div>
 
     </div>
     <div th:replace="fragments :: footer_link"></div>
@@ -89,6 +101,13 @@
 
                 showDeleteConfirmModal(selectedProduct, "product");
             })
+
+            $(".link-detail").on("click", function(e) {
+               e.preventDefault();
+               linkDetailUrl = $(this).attr("href");
+
+               $("#detailModal").modal("show").find(".modal-content").load(linkDetailUrl);
+            });
 
         });
 

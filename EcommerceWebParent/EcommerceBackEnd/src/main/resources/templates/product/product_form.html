@@ -58,6 +58,7 @@
                 <div>
                     <input type="button" class="btn btn-secondary" value="Add more detail" onclick="addNewDetailSection()">
                 </div>
+                <input type="hidden" id="counter" value="0">
             </div>
             <div class="tab-pane p-3" id="shipping" role="tabpanel">
                 <div th:replace="product/product_shipping :: content"></div>

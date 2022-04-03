@@ -15,6 +15,7 @@
             <a class="btn fas fa-times-circle fa-2x icon-silver float-right"
                title="Remove this section"
                name="linkRemoveDetail"></a>
+            <input type="hidden" name="detailIDs" th:value="${productDetail.id}">
         </div>
     </th:block>
 
@@ -23,6 +24,7 @@
         <input type="text" name="detailNames" class="form-control w-25" maxlength="255">
         <label class="m-3">Value:</label>
         <input type="text" name="detailValues" class="form-control w-25" maxlength="255">
+        <input type="hidden" name="detailIDs" value="0">
     </div>
 </div>
 

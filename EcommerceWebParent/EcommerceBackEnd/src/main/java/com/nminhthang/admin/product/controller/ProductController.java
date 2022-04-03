@@ -8,6 +8,8 @@ import com.nminhthang.admin.product.exporter.ProductCSVExporter;
 import com.nminhthang.common.entity.Brand;
 import com.nminhthang.common.entity.Product;
 import com.nminhthang.common.entity.ProductImage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -23,10 +25,15 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 @Controller
 public class ProductController {
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     ProductService productService;
@@ -98,22 +105,46 @@ public class ProductController {
     public String saveProduct(Product product, RedirectAttributes redirectAttributes,
                               @RequestParam(name = "fileImage") MultipartFile mainImage,
                               @RequestParam(name = "extraImage") MultipartFile[] extraImages,
+                              @RequestParam(name = "detailIDs", required = false) String[] detailIds,
                               @RequestParam(name = "detailNames", required = false) String[] detailNames,
                               @RequestParam(name = "detailValues", required = false) String[] detailValues,
-                              @RequestParam(name = "imageIds", required = false) String[] imageIds,
+                              @RequestParam(name = "imageIDs", required = false) String[] imageIds,
                               @RequestParam(name = "imageNames", required = false) String[] imageNames) throws IOException {
         setMainImage(mainImage, product);
         setExistingExtraImageNames(imageIds, imageNames, product);
         setNewExtraImages(extraImages, product);
-        setProductDetails(detailNames, detailValues, product);
+        setProductDetails(detailIds, detailNames, detailValues, product);
 
         Product savedProduct = productService.save(product);
 
         saveUploadedImages(mainImage, extraImages, savedProduct);
 
+        deleteExtraImagesWeredRemovedFrom(product);
+
         redirectAttributes.addFlashAttribute("message", "The product was saved successfully");
 
         return getRedirectURLToAffectedProduct(product);
+    }
+
+    private void deleteExtraImagesWeredRemovedFrom(Product product) {
+        String extraImageDir = "../product-images/" + product.getId() + "/extras";
+        Path extraImageDirPath  = Paths.get(extraImageDir);
+
+        try {
+            Files.list(extraImageDirPath).forEach(file -> {
+                String fileName = file.toFile().getName();
+                if (!product.containsImageName(fileName)) {
+                    try {
+                        Files.delete(file);
+                        LOGGER.info("Deleted extra image: " + fileName);
+                    } catch (IOException e) {
+                        LOGGER.error("Could not delete extra image: " + fileName);
+                    }
+                }
+            });
+        } catch (IOException ex) {
+            LOGGER.error("Could not list directory: " + extraImageDirPath);
+        }
     }
 
     private void setExistingExtraImageNames(String[] imageIds, String[] imageNames, Product product) {
@@ -130,16 +161,20 @@ public class ProductController {
         product.setImages(images);
     }
 
-    private void setProductDetails(String[] detailNames, String[] detailValues, Product product) {
+    private void setProductDetails(String[] detailIds, String[] detailNames, String[] detailValues, Product product) {
         if (detailNames == null || detailNames.length == 0) return;
 
         for (int count = 0; count < detailNames.length; count++) {
             String name = detailNames[count];
             String value = detailValues[count];
+            Integer id = Integer.parseInt(detailIds[count]);
 
-            if (!name.isEmpty() && !value.isEmpty()) {
+            if (id != 0) {
+                product.addDetail(id, name, value);
+            } else {
                 product.addDetail(name, value);
             }
+
         }
     }
 
@@ -187,7 +222,7 @@ public class ProductController {
     }
 
     private String getRedirectURLToAffectedProduct(Product product) {
-        return "redirect:/products/page/1?sortField=id&sortDir=asc&keyword=" + product.getId();
+        return "redirect:/products/page/1?sortField=id&sortDir=asc&keyword=" + product.getName();
     }
 
     @GetMapping("/products/edit/{id}")
@@ -248,6 +283,22 @@ public class ProductController {
         List<Product> listProducts = productService.listAll();
         ProductCSVExporter exporter = new ProductCSVExporter();
         exporter.export(listProducts, response);
+    }
+
+    @GetMapping("/products/detail/{id}")
+    public String viewProductDetails(@PathVariable(name = "id") Integer id,
+                              Model model,
+                              RedirectAttributes redirectAttributes) {
+        try {
+            Product product = productService.get(id);
+            model.addAttribute("product", product);
+
+
+            return "/product/product_detail_modal";
+        } catch (ProductNotFoundException exception) {
+            redirectAttributes.addFlashAttribute("message", exception.getMessage());
+            return "redirect:/products";
+        }
     }
 
 }
