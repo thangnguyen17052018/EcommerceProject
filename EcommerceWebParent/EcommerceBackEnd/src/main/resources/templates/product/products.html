@@ -20,7 +20,7 @@
 
         <div th:replace="fragments :: search_form_and_message('products')"></div>
 
-        <div>
+        <div class="full-details">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
@@ -60,6 +60,23 @@
             </table>
         </div>
 
+		<div class="less-details"> 
+			<div th:each="product : ${listProducts}" class="row m-1">
+				<div class="col-4">
+					<img th:src="@{${product.mainImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+				</div>
+				<div class="col-8">
+					<div> [[${product.name}]] </div>
+					<div class="badge badge-secondary mr-2">[[${product.brand.name}]] </div>
+					<div class="mt-2">
+                        <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
+						&nbsp;
+						<div th:replace="fragments :: action(${product.id}, 'product', '/products/', true)"></div>
+					</div>
+				</div>
+				<div>&nbsp</div>
+			</div>
+		</div>
         <div th:replace="pagination_fragments :: pagination('products', 'products')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
