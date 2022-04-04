@@ -48,21 +48,43 @@
                 <div th:replace="product/product_overview :: content"></div>
             </div>
             <div class="tab-pane p-2" id="description" role="tabpanel">
-                <div th:replace="product/product_description :: content"></div>
+                <th:block sec:authorize="hasAnyAuthority('Sales')">
+                    <div th:replace="product/product_description_readonly :: content"></div>
+                </th:block>
+
+                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                    <div th:replace="product/product_description :: content"></div>
+                </th:block>
             </div>
             <div class="tab-pane p-2" id="images" role="tabpanel">
-                <div th:replace="product/product_images :: content"></div>
-            </div>
+                <th:block sec:authorize="hasAnyAuthority('Sales')">
+                    <div th:replace="product/product_images_readonly :: content"></div>
+                </th:block>
+
+                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                    <div th:replace="product/product_images :: content"></div>
+                </th:block>            </div>
             <div class="tab-pane p-3" id="details" role="tabpanel">
-                <div th:replace="product/product_details :: content"></div>
-                <div>
-                    <input type="button" class="btn btn-secondary" value="Add more detail" onclick="addNewDetailSection()">
-                </div>
-                <input type="hidden" id="counter" value="0">
+                <th:block sec:authorize="hasAnyAuthority('Sales')">
+                    <div th:replace="product/product_details_readonly :: content"></div>
+                </th:block>
+
+                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                    <div th:replace="product/product_details :: content"></div>
+                    <div>
+                        <input type="button" class="btn btn-secondary" value="Add more detail" onclick="addNewDetailSection()">
+                    </div>
+                    <input type="hidden" id="counter" value="0">
+                </th:block>
             </div>
             <div class="tab-pane p-3" id="shipping" role="tabpanel">
-                <div th:replace="product/product_shipping :: content"></div>
-            </div>
+                <th:block sec:authorize="hasAnyAuthority('Sales')">
+                    <div th:replace="product/product_shipping_readonly :: content"></div>
+                </th:block>
+
+                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                    <div th:replace="product/product_shipping :: content"></div>
+                </th:block>            </div>
         </div>
         <div class="text-center">
             <input type="submit" value="Save" class="btn btn-primary-color m-3">
