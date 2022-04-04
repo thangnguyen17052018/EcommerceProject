@@ -800,20 +800,20 @@ ul{
 	}
 }
 
-#navbar-item{
+.navbar-items{
 	position: relative;
 }
 
-#navbar-item .navbarx-menu{
+.navbar-items .navbarx-menu{
 	height: 0;
 	overflow: hidden;
 	transition: all ease .35s;
 	position: absolute;
 	padding: 0 10px;
-	width: 100%;
+	min-width: 120px;
 }
 
-#navbar-item .navbarx-menu a{
+.navbar-items .navbarx-menu a{
 	text-decoration: none;
 	font-size: 1rem;
 	color: black;
@@ -827,11 +827,11 @@ ul{
 	transition: all linear .25s;
 }
 
-#navbar-item .navbarx-menu a:hover{
+.navbar-items .navbarx-menu a:hover{
 	background: #e8e8e8;
 }
 
-#navbar-item:hover .navbarx-menu{
-	height: 55px;
+.navbar-items:hover .navbarx-menu{
+	height: 200px;
 	top: 100%;
 }

@@ -29,6 +29,9 @@ public class Category {
 
     private boolean enabled;
 
+    @Column(name = "all_parent_ids", length = 256, nullable = true)
+    private String allParentIDs;
+
     @ManyToOne
     @JoinColumn(name = "parent_id")
     private Category parent;
@@ -71,7 +74,6 @@ public class Category {
     }
 
     public String getImagePath() {
-        System.out.println(image);
         if ("default.png".equals(image) || image == null) return "/images/default.png";
         return "/category-images/" + this.id + "/" + this.image;
     }

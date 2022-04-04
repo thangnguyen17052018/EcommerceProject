@@ -67,13 +67,9 @@
                         </td>
 
                         <td>
-                            <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{'/users/edit/' + ${user.id}}"
-                               title="Edit this user"></a>
+                            <div th:replace="fragments :: edit(${user.id}, 'user', '/users/', true)"></div>&nbsp;
                             &nbsp;
-                            <a class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
-                               th:href="@{'/users/delete/' + ${user.id}}"
-                               th:entityId="${user.id}"
-                               title="Delete this user"></a>
+                            <div th:replace="fragments :: delete(${user.id}, 'user', '/users/', true)"></div>
                         </td>
                     </tr>
                 </tbody>
@@ -92,8 +88,9 @@
 					<div class="mt-2">
                         <div th:replace="fragments :: status(${user.enabled}, 'user', '/users/')"></div>
 						&nbsp;
-                        <div th:replace="fragments :: action(${user.id}, 'user', '/users/', true)"></div>&nbsp;
-
+                        <div th:replace="fragments :: edit(${user.id}, 'user', '/users/', true)"></div>&nbsp;
+                        &nbsp;
+                        <div th:replace="fragments :: delete(${user.id}, 'user', '/users/', true)"></div>&nbsp;
 					</div>
 				</div>
 				<div>&nbsp</div>
