@@ -17,7 +17,7 @@
 <body>
 <th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
     <a class="text-dark"
-       th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+       th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
         [[${columnLabel}]]
     </a>
 
@@ -43,7 +43,7 @@
 </div>
 
 <a th:fragment="page_link(pageNum, pageLabel, module)"
-   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${pageLabel}]]</a>
 
 
 
@@ -64,9 +64,8 @@
         <div class="collapse navbar-collapse" id="topNavbar">
 
             <ul class="navbar-nav">
-            	
+
                 <li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
-                   
                     <a class="nav-link" th:href="@{/users}">
                         <span></span>
                         <span></span>
@@ -262,11 +261,13 @@
        th:href="@{${moduleURL} + '/enabled/true'}" th:title="'Enable this' + ${entityName}"></a>
 </div>
 
-<div th:fragment="action(entityId, entityName, moduleURL, visible)" th:remove="tag">
+<div th:fragment="edit(entityId, entityName, moduleURL, visible)" th:remove="tag">
     <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{${moduleURL} + 'edit/' + ${entityId}}"
        th:title="'Edit this' + ${entityName}">
     </a>
-    &nbsp;
+</div>
+
+<div th:fragment="delete(entityId, entityName, moduleURL, visible)" th:remove="tag">
     <a th:if="${visible == true}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
        th:href="@{${moduleURL} + 'delete/' + ${entityId}}"
        th:entityId="${entityId}"

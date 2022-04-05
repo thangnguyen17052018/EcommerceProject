@@ -9,18 +9,40 @@
 
         <div>
             <h2 class="my-4">Products Management</h2>
-            <a th:href="@{/products/new}" class="px-1 a-textdecoration">
-            	<img th:src="@{/images/add.png}" class="icon pb-2"/>
-            </a>
-            &nbsp;&nbsp;
-            <a th:href="@{/products/export/csv}" class="px-1 a-textdecoration">
-            	<img th:src="@{/images/csv-file.png}" class="icon pb-2"/>
-            </a>
+            <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                <a th:href="@{/products/new}" class="px-1 a-textdecoration">
+                    <img th:src="@{/images/add.png}" class="icon pb-2"/>
+                </a>
+                &nbsp;&nbsp;
+                <a th:href="@{/products/export/csv}" class="px-1 a-textdecoration">
+                    <img th:src="@{/images/csv-file.png}" class="icon pb-2"/>
+                </a>
+            </th:block>
         </div>
 
-        <div th:replace="fragments :: search_form_and_message('products')"></div>
+        <form th:action="@{'/products/page/1'}" class="form-inline m-3" id="searchForm">
+            <input type="hidden" name="sortField" th:value="${sortField}">
+            <input type="hidden" name="sortDir" th:value="${sortOrder}">
+            Category: &nbsp;
+            <select class="mr-3 form-control" name="categoryId" id="dropdownCategory">
+                <option value="0">All Categories</option>
+                <th:block th:each="cat : ${listCategories}">
+                    <option th:value="${cat.id}" th:selected="(${cat.id == categoryId})">[[${cat.name}]]</option>
+                </th:block>
+            </select>
+            Filter: &nbsp;
+            <input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input small-input" required>
+            &nbsp;&nbsp;
+            <input type="submit" value="Search" class="btn btn-primary-color">
+            &nbsp;&nbsp;
+            <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+        </form>
 
-        <div>
+        <div th:if="${message != null}" class="alert alert-success text-center">
+            [[${message}]]
+        </div>
+
+        <div class="full-details">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
@@ -29,7 +51,9 @@
                         <th th:replace="fragments :: column_link('name', 'Product Name', 'products', 'none')"></th>
                         <th>Brand</th>
                         <th>Category</th>
-                        <th>Enabled</th>
+                        <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                            <th>Enabled</th>
+                        </th:block>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -47,19 +71,49 @@
                         </td>
                         <td>[[${product.brand.name}]]</td>
                         <td>[[${product.category.name}]]</td>
-                        <td>
-                            <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
-                        </td>
+                        <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                            <td>
+                                <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
+                            </td>
+                        </th:block>
                         <td>
                             <a class="link-detail fas fa-file-alt fa-2x icon-purple mr-2"
                                th:href="@{'/products/detail/' + ${product.id}}" alt="View detail of this product"></a>
-                            <div th:replace="fragments :: action(${product.id}, 'product', '/products/', true)"></div>
+                            <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Sales')">
+                               <div th:replace="fragments :: edit(${product.id}, 'product', '/products/', true)"></div>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                                &nbsp;
+                                <div th:replace="fragments :: delete(${product.id}, 'product', '/products/', true)"></div>
+                            </th:block>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
+		<div class="less-details"> 
+			<div th:each="product : ${listProducts}" class="row m-1">
+				<div class="col-4">
+					<img th:src="@{${product.mainImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+				</div>
+				<div class="col-8">
+					<div> [[${product.name}]] </div>
+					<div class="badge badge-secondary mr-2">[[${product.brand.name}]] </div>
+					<div class="mt-2">
+                        <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
+						&nbsp;<a class="link-detail fas fa-file-alt fa-2x icon-purple mr-2"
+                                 th:href="@{'/products/detail/' + ${product.id}}" alt="View detail of this product"></a>
+						<div th:replace="fragments :: edit(${product.id}, 'product', '/products/', true)"></div>
+                        <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                            &nbsp;
+                            <div th:replace="fragments :: delete(${product.id}, 'product', '/products/', true)"></div>
+                        </th:block>
+                    </div>
+				</div>
+				<div>&nbsp</div>
+			</div>
+		</div>
         <div th:replace="pagination_fragments :: pagination('products', 'products')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
@@ -90,6 +144,10 @@
                linkDetailUrl = $(this).attr("href");
 
                $("#detailModal").modal("show").find(".modal-content").load(linkDetailUrl);
+            });
+
+            $("#dropdownCategory").on("change", function (e) {
+                $("#searchForm").submit();
             });
 
         });

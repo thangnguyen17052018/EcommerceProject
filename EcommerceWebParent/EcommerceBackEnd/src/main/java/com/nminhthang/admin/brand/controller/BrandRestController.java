@@ -26,7 +26,6 @@ public class BrandRestController {
 
     @PostMapping("/brands/check_brand")
     public String checkDuplicateBrand(@Param("id") Integer id, @Param("name") String name) {
-        System.out.println(brandService.checkBrandUnique(id, name));
         return brandService.checkBrandUnique(id, name);
     }
 

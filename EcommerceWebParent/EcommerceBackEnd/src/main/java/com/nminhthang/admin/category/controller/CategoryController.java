@@ -91,7 +91,7 @@ public class CategoryController {
             FileUploadUtil.cleanDirectory(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         } else {
-            if (category.getId() ==  null) {
+            if (category.getId() == null) {
                 category.setImage("default.png");
             }
             categoryService.save(category);
