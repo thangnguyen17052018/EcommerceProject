@@ -4,13 +4,9 @@ import com.nminhthang.admin.FileUploadUtil;
 import com.nminhthang.admin.brand.BrandNotFoundException;
 import com.nminhthang.admin.brand.BrandService;
 import com.nminhthang.admin.brand.exporter.BrandCSVExporter;
-import com.nminhthang.admin.category.CategoryNotFoundException;
-import com.nminhthang.admin.category.CategoryPageInfo;
 import com.nminhthang.admin.category.CategoryService;
-import com.nminhthang.admin.category.exporter.CategoryCSVExporter;
 import com.nminhthang.common.entity.Brand;
 import com.nminhthang.common.entity.Category;
-import org.hibernate.annotations.Parent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -54,8 +50,8 @@ public class BrandController {
         Page<Brand> listBrandsPage = brandService.listByPage(pageNum, sortDir, keyword);
         List<Brand> listBrands = listBrandsPage.getContent();
 
-        long startCount = (long) (pageNum - 1) * brandService.BRAND_PER_PAGE + 1;
-        long endCount = startCount + brandService.BRAND_PER_PAGE - 1;
+        long startCount = (long) (pageNum - 1) * BrandService.BRAND_PER_PAGE + 1;
+        long endCount = startCount + BrandService.BRAND_PER_PAGE - 1;
 
         if (endCount > listBrandsPage.getTotalElements()) {
             endCount = listBrandsPage.getTotalElements();
@@ -70,7 +66,7 @@ public class BrandController {
         model.addAttribute("startCount", startCount);
         model.addAttribute("endCount", endCount);
         model.addAttribute("currentPage", pageNum);
-        model.addAttribute("totalItems",listBrandsPage.getTotalElements());
+        model.addAttribute("totalItems", listBrandsPage.getTotalElements());
         model.addAttribute("totalPages", listBrandsPage.getTotalPages());
         model.addAttribute("sortField", "name");
 
@@ -103,7 +99,9 @@ public class BrandController {
             FileUploadUtil.cleanDirectory(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         } else {
-            brand.setLogo("brand-logo.png");
+            if (brand.getId() == null) {
+                brand.setLogo("brand-logo.png");
+            }
             brandService.save(brand);
         }
 

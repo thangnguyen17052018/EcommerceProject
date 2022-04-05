@@ -71,7 +71,6 @@ public class Category {
     }
 
     public String getImagePath() {
-        System.out.println(image);
         if ("default.png".equals(image) || image == null) return "/images/default.png";
         return "/category-images/" + this.id + "/" + this.image;
     }

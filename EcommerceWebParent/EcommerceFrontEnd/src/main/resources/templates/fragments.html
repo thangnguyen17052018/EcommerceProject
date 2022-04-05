@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<head th:fragment="header_link(title, remove)" th:remove="${remove}">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>[[${title}]]</title>
+    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+
+    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</head>
+<body>
+<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
+    <a class="text-dark"
+       th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">
+        [[${columnLabel}]]
+    </a>
+
+    <span th:if="${sortField == fieldName}"
+          th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+</th>
+
+<div th:fragment="search_form_and_message(module)">
+    <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
+        <input type="hidden" name="sortField" th:value="${sortField}">
+        <input type="hidden" name="sortDir" th:value="${sortOrder}">
+        Filter: &nbsp;
+        <input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input small-input" required>
+        &nbsp;&nbsp;
+        <input type="submit" value="Search" class="btn btn-primary-color">
+        &nbsp;&nbsp;
+        <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
+    </form>
+
+    <div th:if="${message != null}" class="alert alert-success text-center">
+        [[${message}]]
+    </div>
+</div>
+
+<a th:fragment="page_link(pageNum, pageLabel, module)"
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+
+
+
+<div th:fragment=header_menu">
+
+    <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/images/logo.jpg}" width="48px" height="48px"/>
+        </a>
+         
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="topNavbar">
+
+            <ul class="navbar-nav">
+
+                <li class="navbar-item li-hover">
+
+                    <a class="nav-link" th:href="@{/users}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Careers
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/categories}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Payments
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/brands}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Shippings &amp; Delivery
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/products}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Login
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/customers}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Register
+                    </a>
+                </li>
+
+                <li class="navbar-item li-hover">
+                    <a class="nav-link" th:href="@{/shipping}">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div th:fragment="footer_menu" id="footer">
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col">
+                    <h4>company</h4>
+                    <ul>
+                        <li><a href="#">about us</a></li>
+                        <li><a href="#">our services</a></li>
+                        <li><a href="#">privacy policy</a></li>
+                        <li><a href="#">affiliate program</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>get help</h4>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">shipping</a></li>
+                        <li><a href="#">returns</a></li>
+                        <li><a href="#">order status</a></li>
+                        <li><a href="#">payment options</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>online shop</h4>
+                    <ul>
+                        <li><a href="#">living room</a></li>
+                        <li><a href="#">bedroom</a></li>
+                        <li><a href="#">kitchen</a></li>
+                        <li><a href="#">bathroom</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>follow us</h4>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div th:fragment="status(enabled, entityName, moduleURL)" th:remove="tag">
+    <a th:if="${enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
+       th:href="@{${moduleURL} + '/enabled/false'}" th:title="'Disable this' + ${entityName}"></a>
+    <a th:if="${enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
+       th:href="@{${moduleURL} + '/enabled/true'}" th:title="'Enable this' + ${entityName}"></a>
+</div>
+
+<div th:fragment="action(entityId, entityName, moduleURL, visible)" th:remove="tag">
+    <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{${moduleURL} + 'edit/' + ${entityId}}"
+       th:title="'Edit this' + ${entityName}">
+    </a>
+    &nbsp;
+    <a th:if="${visible == true}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+       th:href="@{${moduleURL} + 'delete/' + ${entityId}}"
+       th:entityId="${entityId}"
+       th:title="'Delete this ' + ${entityName}">
+    </a>
+</div>
+
+
+</body>
+</html>
