@@ -116,7 +116,7 @@ html {
 .login-input {
 	height: 3.25rem;
 	border-radius: 25px;
-    padding: 20px;
+    padding: 1.25rem;
 }
 
 /*
@@ -130,9 +130,6 @@ html {
 	box-shadow: none;
 }
 */
-.login-input:focus::placeholder {
-	padding-left: 24px;
-}
 
 
 .login-button {
@@ -156,6 +153,7 @@ html {
 /* Start Responsive */
 
 /* small screen*/
+
 
 @media screen and (max-width: 767px){
 
@@ -191,11 +189,10 @@ html {
 	.link-fb {
 		width: 100% !important;
 		margin-bottom: 1.25rem;
-		justify-content: unset !important;
+
 	}
 	.link-fb:hover {
 		height: 3.25rem;
-		justify-content: unset !important;
 
 	}
 
@@ -203,30 +200,31 @@ html {
 	.link-g
 	{
 		width: 100% !important;
-		justify-content: unset !important;
 
 	}
 	.link-g:hover {
-		height: 3.25rem;
-		justify-content: unset !important;
-		
+		height: 3.25rem;	
 	}
 	
 	
+
+	.icon-fb-res-sm {
+		padding: 0 3rem 0 1.1rem !important;
+	}
+	.icon-g-res-sm {
+		padding: 0 3rem 0 0 !important;
+	}
+	
 	.link-fb:hover .icon-fb-res-sm{
-		padding: 0 2rem 0 3.75rem  !important;
+		padding: 0 3rem 0 1.1rem !important;
 	}
 	
 	.link-g:hover .icon-g-res-sm {
-		padding: 0 1.7rem 0 3.65rem !important;
+		padding: 0 3rem 0 0 !important;
 	}
 	
-	.icon-fb-res-sm {
-		padding: 0 2rem 0 3rem !important;
-	}
-	.icon-g-res-sm {
-		padding: 0 1.7rem 0 2.9rem !important;
-	}
+	
+	
 	.btn-res-sm {
 		margin-top: 2rem !important;
 	}
@@ -248,7 +246,6 @@ html {
 	}
 	.col-md-12 {
 		display: inline-block !important;
-		/*font-size: 22px;*/
 	}
 	.link-fb-res-md {
 		width: 45% !important;
@@ -259,24 +256,18 @@ html {
 		width: 45% !important;
 		margin-right: 0 !important;
 	}
-	.textSignFB {
-		padding-left: 9%;
-	}
+	
+	
+	.textSignFB,
 	.textSignG {
-		padding-left: 12%;
+		padding-left: 6rem;
 	}
 	
-	.link-fb-res-md:hover .textSignFB {
-		padding-left: 8.5%;
-	}
-	
+	.link-fb-res-md:hover .textSignFB,
 	.link-g-res-md:hover .textSignG {
-		padding-left: 11%;
+		padding-left: 6rem;
 	}
 	
-	::placeholder { 
-	  font-size: 20px;
-	}
 	
 	.text-danger {
 		padding-left: 1rem;
@@ -522,7 +513,7 @@ html {
 
 
 .page-item.active .page-link{
-	padding: 7px 12px;
+	padding: 0.45rem 0.75rem;
 	border: 10px solid;
 	border-image-slice: 1;
 	border-width: 2px;
