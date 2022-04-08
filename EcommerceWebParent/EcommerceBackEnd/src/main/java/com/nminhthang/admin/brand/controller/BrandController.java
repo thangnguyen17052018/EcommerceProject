@@ -103,7 +103,9 @@ public class BrandController {
             FileUploadUtil.cleanDirectory(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         } else {
-            brand.setLogo("brand-logo.png");
+            if (brand.getId() == null) {
+                brand.setLogo("brand-logo.png");
+            }
             brandService.save(brand);
         }
 

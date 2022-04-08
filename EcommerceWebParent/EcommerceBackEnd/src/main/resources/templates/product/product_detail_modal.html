@@ -76,7 +76,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">List Price:</label>
+                <label class="col-sm-2 col-form-label">Price:</label>
                 <div class="col-sm-10">
                     <input type="number" class="form-control" th:value="${product.price}" readonly>
                 </div>
@@ -95,13 +95,47 @@
             </div>
         </div>
         <div class="tab-pane p-2" id="description" role="tabpanel">
+            <div th:replace="product/product_description_readonly :: content"></div>
         </div>
         <div class="tab-pane p-2" id="images" role="tabpanel">
+            <div class="row">
+                <div class="col border m-3 p-2">
+                    <div><label>Main Image: [[${product.mainImage}]]</label></div>
+                    <div>
+                        <img class="img-fluid m-2" id="thumbnail" width="180px" height="200px"
+                             th:src="@{${product.mainImagePath}}" alt="Main image preview">
+                    </div>
+            </div>
+
+                <th:block th:each="productImage, status : ${product.images}">
+                    <div class="col border m-3 p-2">
+                        <div>
+                            <label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
+                        </div>
+                        <div class="m-2">
+                            <img class="img-fluid" width="180px" height="200px"
+                                 th:src="@{${productImage.imagePath}}" th:alt="${'Extra image #' + (status.index + 1) + 'preview'}">
+                        </div>
+                    </div>
+                </th:block>
+            </div>
         </div>
         <div class="tab-pane p-3" id="details" role="tabpanel">
-
+            <table class="table table-striped table-bordered table-hover">
+                <thead class="thead-dark">
+                    <th width="40%">Name</th>
+                    <th>Value</th>
+                </thead>
+                <tbody>
+                    <tr th:each="detail : ${product.details}">
+                        <td>[[${detail.name}]]</td>
+                        <td>[[${detail.value}]]</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div class="tab-pane p-3" id="shipping" role="tabpanel">
+            <div th:replace="product/product_shipping_readonly :: content"></div>
         </div>
     </div>
 </div>

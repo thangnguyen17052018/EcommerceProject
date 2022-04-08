@@ -46,7 +46,9 @@
                         </td>
 
                         <td>
-                            <div th:replace="fragments :: action(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                            <div th:replace="fragments :: edit(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                            &nbsp;
+                            <div th:replace="fragments :: delete(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
                         </td>
                     </tr>
                 </tbody>
@@ -64,8 +66,10 @@
 				<div class="col-8">
 					
 					<div class="mt-2">
-                        <div th:replace="fragments :: action(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
-					</div>
+                        <div th:replace="fragments :: edit(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                        &nbsp;
+                        <div th:replace="fragments :: delete(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                    </div>
 				</div>
 				<div>&nbsp</div>
 			</div>

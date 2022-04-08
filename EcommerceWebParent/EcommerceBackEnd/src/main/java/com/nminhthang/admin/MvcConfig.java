@@ -13,17 +13,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 
-        Path userPhotosDir = Paths.get(FileUploadUtil.USER_DIR_NAME);
-        String userPhotosPath = userPhotosDir.toFile().getAbsolutePath();
-        registry.addResourceHandler("/" + "user-photos" + "/**")
-                .addResourceLocations("file:/" + userPhotosPath + "/");
-        System.out.println(userPhotosPath);
-
-        String categoryImagesDirName = "../category-images";
-        Path categoryImagesDir = Paths.get(categoryImagesDirName);
-        String categoryImagesPath = categoryImagesDir.toFile().getAbsolutePath();
-        registry.addResourceHandler("/category-images/**")
-                .addResourceLocations("file:/" + categoryImagesPath + "/");
+        
 
         exposeDirectory(FileUploadUtil.USER_DIR_NAME, registry);
         exposeDirectory("../" + FileUploadUtil.CATEGORY_DIR_NAME, registry);
@@ -35,7 +25,7 @@ public class MvcConfig implements WebMvcConfigurer {
         Path path = Paths.get(pathPattern);
         String absolutePath = path.toFile().getAbsolutePath();
 
-        String logicalPath = pathPattern.replace("..", "") + "/**";
+        String logicalPath = pathPattern.replace("..", "") + "**";
 
         registry.addResourceHandler(logicalPath)
                 .addResourceLocations("file:///" + absolutePath + "/");

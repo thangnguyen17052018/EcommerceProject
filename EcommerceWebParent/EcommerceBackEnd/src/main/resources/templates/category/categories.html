@@ -44,7 +44,9 @@
                             <div th:replace="fragments :: status(${category.enabled}, 'category', '/categories/' + ${category.id})"></div>
                         </td>
                         <td>
-                            <div th:replace="fragments :: action(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
+                            <div th:replace="fragments :: edit(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
+                            &nbsp;
+                            <div th:replace="fragments :: delete(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
                         </td>
                     </tr>
                 </tbody>
@@ -63,8 +65,10 @@
 					<div class="mt-2">
                         <div th:replace="fragments :: status(${category.enabled}, 'category', '/categories/' + ${category.id})"></div>
 						&nbsp;
-						<div th:replace="fragments :: action(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
-					</div>
+						<div th:replace="fragments :: edit(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
+                        &nbsp;
+                        <div th:replace="fragments :: delete(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
+                    </div>
 				</div>
 				<div>&nbsp</div>
 			</div>

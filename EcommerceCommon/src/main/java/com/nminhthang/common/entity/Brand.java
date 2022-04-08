@@ -55,7 +55,6 @@ public class Brand {
 
     @Transient
     public String getLogoPath() {
-        System.out.println("PATH: " + this.logo);
         if ("brand-logo.png".equals(logo) || logo == null) return "/images/brand-logo.png";
         return "/brand-logos/" + this.id + "/" + this.logo;
     }
