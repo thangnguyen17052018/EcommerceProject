@@ -183,7 +183,7 @@
 </div>
 
 <a th:fragment="page_link(pageNum, pageLabel, module)"
-   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} +  ${keyword != null ? '?keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
 
 <div th:fragment="pagination(moduleUrl, entityName)" th:remove="tag">
     <div class="text-center m-4">
