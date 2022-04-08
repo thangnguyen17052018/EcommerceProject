@@ -37,7 +37,7 @@ public class Category {
     private Category parent;
 
     @OneToMany(mappedBy = "parent")
-    @ToString.Exclude
+    @OrderBy("name asc")
     private Set<Category> children = new HashSet<>();
 
     public static Category copyFull(Category category) {

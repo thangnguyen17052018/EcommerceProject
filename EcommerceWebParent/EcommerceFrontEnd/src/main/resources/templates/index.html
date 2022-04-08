@@ -8,19 +8,21 @@
 <body>
     <div class="container-fluid">
         <div th:replace="fragments :: header_menu"></div>
-    </div>
+        <div th:replace="fragments :: search_nav"></div>
+
 
     <div>
         <h1>Shopping by Categories</h1>
     </div>
     <div class="row">
-        <div class="col" th:each="category : ${listCategories}">
+        <div class="col-sm-2" th:each="category : ${listCategories}">
             <div><img th:src="@{${category.imagePath}}"></div>
             <div>
-                <a href="#">[[${category.name}]]</a>
+                <a th:href="@{'/c/' + ${category.alias}}">[[${category.name}]]</a>
             </div>
         </div>
     </div>
+</div>
 
 </body>
 </html>

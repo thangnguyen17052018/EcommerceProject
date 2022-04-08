@@ -1,6 +1,7 @@
 package com.nminhthang.admin.category;
 
 import com.nminhthang.common.entity.Category;
+import com.nminhthang.common.exception.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;

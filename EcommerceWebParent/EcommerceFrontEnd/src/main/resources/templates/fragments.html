@@ -22,36 +22,28 @@
           th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 </th>
 
-<div th:fragment="search_form_and_message(module)">
-    <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
-        <input type="hidden" name="sortField" th:value="${sortField}">
-        <input type="hidden" name="sortDir" th:value="${sortOrder}">
-        Filter: &nbsp;
-        <input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input small-input" required>
-        &nbsp;&nbsp;
-        <input type="submit" value="Search" class="btn btn-primary-color">
-        &nbsp;&nbsp;
-        <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
-    </form>
-
-    <div th:if="${message != null}" class="alert alert-success text-center">
-        [[${message}]]
+<div th:fragment="search_nav" class="row">
+    <div class="col-md">
+        <nav class="navbar navbar-expand-lg bg-white">
+            <div class="collapse navbar-collapse" id="searchNavbar">
+                <form th:action="@{/search}" method="get" class="form-inline m-3">
+                    <input type="search" name="keyword" th:value="${keyword}" class="form-control mr-sm-2" placeholder="Keyword" required>
+                    &nbsp;&nbsp;
+                    <input type="submit" value="Search" class="btn btn-outline-success">
+                </form>
+            </div>
+        </nav>
     </div>
 </div>
 
-<a th:fragment="page_link(pageNum, pageLabel, module)"
-   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
-
-
-
-<div th:fragment=header_menu">
+<div th:fragment="header_menu">
 
     <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
         <a class="navbar-brand" th:href="@{/}">
             <img th:src="@{/images/logo.jpg}" width="48px" height="48px"/>
         </a>
          
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar, #searchNavbar">
             <span class="navbar-toggler-icon"></span>
         </button>
         
@@ -190,6 +182,37 @@
     </a>
 </div>
 
+<a th:fragment="page_link(pageNum, pageLabel, module)"
+   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+
+<div th:fragment="pagination(moduleUrl, entityName)" th:remove="tag">
+    <div class="text-center m-4">
+        <span th:if="${totalItems > 0}">Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
+        <span th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
+    </div>
+
+    <div th:if="${totalPages > 1}">
+        <nav>
+            <ul class="pagination justify-content-center">
+                <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(1, 'First', ${moduleUrl})"></a>
+                </li>
+                <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', ${moduleUrl})"></a>
+                </li>
+                <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"
+                    th:each="i : ${#numbers.sequence(1, totalPages)}">
+                    <a th:replace="fragments :: page_link(${i}, ${i}, ${moduleUrl})"></a>
+                <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', ${moduleUrl})"></a>
+                </li>
+                <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
+                    <a th:replace="fragments :: page_link(${totalPages}, 'Last', ${moduleUrl})"></a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
 
 </body>
 </html>
