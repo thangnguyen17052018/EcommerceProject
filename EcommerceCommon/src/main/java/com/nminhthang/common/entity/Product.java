@@ -1,13 +1,14 @@
 package com.nminhthang.common.entity;
 
 import lombok.*;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.*;
 
-@Data
-@ToString(of = {"id", "name"})
-@NoArgsConstructor
+@Getter
+@Setter
+@RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
 @Entity
@@ -35,8 +36,8 @@ public class Product {
     @Column(name = "in_stock")
     private boolean inStock;
 
-    private float cost;
-    private float price;
+    private double cost;
+    private double price;
     @Column(name = "discount_percent")
     private float discountPercent;
 
@@ -86,6 +87,20 @@ public class Product {
         return "/product-images/" + this.id + "/" + this.mainImage;
     }
 
+    @Transient
+    public double getDiscountPrice() {
+        if (discountPercent > 0) return price - (price * discountPercent/100);
+        return price;
+    }
+
+    @Transient
+    public String getShortName() {
+        if (name.length() > 70) {
+            return name.substring(0, 70).concat("...");
+        }
+        return name;
+    }
+
     public boolean containsImageName(String imageName) {
         Iterator<ProductImage> iterator = images.iterator();
 
@@ -97,5 +112,18 @@ public class Product {
         }
 
         return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        Product product = (Product) o;
+        return id != null && Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
     }
 }

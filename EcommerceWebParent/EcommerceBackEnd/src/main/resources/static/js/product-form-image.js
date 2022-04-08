@@ -2,14 +2,6 @@ var extraImageCount = 0;
 
 $(document).ready(() => {
 
-    getCategories();
-
-    dropdownBrand.change(() => {
-        dropdownCategories.empty();
-
-        getCategories();
-    });
-
     $("input[name='extraImage']").each(function(index) {
         extraImageCount++;
 
