@@ -41,6 +41,7 @@ const getCategories = () => {
 
     $.get(url, (responseJSON) => {
         $.each(responseJSON, (index, category) => {
+            console.log(responseJSON);
             dropdownCategories.append("<option value='"+ category.id +"'>" + category.name + "</option>");
         });
     });
