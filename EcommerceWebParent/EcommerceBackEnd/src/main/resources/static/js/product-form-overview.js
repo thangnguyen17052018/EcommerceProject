@@ -13,12 +13,12 @@ $(document).ready(() => {
         id: "richText-editor-sizecolor"
     });
 
-    getCategories();
+    getCategoriesForNewForm();
 
     dropdownBrand.change(() => {
         dropdownCategories.empty();
-
-        getCategoriesForNewForm();
+		
+        getCategories();
     });
 
 
@@ -29,7 +29,7 @@ const getCategoriesForNewForm = () => {
     editMode = false;
 
     if (categoryIdField.length) {
-        editMode(true);
+        editMode=true;
     }
 
     if (!editMode) getCategories();
