@@ -40,6 +40,7 @@
 
 html {
 	font-size: 16px;
+	font-family: ;
 }
 
 /* Start Common */
@@ -187,6 +188,9 @@ html {
 	opacity: 0.7;
 }
 
+.img-carousel-height {
+	height: 100%;
+}
  
 
 /* End index page */
