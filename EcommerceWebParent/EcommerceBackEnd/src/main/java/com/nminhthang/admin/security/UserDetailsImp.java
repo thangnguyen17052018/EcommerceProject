@@ -13,7 +13,7 @@ import java.util.Set;
 
 public class UserDetailsImp implements UserDetails {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private User user;
 

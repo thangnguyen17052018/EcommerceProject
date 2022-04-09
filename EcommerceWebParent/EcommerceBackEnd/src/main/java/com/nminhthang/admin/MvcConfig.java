@@ -12,6 +12,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
         exposeDirectory(FileUploadUtil.USER_DIR_NAME, registry);
         exposeDirectory("../" + FileUploadUtil.CATEGORY_DIR_NAME, registry);
         exposeDirectory("../" + FileUploadUtil.BRAND_DIR_NAME, registry);

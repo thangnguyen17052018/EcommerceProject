@@ -36,12 +36,13 @@ public class ProductController {
                                Model model) throws CategoryNotFoundException {
         try {
             Category category = categoryService.getCategoryByAlias(alias);
-
+            System.out.println(category.getId() + " - " + category.getName());
             List<Category> listCategoryParents = categoryService.getCategoryParents(category);
 
             Page<Product> listProductsByCategory = productService.listByCategory(category.getId(), pageNum);
             List<Product> listProducts = listProductsByCategory.getContent();
 
+            
             long startCount = (long) (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
             long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
 

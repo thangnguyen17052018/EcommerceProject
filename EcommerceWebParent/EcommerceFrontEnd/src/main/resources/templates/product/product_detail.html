@@ -1,132 +1,167 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
 <head th:replace="fragments :: header_link(${pageTitle}, 'none')">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-<style>
-    .carousel .carousel-indicators li {
-        background-color: #fff;
-        background-color: rgba(70,70,70,.25);
-    }
+	<style>
+		.carousel .carousel-indicators li {
+			background-color: #fff;
+			background-color: rgba(70, 70, 70, .25);
+		}
 
-    .carousel .carousel-indicators .active {
-        background-color: #444;
-    }
+		.carousel .carousel-indicators .active {
+			background-color: #444;
+		}
 
-    .carousel .carousel-control-next,
-    .carousel .carousel-control-prev {
-        filter: invert(100%);
-    }
+		.carousel .carousel-control-next,
+		.carousel .carousel-control-prev {
+			filter: invert(100%);
+		}
 
-    .carousel .carousel-control-next:hover,
-    .carousel .carousel-control-prev:hover {
-        filter: invert(70%);
-    }
-</style>
-    <div class="container-fluid">
-        <div th:replace="fragments :: header_menu"></div>
-        <div th:replace="fragments :: search_nav"></div>
-        <div th:replace="breadcrumb :: content"></div>
+		.carousel .carousel-control-next:hover,
+		.carousel .carousel-control-prev:hover {
+			filter: invert(70%);
+		}
+	</style>
+	<div class="container-fluid">
+		<div th:replace="fragments :: header_menu"></div>
+		<div th:replace="fragments :: search_nav"></div>
+		<div th:replace="breadcrumb :: content"></div>
 
-        <div class="row">
-            <div class="col-sm">
-                <div>
-                    <img id="mainImage" th:src="@{${product.mainImagePath}}" class="img-fluid">
-                </div>
-                <div class="row justify-content-center">
-                    <div class="m-2 border border-light p-1">
-                        <img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="60" index="0">
-                    </div>
-                    <th:block th:each="extraImage, status : ${product.getImages()}">
-                        <div class="m-2 border border-light p-1">
-                            <img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="60" th:index="${status.count}">
-                        </div>
-                    </th:block>
-                </div>
-            </div>
-            <div class="col-sm">
-                <div>
-                    <h2>[[${product.name}]]</h2>
-                </div>
-                <div>
-                    <span>Brand: [[${product.brand.name}]]</span>
-                </div>
-                <div>
-                    List Price:
-                    <span th:if="${product.discountPercent <= 0}">$ [[${product.price}]]</span>
-                    <del th:if="${product.discountPercent > 0}"><span>$ [[${product.price}]]</span></del>
-                </div>
-                <div th:if="${product.discountPercent > 0}">
-                    Price:
-                    <span style="font-size: larger; color: darkred">$ [[${product.discountPrice}]]</span>
-                    ([[${product.discountPercent}]]% off)
-                </div>
-                <div>&nbsp;</div>
-                <div th:utext="${product.shortDescription}"></div>
-            </div>
-            <div class="col-sm-2">
-                <div>
-                    <span th:if="${product.inStock}" class="text-success"><b>In Stock</b></span>
-                    <span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
-                </div>
-                <div class="mt-2">
-                    <input type="text" size="5" value="1">
-                </div>
-                <div class="mt-3">
-                    <input type="button" value="Add to Cart" class="btn btn-primary">
-                </div>
-            </div>
-        </div>
+		<div class="row">
+			<div class="col-sm">
+				<div>
+					<img id="mainImage" th:src="@{${product.mainImagePath}}" class="img-fluid">
+				</div>
+				<div class="row justify-content-center">
+					<div class="m-2 border border-light p-1">
+						<img class="image-thumbnail" th:src="@{${product.mainImagePath}}" height="60" index="0">
+					</div>
+					<th:block th:each="extraImage, status : ${product.getImages()}">
+						<div class="m-2 border border-light p-1">
+							<img class="image-thumbnail" th:src="@{${extraImage.imagePath}}" height="60"
+								th:index="${status.count}">
+						</div>
+					</th:block>
+				</div>
+			</div>
+			<div class="col-sm mt-5">
+				<div class="px-2">
+						<div>
+							<h2>[[${product.name}]]</h2>
+						</div>
+						<div>
+							<span>Brand: [[${product.brand.name}]]</span>
+						</div>
+						<div>
+							List Price:
+							<span th:if="${product.discountPercent <= 0}">$ [[${product.price}]]</span>
+							<del th:if="${product.discountPercent > 0}"><span>$ [[${product.price}]]</span></del>
+						</div>
+						<div th:if="${product.discountPercent > 0}">
+							Price:
+							<span style="font-size: larger; color: darkred">$ [[${product.discountPrice}]]</span>
+							([[${product.discountPercent}]]% off)
+						</div>
+						<div>&nbsp;</div>
+						<div th:utext="${product.shortDescription}"></div>
+		
+						<div class="mt-5">
+							<div>
+								<span th:if="${product.inStock}" class="text-color"><b>In Stock</b></span>
+								<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
+							</div>
+							<div class="mt-2">
+								<input type="text" size="5" value="1" class="text-center">
+							</div>
+							<div class="mt-3">
+								<input type="button" value="Add to Cart" class="btn btn-primary-color">
+							</div>
+						</div>
 
-        <div class="row">
-            <div class="col-12">
-                <div><hr></div>
-                <div>
-                    <h3>Product Description:</h3>
-                </div>
-                <div th:utext="${product.fullDescription}"></div>
-            </div>
-        </div>
+				</div>
+				
 
-        <div class="row">
-            <div class="col-12">
-                <div><hr></div>
-                <div>
-                    <h3>Product Details:</h3>
-                </div>
-                <th:block th:each="detail : ${product.details}">
-                    <div>
-                        <b>[[${detail.name}]]:</b>
-                        <span>[[${detail.value}]]</span>
-                    </div>
-                </th:block>
-            </div>
-        </div>
+				<div class="row mt-5">
+					<div class="col-12">
+						<div>
+							<button class="product-descript-btntoggle">
+								<div class="product-btntoggle-flex">
+									<span>Product Description:</span>
+									
+									<div class="angle-down">
+										<span class="fa fa-angle-down"></span>
+									</div>
+									<div class="angle-up">
+										<span class="fa fa-angle-up"></span>
+									</div>
+								</div>
 
-        <div th:replace="images_carousel :: content"></div>
-    </div>
+								
+							</button>
+						</div>
+						<div class="product-fulldescpt mt-3" th:utext="${product.fullDescription}"></div>
+					</div>
+				</div>
 
-    <script>
-        $(document).ready(function() {
-            mainImage = $("#mainImage");
+				<div class="row my-5">
+					<div class="col-12">
+						<div>
+							<button class="product-detail-btntoggle">
+							
+									<div class="product-btntoggle-flex">
+										<span>Product Details:</span>
+									
+										<div class="angle-down">
+											<span class="fa fa-angle-down"></span>
+										</div>
+										<div class="angle-up">
+											<span class="fa fa-angle-up"></span>
+										</div>
+									</div>
+							</button>
+						</div>
+						<th:block th:each="detail : ${product.details}">
+							<div class="product-detail mt-3">
+								<b>[[${detail.name}]]:</b>
+								<span>[[${detail.value}]]</span>
+							</div>
+						</th:block>
+					</div>
+				</div>
 
-            $(".image-thumbnail").mouseover(function () {
-               currentImageSrc = $(this).attr("src");
-               currentImageIndex = $(this).attr("index");
-               mainImage.attr("src", currentImageSrc);
-               mainImage.attr("index", currentImageIndex);
-            });
+				</div>
 
-            mainImage.on("click", function () {
-               $("#carouselModal").modal("show");
-               imageIndex = parseInt(mainImage.attr("index"));
-               $("#carouselExampleIndicators").carousel(imageIndex);
-            });
-        });
-    </script>
+		</div>
+
+
+
+		<div th:replace="images_carousel :: content"></div>
+	</div>
+
+	<script>
+		$(document).ready(function () {
+			mainImage = $("#mainImage");
+
+			$(".image-thumbnail").mouseover(function () {
+				currentImageSrc = $(this).attr("src");
+				currentImageIndex = $(this).attr("index");
+				mainImage.attr("src", currentImageSrc);
+				mainImage.attr("index", currentImageIndex);
+			});
+
+			mainImage.on("click", function () {
+				$("#carouselModal").modal("show");
+				imageIndex = parseInt(mainImage.attr("index"));
+				$("#carouselExampleIndicators").carousel(imageIndex);
+			});
+		});
+	</script>
 
 </body>
+
 </html>

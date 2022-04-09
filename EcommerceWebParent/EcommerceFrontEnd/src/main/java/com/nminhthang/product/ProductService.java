@@ -12,13 +12,14 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
     public static final int PRODUCTS_PER_PAGE = 8;
-    public static final int SEARCH_RESULTS_PER_PAGE = 10;
+    public static final int SEARCH_RESULTS_PER_PAGE = 12;
 
     @Autowired
     ProductRepository productRepository;
 
     public Page<Product> listByCategory(Integer categoryId, int pageNum) {
         String categoryIdMatch = "-" + categoryId + "-";
+        System.out.println(categoryIdMatch);
         Pageable pageable = PageRequest.of(pageNum - 1, PRODUCTS_PER_PAGE);
 
         return productRepository.listByCategory(categoryId, categoryIdMatch, pageable);

@@ -17,6 +17,7 @@ $(document).ready(() => {
 
     dropdownBrand.change(() => {
         dropdownCategories.empty();
+
         getCategories();
     });
 
@@ -28,7 +29,9 @@ const getCategoriesForNewForm = () => {
     editMode = false;
 
     if (categoryIdField.length) {
+
         editMode = true;
+
     }
 
     if (!editMode) getCategories();
