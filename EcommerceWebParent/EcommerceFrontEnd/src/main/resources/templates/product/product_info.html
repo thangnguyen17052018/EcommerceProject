@@ -1,24 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
 <body>
-    <div th:fragment="content" class="col-sm-2">
-        <div>
-            <a th:href="@{'/p/' + ${product.alias}}">
-                <img th:src="@{${product.mainImagePath}}" width="160px" height="160px">
-                <br>
-                <b>[[${product.shortName}]]</b>
-            </a>
-        </div>
-        <div th:if="${product.discountPercent <= 0}">
-            <span>$ [[${product.price}]]</span>
-        </div>
-        <div th:if="${product.discountPercent > 0}">
-            <span style="font-size: larger; color: darkred">$ [[${product.discountPrice}]]</span>
-            <br>
-            <del><span>$ [[${product.price}]]</span></del>
-        </div>
-    </div>
+	<div th:fragment="content" class="col-sm-3 text-center my-5 px-3">
+		<div class="product_infor-hover">
+			<a th:href="@{'/p/' + ${product.alias}}">
+				<div>
+				<img th:src="@{${product.mainImagePath}}" class="product_infor-img">
+				</div>
+				
+				<div>
+					<b class="text-color mt-5">[[${product.shortName}]]</b>
+				</div>
+
+				<div class="text-color product_infor-price mt-3" th:if="${product.discountPercent <= 0}">
+					<span class="text-color">$ [[${product.price}]]</span>
+				</div>
+				
+				<div th:if="${product.discountPercent > 0}">
+					<span class="text-color" style="font-size: larger;">$ [[${product.discountPrice}]]</span>
+					<br>
+					<div class="product-discountPrice">
+						<span>$ [[${product.price}]]</span>
+					</div>
+				</div>
+				
+			</a>
+		</div>
+	</div>
+
 </body>
+
 </html>

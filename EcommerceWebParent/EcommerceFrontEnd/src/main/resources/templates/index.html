@@ -1,28 +1,142 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
 <head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
+<style>
+	.carousel-inner {
+	height: 43rem;
+	border-radius: 10px;
+}
+.carousel-item {
+	height: 100%;
+}
+.carousel-item span {
+	position: absolute;
+	background-color: red;
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon
+ {
+	background-image: none;
+	font-size: 2rem;
+    background-color: #fff;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 25px;
+}
+.fa-angle-left,
+.fa-angle-right
+{
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.carousel-indicators li {
+	background-color: #fff;
+    height: 8px;
+    width: 48px;
+    opacity: 0.5;
+}
+.carousel-indicators .active {
+	background: linear-gradient(to right, #ff0051, #8b3ba5);
+	border: none;
+	margin-top: 0.625rem;
+	padding: 0.5px;
+}
+.img-carousel-height {
+	height: 100%;
+}
+
+</style>
+
 <body>
-    <div class="container-fluid">
-        <div th:replace="fragments :: header_menu"></div>
-        <div th:replace="fragments :: search_nav"></div>
+	<div class="container-fluid">
 
 
-    <div>
-        <h1>Shopping by Categories</h1>
-    </div>
-    <div class="row">
-        <div class="col-sm-2" th:each="category : ${listCategories}">
-            <div><img th:src="@{${category.imagePath}}"></div>
-            <div>
-                <a th:href="@{'/c/' + ${category.alias}}">[[${category.name}]]</a>
-            </div>
-        </div>
-    </div>
-</div>
+		<div th:replace="fragments :: header_menu"></div>
+		<div th:replace="fragments :: search_nav"></div>
+
+		<div>
+			<h1 class="text-color">Shopping by Categories</h1>
+		</div>
+
+
+		<div id="carouselExampleIndicators" class="carousel slide mt-5" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			</ol>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<a th:href="@{'/c/' + living-room-furniture}">
+						<img class="d-block w-100 img-carousel-height"
+							src="/EcommerceFurniture/category-images/1/livingroomfurniture.png" alt="First slide">
+							<span>Living room Furniture</span>
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a th:href="@{'/c/' + bedroom-furniture}">
+						<img class="d-block w-100 img-carousel-height"
+							src="/EcommerceFurniture/category-images/7/BedroomFurniture.png" alt="Second slide">
+							<span>Living room Furniture</span>					
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a th:href="@{'/c/' + kitchen-and-dining-furniture}">
+						<img class="d-block w-100 img-carousel-height"
+							src="/EcommerceFurniture/category-images/13/KitchenandDiningFurniture.png" alt="Third slide">
+							<span>Living room Furniture</span>
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a th:href="@{'/c/' + home-office}">
+						<img class="d-block w-100 img-carousel-height"
+							src="/EcommerceFurniture/category-images/18/HomeOffice.png" alt="Third slide">
+							<span>Living room Furniture</span>
+					</a>
+				</div>
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true">
+					<i class="fa-solid fa-angle-left"></i></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true">
+					<i class="fa-solid fa-angle-right"></i></span>
+				<span class="sr-only">Next</span>
+			</a>
+		</div>
+
+
+		<div class="row mt-5">
+			<div class="col-sm-2 text-center mb-5" th:each="category : ${listCategories}">
+
+				<div class="category-hover">
+
+					<a th:href="@{'/c/' + ${category.alias}}" class="category-link">
+						<div>
+							<img th:src="@{${category.imagePath}}" class="category-img">
+						</div>
+						<div class="mt-3 text-color">[[${category.name}]]</div>
+					</a>
+
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div th:replace="fragments :: footer_menu"></div>
+
 
 </body>
+
 </html>
