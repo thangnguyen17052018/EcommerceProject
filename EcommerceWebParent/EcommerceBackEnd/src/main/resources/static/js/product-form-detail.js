@@ -17,11 +17,14 @@ const addNewDetailSection = () => {
         <div class="form-inline" id="divDetailSection${divDetailCount + 1}">
             <input type="hidden" name="detailIDs" value="0">
             <label class="m-3">Name:</label>
-            <input type="text" name="detailNames" class="form-control w-25" maxlength="255">
+            <input type="text" name="detailNames" class="form-control w-25" minlength="1" maxlength="255">
             <label class="m-3">Value:</label>
-            <input type="text" name="detailValues" class="form-control w-25" maxlength="255">
+            <input type="text" name="detailValues" class="form-control w-25" minlength="1" maxlength="255">
         </div>`;
 
+    allDivDetails.last().children(2).attr("required", "true");
+    allDivDetails.last().children(4).attr("required", "true");
+    
     $("#divProductDetails").append(htmlDetailSection);
     $("input[name='detailNames']").last().focus();
 

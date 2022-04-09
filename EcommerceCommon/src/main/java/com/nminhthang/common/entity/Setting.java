@@ -30,6 +30,15 @@ public class Setting {
     }
 
     @Override
+    public String toString() {
+        return "Setting{" +
+                "key='" + key + '\'' +
+                ", value='" + value + '\'' +
+                ", settingCategory=" + settingCategory +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
