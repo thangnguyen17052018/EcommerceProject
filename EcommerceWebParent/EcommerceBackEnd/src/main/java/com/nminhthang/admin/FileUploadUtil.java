@@ -19,6 +19,7 @@ public class FileUploadUtil {
     public static final String CATEGORY_DIR_NAME = "category-images/";
     public static final String BRAND_DIR_NAME = "brand-logos/";
     public static final String PRODUCT_DIR_NAME = "product-images/";
+    public static final String SITE_LOGO_DIR_NAME = "site-logo/";
 
 
     public static void saveFile(String uploadDir, String fileName, MultipartFile multipartFile) throws IOException {

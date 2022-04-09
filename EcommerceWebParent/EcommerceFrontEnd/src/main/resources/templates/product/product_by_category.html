@@ -34,10 +34,8 @@
                 <div th:replace="product/product_info :: content"></div>
             </th:block>
         </div>
-
-
+      
         <div th:replace="fragments :: pagination('c/' + ${category.alias}, 'products')"></div>
-
 
     </div>
     <div th:replace="fragments :: footer_menu"></div>
