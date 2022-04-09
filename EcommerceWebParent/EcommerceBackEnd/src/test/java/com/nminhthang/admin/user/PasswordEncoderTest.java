@@ -12,7 +12,6 @@ public class PasswordEncoderTest {
         String rawPassword = "thang1717";
 
         String encodedPassword = passwordEncoder.encode(rawPassword);
-        System.out.println(encodedPassword);
 
         boolean matches = passwordEncoder.matches(rawPassword, encodedPassword);
 

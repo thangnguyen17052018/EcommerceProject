@@ -1,7 +1,6 @@
 package com.nminhthang.admin.product;
 
 import com.nminhthang.admin.FileUploadUtil;
-import com.nminhthang.admin.product.controller.ProductController;
 import com.nminhthang.common.entity.Product;
 import com.nminhthang.common.entity.ProductImage;
 import org.slf4j.Logger;
@@ -62,12 +61,14 @@ public class ProductSaveHelper {
         for (int count = 0; count < detailNames.length; count++) {
             String name = detailNames[count];
             String value = detailValues[count];
-            Integer id = Integer.parseInt(detailIds[count]);
+            int id = Integer.parseInt(detailIds[count]);
 
-            if (id != 0) {
-                product.addDetail(id, name, value);
-            } else {
-                product.addDetail(name, value);
+            if (!name.isEmpty() && !value.isEmpty()) {
+                if (id != 0) {
+                    product.addDetail(id, name, value);
+                } else {
+                    product.addDetail(name, value);
+                }
             }
 
         }

@@ -5,19 +5,8 @@ $(document).ready(() => {
     });
 
     accountProfile();
-    
-    // $(".dropdown").mouseenter(() => {
-	// 	$(".dropdown-menu").slideDown(600);
-	// })
-	// $(".dropdown").mouseleave(() => {
-	// 	$(".dropdown-menu").slideUp(600);
-	// })
 
 });
-
-
-
-
 
 const accountProfile = () => {
 
