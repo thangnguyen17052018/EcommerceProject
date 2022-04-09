@@ -41,7 +41,7 @@ public class ProductController {
 
             Page<Product> listProductsByCategory = productService.listByCategory(category.getId(), pageNum);
             List<Product> listProducts = listProductsByCategory.getContent();
-            System.out.println(listProducts.size());
+
             long startCount = (long) (pageNum - 1) * ProductService.PRODUCTS_PER_PAGE + 1;
             long endCount = startCount + ProductService.PRODUCTS_PER_PAGE - 1;
 

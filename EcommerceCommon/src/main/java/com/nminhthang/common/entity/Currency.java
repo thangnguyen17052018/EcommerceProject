@@ -9,7 +9,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@ToString
 @Entity
 @Table(name = "currencies")
 public class Currency {
@@ -31,5 +30,10 @@ public class Currency {
         this.name = name;
         this.symbol = symbol;
         this.code = code;
+    }
+
+    @Override
+    public String toString() {
+        return name + " - " + symbol + " - " + code;
     }
 }

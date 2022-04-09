@@ -5,6 +5,7 @@ import com.nminhthang.common.entity.SettingCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -17,12 +18,19 @@ public class SettingService {
         return (List<Setting>) settingRepository.findAll();
     }
 
-    public void saveAll(List<Setting> listSettings) {
+    public void saveAll(Iterable<Setting> listSettings) {
         settingRepository.saveAll(listSettings);
     }
 
-    public List<Setting> getGeneralSettings() {
-        return settingRepository.findAllBySettingCategory(SettingCategory.GENERAL);
+    public GeneralSettingBag getGeneralSettings() {
+        List<Setting> generalSettings =  new ArrayList<>();
+        List<Setting> generalSettingCategory = settingRepository.findAllBySettingCategory(SettingCategory.GENERAL);
+        List<Setting> currencySettingCategory = settingRepository.findAllBySettingCategory(SettingCategory.CURRENCY);
+
+        generalSettings.addAll(generalSettingCategory);
+        generalSettings.addAll(currencySettingCategory);
+
+        return new GeneralSettingBag(generalSettings);
     }
 
 }
