@@ -39,7 +39,24 @@
 }
 
 html {
-	font-size: 16px;
+	font-size: 12px;
+}
+
+/* Responsive */
+@media screen and (min-width: 992px) and (max-width: 1199px){
+	.navbar {
+		position: fixed;
+		top: 0;
+		width: 98%;
+	}
+	
+}
+
+@media screen and (min-width: 1200px){
+
+	html {
+		font-size: 14px;
+	}
 }
 
 /*------ Strat Login page --------*/
@@ -296,6 +313,9 @@ html {
 
 
 /*---------Start index page------------*/
+.text-introduce {
+	margin-top: 6rem;
+}
 .text-welcome {
 	display: flex;
 	align-items: center;
@@ -320,13 +340,20 @@ html {
 /* Responsive */
 @media screen and (max-width: 767px)
 {
-
+	.text-introduce {
+		margin-top: 3rem;
+	}
+	.text-welcome {
+		margin-top: 1.5rem;
+		margin-bottom: 2rem;
+	}
 	.img-asset {
 		height: 16.25rem;
 	}
 	.icon-user {
 		margin: 0 !important;
 	}
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 1024px)
@@ -335,12 +362,11 @@ html {
 	.icon-user {
 		margin: 0 !important;
 	}
+
 }
 
 @media screen and (min-width: 1025px) and (max-width: 1400px){
-	html{
-		font-size: 12px !important;
-	}
+
 }
 /*------------End index page---------------*/
 
@@ -538,6 +564,9 @@ html {
 /* End pagination */
 
 
+@media screen and (min-width: 1025px) and (max-width: 1400px){
+
+}
 
 /*---------- End User page -----------*/
 
@@ -679,6 +708,17 @@ html {
 body{
 	line-height: 1.5;
 	font-family: 'Poppins', sans-serif;
+}
+.container .row {
+	justify-content: center;
+}
+.text-footer {
+	color:white
+}
+.text-footer:hover{
+	background: var(--color-primary);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 *{
 	margin:0;
