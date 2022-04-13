@@ -62,6 +62,7 @@
                 <label class="col-sm-4 col-form-label">Decimal Digits:</label>
                 <div class="col-sm-8">
                     <select class="form-control" name="DECIMAL_DIGITS">
+                        <option value="0" th:selected="(${DECIMAL_DIGITS} == 0)">0</option>
                         <option value="1" th:selected="(${DECIMAL_DIGITS} == 1)">1</option>
                         <option value="2" th:selected="(${DECIMAL_DIGITS} == 2)">2</option>
                         <option value="3" th:selected="(${DECIMAL_DIGITS} == 3)">3</option>
@@ -73,9 +74,9 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Thousand Point Type:</label>
                 <div class="col-sm-8">
-                    <select class="form-control" name="THOUSAND_POINT_TYPE">
-                        <option value="POINT" th:selected="(${THOUSAND_POINT_TYPE} == 'POINT')">Point (.)</option>
-                        <option value="COMMA" th:selected="(${THOUSAND_POINT_TYPE} == 'COMMA')">Comma (,)</option>
+                    <select class="form-control" name="THOUSANDS_POINT_TYPE">
+                        <option value="POINT" th:selected="(${THOUSANDS_POINT_TYPE} == 'POINT')">Point (.)</option>
+                        <option value="COMMA" th:selected="(${THOUSANDS_POINT_TYPE} == 'COMMA')">Comma (,)</option>
                     </select>
                 </div>
             </div>
