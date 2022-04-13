@@ -11,10 +11,47 @@
         <div th:replace="fragments :: search_nav"></div>
         <div th:replace="breadcrumb :: content"></div>
 
-
-        <div class="row text-center">
+		<!-- Small screen -->
+        <div class="row text-center small-screen-productbycategory">
             <th:block th:each="cat : ${category.children}">
-                <div class="col" th:if="${cat.enabled == true}">
+                <div class="col-6" th:if="${cat.enabled == true}">
+                    <div class="category-hover">
+                        <a class="category-link" th:href="@{'/c/' + ${cat.alias}}">
+                           <div>
+                           		<img class="category-img" th:src="@{${cat.imagePath}}">
+                           	</div>
+                           <div class="mt-3 text-color">[[${cat.name}]]</div>
+                        	
+                        </a>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        
+        
+        <!-- Medium screen -->
+        <div class="row text-center medium-screen-productbycategory">
+            <th:block th:each="cat : ${category.children}">
+                <div class="col-sm-3" th:if="${cat.enabled == true}">
+                    <div class="category-hover">
+                        <a class="category-link" th:href="@{'/c/' + ${cat.alias}}">
+                           <div>
+                           		<img class="category-img" th:src="@{${cat.imagePath}}">
+                           	</div>
+                           <div class="mt-3 text-color">[[${cat.name}]]</div>
+                        	
+                        </a>
+                    </div>
+                </div>
+            </th:block>
+        </div>
+        
+        
+        
+        <!-- Large screen -->
+        <div class="row text-center large-screen-productbycategory">
+            <th:block th:each="cat : ${category.children}">
+                <div class="col-lg-3" th:if="${cat.enabled == true}">
                     <div class="category-hover">
                         <a class="category-link" th:href="@{'/c/' + ${cat.alias}}">
                            <div>

@@ -13,7 +13,7 @@
         <span th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
     </div>
 
-    <div th:if="${totalPages > 1}">
+    <div th:if="${totalPages > 1}" class="mb-5">
         <nav>
             <ul class="pagination justify-content-center">
                 <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
