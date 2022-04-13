@@ -5,7 +5,7 @@
 <head th:fragment="header_link(title, remove)" th:remove="${remove}">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>[[${title}]]</title>
+    <title>[[${title}]] - [[${SITE_NAME}]]</title>
     <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
 	<link th:rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
 	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} "/>
@@ -42,7 +42,7 @@
 
     <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
         <a class="navbar-brand" th:href="@{/}">
-            <img th:src="@{/images/logo.jpg}" width="48px" height="48px"/>
+            <img th:src="@{${SITE_LOGO}}" width="48px" height="48px"/>
         </a>
          
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar, #searchNavbar">
@@ -160,6 +160,9 @@
                         <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <span style="color: #ffffff; text-align: center">[[${COPYRIGHT}]]</span>
             </div>
         </div>
     </footer>
