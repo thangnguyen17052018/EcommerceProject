@@ -8,7 +8,6 @@
 
 <style>
 	.carousel-inner {
-	height: 43rem;
 	border-radius: 10px;
 }
 .carousel-item {
@@ -37,21 +36,39 @@
 }
 
 .carousel-indicators li {
-	background-color: #fff;
-    height: 8px;
+	background-color: #818181;
+    height: 5px;
     width: 48px;
     opacity: 0.5;
 }
 .carousel-indicators .active {
-	background: linear-gradient(to right, #ff0051, #8b3ba5);
+	background: linear-gradient(to left, #e47f9f, #9142ab);
 	border: none;
 	margin-top: 0.625rem;
 	padding: 0.5px;
 }
 .img-carousel-height {
-	height: 100%;
+
+}
+.centered {
+  position: absolute;
+  top: 6%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.carousel-text-color {
+	color: #54514d;
+	font-weight: 800;
+}
+
+.carousel-control-next{
+	right:7%;
+}
+
+.carousel-control-prev{
+	left:7%;
+}
 </style>
 
 <body>
@@ -75,32 +92,40 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a th:href="@{'/c/' + living-room-furniture}">
-						<img class="d-block w-100 img-carousel-height"
-							src="/EcommerceFurniture/category-images/1/livingroomfurniture.png" alt="First slide">
-							<span>Living room Furniture</span>
-					</a>
+					<div class="text-center">
+						<a th:href="@{'/c/' + living-room-furniture}">
+							<img class="mx-auto d-block rounded img-carousel-height"
+								src="/EcommerceFurniture/category-images/1/livingroomfurniture.png" alt="First slide">
+								<h2 class="centered carousel-text-color">Living Room Furniture</h2>
+						</a>
+					</div>
 				</div>
 				<div class="carousel-item">
-					<a th:href="@{'/c/' + bedroom-furniture}">
-						<img class="d-block w-100 img-carousel-height"
-							src="/EcommerceFurniture/category-images/7/BedroomFurniture.png" alt="Second slide">
-							<span>Living room Furniture</span>					
-					</a>
+					<div class="text-center">
+						<a th:href="@{'/c/' + bedroom-furniture}">
+							<img class="mx-auto d-block rounded img-carousel-height"
+								src="/EcommerceFurniture/category-images/7/BedroomFurniture.png" alt="Second slide">
+								<h2 class="centered carousel-text-color">Bed Room Furniture</h2>				
+						</a>
+					</div>
 				</div>
 				<div class="carousel-item">
-					<a th:href="@{'/c/' + kitchen-and-dining-furniture}">
-						<img class="d-block w-100 img-carousel-height"
-							src="/EcommerceFurniture/category-images/13/KitchenandDiningFurniture.png" alt="Third slide">
-							<span>Living room Furniture</span>
-					</a>
+					<div class="text-center">
+						<a th:href="@{'/c/' + kitchen-and-dining-furniture}">
+							<img class="mx-auto d-block rounded img-carousel-height"
+								src="/EcommerceFurniture/category-images/13/KitchenandDiningFurniture.png" alt="Third slide">
+								<h2 class="centered carousel-text-color">Kitchen and Dining Furniture</h2>
+						</a>
+					</div>
 				</div>
 				<div class="carousel-item">
-					<a th:href="@{'/c/' + home-office}">
-						<img class="d-block w-100 img-carousel-height"
-							src="/EcommerceFurniture/category-images/18/HomeOffice.png" alt="Third slide">
-							<span>Living room Furniture</span>
-					</a>
+					<div class="text-center">
+						<a th:href="@{'/c/' + home-office}">
+							<img class="mx-auto d-block rounded img-carousel-height"
+								src="/EcommerceFurniture/category-images/18/HomeOffice.png" alt="Third slide">
+								<h2 class="centered carousel-text-color">Home Office</h2>
+						</a>
+					</div>
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
