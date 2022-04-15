@@ -1,245 +1,265 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
-      lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
 <head th:fragment="header_link(title, remove)" th:remove="${remove}">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-    <title>[[${title}]]</title>
-    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
-    <link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} "/>
-    <link th:rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<title>[[${title}]]</title>
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<link th:rel="stylesheet" type="text/css" th:href="@{/webjars/font-awesome/6.0.0/css/all.css} " />
+	<link th:rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
 
-    <script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
-    <script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/common-scripts.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script type="text/javascript" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script type="text/javascript" th:src="@{/js/common-scripts.js}"></script>
 </head>
+
 <body>
-<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
-    <a class="text-dark"
-       th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
-        [[${columnLabel}]]
-    </a>
+	<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
+		<a class="text-dark"
+			th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
+			[[${columnLabel}]]
+		</a>
 
-    <span th:if="${sortField == fieldName}"
-          th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
-</th>
+		<span th:if="${sortField == fieldName}"
+			th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
+	</th>
 
-<div th:fragment="search_form_and_message(module)">
-    <form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline m-3">
-        <input type="hidden" name="sortField" th:value="${sortField}">
-        <input type="hidden" name="sortDir" th:value="${sortOrder}">
-        Filter: &nbsp;
-        <input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input small-input" required>
-        &nbsp;&nbsp;
-        <input type="submit" value="Search" class="btn btn-primary-color">
-        &nbsp;&nbsp;
-        <input type="button" value="Clear" class="btn btn-secondary" onclick="clearFilter()">
-    </form>
+	<div th:fragment="search_form_and_message(module)">
+		<form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline my-3">
+			<input type="hidden" name="sortField" th:value="${sortField}">
+			<input type="hidden" name="sortDir" th:value="${sortOrder}">
+			Filter: &nbsp;
+			<input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input"
+				required>
+			&nbsp;&nbsp;
+			<input type="submit" value="Search" class="btn btn-primary-color">
+			&nbsp;&nbsp;
+			<input type="button" value="Clear" class="btn btn-primary-color btn-second-color" onclick="clearFilter()">
+		</form>
 
-    <div th:if="${message != null}" class="alert alert-success text-center">
-        [[${message}]]
-    </div>
-</div>
+		<div th:if="${message != null}" class="alert alert-success text-center">
+			[[${message}]]
+		</div>
+	</div>
 
-<a th:fragment="page_link(pageNum, pageLabel, module)"
-   class="page-link" th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${pageLabel}]]</a>
-
-
-
-<div th:fragment="menu_link">
-	
-    <form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
-        <input type="submit">
-    </form>
-    <nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
-        <a class="navbar-brand" th:href="@{/}">
-            <img th:src="@{/images/logo.jpg}"/>
-        </a>
-         
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="collapse navbar-collapse" id="topNavbar">
-
-            <ul class="navbar-nav">
-
-                <li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
-                    <a class="nav-link" th:href="@{/users}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Users
-                    </a>
-                </li>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/categories}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Categories
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/brands}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Brands
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Sales', 'Editor', 'Shipper')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/products}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Products
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/customers}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Customers
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/shipping}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Shipping
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Sales', 'Shipper')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/orders}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Orders
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/salesreport}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Salesreport
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-                <li class="navbar-item li-hover">
-                    <a class="nav-link" th:href="@{/articles}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Articles
-                    </a>
-                </li>
-                </th:block>
-
-                <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-                    <li class="navbar-item li-hover">
-                        <a class="nav-link" th:href="@{/menu}">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            Menu
-                        </a>
-                    </li>
-                </th:block>
-
-                <li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
-                    <a class="nav-link" th:href="@{/settings}">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        Settings
-                    </a>
-                </li>
+	<a th:fragment="page_link(pageNum, pageLabel, module)" class="page-link"
+		th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${pageLabel}]]</a>
 
 
-                <li id="navbar-item" class="nav-item dropdown ml-1">
-                    <a class="nav-link dropdown-toggle"
-                       data-toggle="dropdown"
-                       th:href="@{/account}"
-                       sec:authentication="principal.fullName">
-                    </a>
-                    <div class="navbarx-menu">
-                        <a class="navbarx-menu-item" id="logoutLink" href="">Log out</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
-</div>
 
-<div th:fragment="footer_link" id="footer">
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-				<h4 class="text-footer">Thang - Hau - Kien</h4>
-            </div>
-        </div>
-    </footer>
-</div>
+	<div th:fragment="menu_link">
 
-<div th:fragment="status(enabled, entityName, moduleURL)" th:remove="tag">
-    <a th:if="${enabled == true}"  class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
-       th:href="@{${moduleURL} + '/enabled/false'}" th:title="'Disable this' + ${entityName}"></a>
-    <a th:if="${enabled != true}"  class="fa-solid fa-circle-check fa-2x icon-silver"
-       th:href="@{${moduleURL} + '/enabled/true'}" th:title="'Enable this' + ${entityName}"></a>
-</div>
+		<form th:action="@{/logout}" th:hidden="true" method="post" name="logoutForm">
+			<input type="submit">
+		</form>
+		<nav class="navbar navbar-expand-lg bg-light navbar-light box-shadow">
+			<a class="navbar-brand" th:href="@{/}">
+				<img th:src="@{/images/logo.jpg}" />
+			</a>
 
-<div th:fragment="edit(entityId, entityName, moduleURL, visible)" th:remove="tag">
-    <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{${moduleURL} + 'edit/' + ${entityId}}"
-       th:title="'Edit this' + ${entityName}">
-    </a>
-</div>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#topNavbar">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-<div th:fragment="delete(entityId, entityName, moduleURL, visible)" th:remove="tag">
-    <a th:if="${visible == true}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
-       th:href="@{${moduleURL} + 'delete/' + ${entityId}}"
-       th:entityId="${entityId}"
-       th:title="'Delete this ' + ${entityName}">
-    </a>
-</div>
+			<div class="collapse navbar-collapse" id="topNavbar">
+
+				<ul class="navbar-nav">
+
+					<li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
+						<a class="nav-link" th:href="@{/users}">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							Users
+						</a>
+					</li>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/categories}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Categories
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/brands}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Brands
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales', 'Editor', 'Shipper')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/products}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Products
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/customers}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Customers
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/shipping}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Shipping
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales', 'Shipper')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/orders}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Orders
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/salesreport}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Salesreport
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/articles}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Articles
+							</a>
+						</li>
+					</th:block>
+
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/menu}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Menu
+							</a>
+						</li>
+					</th:block>
+
+					<li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
+						<a class="nav-link" th:href="@{/settings}">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							Settings
+						</a>
+					</li>
+
+					<li class="navbar-item li-hover li-mobile" sec:authorize="hasAuthority('Admin')">
+						<a class="nav-link" th:href="@{/account}">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							Profile
+						</a>
+					</li>
+
+					<li class="navbar-item li-hover li-mobile" sec:authorize="hasAuthority('Admin')">
+						<a class="nav-link logout-link">
+							<span></span>
+							<span></span>
+							<span></span>
+							<span></span>
+							Logout
+						</a>
+					</li>
+
+
+					<li id="navbar-item" class="nav-item dropdown ml-1">
+						<a class="nav-link dropdown-toggle" data-toggle="dropdown" th:href="@{/account}"
+							sec:authentication="principal.fullName">
+						</a>
+						<div class="navbarx-menu">
+							<a class="navbarx-menu-item logout-link" id="logoutLink" href="">Log out</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div th:fragment="footer_link" id="footer">
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<h4 class="text-footer">Thang - Hau - Kien</h4>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div th:fragment="status(enabled, entityName, moduleURL)" th:remove="tag">
+		<a th:if="${enabled == true}" class="fa-solid fa-circle-check fa-2x icon-purple a-hover"
+			th:href="@{${moduleURL} + '/enabled/false'}" th:title="'Disable this' + ${entityName}"></a>
+		<a th:if="${enabled != true}" class="fa-solid fa-circle-check fa-2x icon-silver"
+			th:href="@{${moduleURL} + '/enabled/true'}" th:title="'Enable this' + ${entityName}"></a>
+	</div>
+
+	<div th:fragment="edit(entityId, entityName, moduleURL, visible)" th:remove="tag">
+		<a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{${moduleURL} + 'edit/' + ${entityId}}"
+			th:title="'Edit this' + ${entityName}">
+		</a>
+	</div>
+
+	<div th:fragment="delete(entityId, entityName, moduleURL, visible)" th:remove="tag">
+		<a th:if="${visible == true}" class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
+			th:href="@{${moduleURL} + 'delete/' + ${entityId}}" th:entityId="${entityId}"
+			th:title="'Delete this ' + ${entityName}">
+		</a>
+	</div>
 
 
 </body>
+
 </html>

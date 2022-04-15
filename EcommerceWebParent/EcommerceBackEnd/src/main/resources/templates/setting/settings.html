@@ -18,7 +18,7 @@
             [[${message}]]
         </div>
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" id="settingTab" role="tablist">
+        <ul class="nav nav-tabs" id="settingTab" role="tablist" style="max-width: 700px; margin: 0 auto">
             <li class="nav-item">
                 <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#general" role="tab">General</a>
             </li>
@@ -38,7 +38,7 @@
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane active p-3" id="general" role="tabpanel">
+            <div class="tab-pane active" id="general" role="tabpanel">
                 <div th:replace="setting/general :: content"></div>
             </div>
             <div class="tab-pane p-2" id="countries" role="tabpanel">
