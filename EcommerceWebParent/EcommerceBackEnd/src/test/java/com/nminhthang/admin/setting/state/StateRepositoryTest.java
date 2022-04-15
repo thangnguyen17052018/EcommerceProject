@@ -1,5 +1,6 @@
-package com.nminhthang.admin.state;
+package com.nminhthang.admin.setting.state;
 
+import com.nminhthang.admin.setting.state.StateRepository;
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.State;
 import org.assertj.core.api.Assertions;
