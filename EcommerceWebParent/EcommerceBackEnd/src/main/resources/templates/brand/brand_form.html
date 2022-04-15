@@ -38,8 +38,8 @@
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Select one or more categories:</label>
                 <div class="col-sm-8">
-                    <select class="form-control" required th:field="*{categories}"
-                            multiple="multiple" style="resize: vertical; height: 200px">
+                    <select class="form-control select-category" required th:field="*{categories}"
+                            multiple="multiple" style="resize: vertical; ">
                         <th:block th:each="cat : ${listCategories}">
                             <option th:value="${cat.id}">[[${cat.name}]]</option>
                         </th:block>

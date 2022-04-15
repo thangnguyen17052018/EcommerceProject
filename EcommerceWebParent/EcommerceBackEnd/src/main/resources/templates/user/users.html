@@ -9,7 +9,7 @@
 
         <div>
             <h2 class="my-4">Users Management</h2>
-            <a th:href="@{/users/new}" class="px-1 a-textdecoration">
+            <a th:href="@{/users/new}" class="a-textdecoration">
             	<img th:src="@{/images/add-user.png}" class="icon pb-2"/>
             </a>
             &nbsp;&nbsp;
@@ -78,7 +78,7 @@
 
 
 		<div class="less-details"> 
-			<div th:each="user : ${listUsers}" class="row m-1">
+			<div th:each="user : ${listUsers}" class="row row-margin">
 				<div class="col-4">
 					<img th:src="@{${user.photosImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
 				</div>
