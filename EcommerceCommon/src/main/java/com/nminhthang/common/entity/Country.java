@@ -1,9 +1,6 @@
 package com.nminhthang.common.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -27,9 +24,17 @@ public class Country {
     private String code;
 
     @OneToMany(mappedBy = "country")
+    @Setter(AccessLevel.NONE)
+    @Getter(AccessLevel.NONE)
     Set<State> states = new HashSet<>();
 
     public Country(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public Country(Integer id, String name, String code) {
+        this.id = id;
         this.name = name;
         this.code = code;
     }

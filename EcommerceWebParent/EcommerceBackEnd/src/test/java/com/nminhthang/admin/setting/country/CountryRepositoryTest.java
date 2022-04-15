@@ -1,5 +1,6 @@
-package com.nminhthang.admin.country;
+package com.nminhthang.admin.setting.country;
 
+import com.nminhthang.admin.setting.country.CountryRepository;
 import com.nminhthang.common.entity.Country;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

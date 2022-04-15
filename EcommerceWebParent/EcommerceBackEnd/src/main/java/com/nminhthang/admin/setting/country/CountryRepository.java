@@ -1,4 +1,4 @@
-package com.nminhthang.admin.country;
+package com.nminhthang.admin.setting.country;
 
 import com.nminhthang.common.entity.Country;
 import org.springframework.data.repository.CrudRepository;

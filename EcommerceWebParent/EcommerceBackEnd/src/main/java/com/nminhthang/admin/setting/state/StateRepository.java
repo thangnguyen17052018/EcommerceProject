@@ -1,4 +1,4 @@
-package com.nminhthang.admin.state;
+package com.nminhthang.admin.setting.state;
 
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.State;
