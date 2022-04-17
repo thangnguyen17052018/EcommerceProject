@@ -33,4 +33,12 @@ public class SettingService {
         return new GeneralSettingBag(generalSettings);
     }
 
+    public List<Setting> getMailServerSettings() {
+        return settingRepository.findAllBySettingCategory(SettingCategory.MAIL_SERVER);
+    }
+
+    public List<Setting> getMailTemplateSettings() {
+        return settingRepository.findAllBySettingCategory(SettingCategory.MAIL_TEMPLATE);
+    }
+
 }

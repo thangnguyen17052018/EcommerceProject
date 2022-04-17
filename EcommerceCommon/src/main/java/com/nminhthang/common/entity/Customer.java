@@ -60,4 +60,8 @@ public class Customer {
     @JoinColumn(name = "country_id")
     private Country country;
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
 }
