@@ -13,7 +13,7 @@ public interface CustomerRepository extends CrudRepository<Customer, Integer> {
     @Query("SELECT c FROM Customer c WHERE c.verificationCode=?1")
     Customer findByVerificationCode(String code);
 
-    @Query("UPDATE Customer c SET c.enabled = true WHERE c.id=?1")
+    @Query("UPDATE Customer c SET c.enabled = true, c.verificationCode = null WHERE c.id=?1")
     @Modifying
     void enabled(Integer id);
 }

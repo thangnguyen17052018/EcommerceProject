@@ -4,6 +4,8 @@
       lang="en">
 <head>
     <head th:replace="fragments :: header_link('Site Settings', 'tag')"></head>
+    <link rel="stylesheet" th:href="@{/richtext/richtext.min.css}">
+    <script th:src="@{/richtext/jquery.richtext.min.js}"></script>
 </head>
 
 <body>
@@ -48,10 +50,10 @@
                 <div th:replace="setting/states :: content"></div>
             </div>
             <div class="tab-pane p-3" id="mailServer" role="tabpanel">
-                <h2>Mail Server</h2>
+                <div th:replace="setting/mail_server :: content"></div>
             </div>
             <div class="tab-pane p-3" id="mailTemplates" role="tabpanel">
-                <h2>Mail Templates</h2>
+                <div th:replace="setting/mail_templates/mail_templates :: content"></div>
             </div>
         </div>
     </div>
@@ -69,6 +71,10 @@
         contextPath = "[[@{/}]]";
         var csrfHeaderName = "[[${_csrf.headerName}]]";
         var csrfValue = "[[${_csrf.token}]]";
+
+        $(document).ready(function() {
+           $("#customerVerifycationContent").richText();
+        });
     </script>
     <script th:src="@{/js/common-form.js}"></script>
     <script th:src="@{/js/countries_setting.js}"></script>
