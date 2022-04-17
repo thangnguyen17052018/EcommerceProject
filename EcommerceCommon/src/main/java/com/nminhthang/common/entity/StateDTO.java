@@ -1,4 +1,4 @@
-package com.nminhthang.admin.setting.state;
+package com.nminhthang.common.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

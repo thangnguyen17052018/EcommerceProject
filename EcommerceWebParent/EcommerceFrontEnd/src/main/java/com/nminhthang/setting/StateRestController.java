@@ -1,4 +1,4 @@
-package com.nminhthang.admin.setting.state;
+package com.nminhthang.setting;
 
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.State;
@@ -15,7 +15,7 @@ public class StateRestController {
     @Autowired
     private StateRepository stateRepository;
 
-    @GetMapping("/states/list_by_country/{id}")
+    @GetMapping("/settings/list_states_by_country/{id}")
     public List<StateDTO> listByCountry(@PathVariable("id") Integer countryId) {
         List<State> listStates = stateRepository.findByCountryOrderByNameAsc(new Country(countryId));
 
@@ -25,17 +25,6 @@ public class StateRestController {
             result.add(new StateDTO(state.getId(), state.getName()));
         }
         return result;
-    }
-
-    @PostMapping("/states/save")
-    public String save(@RequestBody State state) {
-        State savedState = stateRepository.save(state);
-        return String.valueOf(savedState.getId());
-    }
-
-    @DeleteMapping("/states/delete/{id}")
-    public void delete(@PathVariable("id") Integer id) {
-        stateRepository.deleteById(id);
     }
 
 }
