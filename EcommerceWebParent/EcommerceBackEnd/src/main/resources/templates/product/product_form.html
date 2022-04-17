@@ -19,7 +19,7 @@
 		</div>
 
 		<form class="box-shadow-form p-5 mb-5 form-new-product" th:action="@{/products/save}" method="post" enctype="multipart/form-data" th:object="${product}"
-			onsubmit="return checkProductUnique(this);" style="max-width: 900px; margin: 0 auto">
+			onsubmit="return checkProductUnique(this);" style="max-width: 966px; margin: 0 auto">
 			<input type="hidden" th:field="*{id}">
 			<input th:if="${product.category != null}" type="hidden" id="categoryId" th:value="${product.category.id}">
 			<!-- Nav tabs -->
