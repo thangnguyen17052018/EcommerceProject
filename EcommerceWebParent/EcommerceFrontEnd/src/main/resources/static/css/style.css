@@ -213,9 +213,7 @@ html {
 		width: 70%;
 		margin-left: 0.25rem;
 	}
-	.btn-primary-color {
-		margin: 0  0 0 2rem !important;
-	}
+
 	.text-color {
 		text-align: center;
 	}
@@ -425,7 +423,8 @@ html {
 	text-align: center;
 }
 
-.angle-up {
+.descript-angle-up,
+.detail-angle-up {
 	display: none;
 }
 .product-fulldescpt {
