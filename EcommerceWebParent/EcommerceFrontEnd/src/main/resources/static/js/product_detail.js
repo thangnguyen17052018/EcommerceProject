@@ -5,13 +5,13 @@ $(document).ready(function (){
   		$(".product-fulldescpt").slideToggle();
 
 
-  		if($(".angle-down").css("display")=="block"){
-			$(".angle-down").hide();
-			$(".angle-up").show();
+  		if($(".descript-angle-down").css("display")=="block"){
+			$(".descript-angle-down").hide();
+			$(".descript-angle-up").show();
 		}
 		else {
-			$(".angle-up").hide();
-			$(".angle-down").show();
+			$(".descript-angle-up").hide();
+			$(".descript-angle-down").show();
 		}
 
 
@@ -23,13 +23,13 @@ $(document).ready(function (){
   		$(".product-detail").slideToggle();
 
 
-  		if($(".angle-down").css("display")=="block"){
-			$(".angle-down").hide();
-			$(".angle-up").show();
+  		if($(".detail-angle-down").css("display")=="block"){
+			$(".detail-angle-down").hide();
+			$(".detail-angle-up").show();
 		}
 		else {
-			$(".angle-up").hide();
-			$(".angle-down").show();
+			$(".detail-angle-up").hide();
+			$(".detail-angle-down").show();
 		}
 
 

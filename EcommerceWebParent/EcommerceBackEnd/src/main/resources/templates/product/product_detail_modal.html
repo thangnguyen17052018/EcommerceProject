@@ -99,7 +99,7 @@
         </div>
         <div class="tab-pane p-2" id="images" role="tabpanel">
             <div class="row">
-                <div class="col border m-3 p-2">
+                <div class="col border m-4 p-3">
                     <div><label>Main Image: [[${product.mainImage}]]</label></div>
                     <div>
                         <img class="img-fluid m-2" id="thumbnail" width="180px" height="200px"
@@ -108,7 +108,7 @@
             </div>
 
                 <th:block th:each="productImage, status : ${product.images}">
-                    <div class="col border m-3 p-2">
+                    <div class="col border m-4 p-3">
                         <div>
                             <label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
                         </div>

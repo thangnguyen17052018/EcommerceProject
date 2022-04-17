@@ -1,36 +1,38 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-        lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <body>
-    <div th:fragment="content" th:remove="tag">
-        <div>
-            <p>
-                Use this page to manage countries which will be displayed in the customer registration.
-                Click Load Country List first.
-            </p>
-        </div>
-        <div>
-            <input type="button" value="Load Country List" class="btn btn-primary m-2" id="buttonLoadCountries">
-        </div>
-        <div>
-            <select class="form-control m-2" style="height: 300px" size="3" id="dropDownCountries">
-            </select>
-        </div>
-        <div class="form-group row ml-2">
-            <label class="col-form-label mt-2" id="labelCountryName">Country Name</label>
-            <div class="col-md">
-                <input type="text" class="form-control mt-2" id="fieldCountryName">
-            </div>
-            <label class="col-form-label mt-2" id="labelCountryCode">Country Code</label>
-            <div class="col-md">
-                <input type="text" class="form-control mt-2" id="fieldCountryCode">
-            </div>
-            <div class="col-lg-4 mt-2">
-                <input type="button" id="buttonAddCountry" class="btn btn-secondary mr-2" value="New">
-                <input type="button" id="buttonUpdateCountry" class="btn btn-secondary mr-2" value="Update" disabled="disabled">
-                <input type="button" id="buttonDeleteCountry" class="btn btn-secondary" value="Delete" disabled="disabled">
-            </div>
-        </div>
-    </div>
+	<div th:fragment="content" th:remove="tag">
+		<div>
+			<p>
+				Use this page to manage countries which will be displayed in the customer registration.
+				Click Load Country List first.
+			</p>
+		</div>
+		<div>
+			<input type="button" value="Load Country List" class="btn btn-primary m-2" id="buttonLoadCountries">
+		</div>
+		<div>
+			<select class="form-control m-2" size="3" id="dropDownCountries">
+			</select>
+		</div>
+		<div class="form-group row ml-2">
+			<label class="col-form-label mr-2" id="labelCountryName">Country Name:</label>
+			<div class="col-md p-0">
+				<input type="text" class="form-control mr-2" id="fieldCountryName">
+			</div>
+			<label class="col-form-label mx-2" id="labelCountryCode">Country Code:</label>
+			<div class="col-md p-0">
+				<input type="text" class="form-control mr-2" id="fieldCountryCode">
+			</div>
+		</div>
+		<div class="col-lg mt-2 p-0 text-center">
+			<input type="button" id="buttonAddCountry" class="btn btn-primary-color mr-2" value="New">
+			<input type="button" id="buttonUpdateCountry" class="btn btn-primary-color mr-2" value="Update"
+				disabled="disabled">
+			<input type="button" id="buttonDeleteCountry" class="btn btn-primary-color" value="Delete" disabled="disabled">
+		</div>
+	</div>
 </body>
+
 </html>
