@@ -48,6 +48,9 @@ $(document).ready(function() {
 });
 
 function addState() {
+    if (!validateState()) {
+        return;
+    }
     url = contextPath + "states/save";
     stateName = fieldStateName.val();
 
@@ -75,6 +78,9 @@ function addState() {
 }
 
 function updateState() {
+    if (!validateState()) {
+        return;
+    }
     url = contextPath + "states/save";
 
     stateId = dropDownStates.val();
@@ -102,6 +108,16 @@ function updateState() {
         showToastMessasge("ERROR: Could not connect to server or server encountered an error");
     });
 
+}
+
+function validateState() {
+    formState = document.getElementById("formState");
+
+    if (!formState.checkValidity()) {
+        formState.reportValidity();
+        return false;
+    }
+    return true;
 }
 
 function deleteState() {

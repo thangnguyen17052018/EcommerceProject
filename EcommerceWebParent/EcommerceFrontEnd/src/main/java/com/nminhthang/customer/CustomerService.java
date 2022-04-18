@@ -9,10 +9,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Date;
 import java.util.List;
 
 @Service
+@Transactional
 public class CustomerService {
 
     @Autowired
@@ -48,6 +50,17 @@ public class CustomerService {
     public void encodePassword(Customer customer) {
         String encodePassword = passwordEncoder.encode(customer.getPassword());
         customer.setPassword(encodePassword);
+    }
+
+    public boolean verify(String verificationCode) {
+        Customer customer = customerRepository.findByVerificationCode(verificationCode);
+
+        if ((customer == null) || customer.isEnabled()) {
+            return false;
+        } else {
+            customerRepository.enabled(customer.getId());
+            return true;
+        }
     }
 
 }
