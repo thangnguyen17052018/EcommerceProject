@@ -14,13 +14,12 @@
 		<div>
 			<div th:replace="fragments :: menu_link"></div>
 
-			<h2 class="my-4">Product Management | [[${pageTitle}]]</h2>
+			<h2 class="product-text">Product Management | [[${pageTitle}]]</h2>
 
 		</div>
 
-		<form th:action="@{/products/save}" method="post" enctype="multipart/form-data" th:object="${product}"
-			onsubmit="return checkProductUnique(this);" style="max-width: 900px; margin: 0 auto"
-			class="form-new-product">
+		<form class="box-shadow-form p-5 mb-5 form-new-product" th:action="@{/products/save}" method="post" enctype="multipart/form-data" th:object="${product}"
+			onsubmit="return checkProductUnique(this);" style="max-width: 966px; margin: 0 auto">
 			<input type="hidden" th:field="*{id}">
 			<input th:if="${product.category != null}" type="hidden" id="categoryId" th:value="${product.category.id}">
 			<!-- Nav tabs -->
@@ -75,7 +74,7 @@
 					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
 						<div th:replace="product/product_details :: content"></div>
 						<div>
-							<input type="button" class="btn btn-secondary" value="Add more detail"
+							<input type="button" class="btn btn-primary-color ml-3" value="Add more detail"
 								onclick="addNewDetailSection()">
 						</div>
 						<input type="hidden" id="counter" value="0">

@@ -41,15 +41,23 @@
 html {
 	font-size: 12px;
 }
-
-/* Responsive */
-@media screen and (min-width: 992px) and (max-width: 1199px){
-	.navbar {
-		position: fixed;
-		top: 0;
-		width: 98%;
-	}
+.box-shadow-form {
+	box-shadow: 0 0 1.5rem rgb(0 0 0 / 20%);
+	border-radius: 10px;
+}
+.fixed-top {
+	left: 1rem;
+	right: 1rem;
+}
+.nav-link:hover {
+		background: var(--color-primary);
+	 -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	    border-color: #000000 #000000 #000000 !important; 
 	
+}
+.nav-tabs {
+	border-bottom: 1px solid #000000;
 }
 
 @media screen and (min-width: 1200px){
@@ -323,8 +331,9 @@ html {
 .filter-input {
 	align-items: baseline;
 }
-.text-introduce {
-	margin-top: 6rem;
+.introduce-text {
+	margin-top: 7.5rem;
+	margin-bottom: 2rem;
 }
 .text-welcome {
 	display: flex;
@@ -370,16 +379,18 @@ html {
 
 }
 
-@media screen and (min-width: 768px) and (max-width: 1024px)
+@media screen and (min-width: 768px) and (max-width: 992px)
 {
 
 	.icon-user {
 		margin: 0 !important;
 	}
-		.select-category {
+	.select-category {
 		height: 200px !important;
 	}
-	
+	#dropDownCountries {
+		height: 200px !important;
+	}
 		.container-checkbox .checkmark:after {
 		left: 0.8rem !important;
    		 top: 0.3rem !important;
@@ -387,8 +398,19 @@ html {
 
 }
 
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 992px){
+	#settingTab {
+		max-width: 700px; 
+		margin: 0 auto;
+		margin-top: 3rem;
+	}
+	.settingTab {
+		margin-top: 40px;
+	}
 	.select-category {
+		height: 200px !important;
+	}
+	#dropDownCountries {
 		height: 200px !important;
 	}
 }
@@ -398,6 +420,10 @@ html {
 
 
 /*-------- Start User page -----------*/
+.user-text {
+	margin-top: 7.5rem;
+	margin-bottom: 2rem;
+}
 .text-color {
 	background: var(--color-primary);
 	-webkit-background-clip: text;
@@ -595,9 +621,29 @@ html {
 /*---------- End User page -----------*/
 
 
-/*-----End Brand page -----*/
+/*-----Start Category page -----*/
+.category-text {
+	margin-top: 7.5rem;
+	margin-bottom: 2rem;
+}
+/*-----End Category page -----*/
+
+
+
+/*-----Start Brand page -----*/
+.brand-text {
+	margin-top: 7.5rem;
+	margin-bottom: 2rem;
+}
+/*-----End Category page -----*/
+
+
 
 /*------------Product Page----------------*/
+.product-text {
+	margin-top: 7.5rem;
+	margin-bottom: 2rem;
+}
 .row-margin {
 	margin-left: -5px;
 }
@@ -668,23 +714,23 @@ html {
 
 .tab-product {
 
-	border-left: 1px solid #ccc;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #000000;
+	border-right: 1px solid #000000;
+	border-bottom: 1px solid #000000;
 }
 
-
 .nav-link {
-	color: black
+	padding: 0.5rem 0.5rem;
+	color: black;
 }
 .nav-link.active {
 	background: var(--color-primary);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	border-color: #000000 #000000 #ffffff !important;
+	background-color: white;
 }
-.nav-link:hover {
-	color: black;
-}
+
 
 .size-checkbox {
 	width: 1rem;
@@ -712,6 +758,7 @@ html {
 }
 .form-group {
 	margin-bottom: 2rem;
+	margin-right: -7px;
 }
 
 
@@ -733,15 +780,10 @@ html {
 
 /* Start Setting page */
 
-.form-setting {
-	max-width: 700px; 
-	margin: 0 auto;
-	padding: 3rem 2rem;
-	border-bottom: 1px solid #ccc;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
-}
 
+.setting-text {
+	margin-top: 7.5rem;
+}
 /* Start Footer */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -881,8 +923,19 @@ ul{
 		display: none;
 	}
 	
+	#general,
+	#countries,
+	#states, 
+	#mailServer,
+	#mailTemplates{
+		padding: 3rem 2rem !important;
+		border-bottom: 1px solid #000000;
+	    border-left: 1px solid #000000;
+	    border-right: 1px solid #000000;
+	}
+	
 }
-@media screen and (min-width: 768px) and (max-width: 1024px){
+@media screen and (min-width: 769px) and (max-width: 1024px){
 	/* medium screen */
 	div.full-details { display: block }
 	div.less-details { display: none }
@@ -895,9 +948,22 @@ ul{
 		display: flex;
 		align-items: baseline;
 	}
+	
+	#general,
+	#countries,
+	#states, 
+	#mailServer,
+	#mailTemplates{
+
+		padding: 3rem 2rem !important;
+		border-bottom: 1px solid #000000;
+	    border-left: 1px solid #000000;
+	    border-right: 1px solid #000000;
+	}
+	
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1025px) {
 	/* large screen */
 	div.less-details { display: none}
 	.hideable-column { display: table-cell}
@@ -909,6 +975,21 @@ ul{
 		display: flex;
 		align-items: baseline;
 	}
+	
+	
+	#general,
+	#countries,
+	#states, 
+	#mailServer,
+	#mailTemplates {
+		max-width: 700px; 
+		margin: 0 auto;
+		padding: 3rem 2rem !important;
+		border-bottom: 1px solid #000000;
+	    border-left: 1px solid #000000;
+	    border-right: 1px solid #000000;
+	}
+
 }
 
 @media (max-width: 1199.98px) {
