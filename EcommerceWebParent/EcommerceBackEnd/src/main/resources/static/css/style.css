@@ -60,6 +60,14 @@ html {
 	border-bottom: 1px solid #000000;
 }
 
+.btn:focus {
+	box-shadow: none;
+}
+.head-text {
+	margin-top: 7.5rem;
+	margin-bottom: 2rem;
+}
+
 @media screen and (min-width: 1200px){
 
 	html {
@@ -331,10 +339,7 @@ html {
 .filter-input {
 	align-items: baseline;
 }
-.introduce-text {
-	margin-top: 7.5rem;
-	margin-bottom: 2rem;
-}
+
 .text-welcome {
 	display: flex;
 	align-items: center;
@@ -376,7 +381,15 @@ html {
 		left: 0.8rem !important;
    		 top: 0.3rem !important;
 	}
-
+	#settingTab {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: space-between;
+	}
+	#myTab {
+		display: flex;
+		justify-content: space-between;
+	}
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px)
@@ -400,7 +413,7 @@ html {
 
 @media screen and (min-width: 992px){
 	#settingTab {
-		max-width: 700px; 
+		max-width: 800px; 
 		margin: 0 auto;
 		margin-top: 3rem;
 	}
@@ -420,10 +433,7 @@ html {
 
 
 /*-------- Start User page -----------*/
-.user-text {
-	margin-top: 7.5rem;
-	margin-bottom: 2rem;
-}
+
 .text-color {
 	background: var(--color-primary);
 	-webkit-background-clip: text;
@@ -622,28 +632,19 @@ html {
 
 
 /*-----Start Category page -----*/
-.category-text {
-	margin-top: 7.5rem;
-	margin-bottom: 2rem;
-}
+
 /*-----End Category page -----*/
 
 
 
 /*-----Start Brand page -----*/
-.brand-text {
-	margin-top: 7.5rem;
-	margin-bottom: 2rem;
-}
+
 /*-----End Category page -----*/
 
 
 
 /*------------Product Page----------------*/
-.product-text {
-	margin-top: 7.5rem;
-	margin-bottom: 2rem;
-}
+
 .row-margin {
 	margin-left: -5px;
 }
@@ -720,7 +721,7 @@ html {
 }
 
 .nav-link {
-	padding: 0.5rem 0.5rem;
+	padding: 0.5rem 0.455rem;
 	color: black;
 }
 .nav-link.active {
@@ -776,14 +777,22 @@ html {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+.product-nav-link {
+	padding: 0.5rem 0.8rem !important;
+}
 /*------------End Product Page------------*/
 
 /* Start Setting page */
 
 
-.setting-text {
-	margin-top: 7.5rem;
+.mail-content {
+	border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;
 }
+.mailTemplatesTab-item {
+	padding: 0 !important;
+}
+
+
 /* Start Footer */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -873,7 +882,7 @@ ul{
 }
 
 /*responsive*/
-@media(max-width: 767px){
+@media(max-width: 768px){
   .footer-col{
     width: 50%;
     margin-bottom: 30px;
@@ -922,7 +931,13 @@ ul{
 	.filter-input-medium {
 		display: none;
 	}
-	
+	.fixed-top {
+		left: 1.2rem;
+    	right: 1.2rem;
+	}
+	#thumbnail {
+		margin-top: 2rem;
+	}
 	#general,
 	#countries,
 	#states, 
@@ -933,7 +948,29 @@ ul{
 	    border-left: 1px solid #000000;
 	    border-right: 1px solid #000000;
 	}
-	
+	#dropDownCountries {
+		margin-left: 0 !important;
+	}
+	.country-text {
+		margin: 0 !important;
+	}
+	.btn-loadcountry {
+		margin: 1rem 0 !important;
+	}
+	#dropDownCountriesForStates,
+	#dropDownStates,
+	#fieldStateName{
+		margin: 0 !important;
+	}
+
+	#mailTemplatesTab {
+		margin: 0 !important;
+	}
+	.mail-content {
+		margin: 0 !important;
+	}
+	#customer-verification-tab {
+	}
 }
 @media screen and (min-width: 769px) and (max-width: 1024px){
 	/* medium screen */
@@ -982,7 +1019,7 @@ ul{
 	#states, 
 	#mailServer,
 	#mailTemplates {
-		max-width: 700px; 
+		max-width: 800px; 
 		margin: 0 auto;
 		padding: 3rem 2rem !important;
 		border-bottom: 1px solid #000000;
