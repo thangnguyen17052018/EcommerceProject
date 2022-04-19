@@ -4,20 +4,20 @@
 <body>
 	<div th:fragment="content" th:remove="tag">
 		<div>
-			<p>
+			<p class="country-text m-2">
 				Use this page to manage countries which will be displayed in the customer registration.
 				Click Load Country List first.
 			</p>
 		</div>
 		<div>
-			<input type="button" value="Load Country List" class="btn btn-primary m-2" id="buttonLoadCountries">
+			<input type="button" value="Load Country List" class="btn btn-primary-color m-2 btn-loadcountry" id="buttonLoadCountries">
 		</div>
 		<div>
-			<select class="form-control m-2" size="3" id="dropDownCountries">
+			<select class="form-control mx-2 my-4" size="3" id="dropDownCountries">
 			</select>
 		</div>
-		<div class="form-group row ml-2">
-			<label class="col-form-label mr-2" id="labelCountryName">Country Name:</label>
+		<div class="form-group row ml-0">
+			<label class="col-form-label mx-2" id="labelCountryName">Country Name:</label>
 			<div class="col-md p-0">
 				<input type="text" class="form-control mr-2" id="fieldCountryName">
 			</div>

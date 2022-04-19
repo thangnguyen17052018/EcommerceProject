@@ -8,7 +8,7 @@
         <div th:replace="fragments :: menu_link"></div>
 
         <div>
-            <h2 class="product-text">Products Management</h2>
+            <h2 class="head-text">Products Management</h2>
             <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
                 <a th:href="@{/products/new}" class="a-textdecoration">
                     <img th:src="@{/images/add.png}" class="icon pb-2"/>
