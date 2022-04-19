@@ -6,6 +6,7 @@ import com.nminhthang.common.entity.Customer;
 import com.nminhthang.setting.EmailSettingBag;
 import com.nminhthang.setting.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
@@ -76,5 +77,11 @@ public class CustomerController {
         System.out.println("verify URL: " + verifyURL);
     }
 
+    @GetMapping("/verify")
+    public String verifyAccount(@Param("code") String code, Model model) {
+        boolean verified = customerService.verify(code);
+
+        return "register/" + (verified ? "verify_success" : "verify_fail");
+    }
 
 }

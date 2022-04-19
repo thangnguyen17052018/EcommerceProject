@@ -45,7 +45,21 @@ $(document).ready(function() {
 
 });
 
+function validateCountry() {
+    formCountry = document.getElementById("formCountry");
+
+    if (!formCountry.checkValidity()) {
+        formCountry.reportValidity();
+        return false;
+    }
+    return true;
+}
+
 function addCountry() {
+    if (!validateCountry()) {
+        return;
+    }
+
     url = contextPath + "countries/save";
     countryName = fieldCountryName.val();
     countryCode = fieldCountryCode.val();
@@ -69,6 +83,9 @@ function addCountry() {
 }
 
 function updateCountry() {
+    if (!validateCountry()) {
+        return;
+    }
     url = contextPath + "countries/save";
 
     countryName = fieldCountryName.val();
