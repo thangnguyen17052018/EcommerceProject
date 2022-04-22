@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<th th:fragment="column_link(fieldName, columnLabel, module, removeTag)" th:remove="${removeTag}">
+	<th th:fragment="column_link(fieldName, columnLabel, removeTag)" th:remove="${removeTag}">
 		<a class="text-dark"
 			th:href="@{'/' + ${module} + '/page/' + ${currentPage} + '?sortField=' + ${fieldName} + '&sortDir=' + ${sortField != fieldName ? sortOrder : reverseSortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''} }">
 			[[${columnLabel}]]
@@ -26,14 +26,13 @@
 			th:class="${sortOrder == 'asc' ? 'fas fa-sort-up' : 'fas fa-sort-down'}"></span>
 	</th>
 
-	<div th:fragment="search_form_and_message(module)">
+	<div th:fragment="search_form_and_message()">
 		<form th:action="@{'/' + ${module} + '/page/1'}" class="form-inline my-3">
 			<input type="hidden" name="sortField" th:value="${sortField}">
 			<input type="hidden" name="sortDir" th:value="${sortOrder}">
 			Filter: &nbsp;
 			<input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input"
 				required>
-			&nbsp;&nbsp;
 			<input type="submit" value="Search" class="btn btn-primary-color">
 			&nbsp;&nbsp;
 			<input type="button" value="Clear" class="btn btn-primary-color btn-second-color" onclick="clearFilter()">
@@ -44,7 +43,7 @@
 		</div>
 	</div>
 
-	<a th:fragment="page_link(pageNum, pageLabel, module)" class="page-link"
+	<a th:fragment="page_link(pageNum, pageLabel)" class="page-link"
 		th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${pageLabel}]]</a>
 
 
@@ -195,7 +194,7 @@
 						</a>
 					</li>
 
-					<li class="navbar-item li-hover li-mobile" sec:authorize="hasAuthority('Admin')">
+					<li class="navbar-item li-hover li-mobile">
 						<a class="nav-link" th:href="@{/account}">
 							<span></span>
 							<span></span>
@@ -205,7 +204,7 @@
 						</a>
 					</li>
 
-					<li class="navbar-item li-hover li-mobile" sec:authorize="hasAuthority('Admin')">
+					<li class="navbar-item li-hover li-mobile">
 						<a class="nav-link logout-link">
 							<span></span>
 							<span></span>
@@ -233,7 +232,7 @@
 		<footer class="footer">
 			<div class="container">
 				<div class="row">
-					<h4 class="text-footer">Thang - Hau - Kien</h4>
+					<h4 class="text-footer text-center">Ecommerce Control Panel - Copyright &copy; Hau - Kien - Thang</h4>
 				</div>
 			</div>
 		</footer>

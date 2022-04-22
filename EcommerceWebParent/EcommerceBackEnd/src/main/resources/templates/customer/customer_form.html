@@ -14,15 +14,15 @@
 		<div>
 			<div th:replace="fragments :: menu_link"></div>
 
-			<h2 class="my-4">Customer Management | [[${pageTitle}]]</h2>
+			<h2 class="head-text">Customer Management | [[${pageTitle}]]</h2>
 
 		</div>
 
 		<form th:action="@{/customers/save}" method="post" enctype="multipart/form-data" th:object="${customer}"
 			onsubmit="return checkEmailUnique(this);" style="max-width: 900px; margin: 0 auto"
-			class="form-new-product">
+			class="box-shadow-form p-5 mb-5">
 			<input type="hidden" th:field="*{id}">
-			<div class="border border-secondary rounded p-3">
+			<div class="rounded p-3">
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">First Name:</label>
 					<div class="col-sm-10">

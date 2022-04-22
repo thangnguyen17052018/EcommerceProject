@@ -59,9 +59,30 @@ public class Customer {
     @ManyToOne
     @JoinColumn(name = "country_id")
     private Country country;
+    
+    
+    
+    @Enumerated(EnumType.STRING)
+    @Column(name= "authentication_type", length=10)
+    private AuthenticationType authenticationType;
 
     public String getFullName() {
         return firstName + " " + lastName;
     }
+
+	public Customer(Integer id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Customer [id=" + id + ", email=" + email + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", phoneNumber=" + phoneNumber + ", addressLine1=" + addressLine1
+				+ ", addressLine2=" + addressLine2 + ", city=" + city + ", state=" + state + ", postalCode="
+				+ postalCode + ", verificationCode=" + verificationCode + ", enabled=" + enabled + ", createTime="
+				+ createTime + ", country=" + country + ", authenticationType=" + authenticationType + "]";
+	}
+
+    
 
 }

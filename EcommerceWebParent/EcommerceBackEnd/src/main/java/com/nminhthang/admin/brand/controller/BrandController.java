@@ -69,6 +69,8 @@ public class BrandController {
         model.addAttribute("totalItems", listBrandsPage.getTotalElements());
         model.addAttribute("totalPages", listBrandsPage.getTotalPages());
         model.addAttribute("sortField", "name");
+        
+        model.addAttribute("module", "brands");
 
         return "brand/brands";
     }

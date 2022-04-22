@@ -14,7 +14,7 @@ public class CustomerRestController {
     CustomerService customerService;
 
     @PostMapping("/customers/check_email")
-    public String checkDuplicateEmail(@Param("id") Integer id, @Param("email") String email) {
+    public String checkDuplicateEmail(Integer id, String email) {
         if (customerService.isEmailUnique(id, email)) {
             return "OK";
         } else {

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<div th:fragment="pagination(moduleUrl, entityName)" th:remove="tag">
+<div th:fragment="pagination(entityName)" th:remove="tag">
     <div class="text-center m-4">
         <span class="text-color" th:if="${totalItems > 0}">Showing [[${entityName}]] #[[${startCount}]] to [[${endCount}]] of [[${totalItems}]]</span>
         <span th:unless="${totalItems > 0}">No [[${entityName}]] found</span>
@@ -17,19 +17,23 @@
         <nav>
             <ul class="pagination justify-content-center flex-wrap">
                 <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
-                    <a th:replace="fragments :: page_link(1, 'First', ${moduleUrl})"></a>
+                    <a th:replace="fragments :: page_link(1, 'First')"></a>
                 </li>
+                
                 <li th:class="${currentPage == 1} ? 'page-item disabled' : 'page-item'">
-                    <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous', ${moduleUrl})"></a>
+                    <a th:replace="fragments :: page_link(${currentPage - 1}, 'Previous')"></a>
                 </li>
+                
                 <li th:class="${currentPage != i} ? 'page-item' : 'page-item active'"
                     th:each="i : ${#numbers.sequence(1, totalPages)}">
-                    <a th:replace="fragments :: page_link(${i}, ${i}, ${moduleUrl})"></a>
+                    <a th:replace="fragments :: page_link(${i}, ${i})"></a>
+                    
                 <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
-                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next', ${moduleUrl})"></a>
+                    <a th:replace="fragments :: page_link(${currentPage + 1}, 'Next')"></a>
                 </li>
+                
                 <li th:class="${currentPage == totalPages} ? 'page-item disabled' : 'page-item'">
-                    <a th:replace="fragments :: page_link(${totalPages}, 'Last', ${moduleUrl})"></a>
+                    <a th:replace="fragments :: page_link(${totalPages}, 'Last')"></a>
                 </li>
             </ul>
         </nav>

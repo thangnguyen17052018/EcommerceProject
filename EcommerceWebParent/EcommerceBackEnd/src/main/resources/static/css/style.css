@@ -53,11 +53,11 @@ html {
 		background: var(--color-primary);
 	 -webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	    border-color: #000000 #000000 #000000 !important; 
+	    border-color: #d9d9d9 #d9d9d9 #d9d9d9 !important; 
 	
 }
 .nav-tabs {
-	border-bottom: 1px solid #000000;
+	border-bottom: 1px solid #d9d9d9;
 }
 
 .btn:focus {
@@ -66,6 +66,9 @@ html {
 .head-text {
 	margin-top: 7.5rem;
 	margin-bottom: 2rem;
+}
+.modal-footer {
+	border-top: none;
 }
 
 @media screen and (min-width: 1200px){
@@ -268,9 +271,7 @@ html {
 	}
 }
 @media screen and (max-width: 992px){
-	.li-mobile{
-		display: block !important;
-	}
+
 	#navbar-item {
 		display: none;
 	}
@@ -336,9 +337,7 @@ html {
 
 
 /*---------Start index page------------*/
-.filter-input {
-	align-items: baseline;
-}
+
 
 .text-welcome {
 	display: flex;
@@ -389,7 +388,9 @@ html {
 	#myTab {
 		display: flex;
 		justify-content: space-between;
+		margin: 0 auto;
 	}
+
 }
 
 @media screen and (min-width: 768px) and (max-width: 992px)
@@ -408,12 +409,13 @@ html {
 		left: 0.8rem !important;
    		 top: 0.3rem !important;
 	}	
+	
+
 
 }
 
 @media screen and (min-width: 992px){
 	#settingTab {
-		max-width: 800px; 
 		margin: 0 auto;
 		margin-top: 3rem;
 	}
@@ -545,6 +547,8 @@ html {
 .a-textdecoration {
 	text-decoration: none !important;
 }
+
+
 /*
 .filter-input:focus {
 	border: transparent;
@@ -713,11 +717,11 @@ html {
   transform: rotate(45deg);
 }
 
-.tab-product {
+.tab-common {
 
-	border-left: 1px solid #000000;
-	border-right: 1px solid #000000;
-	border-bottom: 1px solid #000000;
+	border-left: 1px solid #d9d9d9;
+	border-right: 1px solid #d9d9d9;
+	border-bottom: 1px solid #d9d9d9;
 }
 
 .nav-link {
@@ -728,7 +732,7 @@ html {
 	background: var(--color-primary);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
-	border-color: #000000 #000000 #ffffff !important;
+	border-color: #d9d9d9 #d9d9d9 #ffffff !important;
 	background-color: white;
 }
 
@@ -785,13 +789,24 @@ html {
 /* Start Setting page */
 
 
-.mail-content {
-	border-left: 1px solid #000000; border-bottom: 1px solid #000000; border-right: 1px solid #000000;
-}
-.mailTemplatesTab-item {
+	.mail-content {
+	border-left: 1px solid #d9d9d9; border-bottom: 1px solid #d9d9d9; border-right: 1px solid #d9d9d9;
+	}
+	.mailTemplatesTab-item {	
 	padding: 0 !important;
-}
-
+	}
+	.input-countryname,
+	.input-countrycode,
+	.input-state,
+	.lable-state {
+		padding: 0 !important;
+	}
+	
+	
+	.form-small {
+		display: none;
+	}
+/* End setting page */
 
 /* Start Footer */
 
@@ -921,16 +936,8 @@ ul{
 	.col-4 {
 		padding: 0 0.5rem;
 	}
-	.filter-input {
-		width: 17rem;
-		margin-right: 1rem;
-	}
-	.filter-input-small {
-		display: block;
-	}
-	.filter-input-medium {
-		display: none;
-	}
+
+
 	.fixed-top {
 		left: 1.2rem;
     	right: 1.2rem;
@@ -944,9 +951,6 @@ ul{
 	#mailServer,
 	#mailTemplates{
 		padding: 3rem 2rem !important;
-		border-bottom: 1px solid #000000;
-	    border-left: 1px solid #000000;
-	    border-right: 1px solid #000000;
 	}
 	#dropDownCountries {
 		margin-left: 0 !important;
@@ -957,9 +961,17 @@ ul{
 	.btn-loadcountry {
 		margin: 1rem 0 !important;
 	}
+	.input-countryname,
+	.input-countrycode,
+	.input-state,
+	.lable-state {
+		padding: 0 !important;
+	}
+	.form-country {
+		margin-left: 0 !important;
+	}
 	#dropDownCountriesForStates,
-	#dropDownStates,
-	#fieldStateName{
+	#dropDownStates{
 		margin: 0 !important;
 	}
 
@@ -969,35 +981,118 @@ ul{
 	.mail-content {
 		margin: 0 !important;
 	}
-	#customer-verification-tab {
+	
+	#fieldCountryName,
+	#fieldCountryCode,
+	#fieldStateName{
+		width: 98% !important;
 	}
+	
+	#fieldStateName{
+		width: 95% !important;
+		margin: 0 !important;
+	}
+	
+	.li-mobile{
+		display: inline-block !important;
+	}
+	
+	#dropDownStates,
+	#dropDownCountries {
+		height: 29px !important;
+	}
+	.filter-text {
+		margin: 1rem 0rem !important;
+	}
+	.small-screen {
+		display: flex;
+		align-items: center;
+	}
+	.form-small {
+		display: block;
+	}
+	.form-large {
+		display: none;
+	}
+	
+	.form-state-small {
+		display: block;
+	}
+	.form-state-medium {
+		display: none;
+	}
+	.form-state-large {
+		display: none;
+	}
+	
+	.filter-input {
+		margin: 1rem 0;
+	}
+
+	
 }
-@media screen and (min-width: 769px) and (max-width: 1024px){
+@media screen and (min-width: 768px) and (max-width: 1024px){
 	/* medium screen */
 	div.full-details { display: block }
 	div.less-details { display: none }
 	.hideable-column { display: none}
 	
-	.filter-input-small {
-		display: none;
-	}
-	.filter-input-medium {
-		display: flex;
-		align-items: baseline;
-	}
 	
 	#general,
 	#countries,
 	#states, 
 	#mailServer,
 	#mailTemplates{
-
 		padding: 3rem 2rem !important;
-		border-bottom: 1px solid #000000;
-	    border-left: 1px solid #000000;
-	    border-right: 1px solid #000000;
 	}
 	
+	.li-mobile{
+		display: inline-block !important;
+	}
+	#labelStateName {
+		padding: 0 !important;
+	}
+	.input-state {
+		padding: 0 0.5rem !important;
+	}
+		.largeandmedium-screen {
+		display: flex;
+		align-items: center;
+	}
+	
+	.filter-text {
+		margin-left: 1rem !important;
+	}
+	
+	.form-small {
+		display: block;
+	}
+	.form-large {
+		display: none;
+	}
+	
+	.form-state-small {
+		display: none;
+	}
+	.form-state-medium {
+		display: flex;
+	}
+	
+	.form-state-large {
+		display: none;
+	}
+	
+	.imput-state {
+		margin-left: 0 !important;
+	}
+	
+		.filter-input {
+		margin-right: 1rem;
+	}
+	
+	.small-input {
+		margin-right: 2rem;
+	}
 }
 
 @media screen and (min-width: 1025px) {
@@ -1005,28 +1100,56 @@ ul{
 	div.less-details { display: none}
 	.hideable-column { display: table-cell}
 	
-	.filter-input-small {
-		display: none;
-	}
-	.filter-input-medium {
+	.largeandmedium-screen {
 		display: flex;
-		align-items: baseline;
+		align-items: center;
 	}
-	
-	
+	.filter-text {
+		margin-left: 1rem !important;
+	}
 	#general,
 	#countries,
 	#states, 
 	#mailServer,
 	#mailTemplates {
-		max-width: 800px; 
 		margin: 0 auto;
-		padding: 3rem 2rem !important;
-		border-bottom: 1px solid #000000;
-	    border-left: 1px solid #000000;
-	    border-right: 1px solid #000000;
 	}
+	
 
+	#fieldStateName{
+		width: 97% !important;
+		margin-left: 0.5rem;
+	}
+	
+	.form-small {
+		display: none;
+	}
+	.form-large {
+		display: flex;
+		justify-content: space-around;
+	}
+	
+	.form-state-small {
+		display: none;
+	}
+	.form-state-medium {
+		display: none;
+	}
+	.form-state-large {
+		display: flex;
+		justify-content: space-around;
+	}
+	.btn-state {
+		margin-top: 3rem;
+	}
+	
+	.filter-input {
+		margin-right: 1rem;
+	}
+	
+		.small-input {
+		margin-right: 2rem;
+	}
 }
 
 @media (max-width: 1199.98px) {

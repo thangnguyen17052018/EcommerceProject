@@ -45,20 +45,20 @@
 
 
 			<!-- Tab panes -->
-			<div class="tab-content mb-5">
-				<div class="tab-pane active" id="general" role="tabpanel">
+			<div class="tab-content mb-5 tab-common">
+				<div class="tab-pane active p-5" id="general" role="tabpanel">
 					<div th:replace="setting/general :: content"></div>
 				</div>
-				<div class="tab-pane p-2" id="countries" role="tabpanel">
+				<div class="tab-pane p-5" id="countries" role="tabpanel">
 					<div th:replace="setting/countries :: content"></div>
 				</div>
-				<div class="tab-pane p-2" id="states" role="tabpanel">
+				<div class="tab-pane p-5" id="states" role="tabpanel">
 					<div th:replace="setting/states :: content"></div>
 				</div>
-				<div class="tab-pane p-3" id="mailServer" role="tabpanel">
+				<div class="tab-pane p-5" id="mailServer" role="tabpanel">
 					<div th:replace="setting/mail_server :: content"></div>
 				</div>
-				<div class="tab-pane p-3" id="mailTemplates" role="tabpanel">
+				<div class="tab-pane p-5" id="mailTemplates" role="tabpanel">
 					<div th:replace="setting/mail_templates/mail_templates :: content"></div>
 				</div>
 			</div>
