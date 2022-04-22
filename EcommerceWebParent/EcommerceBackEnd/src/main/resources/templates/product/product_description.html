@@ -6,11 +6,11 @@
 
 <div th:fragment="content" th:remove="tag">
     <div class="m-2">
-        <label>Short Description:</label>
+        <label class="ml-1">Short Description:</label>
         <textarea class="form-control" th:field="*{shortDescription}" rows="5" required></textarea>
     </div>
     <div class="m-2">
-        <label>Full Description:</label>
+        <label class="ml-1">Full Description:</label>
         <textarea class="form-control" th:field="*{fullDescription}" rows="10" required></textarea>
     </div>
 </div>

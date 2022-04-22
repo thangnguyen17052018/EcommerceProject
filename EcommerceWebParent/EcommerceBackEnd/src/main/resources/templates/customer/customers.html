@@ -8,26 +8,26 @@
         <div th:replace="fragments :: menu_link"></div>
 
         <div>
-            <h2 class="my-4">Customers Management</h2>
+            <h2 class="head-text">Customers Management</h2>
                 <a th:href="@{/customers/export/csv}" class="a-textdecoration">
                     <img th:src="@{/images/csv-file.png}" class="icon pb-2"/>
                 </a>
         </div>
 
-        <div th:replace="fragments :: search_form_and_message('customers')"></div>
+        <div th:replace="fragments :: search_form_and_message"></div>
 
         <div class="full-details mt-5">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
-                        <th th:replace="fragments :: column_link('id', 'ID', 'customers', 'none')"></th>
-                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'customers', 'none')"></th>
-                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'customers', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('email', 'E-mail', 'customers', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('city', 'City', 'customers', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('state', 'State', 'customers', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('country', 'Country', 'customers', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('enabled', 'Enabled', 'customers', 'none')"></th>
+                        <th th:replace="fragments :: column_link('id', 'ID', 'none')"></th>
+                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'none')"></th>
+                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'none')"></th>
+                        <th class="hideable-column" th:replace="fragments :: column_link('email', 'E-mail', 'none')"></th>
+                        <th class="hideable-column" th:replace="fragments :: column_link('city', 'City', 'none')"></th>
+                        <th class="hideable-column" th:replace="fragments :: column_link('state', 'State', 'none')"></th>
+                        <th class="hideable-column" th:replace="fragments :: column_link('country', 'Country', 'none')"></th>
+                        <th class="hideable-column" th:replace="fragments :: column_link('enabled', 'Enabled', 'none')"></th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -54,7 +54,7 @@
             </table>
         </div>
 
-        <div th:replace="pagination_fragments :: pagination('customers', 'customers')"></div>
+        <div th:replace="pagination_fragments :: pagination('customers')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 

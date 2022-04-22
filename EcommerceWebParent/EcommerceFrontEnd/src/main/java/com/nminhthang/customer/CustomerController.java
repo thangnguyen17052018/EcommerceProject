@@ -66,8 +66,10 @@ public class CustomerController {
 
         content = content.replace("[[name]]", customer.getFullName());
 
-        String verifyURL = Utility.getSiteURL(request) + "/verify?code=" + customer.getVerificationCode();
-
+        //String verifyURL = "localhost:8000" + Utility.getSiteURL(request) + "/verify?code=" + customer.getVerificationCode();
+        
+        String verifyURL = "http://localhost:8000" + Utility.getSiteURL(request) + "/verify?code=" + customer.getVerificationCode();
+        
         content = content.replace("[[URL]]", verifyURL);
 
         helper.setText(content, true);

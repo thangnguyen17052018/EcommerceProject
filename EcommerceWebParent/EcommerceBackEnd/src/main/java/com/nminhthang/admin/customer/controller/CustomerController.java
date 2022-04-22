@@ -74,6 +74,8 @@ public class CustomerController {
         model.addAttribute("totalItems", listCustomersPage.getTotalElements());
         model.addAttribute("totalPages", listCustomersPage.getTotalPages());
         model.addAttribute("sortField", sortField);
+        
+        model.addAttribute("module", "customers");
 
         return "customer/customers";
     }
