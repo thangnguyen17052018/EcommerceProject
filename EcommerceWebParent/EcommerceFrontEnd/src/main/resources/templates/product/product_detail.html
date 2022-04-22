@@ -6,27 +6,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
+<style>
+	.carousel .carousel-indicators li {
+		background-color: #fff;
+		background-color: rgba(70, 70, 70, .25);
+	}
+
+	.carousel .carousel-indicators .active {
+		background-color: #444;
+	}
+
+	.carousel .carousel-control-next,
+	.carousel .carousel-control-prev {
+		filter: invert(100%);
+	}
+
+	.carousel .carousel-control-next:hover,
+	.carousel .carousel-control-prev:hover {
+		filter: invert(70%);
+	}
+</style>
+
 <body>
-	<style>
-		.carousel .carousel-indicators li {
-			background-color: #fff;
-			background-color: rgba(70, 70, 70, .25);
-		}
 
-		.carousel .carousel-indicators .active {
-			background-color: #444;
-		}
-
-		.carousel .carousel-control-next,
-		.carousel .carousel-control-prev {
-			filter: invert(100%);
-		}
-
-		.carousel .carousel-control-next:hover,
-		.carousel .carousel-control-prev:hover {
-			filter: invert(70%);
-		}
-	</style>
 	<div class="container-fluid">
 		<div th:replace="fragments :: header_menu"></div>
 		<div th:replace="fragments :: search_nav"></div>
@@ -51,46 +53,66 @@
 			</div>
 			<div class="col-sm mt-5">
 				<div class="px-2">
-						<div>
-							<h2>[[${product.name}]]</h2>
-						</div>
-						<div>
-							<span>Brand: [[${product.brand.name}]]</span>
-						</div>
-						<div>
-							List Price:
-							<span th:if="${product.discountPercent <= 0}">
-								<div th:replace="product/product_info :: price(${product.price})"></div>
-							</span>
-							<del th:if="${product.discountPercent > 0}"><span>
+					<div>
+						<h2>[[${product.name}]]</h2>
+					</div>
+					<div>
+						<span>Brand: [[${product.brand.name}]]</span>
+					</div>
+					<div>
+						List Price:
+						<span th:if="${product.discountPercent <= 0}">
+							<div th:replace="product/product_info :: price(${product.price})"></div>
+						</span>
+						<del th:if="${product.discountPercent > 0}"><span>
 								<div th:replace="product/product_info :: price(${product.price})"></div>
 							</span></del>
-						</div>
-						<div th:if="${product.discountPercent > 0}">
-							Price:
-							<span style="font-size: larger; color: darkred">
-								<div th:replace="product/product_info :: price(${product.discountPrice})"></div>
-							</span>
-							([[${#numbers.formatDecimal(product.discountPercent, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]% off)
-						</div>
-						<div>&nbsp;</div>
-						<div th:utext="${product.shortDescription}"></div>
-		
-						<div class="mt-5">
-							<div>
-								<span th:if="${product.inStock}" class="text-color"><b>In Stock</b></span>
-								<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
-							</div>
-							<div class="mt-2">
-								<input type="text" size="5" value="1" class="text-center">
-							</div>
-							<div class="mt-3">
-								<input type="button" value="Add to Cart" class="btn btn-primary-color">
-							</div>
+					</div>
+					<div th:if="${product.discountPercent > 0}">
+						Price:
+						<span style="font-size: larger; color: darkred">
+							<div th:replace="product/product_info :: price(${product.discountPrice})"></div>
+						</span>
+						([[${#numbers.formatDecimal(product.discountPercent, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS,
+						DECIMAL_POINT_TYPE)}]]% off)
+					</div>
+					<div>&nbsp;</div>
+					<div th:utext="${product.shortDescription}"></div>
+
+					<div class="mt-5">
+						<div>
+							<span th:if="${product.inStock}" class="text-color"><b>In Stock</b></span>
+							<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
 						</div>
 
+						<th:block th:if="${product.inStock}">
+
+							<nav class="mt-2">
+								<ul class="pagination align-items-center">
+									<li class="page-item text-center minus">
+										<a class="page_link linkMinus text-color" th:pid="${product.id}" href=""><i class="fa-thin fa-minus" style="font-family: 'FontAwesome'"></i></a>
+									</li>
+									<li class="page-item">
+										<input type="text" th:value="1" th:id="'quantity' + ${product.id}"
+											onkeydown="return false;" class="form-control text-center"
+											style="width: 72px;" />
+									</li>
+									<li class="page-item text-center plus">
+										<a class="page_link linkPlus text-color" th:pid="${product.id}" href=""><i class="fa-thin fa-plus" style="font-family: 'FontAwesome'"></i></a>
+									</li>
+								</ul>
+							</nav>
+
+							<div class="mt-3">
+								<input type="button" value="Add to Cart" id="buttonAdd2Cart" class="btn btn-primary-color" style="width: 133px;">
+							</div>
+							
+						</th:block>
+						
+					</div>
+
 				</div>
-				
+
 
 				<div class="row mt-5">
 					<div class="col-12">
@@ -98,7 +120,7 @@
 							<button class="product-descript-btntoggle">
 								<div class="product-btntoggle-flex">
 									<span>Product Description:</span>
-									
+
 									<div class="descript-angle-down">
 										<span class="fa fa-angle-down"></span>
 									</div>
@@ -107,7 +129,7 @@
 									</div>
 								</div>
 
-								
+
 							</button>
 						</div>
 						<div class="product-fulldescpt mt-3" th:utext="${product.fullDescription}"></div>
@@ -118,17 +140,17 @@
 					<div class="col-12">
 						<div>
 							<button class="product-detail-btntoggle">
-							
-									<div class="product-btntoggle-flex">
-										<span>Product Details:</span>
-									
-										<div class="detail-angle-down">
-											<span class="fa fa-angle-down"></span>
-										</div>
-										<div class="detail-angle-up">
-											<span class="fa fa-angle-up"></span>
-										</div>
+
+								<div class="product-btntoggle-flex">
+									<span>Product Details:</span>
+
+									<div class="detail-angle-down">
+										<span class="fa fa-angle-down"></span>
 									</div>
+									<div class="detail-angle-up">
+										<span class="fa fa-angle-up"></span>
+									</div>
+								</div>
 							</button>
 						</div>
 						<th:block th:each="detail : ${product.details}">
@@ -140,16 +162,21 @@
 					</div>
 				</div>
 
-				</div>
+			</div>
 
 		</div>
 
-
+		<div th:replace="modal_fragments :: modal_dialog"></div>
 
 		<div th:replace="images_carousel :: content"></div>
 	</div>
 
 	<script>
+		contextPath = "[[@{/}]]";
+		productId = "[[${product.id}]]";	
+		var csrfHeaderName = "[[${_csrf.headerName}]]";
+		var csrfValue = "[[${_csrf.token}]]";
+		
 		$(document).ready(function () {
 			mainImage = $("#mainImage");
 
@@ -167,7 +194,9 @@
 			});
 		});
 	</script>
-
+	<script type="text/javascript" th:src="@{/js/common_modal.js}"> </script>
+	<script type="text/javascript" th:src="@{/js/quantity_control.js}"> </script>
+	<script type="text/javascript" th:src="@{/js/add_to_cart.js}"> </script>
 </body>
 
 </html>

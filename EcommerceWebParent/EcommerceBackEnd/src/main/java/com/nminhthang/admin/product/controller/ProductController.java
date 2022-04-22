@@ -82,8 +82,11 @@ public class ProductController {
         model.addAttribute("totalItems", listProductsPage.getTotalElements());
         model.addAttribute("totalPages", listProductsPage.getTotalPages());
         model.addAttribute("sortField", "name");
+        model.addAttribute("module", "products");
         if (categoryId != null) model.addAttribute("categoryId", categoryId);
-
+        
+        
+        
         return "product/products";
     }
 

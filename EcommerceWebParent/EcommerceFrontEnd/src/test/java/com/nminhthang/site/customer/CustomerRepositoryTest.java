@@ -1,5 +1,6 @@
 package com.nminhthang.site.customer;
 
+import com.nminhthang.common.entity.AuthenticationType;
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.Customer;
 import com.nminhthang.customer.CustomerRepository;
@@ -10,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.annotation.Rollback;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Date;
 import java.util.Optional;
@@ -145,4 +148,15 @@ public class CustomerRepositoryTest {
         Assertions.assertThat(customer.isEnabled()).isTrue();
     }
 
+    
+    
+    @Test
+    public void testUpdateAuthenticationType() {
+    	Integer id = 1;
+    	customerRepository.updateAuthenticationType(id, AuthenticationType.DATABASE);
+    	
+    	Customer customer = customerRepository.findById(id).get();
+    	
+    	assertThat(customer.getAuthenticationType()).isEqualTo(AuthenticationType.DATABASE);
+    }
 }

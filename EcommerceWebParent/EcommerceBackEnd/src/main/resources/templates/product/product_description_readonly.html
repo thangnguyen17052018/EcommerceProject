@@ -6,11 +6,11 @@
 
 <div th:fragment="content" th:remove="tag">
     <div class="m-2">
-        <label>Short Description</label>
+        <label class="ml-2">Short Description</label>
         <div th:utext="${product.shortDescription}" class="border p-2 m-2"></div>
     </div>
     <div class="m-2">
-        <label>Full Description</label>
+        <label class="ml-2">Full Description</label>
         <div th:utext="${product.fullDescription}" class="border p-2 m-2"></div>
     </div>
 </div>

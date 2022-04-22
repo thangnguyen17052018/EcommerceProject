@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">FREQUENTLY ASKED QUESTIONS</h1>
+		</div>
+
+		<div class="frequentQuestions">
+			<div class="bs-example">
+				<div class="accordion" id="accordionExample">
+					<div class="card">
+						<div class="card-header" id="headingOne">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link" data-toggle="collapse"
+									data-target="#collapseOne"><i class="fa fa-plus"></i> Do I pay online or pay
+									in-store?</button>
+							</h2>
+						</div>
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>To place your order, enter your credit card information online. Your credit card will
+									not be
+									charged
+									until you pick up your items in-store. For delivery, your credit card will be
+									charged when
+									our delivery
+									partner, PICKUP, is on the way to deliver your items.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwo">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link" data-toggle="collapse"
+									data-target="#collapseTwo"><i class="fa fa-plus"></i> How do I pick up
+									curbside?</button>
+							</h2>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>You will need the barcode or order number from your confirmation email and a photo
+									I.D.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingFour">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseFour"><i class="fa fa-plus"></i> Are your stores open for Buy
+									online,
+									pickup curbside or in store?</button>
+							</h2>
+						</div>
+						<div id="collapseFour" class="collapse" aria-labelledby="headingFour"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>As local regulations allow and with safety in mind, we’re offering free curbside pick
+									up
+									instead of
+									in-store pick up for your online order convenience.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="DeliveryService">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseDeliveryService"><i class="fa fa-plus"></i> Does At Home have
+									delivery
+									service?</button>
+							</h2>
+						</div>
+						<div id="collapseDeliveryService" class="collapse" aria-labelledby="DeliveryService"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>At Home offers delivery or shipping. Please note: Options and costs vary by store.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingFive">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseFive"><i class="fa fa-plus"></i> What is Buy Online, Pick Up
+									Curbside
+									or In Store?</button>
+							</h2>
+						</div>
+						<div id="collapseFive" class="collapse" aria-labelledby="headingFive"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Buy Online, Pick Up Curbside or in Store allows you to shop, purchase online and pick
+									up your
+									order from
+									your local store without the wait or cost of shipping. With Buy Online, Pick Up
+									Curbside or
+									In Store you
+									can shop whenever, wherever you want!</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingSix">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseSix"><i class="fa fa-plus"></i> What items are available for
+									Buy
+									Online, Pick Up Curbside or In Store?</button>
+							</h2>
+						</div>
+						<div id="collapseSix" class="collapse" aria-labelledby="headingSix"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Only select items are available for Buy Online, Pick Up Curbside or In Store. Items
+									available
+									will be
+									able to be added to cart for purchase.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingSeven">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseSeven"><i class="fa fa-plus"></i> I don't see the "add to
+									cart" button
+									on my item. Can I still buy it online and
+									pick it up in my local store?</button>
+							</h2>
+						</div>
+						<div id="collapseSeven" class="collapse" aria-labelledby="headingSeven"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Not all items are currently available for Buy Online, Pick Up Curbside or In Store.
+									We also
+									offer some
+									items that are only available in store that are not eligible for Buy Online, Pick Up
+									Curbside or In Store.
+									For those items, you can check the availability online and call your local store to
+									confirm
+									availability.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingEight">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseEight"><i class="fa fa-plus"></i> How does it work?</button>
+							</h2>
+						</div>
+						<div id="collapseEight" class="collapse" aria-labelledby="headingEight"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>On the product page, add the item to your cart. Complete your order by checking out.
+									You will
+									receive an
+									“Order Confirmation” e-mail once the order is received by your store. Once your
+									order is
+									ready for pick
+									up, you will receive a “Ready for Pickup” e-mail. Follow the e-mail instructions to
+									go to
+									the store and
+									pick up your order.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingNine">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseNine"><i class="fa fa-plus"></i> How will I know when my order
+									is
+									ready for pick up?</button>
+							</h2>
+						</div>
+						<div id="collapseNine" class="collapse" aria-labelledby="headingNine"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>You will receive a “Ready for Pickup” e-mail. Follow the e-mail instructions to go to
+									the
+									store and pick
+									up your order. You have 4 days to pick up your order once you receive the “Ready for
+									Pickup”
+									e-mail.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseTen"><i class="fa fa-plus"></i> What happens if some of the
+									items in
+									my order are unable to be
+									fulfilled?</button>
+							</h2>
+						</div>
+						<div id="collapseTen" class="collapse" aria-labelledby="headingTen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>You will receive another e-mail to tell you certain items in your order are not able
+									to be
+									fulfilled by
+									our store. At that time, you have a choice to either cancel the whole order or go to
+									the
+									store and pick up
+									the items are available.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingEleven">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseEleven"><i class="fa fa-plus"></i> What do I need to bring to
+									the
+									store to pick up my items?</button>
+							</h2>
+						</div>
+						<div id="collapseEleven" class="collapse" aria-labelledby="headingEleven"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>You will need the barcode or order number from your confirmation email and a photo
+									I.D. </p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwelve">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseTwelve"><i class="fa fa-plus"></i> Who can pick up my
+									order?</button>
+							</h2>
+						</div>
+						<div id="collapseTwelve" class="collapse" aria-labelledby="headingTwelve"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>In addition to yourself, you are able to list one other person allowed to pick up
+									your order.
+									The person
+									who comes to pick up simply needs to bring the order number and a photo I.D.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingThirteen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseThirteen"><i class="fa fa-plus"></i> Where should I go to pick
+									up my
+									order?</button>
+							</h2>
+						</div>
+						<div id="collapseThirteen" class="collapse" aria-labelledby="headingThirteen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>
+
+									<strong>For Curbside Pick Up:</strong> Send a text to let us know you’re on the way
+									30
+									minutes before
+									arrival. Upon arrival, text us again to confirm you’re here. Make sure to include
+									your last
+									name along
+									with the make, model and color of your vehicle. Please pull up in front of the store
+									to the
+									right or left
+									of the main entrance, and an associate will bring your item(s) out to you and
+									complete your
+									payment.
+
+									<strong>For In-Store Pick Up:</strong> Upon entering the store, go to the register
+									closest
+									to the door
+									(look for the “Buy Online, Pick Up in Store” sign) to indicate that you’re there to
+									pick up
+									an order you
+									placed online.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingFourteen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseFourteen"><i class="fa fa-plus"></i> How long will you hold my
+									order?</button>
+							</h2>
+						</div>
+						<div id="collapseFourteen" class="collapse" aria-labelledby="headingFourteen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>You have 4 days to pick up your order once you receive the “Ready for Pickup” e-mail.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingFifteen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseFifteen"><i class="fa fa-plus"></i> What happens if I don't
+									pick up my
+									order in
+									time?</button>
+							</h2>
+						</div>
+						<div id="collapseFifteen" class="collapse" aria-labelledby="headingFifteen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Your order will be automatically canceled after 4 days from the day your order is
+									confirmed.
+									You will not
+									be charged for anything if you don’t pick up your order.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingSixteen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseSixteen"><i class="fa fa-plus"></i> Can I change my order once
+									I have
+									placed my
+									order online?</button>
+							</h2>
+						</div>
+						<div id="collapseSixteen" class="collapse" aria-labelledby="headingSixteen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Once you place an order online, you cannot modify it. But you can make changes to
+									your order
+									at your in
+									person at your store.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingSeventeen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseSeventeen"><i class="fa fa-plus"></i> Can I pickup my order
+									from a
+									different
+									location after I place my order online?</button>
+							</h2>
+						</div>
+						<div id="collapseSeventeen" class="collapse" aria-labelledby="headingSeventeen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>No. You must pick up your order from the store selected at time of purchase.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingEighteen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseEighteen"><i class="fa fa-plus"></i> Can I split my order to
+									be picked
+									up from
+									multiple locations?</button>
+							</h2>
+						</div>
+						<div id="collapseEighteen" class="collapse" aria-labelledby="headingEighteen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>No. You must pick all items up from a single store location.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingNineteen">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseNineteen"><i class="fa fa-plus"></i> Can I cancel my
+									order?</button>
+							</h2>
+						</div>
+						<div id="collapseNineteen" class="collapse" aria-labelledby="headingNineteen"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Yes. You can cancel your order at any time from the moment you place your online
+									order. To do
+									so, go
+									online to your <a href="https://staging-web-athome.demandware.net/account/"
+										target="_blank">Account
+										Page</a> and click “Cancel” on the order you want to cancel.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwenty">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseTwenty"><i class="fa fa-plus"></i> Can I have items shipped
+									directly
+									to my home?</button>
+							</h2>
+						</div>
+						<div id="collapseTwenty" class="collapse" aria-labelledby="headingTwenty"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Yes we now offer the option to ship merchandise directly to your home from select
+									stores.
+									If you need delivery, you can utilize our add-on delivery service offer available in
+									select
+									stores.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwenty">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#WhenShipping"><i class="fa fa-plus"></i> When will my shipping order
+									arrive?</button>
+							</h2>
+						</div>
+						<div id="WhenShipping" class="collapse" aria-labelledby="WhenShipping"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p> Typically you should receive your order within 5-7 days, however shipping carriers
+									are
+									handling extremely high volume.
+									Tracking updates and deliveries may be delayed, and our Customer Success Team
+									doesn't have
+									any information beyond
+									what is shown in the tracking. We appreciate your patience while the carrier works
+									to get
+									your order delivered.
+								</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwentyone">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseTwentyone"><i class="fa fa-plus"></i> Can I use a gift card or
+									coupon
+									to purchase my
+									online order?</button>
+							</h2>
+						</div>
+						<div id="collapseTwentyone" class="collapse" aria-labelledby="headingTwentyone"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Gift cards are eligible for in-store use only.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwentytwo">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseTwentytwo"><i class="fa fa-plus"></i> Can I get a price
+									adjustment if
+									the price is
+									lower in store?</button>
+							</h2>
+						</div>
+						<div id="collapseTwentytwo" class="collapse" aria-labelledby="headingTwentytwo"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Yes.</p>
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="ReturnOnlineOrnder">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseReturnOnline"><i class="fa fa-plus"></i> Can I return any/all
+									items
+									from my online order?</button>
+							</h2>
+						</div>
+						<div id="collapseReturnOnline" class="collapse" aria-labelledby="ReturnOnlineOrnder"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Yes. Returns are accepted within 60 days of purchase only if unused, with original
+									receipt
+									and packaging.
+									You can return items shipped to your home at your local store for free or pay a
+									$9.99 return
+									shipping fee.
+									<br>
+									Returns of Christmas merchandise after Dec. 25 will be refunded at the current
+									price. We are
+									unable to accept returns on mattresses, adjustable sofas, futons, pre-cut fabric or
+									items
+									ticketed “all sales final.” We do not offer exchanges.
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-header" id="headingTwentyfour">
+							<h2 class="mb-0">
+								<button type="button" class="btn btn-link collapsed" data-toggle="collapse"
+									data-target="#collapseTwentyfour"><i class="fa fa-plus"></i> What if I have
+									questions about
+									my
+									order?</button>
+							</h2>
+						</div>
+						<div id="collapseTwentyfour" class="collapse" aria-labelledby="headingTwenyfour"
+							data-parent="#accordionExample">
+							<div class="card-body">
+								<p>Please call or contact your local store.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:replace="fragments :: footer_menu"></div>
+
+	<script>
+		$(document).ready(function () {
+			$(".btn-store").click(function () {
+				$(".text-store").show();
+				$(".text-shipping").hide();
+				$(".text-delivery").hide();
+			});
+			$(".btn-shipping").click(function () {
+				$(".text-store").hide();
+				$(".text-shipping").show();
+				$(".text-delivery").hide();
+			});
+			$(".btn-delivery").click(function () {
+				$(".text-store").hide();
+				$(".text-shipping").hide();
+				$(".text-delivery").show();
+			});
+		});
+		$(document).ready(function () {
+		        $(".houseAnchors").on("click", function (e) {
+            $(".tabLabel").removeClass("active");
+            var currInput = $(this).attr("id");
+            if (currInput == "tabone") {
+                $("#lblOne").addClass("active");
+            }
+            else if (currInput == "tabtwo") {
+                $("#lblTwo").addClass("active");
+            }
+            else if (currInput == "tabthree") {
+                $("#lblThree").addClass("active");
+            }
+        	});
+	        // Add minus icon
+	        $(".collapse.show").each(function () {
+	            $(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
+	        });
+	
+	        // Toggle plus minus icon
+	        $(".collapse").on('show.bs.collapse', function () {
+	            $(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
+	        }).on('hide.bs.collapse', function () {
+	            $(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
+	        });
+        });
+	</script>
+</body>
+
+</html>

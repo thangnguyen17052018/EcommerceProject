@@ -26,26 +26,26 @@
             </a>
         </div>
 
-        <div th:replace="fragments :: search_form_and_message('users')"></div>
+        <div th:replace="fragments :: search_form_and_message"></div>
         
         <div class="full-details mt-5">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
                     	<th class="hideable-column">
-                        <th th:replace="fragments :: column_link('id', 'User ID', 'users', 'tag')"></th>
+                        <th th:replace="fragments :: column_link('id', 'User ID', 'tag')"></th>
                         </th>
                         
                         <th>Photos</th>
                         
                         <th class="hideable-column">
-                        <th th:replace="fragments :: column_link('email', 'Email', 'users', 'tag')"></th>
+                        <th th:replace="fragments :: column_link('email', 'Email', 'tag')"></th>
                         </th>
                         
-                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'users', 'none')"></th>
-                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'users', 'none')"></th>
+                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'none')"></th>
+                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'none')"></th>
                         <th>Roles</th>
-                        <th th:replace="fragments :: column_link('enabled', 'Enabled', 'users', 'none')"></th>
+                        <th th:replace="fragments :: column_link('enabled', 'Enabled', 'none')"></th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -97,7 +97,7 @@
 			</div>
 		</div>
 
-        <div th:replace="pagination_fragments :: pagination('users', 'users')"></div>
+        <div th:replace="pagination_fragments :: pagination('users')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 

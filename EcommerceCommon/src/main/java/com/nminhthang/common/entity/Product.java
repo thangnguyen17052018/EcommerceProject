@@ -63,6 +63,10 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductDetail> details = new ArrayList<>();
 
+    
+    
+    
+    
     @Transient
     public String getImagePath() {
         return "/images/product-image.png";
@@ -126,4 +130,21 @@ public class Product {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+	public Product(Integer id) {
+		this.id = id;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", alias=" + alias + ", shortDescription=" + shortDescription
+				+ ", fullDescription=" + fullDescription + ", createdTime=" + createdTime + ", updatedTime="
+				+ updatedTime + ", enabled=" + enabled + ", inStock=" + inStock + ", cost=" + cost + ", price=" + price
+				+ ", discountPercent=" + discountPercent + ", length=" + length + ", width=" + width + ", height="
+				+ height + ", weight=" + weight + ", category=" + category + ", brand=" + brand + ", mainImage="
+				+ mainImage + ", images=" + images + ", details=" + details + "]";
+	}
+
+	
+
 }
