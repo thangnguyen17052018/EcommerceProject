@@ -5,11 +5,11 @@ fullDescription = $("#fullDescription");
 
 $(document).ready(() => {
     shortDescription.richText({
-        height: 200,
+        height: 300,
         id: "richText-editor-sizecolor"
     });
     fullDescription.richText({
-        height: 400,
+        height: 500,
         id: "richText-editor-sizecolor"
     });
 

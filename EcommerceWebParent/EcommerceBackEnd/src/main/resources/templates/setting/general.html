@@ -3,7 +3,7 @@
         lang="en">
 <body>
     <div th:fragment="content" th:remove="tag">
-        <form th:action="@{/settings/save_general}" method="post" enctype="multipart/form-data" class="form-setting">
+        <form th:action="@{/settings/save_general}" method="post" enctype="multipart/form-data">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Site Name:</label>
                 <div class="col-sm-8">
@@ -22,7 +22,7 @@
                 <label class="col-sm-4 col-form-label">Site Logo:</label>
                 <div class="col-sm-8 d-flex align-items-center flex-wrap">
                     <input type="hidden" th:field="*{SITE_LOGO}">
-                    <input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" class="mb-3" th:required="${SITE_LOGO == null}">
+                    <input type="file" id="fileImage" name="fileImage" accept="image/png, image/jpeg" th:required="${SITE_LOGO == null}">
                     <img th:src="@{${SITE_LOGO}}" id="thumbnail" class="img-fluid" alt="Logo preview" width="80" height="80">
                 </div>
             </div>

@@ -14,7 +14,7 @@
           th:object="${user}">
         <input type="hidden" th:field="*{id}">
         <div class="text-center">
-            <h2>Account Profile</h2>
+            <h2 class="head-text">Account Profile</h2>
         </div>
         <div th:if="${message != null}" class="alert alert-success text-center">
             [[${message}]]

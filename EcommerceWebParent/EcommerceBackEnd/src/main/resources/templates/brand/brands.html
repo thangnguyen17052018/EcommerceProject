@@ -8,7 +8,7 @@
         <div th:replace="fragments :: menu_link"></div>
 
         <div>
-            <h2 class="my-4">Brands Management</h2>
+            <h2 class="head-text">Brands Management</h2>
             <a th:href="@{/brands/new}" class="a-textdecoration">
             	<img th:src="@{/images/add.png}" class="icon pb-2"/>
             </a>
@@ -18,7 +18,7 @@
             </a>
         </div>
 
-        <div th:replace="fragments :: search_form_and_message('brands')"></div>
+        <div th:replace="fragments :: search_form_and_message"></div>
 
         <div class="full-details mt-5">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
@@ -26,7 +26,7 @@
                     <tr>
                         <th>Brand ID</th>
                         <th>Brand Logo</th>
-                        <th th:replace="fragments :: column_link('name', 'Brand Name', 'brands', 'none')"></th>
+                        <th th:replace="fragments :: column_link('name', 'Brand Name', 'none')"></th>
                         <th>Categories</th>
                         <th>Action</th>
                     </tr>
@@ -75,7 +75,7 @@
 			</div>
 		</div>
 
-        <div th:replace="pagination_fragments :: pagination('brands', 'brand')"></div>
+        <div th:replace="pagination_fragments :: pagination('brand')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 

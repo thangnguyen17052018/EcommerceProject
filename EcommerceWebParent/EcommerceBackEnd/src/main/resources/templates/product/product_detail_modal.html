@@ -3,7 +3,7 @@
     <button type="button" class="close" data-dismiss="modal">&times;</button>
 </div>
 
-<div>
+<div class="p-3">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item">
             <a class="nav-link active" id="overview-tab" data-toggle="tab" href="#overview" role="tab">Overview</a>
@@ -23,7 +23,7 @@
     </ul>
 
     <!-- Tab panes -->
-    <div class="tab-content">
+    <div class="tab-content tab-common">
         <div class="tab-pane active p-5" id="overview" role="tabpanel">
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Product Name:</label>
@@ -99,7 +99,7 @@
         </div>
         <div class="tab-pane p-2" id="images" role="tabpanel">
             <div class="row">
-                <div class="col border m-3 p-2">
+                <div class="col border m-4 p-3">
                     <div><label>Main Image: [[${product.mainImage}]]</label></div>
                     <div>
                         <img class="img-fluid m-2" id="thumbnail" width="180px" height="200px"
@@ -108,7 +108,7 @@
             </div>
 
                 <th:block th:each="productImage, status : ${product.images}">
-                    <div class="col border m-3 p-2">
+                    <div class="col border m-4 p-3">
                         <div>
                             <label>Extra Image #[[${status.index + 1}]]: [[${productImage.name}]]</label>
                         </div>
@@ -140,6 +140,6 @@
     </div>
 </div>
 
-<div class="modal-footer">
-    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+<div class="modal-footer justify-content-center">
+    <button type="button" class="btn btn-primary-color" data-dismiss="modal">Close</button>
 </div>

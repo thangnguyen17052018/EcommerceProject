@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">About Us</h1>
+		</div>
+		
+		<div class="container content"> 
+			<p class="text-aboutus">This site is owned and operated by HKT</p>
+			<p class="text-aboutus">Phone: 0399121188</p>
+			<p class="text-aboutus">Email: <a href="mailto:someone@yoursite.com?subject=Mail from Our Site">haukienthang@gmail.com</a></p> 
+			<p class="text-aboutus">Address: 694/72 An Binh Ward, Ninh Kieu District, Can Tho City</p>
+			<p class="text-aboutus">
+				Our online sales business began in 2022. We exist to create
+				experiences for you that make you smile! Our collections are truly one of a kind.
+				<br><br>
+			</p>
+			<p class="text-aboutus">
+				At EcommerceFurniture , we strive to be different. We pride ourselves on being the number one online seller in the country and sell better products than any other company. Our products are designed with high quality materials.</p>
+			<p class="text-aboutus">
+				<br>With all of our products, we focus on quality by having our products subject to rigorous quality checks
+				and testings before it reaches you.<br><br></p>
+			<p class="text-aboutus">
+				Customer service and our customer service agents are on standby waiting to support you
+				with any concerns or questions you may have!<br><br>
+				Lastly, you can confidently shop on our website, because we are HKT. We also accept all major credit cards on all
+				of your purchases for your convenience. We take our job very seriously and our intent is making the world a
+				better place!
+			</p>
+			<br><br>
+			<strong>Why Choose Us?</strong></p>
+			<ul class="list-choose">
+			
+				<li class="ml-3">
+					<strong>Nice Shopping Experience -</strong><span> </span>We strive to make your shopping experience with
+					us a memorable one, so we put all our efforts to make you happy while buying and exploring our shop.
+				</li>
+				<br>
+				
+				<li class="ml-3">
+					<strong>Discounted prices -</strong><span> </span>Our products are set at a very nice price so that
+					everybody can purchase and enjoy them.
+				</li>
+				<br>
+				
+				<li class="ml-3">
+					<strong>From name brands to classic -<span> </span></strong>From premium luxury brands to those hard to
+					find favorites, we always have something for everyone.
+				</li>
+				<br>
+				
+				<li class="ml-3">
+					<strong>FREE Shipping -</strong>We offer free shipping worldwide.
+				</li>
+				<br>
+				
+				<li class="ml-3">
+					<strong>30 day returns</strong><span> </span>- Our products are 100% authentic &amp; we make sure you
+					like them. We are open to accepting returns within 30 days after product delivery.
+				</li>
+				<br>
+				
+				<li class="ml-3">
+					<strong>Dedicated Customer Service</strong><span> </span>- Our expert and friendly team can always be
+					reached by phone or email.
+				</li>
+				<br>
+			</ul>
+		</div>
+		<div th:replace="fragments :: footer_menu"></div>
+
+
+</body>
+
+</html>
