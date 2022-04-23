@@ -12,10 +12,12 @@
 }
 
 *.icon-dark {
-	color:gray
+	color:gray;
 }
 *.icon-dark:hover {
-    color: #f11755;
+	color:gray;
+    opacity: 0.6;
+    text-decoration: none;
 }
 
 
@@ -440,6 +442,10 @@ html {
 	background: var(--color-primary);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+}
+
+.text-color:hover{
+	opacity: 0.6;
 }
 
 /* Start Navbar */
