@@ -147,16 +147,14 @@ public class CustomerRepositoryTest {
         Customer customer = customerRepository.findById(customerId).get();
         Assertions.assertThat(customer.isEnabled()).isTrue();
     }
-
-    
     
     @Test
     public void testUpdateAuthenticationType() {
-    	Integer id = 1;
-    	customerRepository.updateAuthenticationType(id, AuthenticationType.DATABASE);
+    	Integer id = 2;
+    	customerRepository.updateAuthenticationType(id, AuthenticationType.FACEBOOK);
     	
     	Customer customer = customerRepository.findById(id).get();
     	
-    	assertThat(customer.getAuthenticationType()).isEqualTo(AuthenticationType.DATABASE);
+    	assertThat(customer.getAuthenticationType()).isEqualTo(AuthenticationType.FACEBOOK);
     }
 }

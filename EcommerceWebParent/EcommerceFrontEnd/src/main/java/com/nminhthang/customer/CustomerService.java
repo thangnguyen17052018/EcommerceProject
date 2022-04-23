@@ -43,7 +43,7 @@ public class CustomerService {
 
         String randomCode = RandomString.make(64);
         customer.setVerificationCode(randomCode);
-
+        customer.setAuthenticationType(AuthenticationType.DATABASE);
         customerRepository.save(customer);
         System.out.println("Verification code: " + randomCode);
     }
@@ -75,40 +75,41 @@ public class CustomerService {
     	}
     }
     
-//    public void addNewCustomerUponOAuthLogin(String name, String email, String countryCode) {
-//		Customer customer = new Customer();
-//		customer.setEmail(email);
-//		
-//		setName(name, customer);
-//		
-//		customer.setEnabled(true);
-//		customer.setCreateTime(new Date());
-//		customer.setAuthenticationType(AuthenticationType.GOOLGE);
-//		customer.setPassword("");
-//		customer.setAddressLine1("");
-//		customer.setCity("");
-//		customer.setState("");
-//		customer.setPhoneNumber("");
-//		customer.setPostalCode("");
-//		customer.setCountry(countryRepository.findByCode(countryCode));
-//		
-//		customerRepository.save(customer);
-//	}
-//    
-//    private void setName(String name, Customer customer) {
-//    	String[] nameArray = name.split(" ");
-//    	if(nameArray.length < 2) {
-//    		customer.setFirstName(name);
-//    		customer.setLastName("");
-//    	}
-//    	else {
-//    		String fisrtname = nameArray[0];
-//    		customer.setFirstName(fisrtname);
-//    		
-//    		String lastName = name.replaceFirst(fisrtname, "");
-//    		customer.setLastName(lastName);
-//    	}
-//    }
+    public void addNewCustomerUponOAuthLogin(String name, String email, String countryCode) {
+		Customer customer = new Customer();
+		customer.setEmail(email);
+
+		setName(name, customer);
+
+		customer.setEnabled(true);
+		customer.setCreateTime(new Date());
+		customer.setAuthenticationType(AuthenticationType.GOOGLE);
+		customer.setPassword("");
+		customer.setAddressLine1("");
+        customer.setAddressLine2("");
+		customer.setCity("");
+		customer.setState("");
+		customer.setPhoneNumber("");
+		customer.setPostalCode("");
+		customer.setCountry(countryRepository.findByCode(countryCode));
+
+		customerRepository.save(customer);
+	}
+
+    private void setName(String name, Customer customer) {
+    	String[] nameArray = name.split(" ");
+    	if(nameArray.length < 2) {
+    		customer.setFirstName(name);
+    		customer.setLastName("");
+    	}
+    	else {
+    		String firstName = nameArray[0];
+    		customer.setFirstName(firstName);
+
+    		String lastName = name.replaceFirst(firstName, "");
+    		customer.setLastName(lastName);
+    	}
+    }
     
 
 }

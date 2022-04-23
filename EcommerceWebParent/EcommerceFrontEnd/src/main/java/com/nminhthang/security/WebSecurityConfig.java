@@ -1,10 +1,13 @@
 package com.nminhthang.security;
 
+import com.nminhthang.security.oauth.CustomerOAuth2UserService;
+import com.nminhthang.security.oauth.OAuth2LoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,24 +17,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.nminhthang.security.oauth.CustomerOAuth2User;
-import com.nminhthang.security.oauth.CustomerOAuth2UserService;
-import com.nminhthang.security.oauth.OAuth2LoginSuccessHandler;
+import javax.annotation.Resource;
 
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private CustomerOAuth2UserService oAuth2UserService;
 
-	@Autowired private CustomerOAuth2UserService oAuth2UserService;
-	@Autowired private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+	@Autowired
+	private OAuth2LoginSuccessHandler oAuth2LoginSuccessHandler;
+
+	@Autowired
+	private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
 	
-	@Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
@@ -41,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 	.loginPage("/login")
                 	.usernameParameter("email")
+					.successHandler(databaseLoginSuccessHandler)
                 	.permitAll()
                 .and()
                 .oauth2Login()
@@ -49,7 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 	.userService(oAuth2UserService)
                 	.and()
                 	.successHandler(oAuth2LoginSuccessHandler)
-                .and() 
+                .and()
                 .logout().permitAll()
                 .and()
                 .rememberMe()
@@ -64,19 +66,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/images/**", "/js/**", "/webjars/**", "/css/**");
     }
-    
-    @Bean
-    public UserDetailsService userDetailsService() {
-    	return new CustomerUserDetailsService();
-    }
-    
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-    	DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-    	
-    	authProvider.setUserDetailsService(userDetailsService());
-    	authProvider.setPasswordEncoder(passwordEncoder());
-    	
-    	return authProvider;
-    }
+
 }
