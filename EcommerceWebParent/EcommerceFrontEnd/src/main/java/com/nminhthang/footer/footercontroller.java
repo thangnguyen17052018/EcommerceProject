@@ -17,11 +17,34 @@ public class footercontroller {
         return "aboutus";
     }
     
-    @GetMapping("/Shipping")
+    @GetMapping("/PrivacyPolicy")
+    public String viewPrivacyPage(Model model) {
+
+        return "privacy";
+    }
+    
+    @GetMapping("/AffiliateProgram<")
     public String viewShippingPage(Model model) {
 
-        return "shipping";
+        return "affiliate";
     }
+    
+    @GetMapping("/CareAndMaintenance")
+    public String viewCareAndMaintenancePage(Model model) {
+        return "care";
+    }
+    
+    @GetMapping("/Returns")
+    public String viewReturnsPage(Model model) {
+        return "returns";
+    }
+    
+    @GetMapping("/DiversityAndInclusion")
+    public String viewDiversityAndInclusionPage(Model model) {
+        return "diversity";
+    }
+    
+
     
     @GetMapping("/FAQ")
     public String viewFAQPage(Model model) {
