@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">Diversity and Inclusion</h1>
+		</div>
+		
+		<div class="container content"> 
+			<p> EcommerFurniture.com is committed to creating a diverse and inclusive workplace in each of our offices across the globe. We pledge to listen, to educate and to challenge. To inspire action and ensure accountability across all levels of our business. </p>
+			<p> <strong> We will listen </strong> in order to understand our employees, customers and partners. We offer a safe space for people to speak about their lived experiences, and empower freedom of expression without judgement. </p>
+			<p> <strong> We will educate  </strong> our employees, offering regular opportunities for ongoing and consistent learning. We strive for enhanced awareness and understanding of the value of an inclusive workplace, achieved through mandatory training for all staff.  </p>
+			<p> <strong> We will challenge  </strong> decisions made in all areas of the business and stand up for what’s right. We pledge to build our processes with inclusivity at the heart.  </p>
+			<p> We’re reviewing everything we do to ensure diversity and inclusion is embedded across all areas of our business and brand. Our commitments to diversity and inclusion in 2022 include (but are not limited to): </p>
+		
+			<ul class="list-choose">
+			
+				<li class="ml-3">
+					Ensuring all voices continue to be heard within our organisation with the help of our Diversity and Inclusion Council – here to educate, challenge and strengthen our actions as a business. This team and its recommendations will have the full support of the executive board
+				</li>
+				<li class="ml-3">
+					We’re developing a data dashboard to better understand the impact of our processes and the demographic of our workforce, identifying where we have opportunities, imbalances and gaps
+				</li>
+				<li class="ml-3">
+					We’re reviewing how we present ourselves and who we work with externally, from designers to creative talent, in order to be a truly diverse and inclusive design brand
+				</li>
+				<li class="ml-3">
+					We’re reviewing our recruitment processes and those that we partner with to ensure a fair and equal opportunity for all. We’ve stopped our 'refer a friend' scheme and will soon launch blind CV screening
+				</li>
+				<li class="ml-3">
+					We’ve launched a Mental Health First Aid programme to create safe spaces across all UK locations, aiming to support those who are suffering with their mental health. We plan to roll out this programme globally in 2022
+				</li>
+			</ul>
+		
+		</div>
+		<div th:replace="fragments :: footer_menu"></div>
+
+
+</body>
+
+</html>
