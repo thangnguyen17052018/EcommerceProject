@@ -14,7 +14,8 @@ public class Utility {
 
     public static String getSiteURL(HttpServletRequest request) {
         String siteURL = request.getRequestURI().toString();
-
+        System.out.println(siteURL);
+        System.out.println(request.getServletPath());
         return siteURL.replace(request.getServletPath(), "");
     }
 

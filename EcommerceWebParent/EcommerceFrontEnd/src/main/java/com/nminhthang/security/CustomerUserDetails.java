@@ -1,18 +1,13 @@
 package com.nminhthang.security;
 
-import org.hibernate.mapping.Collection;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.GrantedAuthoritiesContainer;
-import org.springframework.security.core.userdetails.UserDetails;
-import java.io.Serializable;
-
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
 import com.nminhthang.common.entity.Customer;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 public class CustomerUserDetails implements UserDetails{
 	
 	private Customer customer;
+
 	public CustomerUserDetails (Customer customer) {
 		this.customer = customer;
 	}
@@ -55,6 +50,10 @@ public class CustomerUserDetails implements UserDetails{
 
 	public String getFullName() {
 		return customer.getFirstName() + " " + customer.getLastName();
+	}
+
+	public Customer getCustomer() {
+		return this.customer;
 	}
 	
 }

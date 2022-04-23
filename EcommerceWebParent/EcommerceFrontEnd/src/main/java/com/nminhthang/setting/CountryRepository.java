@@ -12,5 +12,5 @@ public interface CountryRepository extends CrudRepository<Country, Integer> {
     List<Country> findAllByOrderByNameAsc();
     
     @Query("SELECT c FROM Country c WHERE c.code = ?1")
-    public Country findByCode(String code);
+    Country findByCode(String code);
 }

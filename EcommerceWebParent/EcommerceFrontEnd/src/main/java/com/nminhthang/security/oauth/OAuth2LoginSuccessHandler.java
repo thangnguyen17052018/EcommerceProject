@@ -18,7 +18,7 @@ import com.nminhthang.customer.CustomerService;
 @Component
 public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSuccessHandler {
 	
-	//@Autowired private CustomerService customerService;
+	@Autowired private CustomerService customerService;
 	
 	@Override	
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -32,13 +32,13 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
 		
 		System.out.println("OAuth2LoginSuccessHandler:" + name + " | " + email);
 		
-//		Customer customer =	customerService.getCustomerByEmail(email);
-//		if(customer == null) {
-//			customerService.addNewCustomerUponOAuthLogin(name, email, countryCode);
-//		}
-//		else {
-//			customerService.updateAuthenticationType(customer, AuthenticationType.GOOLGE);
-//		}
+		Customer customer =	customerService.getCustomerByEmail(email);
+		if(customer == null) {
+			customerService.addNewCustomerUponOAuthLogin(name, email, countryCode);
+		}
+		else {
+			customerService.updateAuthenticationType(customer, AuthenticationType.GOOGLE);
+		}
 		
 		super.onAuthenticationSuccess(request, response, authentication);
 	}
