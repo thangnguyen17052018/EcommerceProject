@@ -53,6 +53,24 @@
                 </tbody>
             </table>
         </div>
+        
+        <div class="less-details"> 
+			<div th:each="customer : ${listCustomers}" class="row row-margin">
+				<div class="col-4"> 
+					<div> [[${customer.firstName}]] [[${customer.lastName}]] </div>
+					<div class="badge badge-secondary mr-2"> [[${customer.email}]] </div>
+				</div>
+				
+				<div class="col-8">
+					<div class="mt-1 ml-5">
+                        <div th:replace="fragments :: edit(${customer.id}, ' customer', '/customers/', true)"></div>
+						&nbsp;
+                        <div th:replace="fragments :: delete(${customer.id}, ' customer', '/customers/', true)"></div>
+					</div>
+				</div>
+				<div>&nbsp</div>
+			</div>
+		</div>
 
         <div th:replace="pagination_fragments :: pagination('customers')"></div>
 
