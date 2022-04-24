@@ -3,12 +3,18 @@ package com.nminhthang.customer;
 import com.nminhthang.Utility;
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.Customer;
+import com.nminhthang.security.oauth.CustomerOAuth2User;
 import com.nminhthang.setting.EmailSettingBag;
 import com.nminhthang.setting.SettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.authentication.RememberMeAuthenticationToken;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.client.authentication.OAuth2LoginAuthenticationToken;
+import org.springframework.security.oauth2.core.OAuth2AccessToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -82,6 +88,32 @@ public class CustomerController {
         boolean verified = customerService.verify(code);
 
         return "register/" + (verified ? "verify_success" : "verify_fail");
+    }
+
+    @GetMapping("/account_details")
+    public String viewAccountDetails(Model model, HttpServletRequest request) {
+        String email = getEmailOfAuthenticatedCustomer(request);
+        Customer customer = customerService.getCustomerByEmail(email);
+
+        model.addAttribute("customer", customer);
+
+        return "customer/account_form";
+    }
+
+    private String getEmailOfAuthenticatedCustomer(HttpServletRequest request) {
+        Object principal = request.getUserPrincipal();
+        String customerEmail = null;
+
+        if (principal instanceof UsernamePasswordAuthenticationToken
+            || principal instanceof RememberMeAuthenticationToken) {
+            customerEmail = request.getUserPrincipal().getName();
+        } else if (principal instanceof OAuth2AuthenticationToken){
+            OAuth2AuthenticationToken oAuth2AuthenticationToken = (OAuth2AuthenticationToken) principal;
+            CustomerOAuth2User oAuth2User = (CustomerOAuth2User) oAuth2AuthenticationToken.getPrincipal();
+            customerEmail = oAuth2User.getEmail();
+        }
+
+        return customerEmail;
     }
 
 }
