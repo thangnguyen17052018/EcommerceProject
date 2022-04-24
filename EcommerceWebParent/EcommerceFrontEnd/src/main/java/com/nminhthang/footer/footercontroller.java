@@ -23,8 +23,14 @@ public class footercontroller {
         return "privacy";
     }
     
-    @GetMapping("/AffiliateProgram<")
+    @GetMapping("/Shipping")
     public String viewShippingPage(Model model) {
+
+        return "shipping";
+    }
+    
+    @GetMapping("/AffiliateProgram")
+    public String viewAffiliateProgramPage(Model model) {
 
         return "affiliate";
     }
