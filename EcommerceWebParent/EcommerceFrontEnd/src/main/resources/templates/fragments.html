@@ -51,7 +51,7 @@
 							<li class="nav-item li-hover">
 								<b>
 
-									<a class="nav-link text-nav-link" th:href="@{/customer}"
+									<a class="nav-link text-nav-link" th:href="@{/account_details}"
 										sec:authentication="principal.fullName">
 									</a>
 								</b>
@@ -149,7 +149,7 @@
 							Shippings &amp; Delivery
 						</a>
 					</li>
-
+					<th:block sec:authorize="!isAuthenticated()">
 					<li class="navbar-item li-hover">
 						<a class="nav-link" th:href="@{/login}">
 							<span></span>
@@ -159,7 +159,9 @@
 							Login	
 						</a>
 					</li>
+					</th:block>
 
+					<th:block sec:authorize="!isAuthenticated()">
 					<li class="navbar-item li-hover">
 						<a class="nav-link" th:href="@{/register}">
 							<span></span>
@@ -169,7 +171,7 @@
 							Register
 						</a>
 					</li>
-
+					</th:block>
 					<li class="navbar-item li-hover">
 						<a class="nav-link" th:href="@{/Contact}">
 							<span></span>
