@@ -1,0 +1,47 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /EcommerceFurniture
+spring:
+  datasource:
+    password: Csnplay1717...
+
+    url: jdbc:mysql://localhost:3306/ecommercedb
+    username: root
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    show-sql: false
+  main:
+    lazy-initialization: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+  security:
+   oauth2:
+     client:
+       registration:
+         google:
+            client-id: 487638635028-ovm1t7tb3m42a0ud4ot3b6k4dsv15dd8.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+            - email
+            - profile
+         facebook:
+           client-id: 722399232114351
+           client-secret: 5e1ddc48350e504a17cc90b280b7cbb7
+           scope:
+             - email
+             - public_profile
+
+  spring:
+    main:
+      allow-circular-references: true

@@ -1,0 +1,30 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /EcommerceAdmin
+spring:
+  datasource:
+    password: Csnplay1717...
+    url: jdbc:mysql://localhost:3306/ecommercedb
+    username: root
+  devtools:
+    livereload:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    show-sql: false
+  main:
+    lazy-initialization: true
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+  

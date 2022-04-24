@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      lang="en">
+<body>
+
+
+<div th:fragment="content" id="divProductDetails">
+    <table class="table table-striped table-bordered table-hover">
+        <thead class="thead-dark">
+        <th width="40%">Name</th>
+        <th>Value</th>
+        </thead>
+        <tbody>
+        <tr th:each="detail : ${product.details}">
+            <td>[[${detail.name}]]</td>
+            <td>[[${detail.value}]]</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

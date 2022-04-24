@@ -16,7 +16,7 @@
 				<div class="text-center mt-5 p-2 containerlogo-res-sm">
 					<img th:src="@{/images/logo.jpg}" class="login-logo logo-res-sm">
 				</div>
-				<form th:action="@{/login}" method="post" class="form-size">
+				<form th:action="@{/login}" method="post">
 					<div th:if="${param.error}">
 						<p class="text-danger">[[${session.SPRING_SECURITY_LAST_EXCEPTION.message}]]</p>
 					</div>
@@ -25,23 +25,7 @@
 					</div>
 					<div class="p-3">
 						<h2 class="text-center pb-3 h2-res-sm">Access to Ecommerce Furniture</h2>
-						<div class="flex-container mt-3 justify-content-between m-auto">
-							
-							<a th:ref="#" class="link-fb">							
-									<i class="fa-brands fa-facebook-f icon-fb-res-sm"></i>
-									<span>Sign in with Facebook</span>
-							</a>
-							<a th:ref="#" class="link-g">
-									<i class="fa-brands fa-google icon-g-res-sm"></i>
-									<span>Sign in with Google</span> 	
-							</a>
 
-						</div>
-						<p class="text-center mt-3 mb-0">
-							<b>
-								Or
-							</b>
-						</p>
 						<div>
 							<label>
 								<b>
@@ -59,6 +43,11 @@
 								</b>
 							</label>
 							<input type="password" name="password" class="form-control login-input" placeholder="Password" required>
+						</div>
+						<div class="d-flex align-items-center mt-3">
+							<input type="checkbox" name="remember-me">
+							&nbsp;&nbsp;
+							<span>Remember Me</span> 
 						</div>
 						<div class="mt-5 btn-res-sm">
 							<input type="submit" value="Login" class="btn btn-primary login-button">
@@ -82,24 +71,6 @@
 					</div>
 					<div class="p-3">
 						<h2 class="text-center pb-3 h2-res-sm">Access to Ecommerce Furniture</h2>
-						<div class="flex-container mt-3 justify-content-between m-auto">
-						
-							<a th:ref="#" class="link-fb link-fb-res-md">
-								<i class="fa-brands fa-facebook-f"></i>
-								<span class="textSignFB"> Sign in with Facebook</span>
-								
-							</a>
-							<a th:ref="#" class="link-g link-g-res-md">
-								<i class="fa-brands fa-google"></i>
-								<span class="textSignG">Sign in with Google</span> 
-							</a>
-
-						</div>
-						<p class="text-center mt-3 mb-0">
-							<b>
-								Or
-							</b>
-						</p>
 						<div>
 							<label>
 								<b>
@@ -117,6 +88,11 @@
 								</b>
 							</label>
 							<input type="password" name="password" class="form-control login-input" placeholder="Password" required>
+						</div>
+						<div class="d-flex align-items-center mt-3">
+							<input type="checkbox" name="remember-me">
+							&nbsp;&nbsp;
+							<span>Remember Me</span> 
 						</div>
 						<div class="mt-5 btn-res-sm">
 							<input type="submit" value="Login" class="btn btn-primary login-button">
@@ -146,23 +122,7 @@
 					</div>
 					<div class="p-3">
 						<h2 class="text-center pb-3">Access to Ecommerce Furniture</h2>
-						<div class="flex-container mt-3 justify-content-between m-auto">
-							
-							<a th:ref="#" class="link-fb">							
-									<i class="fa-brands fa-facebook-f px-3"></i>
-									<span>Sign in with Facebook</span>
-							</a>
-							<a th:ref="#" class="link-g">
-									<i class="fa-brands fa-google pr-3"></i>
-									<span>Sign in with Google</span> 	
-							</a>
 
-						</div>
-						<p class="text-center mt-3 mb-0">
-							<b> 
-								Or
-							</b>
-						</p>
 						<div>
 							<label>
 								<b>
@@ -181,6 +141,12 @@
 							</label>
 							<input type="password" name="password" class="form-control login-input" placeholder="Password" required>
 						</div>
+						<div class="d-flex align-items-center mt-3">
+							<input type="checkbox" name="remember-me">
+							&nbsp;&nbsp;
+							<span>Remember Me</span> 
+						</div>
+						
 						<div class="mt-5 btn-res-sm">
 							<input type="submit" value="Login" class="btn btn-primary-color login-button">
 						</div>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head>
+
+	<head th:replace="fragments :: header_link(${pageTitle}, 'tag')"></head>
+	<link rel="stylesheet" th:href="@{/richtext/richtext.min.css}">
+	<script th:src="@{/richtext/jquery.richtext.min.js}"></script>
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div>
+			<div th:replace="fragments :: menu_link"></div>
+
+			<h2 class="head-text">Customer Management | [[${pageTitle}]]</h2>
+
+		</div>
+
+		<form th:action="@{/customers/save}" method="post" enctype="multipart/form-data" th:object="${customer}"
+			onsubmit="return checkEmailUnique(this);" style="max-width: 900px; margin: 0 auto"
+			class="box-shadow-form p-5 mb-5">
+			<input type="hidden" th:field="*{id}">
+			<div class="rounded p-3">
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">First Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{firstName}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Last Name:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{lastName}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">E-mail:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{email}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Password:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{password}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Phone Number:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{phoneNumber}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Address Line 1:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{addressLine1}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Address Line 2:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{addressLine2}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">City:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{city}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Country:</label>
+					<div class="col-sm-10">
+						<select th:field="*{country}" class="form-control">
+							<option th:each="country : ${listCountries}" th:value="${country.id}">[[${country.name}]]</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">State/Province:</label>
+					<div class="col-sm-10">
+						<input type="text" th:field="*{state}" class="form-control" maxlength="45" minlength="3" list="listStates"/>
+						<datalist id="listStates"></datalist>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Postal Code:</label>
+					<div class="col-sm-10">
+						<input type="text" class="form-control" th:field="*{postalCode}"
+							   required minlength="2" maxlength="256">
+					</div>
+				</div>
+
+				<div class="text-center">
+					<input type="submit" value="Save" class="btn btn-primary-color m-3">
+					<input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton">
+				</div>
+			</div>
+
+		</form>
+
+		<div th:replace="modal_fragments :: modal_dialog"></div>
+
+	</div>
+	<div th:replace="fragments :: footer_link"></div>
+
+	<script type="text/javascript" th:src="@{/js/common-form.js}"></script>
+	<script th:src="@{/js/common_form_country_state.js}"></script>	
+	
+	<script type="text/javascript">
+		moduleUrl = "[[@{/customers}]]";
+	</script>
+
+	<script>
+		var dropDownCountries;
+		var dropDownStates;
+
+		$(document).ready(function() {
+			dropDownCountries = $("#country");
+			dropDownStates = $("#listStates");
+
+			dropDownCountries.on("change", function() {
+				loadStatesForCountry();
+				alert("State null");
+				console.log($("#state"));
+				$("#state").val("").focus();
+			});
+
+			loadStatesForCountry();
+
+		});
+
+		function loadStatesForCountry() {
+			selectedCountry = $("#country option:selected");
+			countryId = selectedCountry.val();
+
+			url = "[[@{/states/list_by_country/}]]" + countryId;
+			$.get(url, function(responseJSON) {
+				dropDownStates.empty();
+
+				$.each(responseJSON, function (index, state) {
+					$("<option>").val(state.name).text(state.name).appendTo(dropDownStates);
+				});
+
+			}).fail(function () {
+				showErrorModal("Error loading states/provinces for the selected country.");
+			});
+		}
+
+		const checkEmailUnique = (form) => {
+			checkURL = "[[@{/customers/check_email}]]";
+			customerId = $("#id").val();
+			customerEmail = $("#email").val();
+			csrfValue = $("input[name= '_csrf']").val();
+
+			params = {id: customerId, email: customerEmail, _csrf: csrfValue}
+
+			$.post(checkURL, params, (response) => {
+				if (response == "OK") {
+					form.submit();
+				} else if (response == "Duplicated") {
+					showWarningModal("This email: " + customerEmail + " has been existed !!!");
+				} else {
+					showErrorModal("Unknown response from server");
+				}
+			}).fail(() => {
+				showErrorModal("Could not connect to the server");
+			});
+			return false;
+		}
+	</script>
+</body>
+
+
+
+</html>

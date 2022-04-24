@@ -14,12 +14,12 @@
           th:object="${user}">
         <input type="hidden" th:field="*{id}">
         <div class="text-center">
-            <h2>Account Profile</h2>
+            <h2 class="head-text">Account Profile</h2>
         </div>
         <div th:if="${message != null}" class="alert alert-success text-center">
             [[${message}]]
         </div>
-        <div class="border border-secondary rounded p-3">
+        <div class="border border-secondary rounded p-5">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">E-mail:</label>
                 <div class="col-sm-8">
@@ -74,7 +74,7 @@
             </div>
 
             <div class="text-center">
-                <input type="submit" value="Save" class="btn btn-primary m-3">
+                <input type="submit" value="Save" class="btn btn-primary-color m-3">
                 <input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton">
             </div>
         </div>

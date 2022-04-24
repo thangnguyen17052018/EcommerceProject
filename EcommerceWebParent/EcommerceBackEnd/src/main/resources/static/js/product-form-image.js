@@ -2,14 +2,6 @@ var extraImageCount = 0;
 
 $(document).ready(() => {
 
-    getCategories();
-
-    dropdownBrand.change(() => {
-        dropdownCategories.empty();
-
-        getCategories();
-    });
-
     $("input[name='extraImage']").each(function(index) {
         extraImageCount++;
 
@@ -23,10 +15,24 @@ $(document).ready(() => {
         });
     });
 
+    $("a[name='linkRemoveExtraImage']").each(function(index) {
+        $(this).click(function() {
+            removeExtraImage(index + 1);
+        });
+    })
+
 });
 
 const showExtraImageThumbnail = (fileInput, index) => {
     let file = fileInput.files[0];
+
+    fileName = file.name;
+
+    imageNameHiddenField = $("#imageName" + index);
+    if (imageNameHiddenField.length) {
+        imageNameHiddenField.val(fileName);
+    }
+
     let reader = new FileReader();
     reader.onload = (e) => {
         $("#extraImage" + index).attr("src", e.target.result);

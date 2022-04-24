@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">Taking care of your furniture</h1>
+		</div>
+		
+		<div class="container content"> 
+			<h2> <strong> Can I change my order? </strong> </h2>
+			<p> Once you've placed an order, you can't change it, but you can amend your contact and delivery details – just go to the My Orders page. </p>
+			
+			<h2> <strong> Can I cancel my order? </strong> </h2>
+			<p> Yes, as long as the item's not been dispatched. </p>
+			<p> You can cancel single item orders before dispatch by going in 'My Account' and 'My Orders'. If the cancel option is missing or your order, you can contact us and we'll cancel it and give you a full refund. It's as easy as that. </p>
+			<p> Cancellations made after we've sent your item(s) will need to be made at the time of delivery – just refuse the delivery, or contact us within 30 days. Once you've notified us, we'll let you know how to return it, or arrange for a collection. Once it gets back to us, you'll receive a full refund (including your initial delivery charge, but minus any return or collection costs). </p>
+			
+			<h2> <strong> What if I don't like what I ordered? </strong> </h2>
+			<p> Don't feel like it's Emcommer Furniture for you? You can arrange to return your item through the My Orders section of your Account; you have 30 days from receiving your order in which to return it. For any items that can’t be returned via the online portal (you can find a full list of these here) just contact us within 30 days of receiving your order, and we'll let you know how to return it, or arrange for a collection. Once it gets back to us, we'll refund you (including your initial delivery charge, but minus any return or collection costs). </p>
+			<br>
+			<p> For non-faulty paint returns we ask that: </p>
+			<ul class="list-choose">
+				<li class="ml-3">
+					You don’t open the cellophane wrapping covering the paint tin or wallpaper
+				</li>
+				<li class="ml-3">
+					You keep the box and insulating cartons that the paint came in 
+				</li>
+				<li class="ml-3">
+					The goods are returned in their original condition
+				</li>
+				<li class="ml-3">
+					You’ve got in touch with us to process your return within 30 days of your Payment Confirmation
+				</li>
+				<li class="ml-3">
+					We’ll then supply you with a label so that you can arrange a collection. Once we’ve received your returned products and we’re happy with their condition then we’ll process your refund for those products.
+				</li>
+				
+			</ul>
+			</div>
+		<div th:replace="fragments :: footer_menu"></div>
+
+
+</body>
+
+</html>

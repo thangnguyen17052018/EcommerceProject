@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+        lang="en">
+<body>
+    <div th:fragment="content" th:remove="tag">
+        <div>
+            <p>
+                Use this page to manage states/provinces which will be displayed in the customer registration.
+                Click Load Country List first.
+            </p>
+        </div>
+        <div>
+            <input type="button" value="Load Country List" class="btn btn-primary-color my-4" id="buttonLoadCountriesForStates">
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">Selected Country:</label>
+            <div class="col-sm-8">
+                <select class="form-control m-2" id="dropDownCountriesForStates">
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-4 col-form-label">All States/Provinces:</label>
+            <div class="col-sm-8">
+                <select class="form-control m-2" style="height: 300px" size="3" id="dropDownStates">
+                </select>
+            </div>
+        </div>
+
+        <form id="formState">
+            <div class="form-group row ml-1 form-country form-state-small">
+                <div class="col-form-label lable-state" id="labelStateName">State/Province Name:</div>
+                <div class="input-state">
+                    <input type="text" class="form-control mt-2 ml-2 imput-state" id="fieldStateName" required minlength="2" maxlength="45" width="95%">
+                </div>
+                <div class="col mt-5 d-flex justify-content-center">
+                    <input type="button" id="buttonAddState" class="btn btn-primary-color mr-2" value="New">
+                    <input type="button" id="buttonUpdateState" class="btn btn-primary-color mr-2" value="Update" disabled="disabled">
+                    <input type="button" id="buttonDeleteState" class="btn btn-primary-color" value="Delete" disabled="disabled">
+                </div>
+            </div>
+            
+            <div class="form-group row ml-1 form-country form-state-medium">
+                <div class="col-4 col-form-label lable-state" id="labelStateName">State/Province Name:</div>
+                <div class="col-8 input-state">
+                    <input type="text" class="form-control mt-2 ml-2 imput-state" id="fieldStateName" required minlength="2" maxlength="45" width="95%">
+                </div>
+                <div class="col mt-5 d-flex justify-content-center">
+                    <input type="button" id="buttonAddState" class="btn btn-primary-color mr-2" value="New">
+                    <input type="button" id="buttonUpdateState" class="btn btn-primary-color mr-2" value="Update" disabled="disabled">
+                    <input type="button" id="buttonDeleteState" class="btn btn-primary-color" value="Delete" disabled="disabled">
+                </div>
+            </div>
+            
+            <div class="form-group row ml-1 form-country form-state-large">
+                <label class="col-4 col-form-label lable-state" id="labelStateName">State/Province Name:</label>
+                <div class="col-8 input-state">
+                    <input type="text" class="form-control mt-2" id="fieldStateName" required minlength="2" maxlength="45">
+                </div>
+                <div class="col d-flex justify-content-center btn-state">
+                    <input type="button" id="buttonAddState" class="btn btn-primary-color mr-2" value="New">
+                    <input type="button" id="buttonUpdateState" class="btn btn-primary-color mr-2" value="Update" disabled="disabled">
+                    <input type="button" id="buttonDeleteState" class="btn btn-primary-color" value="Delete" disabled="disabled">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

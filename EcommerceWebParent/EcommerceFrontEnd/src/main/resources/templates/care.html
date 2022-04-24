@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">Taking care of your furniture</h1>
+		</div>
+		<div class="container content"> 
+			<h2> <strong> Wood & Veneer </strong> </h2>
+			<strong>Sun damage</strong></p>
+			<p>These materials are both sensitive to light. We'd recommend that you avoid leaving anything on the surfaces for the first 6-8 weeks, if they're exposed to sunlight. This should help you avoid any marks or rings appearing if the furniture lightens in the sun.</p>
+			<strong>Cleaning</strong></p>
+			<p>A damp (never soaking wet) cloth will do it. Dry the surfaces thoroughly afterwards. Both wood and veneer can be damaged by liquids, so if you spill anything on it, be sure to wipe it dry immediately. If you need to remove any stains, go gently – use mild soap and warm water.</p>
+			
+			<h2> <strong> Leather</strong> </h2>
+			<strong>Sun and heat damage</strong></p>
+			<p> Leather can lighten if it's exposed to direct sunlight, so be careful where you place it if you want to avoid this. It can also be damaged if it's exposed to heat – don't put it too close to a radiator.</p>
+			<strong>Cleaning</strong></p>
+			<p>You can clean leather using a soft, dry cloth. Or a cloth and soapy water for a bit more elbow grease. To keep your leather looking its best, we recommend you clean it regularly with a leather cleaner. </p>
+			
+			<h2> <strong> Upholstery </strong> </h2>
+			<strong>Sun damage</strong></p>
+			<p>Upholstered furniture will lighten over time if it's exposed to direct sunlight, so be careful where you place your furniture pieces.</p>
+			<strong>Wear</strong></p>
+			<p>To keep seat cushions looking their best and to help them wear evenly, be sure to regularly turn them. Give foam, feather or fibre-filled cushions a shake as often as possible to help them keep their shape. </p>
+			<strong> Feet </strong>
+			<p>Make sure the feet on your chair or sofa are tightly fastened. Try not to drag them to avoid damage to the feet, or your floor. </p>
+		</div>
+		<div th:replace="fragments :: footer_menu"></div>
+
+
+</body>
+
+</html>

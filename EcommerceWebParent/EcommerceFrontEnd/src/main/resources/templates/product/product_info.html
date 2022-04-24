@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<body>
+	<div th:fragment="content" class="col-sm-3 text-center my-5 px-3">
+		<div class="product_infor-hover">
+			<a th:href="@{'/p/' + ${product.alias}}">
+				<div>
+				<img th:src="@{${product.mainImagePath}}" class="product_infor-img">
+				</div>
+				
+				<div>
+					<b class="text-color mt-5">[[${product.shortName}]]</b>
+				</div>
+
+				<div class="text-color product_infor-price mt-3" th:if="${product.discountPercent <= 0}">
+					<span class="text-color">
+						<div th:replace="product/product_info :: price(${product.price})"></div>
+					</span>
+				</div>
+				
+				<div th:if="${product.discountPercent > 0}">
+					<span class="text-color" style="font-size: larger;">
+						<div th:replace="product/product_info :: price(${product.discountPrice})"></div>
+					</span>
+					<br>
+					<div class="product-discountPrice">
+						<span>
+						<div th:replace="product/product_info :: price(${product.price})"></div>
+						</span>
+					</div>
+				</div>
+				
+			</a>
+		</div>
+	</div>
+
+	<div th:fragment="price(productPrice)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION} == 'before'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+		[[${#numbers.formatDecimal(productPrice, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]
+		<span th:if="${CURRENCY_SYMBOL_POSITION} == 'after'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
+
+</body>
+
+</html>

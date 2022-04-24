@@ -8,8 +8,8 @@
         <div th:replace="fragments :: menu_link"></div>
 
         <div>
-            <h2 class="my-4">Brands Management</h2>
-            <a th:href="@{/brands/new}" class="px-1 a-textdecoration">
+            <h2 class="head-text">Brands Management</h2>
+            <a th:href="@{/brands/new}" class="a-textdecoration">
             	<img th:src="@{/images/add.png}" class="icon pb-2"/>
             </a>
             &nbsp;&nbsp;
@@ -18,15 +18,15 @@
             </a>
         </div>
 
-        <div th:replace="fragments :: search_form_and_message('brands')"></div>
+        <div th:replace="fragments :: search_form_and_message"></div>
 
-        <div>
+        <div class="full-details mt-5">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
                         <th>Brand ID</th>
                         <th>Brand Logo</th>
-                        <th th:replace="fragments :: column_link('name', 'Brand Name', 'brands', 'none')"></th>
+                        <th th:replace="fragments :: column_link('name', 'Brand Name', 'none')"></th>
                         <th>Categories</th>
                         <th>Action</th>
                     </tr>
@@ -46,14 +46,36 @@
                         </td>
 
                         <td>
-                            <div th:replace="fragments :: action(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                            <div th:replace="fragments :: edit(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                            &nbsp;
+                            <div th:replace="fragments :: delete(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
+        
+        <div class="less-details"> 
+			<div th:each="brand : ${listBrands}" class="row row-margin">
+				<div class="col-4">
+					<img th:src="@{${brand.logoPath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+					<span th:each="category : ${brand.categories}" class="badge badge-secondary mr-2">
+                                [[${category.name}]]
+                    </span>
+				</div>
+				<div class="col-8">
+					
+					<div class="mt-2">
+                        <div th:replace="fragments :: edit(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                        &nbsp;
+                        <div th:replace="fragments :: delete(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                    </div>
+				</div>
+				<div>&nbsp</div>
+			</div>
+		</div>
 
-        <div th:replace="pagination_fragments :: pagination('brands', 'brand')"></div>
+        <div th:replace="pagination_fragments :: pagination('brand')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 

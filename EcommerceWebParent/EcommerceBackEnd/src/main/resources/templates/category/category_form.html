@@ -9,16 +9,16 @@
     <div>
         <div th:replace="fragments :: menu_link"></div>
 
-        <h2 class="my-4">Category Management | [[${pageTitle}]]</h2>
+        <h2 class="head-text">Category Management | [[${pageTitle}]]</h2>
 
     </div>
 
-    <form th:action="@{/categories/save}" method="post" style="max-width: 700px; margin: 0 auto"
+    <form class="box-shadow-form p-5 mb-5" th:action="@{/categories/save}" method="post" style="max-width: 700px; margin: 0 auto"
           enctype="multipart/form-data"
           th:object="${category}"
           onsubmit="return checkNameAndAliasUnique(this);">
         <input type="hidden" th:field="*{id}">
-        <div class="border border-secondary rounded p-3">
+        <div class="rounded p-3">
             <div class="form-group row">
                 <label class="col-sm-4 col-form-label">Category Name:</label>
                 <div class="col-sm-8">

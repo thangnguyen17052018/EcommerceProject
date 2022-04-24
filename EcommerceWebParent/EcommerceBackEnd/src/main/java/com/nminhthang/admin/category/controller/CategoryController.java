@@ -1,7 +1,7 @@
 package com.nminhthang.admin.category.controller;
 
 import com.nminhthang.admin.FileUploadUtil;
-import com.nminhthang.admin.category.CategoryNotFoundException;
+import com.nminhthang.common.exception.CategoryNotFoundException;
 import com.nminhthang.admin.category.CategoryPageInfo;
 import com.nminhthang.admin.category.CategoryService;
 import com.nminhthang.admin.category.exporter.CategoryCSVExporter;
@@ -63,7 +63,8 @@ public class CategoryController {
         model.addAttribute("sortField", "name");
         model.addAttribute("reverseSortOrder", reverseSortDir);
         model.addAttribute("keyword", keyword);
-
+        model.addAttribute("module", "categories");
+        
         return "/category/categories";
     }
 
@@ -91,7 +92,9 @@ public class CategoryController {
             FileUploadUtil.cleanDirectory(uploadDir);
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         } else {
-            category.setImage("default.png");
+            if (category.getId() == null) {
+                category.setImage("default.png");
+            }
             categoryService.save(category);
         }
 
@@ -101,13 +104,13 @@ public class CategoryController {
     }
 
     private String getRedirectURLToAffectedCategory(Category category) {
-        return "redirect:/categories/page/1?sortField=id&sortDir=asc&keyword=" + category.getId();
+        return "redirect:/categories/page/1?sortField=id&sortDir=asc&keyword=" + category.getName();
     }
 
     @GetMapping("/categories/edit/{id}")
     public String editCategory(@PathVariable(name = "id") Integer id,
-                           Model model,
-                           RedirectAttributes redirectAttributes){
+                               Model model,
+                               RedirectAttributes redirectAttributes) {
         try {
             Category category = categoryService.get(id);
             List<Category> listCategories = categoryService.listAll();
@@ -146,7 +149,7 @@ public class CategoryController {
                                       Model model,
                                       RedirectAttributes redirectAttributes) {
         categoryService.updateCategoryEnabledStatus(id, enabled);
-        String status = (enabled == true) ? "enabled" : "disabled";
+        String status = (enabled) ? "enabled" : "disabled";
         redirectAttributes.addFlashAttribute("message", "The category ID " + id + " has been " + status);
         return "redirect:/categories";
     }

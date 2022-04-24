@@ -2,6 +2,7 @@ package com.nminhthang.admin.product;
 
 
 import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -28,7 +29,7 @@ public class ProductService {
         return (List<Product>) productRepository.findAll(sort);
     }
 
-    public Page<Product> listByPage(int pageNum, String sortDir, String keyword) {
+    public Page<Product> listByPage(int pageNum, String sortDir, String keyword, Integer categoryId) {
         Sort sort = Sort.by("name");
 
         if (sortDir.equals("asc")) {
@@ -39,12 +40,19 @@ public class ProductService {
 
         Pageable pageable = PageRequest.of(pageNum - 1, PRODUCT_PER_PAGE, sort);
 
-        if (keyword != null) {
-            return productRepository.findAllBy(keyword, pageable);
-        } else {
-            return productRepository.findAllBy(pageable);
+        if (categoryId != null && categoryId > 0) {
+            String categoryIdMatch = "-" + categoryId + "-";
+            if (keyword != null && !keyword.isEmpty())
+                return productRepository.searchInCategory(categoryId, categoryIdMatch, keyword, pageable);
+            else
+            return productRepository.findAllInCategory(categoryId, categoryIdMatch, pageable);
         }
 
+        if (keyword != null && !keyword.isEmpty()) {
+            return productRepository.findAllBy(keyword, pageable);
+        }
+
+        return productRepository.findAllBy(pageable);
     }
 
     public Product save(Product product) {
@@ -62,6 +70,15 @@ public class ProductService {
         product.setUpdatedTime(new Date());
 
         return productRepository.save(product);
+    }
+
+    public void saveProductPrice(Product product) {
+        Product productInDB = productRepository.findById(product.getId()).get();
+        productInDB.setCost(product.getCost());
+        productInDB.setPrice(product.getPrice());
+        productInDB.setDiscountPercent(product.getDiscountPercent());
+
+        productRepository.save(productInDB);
     }
 
     public Product get(Integer id) throws ProductNotFoundException {

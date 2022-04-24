@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<body>
+    <div th:fragment="content" th:remove="tag">
+        <div>
+            <p class="country-text ml-2">
+                Use this page to manage countries which will be displayed in the customer registration.
+                Click Load Country List first.
+            </p>
+        </div>
+        <div>
+            <input type="button" value="Load Country List" class="btn btn-primary-color m-2 btn-loadcountry" id="buttonLoadCountries">
+        </div>
+        <div>
+            <select class="form-control m-2" style="height: 300px" size="3" id="dropDownCountries">
+            </select>
+        </div>
+
+        <form id="formCountry">
+            <div class="form-group ml-2 form-country mt-3 form-small">
+                <label class="col-form-label mt-2" id="labelCountryName">Country Name:</label>
+                <div class="colinput-countryname">
+                    <input type="text" class="form-control mt-2" id="fieldCountryName" required minlength="3" maxlength="45">
+                </div>
+                <label class="col-form-label mt-2" id="labelCountryCode">Country Code:</label>
+                <div class="col input-countrycode">
+                    <input type="text" class="form-control mt-2" id="fieldCountryCode" required minlength="2" maxlength="3">
+                </div>
+                <div class="col mt-5 d-flex justify-content-center">
+                    <input type="button" id="buttonAddCountry" class="btn btn-primary-color mr-2" value="New">
+                    <input type="button" id="buttonUpdateCountry" class="btn btn-primary-color mr-2" value="Update" disabled="disabled">
+                    <input type="button" id="buttonDeleteCountry" class="btn btn-primary-color" value="Delete" disabled="disabled">
+                </div>
+            </div>
+            
+            <div class="form-group row ml-1 form-country mt-3 form-large">
+                <label class="col-form-label mt-2" id="labelCountryName">Country Name:</label>
+                <div class="col-4 input-countryname">
+                    <input type="text" class="form-control mt-2" id="fieldCountryName" required minlength="3" maxlength="45">
+                </div>
+                <label class="col-form-label mt-2 ml-2" id="labelCountryCode">Country Code:</label>
+                <div class="col-4 input-countrycode">
+                    <input type="text" class="form-control mt-2" id="fieldCountryCode" required minlength="2" maxlength="3">
+                </div>
+                <div class="col mt-5 d-flex justify-content-center">
+                    <input type="button" id="buttonAddCountry" class="btn btn-primary-color mr-2" value="New">
+                    <input type="button" id="buttonUpdateCountry" class="btn btn-primary-color mr-2" value="Update" disabled="disabled">
+                    <input type="button" id="buttonDeleteCountry" class="btn btn-primary-color" value="Delete" disabled="disabled">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

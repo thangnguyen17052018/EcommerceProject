@@ -5,15 +5,15 @@ fullDescription = $("#fullDescription");
 
 $(document).ready(() => {
     shortDescription.richText({
-        height: 200,
+        height: 300,
         id: "richText-editor-sizecolor"
     });
     fullDescription.richText({
-        height: 400,
+        height: 500,
         id: "richText-editor-sizecolor"
     });
 
-    getCategories();
+    getCategoriesForNewForm();
 
     dropdownBrand.change(() => {
         dropdownCategories.empty();
@@ -24,12 +24,26 @@ $(document).ready(() => {
 
 });
 
+const getCategoriesForNewForm = () => {
+    categoryIdField = $("#categoryId");
+    editMode = false;
+
+    if (categoryIdField.length) {
+
+        editMode = true;
+
+    }
+
+    if (!editMode) getCategories();
+}
+
 const getCategories = () => {
     brandId = dropdownBrand.val();
     url = brandModuleUrl + "/"+ brandId + "/categories";
 
     $.get(url, (responseJSON) => {
         $.each(responseJSON, (index, category) => {
+            console.log(responseJSON);
             dropdownCategories.append("<option value='"+ category.id +"'>" + category.name + "</option>");
         });
     });

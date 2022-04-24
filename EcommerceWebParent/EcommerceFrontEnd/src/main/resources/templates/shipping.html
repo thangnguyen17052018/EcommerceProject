@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">Shipping</h1>
+		</div>
+
+
+		<div class="row text-center mt-5" style="padding: 0 9rem">
+			<div class="col-4">
+				<i class="fa-solid fa-shop fa-7x"></i>
+				<div class="my-3">Free Store Pickup</div>
+				<button class="btn btn-primary-color btn-store">Learn Mode +</button>
+			</div>
+			<div class="col-4">
+				<i class="fa-solid fa-box-open fa-7x"></i>
+				<div class="my-3">Shipping</div>
+				<button class="btn btn-primary-color btn-shipping">Learn Mode +</button>
+			</div>
+			<div class="col-4">
+				<i class="fa-solid fa-truck fa-7x"></i>
+				<div class="my-3">Local Delivery</div>
+				<button class="btn btn-primary-color btn-delivery">Learn Mode +</button>
+			</div>
+
+
+			<div>
+				<ol class="text-store mt-4">
+					<li class="p-2">
+						Select your store, add items to your cart and select <b>"FREE Store
+							Pickup"</b> at checkout.
+					</li>
+					<li class="p-2">We’ll notify you when your order is ready.</li>
+					<li class="p-2">
+						Skip the line and go to the register nearest the entrance, labeled
+						<b>“Buy Online Pickup In Store.”</b> Or send a text when you’ve arrived at
+						the store, indicating your name, order number and the make/model of
+						your vehicle. A team member will bring your items out to the
+						vehicle. Please pick up your order within the next 4 days.
+					</li>
+				</ol>
+			</div>
+
+			<div class="text-center">
+				<p class="text-shipping mt-4">
+					Select <b>"Standard Shipping"</b> for delivery to your home.<br><br>
+					Typically you should receive your order within 5-7 days, however
+					shipping carriers are handling extremely high volume. Tracking updates
+					and deliveries may be delayed, and our Customer Success Team doesn't
+					have any information beyond what is shown in the tracking. We
+					appreciate your patience while the carrier works to get your order
+					delivered.
+				</p>
+			</div>
+
+			<div class="text-center w-100">
+				<p class="text-delivery mt-4">
+					Select <b>"Local Delivery"</b> for delivery to your home.
+				</p>
+			</div>
+		</div>
+
+	</div>
+
+	<div th:replace="fragments :: footer_menu"></div>
+
+	<script>
+		$(document).ready(function () {
+			$(".btn-store").click(function () {
+				$(".text-store").show();
+				$(".text-shipping").hide();
+				$(".text-delivery").hide();
+			});
+			$(".btn-shipping").click(function () {
+				$(".text-store").hide();
+				$(".text-shipping").show();
+				$(".text-delivery").hide();
+			});
+			$(".btn-delivery").click(function () {
+				$(".text-store").hide();
+				$(".text-shipping").hide();
+				$(".text-delivery").show();
+			});
+		});
+		$(document).ready(function () {
+		        $(".houseAnchors").on("click", function (e) {
+            $(".tabLabel").removeClass("active");
+            var currInput = $(this).attr("id");
+            if (currInput == "tabone") {
+                $("#lblOne").addClass("active");
+            }
+            else if (currInput == "tabtwo") {
+                $("#lblTwo").addClass("active");
+            }
+            else if (currInput == "tabthree") {
+                $("#lblThree").addClass("active");
+            }
+        	});
+	        // Add minus icon
+	        $(".collapse.show").each(function () {
+	            $(this).prev(".card-header").find(".fa").addClass("fa-minus").removeClass("fa-plus");
+	        });
+	
+	        // Toggle plus minus icon
+	        $(".collapse").on('show.bs.collapse', function () {
+	            $(this).prev(".card-header").find(".fa").removeClass("fa-plus").addClass("fa-minus");
+	        }).on('hide.bs.collapse', function () {
+	            $(this).prev(".card-header").find(".fa").removeClass("fa-minus").addClass("fa-plus");
+	        });
+        });
+	</script>
+</body>
+
+</html>

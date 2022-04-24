@@ -1,6 +1,7 @@
 package com.nminhthang.admin.category;
 
 import com.nminhthang.common.entity.Category;
+import com.nminhthang.common.exception.CategoryNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -137,6 +138,12 @@ public class CategoryService {
     }
 
     public Category save(Category category) {
+        Category parent = category.getParent();
+        if (parent != null) {
+            String allParentIDs = parent.getAllParentIDs() == null ? "-" : parent.getAllParentIDs();
+            allParentIDs += String.valueOf(parent.getId()) + "-";
+            category.setAllParentIDs(allParentIDs);
+        }
         return categoryRepository.save(category);
     }
 

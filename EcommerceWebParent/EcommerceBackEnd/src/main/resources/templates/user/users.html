@@ -8,8 +8,8 @@
         <div th:replace="fragments :: menu_link"></div>
 
         <div>
-            <h2 class="my-4">Users Management</h2>
-            <a th:href="@{/users/new}" class="px-1 a-textdecoration">
+            <h2 class="head-text">Users Management</h2>
+            <a th:href="@{/users/new}" class="a-textdecoration">
             	<img th:src="@{/images/add-user.png}" class="icon pb-2"/>
             </a>
             &nbsp;&nbsp;
@@ -26,26 +26,26 @@
             </a>
         </div>
 
-        <div th:replace="fragments :: search_form_and_message('users')"></div>
+        <div th:replace="fragments :: search_form_and_message"></div>
         
-        <div class="full-details">
+        <div class="full-details mt-5">
             <table class="table table-striped table-bordered table-hover table-responsive-xl">
                 <thead class="thead-light">
                     <tr>
                     	<th class="hideable-column">
-                        <th th:replace="fragments :: column_link('id', 'User ID', 'users', 'tag')"></th>
+                        <th th:replace="fragments :: column_link('id', 'User ID', 'tag')"></th>
                         </th>
                         
                         <th>Photos</th>
                         
                         <th class="hideable-column">
-                        <th th:replace="fragments :: column_link('email', 'Email', 'users', 'tag')"></th>
+                        <th th:replace="fragments :: column_link('email', 'Email', 'tag')"></th>
                         </th>
                         
-                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'users', 'none')"></th>
-                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'users', 'none')"></th>
+                        <th th:replace="fragments :: column_link('firstName', 'First Name', 'none')"></th>
+                        <th th:replace="fragments :: column_link('lastName', 'Last Name', 'none')"></th>
                         <th>Roles</th>
-                        <th th:replace="fragments :: column_link('enabled', 'Enabled', 'users', 'none')"></th>
+                        <th th:replace="fragments :: column_link('enabled', 'Enabled', 'none')"></th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -59,7 +59,7 @@
                         <td>[[${user.firstName}]]</td>
                         <td>[[${user.lastName}]]</td>
                         <td>
-                        	<span class="badge badge-pill badge-info">[[${user.roles}]]</span>
+                        	<span class="background-color p-2 mt-2">[[${user.roles}]]</span>
                         	
                         </td>
                         <td>
@@ -67,13 +67,9 @@
                         </td>
 
                         <td>
-                            <a class="fa-regular fa-pen-to-square fa-2x icon-purple" th:href="@{'/users/edit/' + ${user.id}}"
-                               title="Edit this user"></a>
+                            <div th:replace="fragments :: edit(${user.id}, 'user', '/users/', true)"></div>&nbsp;
                             &nbsp;
-                            <a class="fa-regular fa-trash-can fa-2x icon-dark link-delete"
-                               th:href="@{'/users/delete/' + ${user.id}}"
-                               th:entityId="${user.id}"
-                               title="Delete this user"></a>
+                            <div th:replace="fragments :: delete(${user.id}, 'user', '/users/', true)"></div>
                         </td>
                     </tr>
                 </tbody>
@@ -82,31 +78,32 @@
 
 
 		<div class="less-details"> 
-			<div th:each="user : ${listUsers}" class="row m-1">
+			<div th:each="user : ${listUsers}" class="row row-margin">
 				<div class="col-4">
 					<img th:src="@{${user.photosImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
 				</div>
 				<div class="col-8">
 					<div> [[${user.fullName}]] </div>
-					<div> [[${user.roles}]] </div>
+					<div class="badge badge-secondary mr-2"> [[${user.roles}]] </div>
 					<div class="mt-2">
                         <div th:replace="fragments :: status(${user.enabled}, 'user', '/users/')"></div>
-
-                        <div th:replace="fragments :: action(${user.id}, 'user', '/users/', true)"></div>&nbsp;
-
+						&nbsp;
+                        <div th:replace="fragments :: edit(${user.id}, 'user', '/users/', true)"></div>&nbsp;
+                        &nbsp;
+                        <div th:replace="fragments :: delete(${user.id}, 'user', '/users/', true)"></div>&nbsp;
 					</div>
 				</div>
 				<div>&nbsp</div>
 			</div>
 		</div>
 
-        <div th:replace="pagination_fragments :: pagination('users', 'users')"></div>
+        <div th:replace="pagination_fragments :: pagination('users')"></div>
 
         <div th:replace="modal_fragments :: modal_confirm"></div>
 
 
     </div>
-    <div th:replace="fragments :: footer_link"></div>
+<div th:replace="fragments :: footer_link"></div>
 
     <script type="text/javascript">
         moduleURL = "[[@{/users}]]";

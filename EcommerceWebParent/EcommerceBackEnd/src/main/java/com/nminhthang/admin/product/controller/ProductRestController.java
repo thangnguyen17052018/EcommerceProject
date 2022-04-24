@@ -14,7 +14,7 @@ public class ProductRestController {
     ProductService productService;
 
     @PostMapping("/products/check_product")
-    public String checkDuplicateProduct(@Param("id") Integer id, @Param("name") String name, @Param("alias") String alias) {
+    public String checkDuplicateProduct(Integer id, String name, String alias) {
         return productService.checkProductUnique(id, name, alias);
     }
 
