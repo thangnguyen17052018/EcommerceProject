@@ -58,7 +58,6 @@ public class CustomerService {
             String encodedPassword = passwordEncoder.encode(customerInForm.getPassword());
             customerInForm.setPassword(encodedPassword);
         } else {
-
             customerInForm.setPassword(customerInDB.getPassword());
         }
         
@@ -66,7 +65,9 @@ public class CustomerService {
         customerInForm.setEnabled(customerInDB.isEnabled());
         customerInForm.setCreateTime(customerInDB.getCreateTime());
         customerInForm.setVerificationCode(customerInDB.getVerificationCode());
-        
+        customerInForm.setAuthenticationType(customerInDB.getAuthenticationType());
+        customerInForm.setResetPasswordToken(customerInDB.getResetPasswordToken());
+
         customerRepository.save(customerInForm);
     }
 

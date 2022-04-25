@@ -3,6 +3,7 @@ package com.nminhthang.customer;
 import com.nminhthang.Utility;
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.Customer;
+import com.nminhthang.security.CustomerUserDetails;
 import com.nminhthang.security.oauth.CustomerOAuth2User;
 import com.nminhthang.setting.EmailSettingBag;
 import com.nminhthang.setting.SettingService;
@@ -19,10 +20,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
+import javax.transaction.Transactional;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -94,8 +97,11 @@ public class CustomerController {
     public String viewAccountDetails(Model model, HttpServletRequest request) {
         String email = getEmailOfAuthenticatedCustomer(request);
         Customer customer = customerService.getCustomerByEmail(email);
+        List<Country> listCountries = customerService.listAllCountries();
 
         model.addAttribute("customer", customer);
+        model.addAttribute("listCountries", listCountries);
+
 
         return "customer/account_form";
     }
@@ -114,6 +120,48 @@ public class CustomerController {
         }
 
         return customerEmail;
+    }
+
+    @PostMapping("/update_account_details")
+    @Transactional
+    public String updateAccountDetails(Model model, Customer customer, RedirectAttributes redirectAttributes, HttpServletRequest request) {
+        customerService.update(customer);
+
+        redirectAttributes.addFlashAttribute("message", "Your account details have been updated");
+
+        updateNameForAuthenticatedCustomer(customer ,request);
+
+        return "redirect:/account_details";
+    }
+
+    private void updateNameForAuthenticatedCustomer(Customer customer, HttpServletRequest request) {
+        Object principal = request.getUserPrincipal();
+
+        if (principal instanceof UsernamePasswordAuthenticationToken
+                || principal instanceof RememberMeAuthenticationToken) {
+            CustomerUserDetails customerUserDetails = getCustomerUserDetailsObject(principal);
+            Customer customerAuthenticated = customerUserDetails.getCustomer();
+            customerAuthenticated.setFirstName(customer.getFirstName());
+            customerAuthenticated.setLastName(customer.getLastName());
+        } else if (principal instanceof OAuth2AuthenticationToken){
+            OAuth2AuthenticationToken oAuth2AuthenticationToken = (OAuth2AuthenticationToken) principal;
+            CustomerOAuth2User oAuth2User = (CustomerOAuth2User) oAuth2AuthenticationToken.getPrincipal();
+            oAuth2User.setFullName(customer.getFullName());
+        }
+    }
+
+    private CustomerUserDetails getCustomerUserDetailsObject(Object principal) {
+        CustomerUserDetails customerUserDetails = null;
+
+        if (principal instanceof UsernamePasswordAuthenticationToken) {
+            UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) principal;
+            customerUserDetails = (CustomerUserDetails) token.getPrincipal();
+        } else if (principal instanceof RememberMeAuthenticationToken) {
+            RememberMeAuthenticationToken token = (RememberMeAuthenticationToken) principal;
+            customerUserDetails = (CustomerUserDetails) token.getPrincipal();
+        }
+
+        return customerUserDetails;
     }
 
 }

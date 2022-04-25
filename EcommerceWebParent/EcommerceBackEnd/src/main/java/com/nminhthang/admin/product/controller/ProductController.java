@@ -122,10 +122,12 @@ public class ProductController {
                               @RequestParam(name = "imageNames", required = false) String[] imageNames,
                               @AuthenticationPrincipal UserDetailsImp loggedUser) throws IOException {
 
-        if (loggedUser.hasRole("Sales")) {
-            productService.saveProductPrice(product);
-            redirectAttributes.addFlashAttribute("Product have been saved successfully");
-            return getRedirectURLToAffectedProduct(product);
+        if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
+            if (loggedUser.hasRole("Sales")) {
+                productService.saveProductPrice(product);
+                redirectAttributes.addFlashAttribute("Product have been saved successfully");
+                return getRedirectURLToAffectedProduct(product);
+            }
         }
 
         ProductSaveHelper.setMainImage(mainImage, product);
@@ -151,17 +153,26 @@ public class ProductController {
     @GetMapping("/products/edit/{id}")
     public String editProduct(@PathVariable(name = "id") Integer id,
                                Model model,
-                               RedirectAttributes redirectAttributes){
+                               RedirectAttributes redirectAttributes,
+                              @AuthenticationPrincipal UserDetailsImp loggedUser){
         try {
             Product product = productService.get(id);
             List<Brand> listBrands = brandService.listAll();
+            Integer numberOfExistingExtraImages = product.getImages().size();
 
+            boolean isReadOnlyForSales = false;
+
+            if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Editor")) {
+                if (loggedUser.hasRole("Sales")) {
+                    isReadOnlyForSales = true;
+                }
+            }
+
+            model.addAttribute("isReadOnlyForSales", isReadOnlyForSales);
             model.addAttribute("listBrands", listBrands);
             model.addAttribute("product", product);
             model.addAttribute("pageTitle", "Edit Product (ID: " + product.getId() + ")");
             model.addAttribute("mod", "edit");
-
-            Integer numberOfExistingExtraImages = product.getImages().size();
             model.addAttribute("numberOfExistingExtraImages", numberOfExistingExtraImages);
 
 
