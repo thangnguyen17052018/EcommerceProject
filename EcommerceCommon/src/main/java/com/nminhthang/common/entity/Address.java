@@ -20,15 +20,13 @@ import lombok.Setter;
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Builder
-@AllArgsConstructor
-@RequiredArgsConstructor
 @Entity
 @Table(name = "addresses")
 public class Address {
-	
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 
 	@Column(name = "first_name", nullable = false, length = 45)
 	private String firstName;
