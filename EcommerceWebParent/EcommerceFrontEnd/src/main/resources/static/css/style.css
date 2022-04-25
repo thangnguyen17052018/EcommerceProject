@@ -140,6 +140,10 @@ html {
 	line-height: 2;
 }
 
+.card {
+	min-height: 150px;
+}
+
 /* End About Us page */
 
 /* Start Shipping page */
@@ -820,6 +824,7 @@ html {
 	.carousel-control-prev{
 		left: 8% !important;
 	}
+
 }
 
 /* medium screen*/
