@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: page_head('Your Account Details', 'none')" />
+<head th:replace="fragments :: header_link('Your Account Details', 'none')" />
 <body>
 <div class="container-fluid">
     <div th:replace="fragments :: header_menu"></div>
-    <div th:replace="navigation :: search_nav"></div>
+    <div th:replace="fragments :: search_nav"></div>
     <div>&nbsp;</div>
 
     <div class="text-center">
@@ -14,7 +14,7 @@
 
     <form th:action="@{/update_account_details}" method="post" th:object="${customer}"
           style="max-width: 600px; margin: 0 auto">
-        <input type="hidden" th:field="*{id}" />
+        <input type="hidden" th:field="*{id}">
         <input type="hidden" name="redirect" th:value="${param.redirect}" />
         <div th:if="${message != null}" class="alert alert-success text-center">
             [[${message}]]
