@@ -32,8 +32,9 @@ public class CustomerService {
     }
 
     public boolean isEmailUnique(String email) {
-        Customer customer = customerRepository.findByEmail(email);
-        return customer == null;
+        Customer existCustomer = customerRepository.findByEmail(email);
+
+        return existCustomer == null;
     }
 
     public void registerCustomer(Customer customer) {
