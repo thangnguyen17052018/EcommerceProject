@@ -1,9 +1,10 @@
 package com.nminhthang.admin.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,5 +41,9 @@ public class SettingService {
     public List<Setting> getMailTemplateSettings() {
         return settingRepository.findAllBySettingCategory(SettingCategory.MAIL_TEMPLATE);
     }
-
+    
+    
+	public List<Setting> getCurrencySettings() {
+		return settingRepository.findAllBySettingCategory(SettingCategory.CURRENCY);
+	}
 }

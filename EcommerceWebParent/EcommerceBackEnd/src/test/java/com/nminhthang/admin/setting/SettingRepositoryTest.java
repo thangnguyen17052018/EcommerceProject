@@ -1,13 +1,14 @@
 package com.nminhthang.admin.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingCategory;
 
 import java.util.List;
 

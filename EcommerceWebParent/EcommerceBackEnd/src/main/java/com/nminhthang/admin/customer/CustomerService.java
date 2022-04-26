@@ -3,7 +3,7 @@ package com.nminhthang.admin.customer;
 import com.nminhthang.admin.setting.country.CountryRepository;
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.Customer;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
 import com.nminhthang.common.exception.CustomerNotFoundException;
 import com.nminhthang.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

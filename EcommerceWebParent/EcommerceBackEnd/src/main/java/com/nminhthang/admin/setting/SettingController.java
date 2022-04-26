@@ -3,7 +3,8 @@ package com.nminhthang.admin.setting;
 import com.nminhthang.admin.FileUploadUtil;
 import com.nminhthang.admin.currency.CurrencyRepository;
 import com.nminhthang.common.entity.Currency;
-import com.nminhthang.common.entity.Setting;
+import com.nminhthang.common.entity.setting.Setting;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

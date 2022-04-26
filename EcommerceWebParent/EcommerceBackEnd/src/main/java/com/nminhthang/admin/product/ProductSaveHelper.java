@@ -1,8 +1,9 @@
 package com.nminhthang.admin.product;
 
 import com.nminhthang.admin.FileUploadUtil;
-import com.nminhthang.common.entity.Product;
-import com.nminhthang.common.entity.ProductImage;
+import com.nminhthang.common.entity.product.Product;
+import com.nminhthang.common.entity.product.ProductImage;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;

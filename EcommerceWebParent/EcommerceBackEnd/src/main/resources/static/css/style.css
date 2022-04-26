@@ -385,11 +385,9 @@ html {
 	#settingTab {
 		margin-top: 2rem;
 		display: flex;
-		justify-content: space-between;
 	}
 	#myTab {
 		display: flex;
-		justify-content: space-between;
 		margin: 0 auto;
 	}
 

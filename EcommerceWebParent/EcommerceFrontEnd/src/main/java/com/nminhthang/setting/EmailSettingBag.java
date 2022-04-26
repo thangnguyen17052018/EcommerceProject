@@ -1,9 +1,9 @@
 package com.nminhthang.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingBag;
-
 import java.util.List;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingBag;
 
 public class EmailSettingBag extends SettingBag {
 

@@ -57,7 +57,7 @@
 			  	  
 	  <div class="text-center">
 	  	<input type="submit" value="Save" class="btn btn-primary-color m-3" />
-	  	<input type="button" value="Cancel" class="btn btn-secondary" id="buttonCancel" />
+	  	<input type="button" value="Cancel" class="btn btn-secondary" id="cancelButton" />
 	  </div>
 	</div>
 	</form>
@@ -67,9 +67,9 @@
 </div>	
 <script type="text/javascript">
 	contextPath = "[[@{/}]]";
-	moduleURL = "[[@{/shipping_rates}]]";
+	moduleUrl = "[[@{/shipping_rates}]]";
 </script>
-<script th:src="@{/js/common_form.js}"></script>
+<script type="text/javascript" th:src="@{/js/common-form.js}"></script>
 <script th:src="@{/js/common_form_country_state.js}"></script>	
 </body>
 </html>

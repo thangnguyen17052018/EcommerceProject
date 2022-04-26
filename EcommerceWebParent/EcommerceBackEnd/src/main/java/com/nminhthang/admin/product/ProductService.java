@@ -1,7 +1,7 @@
 package com.nminhthang.admin.product;
 
 
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
 import com.nminhthang.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

@@ -1,27 +1,37 @@
 package com.nminhthang.common.entity;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
-
 @Entity
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
 @Table(name = "brands")
-public class Brand {
+public class Brand  {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected Integer id;
+	
     @Column(length = 45, nullable = false, unique = true)
     private String name;
 

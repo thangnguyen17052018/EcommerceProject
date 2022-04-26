@@ -1,21 +1,31 @@
 package com.nminhthang.common.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
-@ToString
 @Table(name = "customer")
-public class Customer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Customer extends IdBasedEntity {
+
 
     @Column(length = 45, nullable = false, unique = true)
     private String email;

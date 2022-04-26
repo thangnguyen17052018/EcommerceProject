@@ -31,8 +31,7 @@
 			<input type="hidden" name="sortField" th:value="${sortField}">
 			<input type="hidden" name="sortDir" th:value="${sortOrder}">
 			Filter: &nbsp;
-			<input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input"
-				required>
+			<input type="search" name="keyword" th:value="${keyword}" class="form-control filter-input" required>
 			<input type="submit" value="Search" class="btn btn-primary-color">
 			&nbsp;&nbsp;
 			<input type="button" value="Clear" class="btn btn-primary-color btn-second-color" onclick="clearFilter()">
@@ -228,11 +227,30 @@
 		</nav>
 	</div>
 
+
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION} == 'before'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+		<span>[[${#numbers.formatDecimal(amount, 1,THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
+		<span th:if="${CURRENCY_SYMBOL_POSITION} == 'after'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
+
+	<div th:fragment="format_time(dateTime)" th:remove="tag">
+		<span th:text="${#dates.format(dateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+	</div>
+
+
+	<div th:fragment="currency_input(amount)" th:remove="tag">
+		<input type="text" readonly class="form-control"
+			th:value="${(CURRENCY_SYMBOL_POSITION == 'before' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1,THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'after' ? CURRENCY_SYMBOL : '')}">
+	</div>
+
+
 	<div th:fragment="footer_link" id="footer">
 		<footer class="footer">
 			<div class="container">
 				<div class="row">
-					<h4 class="text-footer text-center">Ecommerce Control Panel - Copyright &copy; Hau - Kien - Thang</h4>
+					<h4 class="text-footer text-center">Ecommerce Control Panel - Copyright &copy; Hau - Kien - Thang
+					</h4>
 				</div>
 			</div>
 		</footer>

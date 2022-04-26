@@ -1,9 +1,10 @@
 package com.nminhthang.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingCategory;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingCategory;
 
 import java.util.List;
 

@@ -13,7 +13,7 @@ import org.springframework.test.annotation.Rollback;
 
 import com.nminhthang.common.entity.CartItem;
 import com.nminhthang.common.entity.Customer;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)

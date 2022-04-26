@@ -1,21 +1,27 @@
 package com.nminhthang.common.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Country {
+public class Country extends IdBasedEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     @Column(nullable = false, length = 45, unique = true)
     private String name;

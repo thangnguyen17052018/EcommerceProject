@@ -3,12 +3,11 @@ package com.nminhthang.common.entity;
 import java.beans.Transient;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.nminhthang.common.entity.product.Product;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,11 +20,8 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name="cart_item")
-public class CartItem {
+public class CartItem extends IdBasedEntity {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
