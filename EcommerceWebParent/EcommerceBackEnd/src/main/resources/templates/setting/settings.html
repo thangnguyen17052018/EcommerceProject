@@ -41,6 +41,9 @@
 					<a class="nav-link" id="shipping-tab" data-toggle="tab" href="#mailTemplates" role="tab">Mail
 						Templates</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" id="payment-tab" data-toggle="tab" href="#payment" role="tab">Payment</a>
+				</li>
 			</ul>
 
 
@@ -60,6 +63,9 @@
 				</div>
 				<div class="tab-pane p-5" id="mailTemplates" role="tabpanel">
 					<div th:replace="setting/mail_templates/mail_templates :: content"></div>
+				</div>
+				<div class="tab-pane p-5" id="payment" role="tabpanel">
+					<div th:replace="setting/payment :: content"></div>
 				</div>
 			</div>
 		</div>
@@ -81,6 +87,22 @@
 
 		$(document).ready(function () {
 			$("#customerVerifycationContent").richText();
+			$("#orderConfirmationContent").richText();
+
+		});
+
+		var url = document.location.toString();
+		if (url.match('#')) {
+			$('.nav-tabs a[href="#' + url.split('#')[1] + '"]').tab('show');
+		}
+
+		// Change hash for page-reload
+		$('.nav-tabs a').on('shown.bs.tab', function (e) {
+			if(history.pushState) {
+				history.pushState(null, null, e.target.hash);
+			} else {
+				window.location.hash = e.target.hash; //Polyfill for old browsers
+			}
 		});
 	</script>
 	<script th:src="@{/js/common-form.js}"></script>

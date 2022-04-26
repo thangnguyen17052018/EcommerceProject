@@ -1,6 +1,5 @@
 package com.nminhthang.common.entity;
 
-import java.beans.Transient;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,16 +34,14 @@ public class CartItem {
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	private Product product;
-	
-	
+
 	private int quantity;
-	
-	
-	
+
+	@Transient
+	private float shippingCost;
+
 	public CartItem() {
 	}
-
-
 
 	@Override
 	public String toString() {
@@ -51,11 +49,17 @@ public class CartItem {
 				+ "]";
 	}
 	
-	
 	@Transient
 	public float getSubtotal() {
 		return (float) (product.getDiscountPrice() * quantity);
 	}
-	
-	
+
+	@Transient
+	public float getShippingCost() {
+		return shippingCost;
+	}
+
+	public void setShippingCost(float shippingCost) {
+		this.shippingCost = shippingCost;
+	}
 }

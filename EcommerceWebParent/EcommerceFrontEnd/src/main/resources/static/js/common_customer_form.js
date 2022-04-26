@@ -11,6 +11,9 @@ $(document).ready(function() {
         loadStatesForCountry();
         fieldState.val("").focus();
     });
+
+    loadStatesForCountry();
+
 });
 
 function loadStatesForCountry() {

@@ -65,7 +65,7 @@ public class Address {
 
 	@Override
 	public String toString() {
-		String address =firstName;
+		String address = firstName;
 		if(lastName != null && !lastName.isEmpty()) {
 			address += " " + lastName;
 		}
@@ -86,7 +86,7 @@ public class Address {
 			address += ", " + state;
 		}
 		
-		address += country.getName();
+		address += ", " + country.getName();
 		
 	
 		if(!postalCode.isEmpty()) {
@@ -97,7 +97,6 @@ public class Address {
 		if(!phoneNumber.isEmpty()) {
 			address += ". Phone Number : " + phoneNumber;
 		}
-		
 		
 		return address;
 	}

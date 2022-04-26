@@ -16,7 +16,7 @@ public class ShippingRateService {
         String state = customer.getState();
 
         if (state != null || state.isEmpty()) {
-            state = customer.getCity();
+            state = customer.getState();
         }
 
         return shippingRateRepository.findByCountryAndState(customer.getCountry(), state);
@@ -26,8 +26,10 @@ public class ShippingRateService {
         String state = address.getState();
 
         if (state != null || state.isEmpty()) {
-            state = address.getCity();
+            state = address.getState();
         }
+        System.out.println("Country: " + address.getCountry());
+        System.out.println("State: " + state);
 
         return shippingRateRepository.findByCountryAndState(address.getCountry(), state);
     }

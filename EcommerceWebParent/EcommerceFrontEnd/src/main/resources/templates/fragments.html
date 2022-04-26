@@ -196,7 +196,7 @@
 						<ul class="mt-4">
 							<li><a th:href="@{AboutUs}">about us</a></li>
 							<li><a th:href="@{PrivacyPolicy}">privacy policy</a></li>
-							<li><a th:href="@{AffiliateProgram<}">affiliate program</a></li>
+							<li><a th:href="@{AffiliateProgram}">affiliate program</a></li>
 							<li><a th:href="@{CareAndMaintenance}">care and maintenance</a></li>
 						</ul>
 					</div>
@@ -291,6 +291,17 @@
 		</div>
 	</div>
 
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'before'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'after'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
+
+	<div th:fragment="format_time(dateTime)" th:remove="tag">
+		<span th:text="${#dates.format(dateTime, 'dd-MM-yyyy HH:mm:ss')}"></span>
+	</div>
+
+	<div th:fragment="currency_input(amount)" th:remove="tag">
+		<input type="text" readonly class="form-control" th:value="${(CURRENCY_SYMBOL_POSITION == 'before' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'after' ? CURRENCY_SYMBOL : '')}">
+	</div>
 
 </body>
 

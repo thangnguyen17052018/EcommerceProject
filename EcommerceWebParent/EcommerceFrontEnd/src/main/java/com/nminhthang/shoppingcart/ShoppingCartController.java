@@ -49,7 +49,6 @@ public class ShoppingCartController {
 			usePrimaryAddressAsDefault = true;
 			shippingRate = shippingRateService.getShippingRateForCustomer(customer);
 		}
-
 		boolean isShippingRateIsSupported = (shippingRate != null);
 
 		model.addAttribute("usePrimaryAddressAsDefault", usePrimaryAddressAsDefault);
