@@ -2,7 +2,7 @@ package com.nminhthang.product;
 
 import com.nminhthang.category.CategoryService;
 import com.nminhthang.common.entity.Category;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
 import com.nminhthang.common.exception.CategoryNotFoundException;
 import com.nminhthang.common.exception.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

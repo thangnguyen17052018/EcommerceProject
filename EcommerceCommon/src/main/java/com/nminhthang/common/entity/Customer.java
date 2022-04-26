@@ -1,22 +1,31 @@
 package com.nminhthang.common.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
-@ToString
 @Table(name = "customer")
-public class Customer {
+public class Customer extends IdBasedEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
 
     @Column(length = 45, nullable = false, unique = true)
     private String email;
@@ -64,6 +73,9 @@ public class Customer {
     @Column(name= "authentication_type", length = 10)
     private AuthenticationType authenticationType;
 
+    @Column(name = "reset_password_token", length = 30)
+    private String resetPasswordToken;
+
     public String getFullName() {
         return firstName + " " + lastName;
     }
@@ -79,6 +91,45 @@ public class Customer {
 				+ ", addressLine2=" + addressLine2 + ", city=" + city + ", state=" + state + ", postalCode="
 				+ postalCode + ", verificationCode=" + verificationCode + ", enabled=" + enabled + ", createTime="
 				+ createTime + ", country=" + country + ", authenticationType=" + authenticationType + "]";
+	}
+	
+	@Transient
+	public String getAddress() {
+		String address =firstName;
+		if(lastName != null && !lastName.isEmpty()) {
+			address += " " + lastName;
+		}
+		
+		if(!addressLine1.isEmpty()) {
+			address += ", " + addressLine1;
+		}
+		
+		if(addressLine2 != null && !addressLine2.isEmpty()) {
+			address += ", " + addressLine2;
+		}
+		
+		if(!city.isEmpty()) {
+			address += ", " + city;
+		}
+		
+		if(state != null && !state.isEmpty()) {
+			address += ", " + state;
+		}
+		
+		address += country.getName();
+		
+	
+		if(!postalCode.isEmpty()) {
+			address += ". Postal Code : " + postalCode;
+		}
+		
+		
+		if(!phoneNumber.isEmpty()) {
+			address += ". Phone Number : " + phoneNumber;
+		}
+		
+		
+		return address;
 	}
 
     

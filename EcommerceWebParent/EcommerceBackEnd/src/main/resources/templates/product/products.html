@@ -98,7 +98,52 @@
                 </tbody>
             </table>
         </div>
-
+		
+		<div class="medium-details mt-5">
+            <table class="table table-striped table-bordered table-hover table-responsive-xl">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Main Image</th>
+                        <th th:replace="fragments :: column_link('name', 'Product Name', 'none')"></th>
+                        <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                            <th>Enabled</th>
+                        </th:block>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="product : ${listProducts}">
+                        <td>[[${product.id}]]</td>
+                        <td>
+                            <img th:src="@{${product.mainImagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+                        </td>
+                        <td>
+                            <a class="icon-purple mr-2 link-detail"
+                               th:href="@{'/products/detail/' + ${product.id}}"
+                                alt="View detail of this product"
+                            >[[${product.name}]]</a>
+                        </td>
+                        <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                            <td>
+                                <div th:replace="fragments :: status(${product.enabled}, 'product', '/products/' + ${product.id})"></div>
+                            </td>
+                        </th:block>
+                        <td>
+                            <a class="link-detail fas fa-file-alt fa-2x icon-purple mr-2"
+                               th:href="@{'/products/detail/' + ${product.id}}" alt="View detail of this product"></a>
+                            <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor', 'Sales')">
+                               <div th:replace="fragments :: edit(${product.id}, 'product', '/products/', true)"></div>
+                            </th:block>
+                            <th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
+                                &nbsp;
+                                <div th:replace="fragments :: delete(${product.id}, 'product', '/products/', true)"></div>
+                            </th:block>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 		<div class="less-details"> 
 			<div th:each="product : ${listProducts}" class="row row-margin">
 				<div class="col-4">

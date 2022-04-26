@@ -4,7 +4,9 @@ server:
     context-path: /EcommerceFurniture
 spring:
   datasource:
+
     password: kien1203&wY$kApG
+
 
     url: jdbc:mysql://localhost:3306/ecommercedb
     username: root
@@ -20,6 +22,7 @@ spring:
         format_sql: true
     show-sql: false
   main:
+    allow-circular-references: true
     lazy-initialization: true
   mvc:
     pathmatch:
@@ -41,7 +44,3 @@ spring:
            scope:
              - email
              - public_profile
-
-  spring:
-    main:
-      allow-circular-references: true

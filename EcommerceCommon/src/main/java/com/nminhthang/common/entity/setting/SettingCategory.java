@@ -1,4 +1,4 @@
-package com.nminhthang.common.entity;
+package com.nminhthang.common.entity.setting;
 
 public enum SettingCategory {
     GENERAL,

@@ -33,10 +33,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
 	
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+
+        return authProvider;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new CustomerUserDetailsService();
+    }
+	
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-        		.antMatchers("/customer", "/cart").authenticated()
+        		.antMatchers("/customer", "/cart", "/account_details", "/update_account_details", "/address_book/**",
+                        "/checkout", "/place_order").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
@@ -45,13 +66,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 					.successHandler(databaseLoginSuccessHandler)
                 	.permitAll()
                 .and()
-                .oauth2Login()
-                	.loginPage("/login")
-                	.userInfoEndpoint()
-                	.userService(oAuth2UserService)
-                	.and()
-                	.successHandler(oAuth2LoginSuccessHandler)
-                .and()
+	                .oauth2Login()
+	            	.loginPage("/login")
+	            	.userInfoEndpoint()
+	            	.userService(oAuth2UserService)
+	            	.and()
+	            	.successHandler(oAuth2LoginSuccessHandler)
+	            .and()
                 .logout().permitAll()
                 .and()
                 .rememberMe()
@@ -60,6 +81,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 	.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 ;
+                
     }
 
     @Override

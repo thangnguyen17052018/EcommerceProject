@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link(${pageTitle}, 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+	<div class="container-fluid text-center">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div th:if="${title != null}">
+			<h2 class="head-text text-center">[[${title}]]</h2>
+		</div>
+
+		<div th:if="${message != null}">
+			<h3 class="text-center">[[${message}]]</h3>
+		</div>
+
+	</div>
+
+	<div th:replace="fragments :: footer_menu"></div>
+
+
+</body>
+
+</html>

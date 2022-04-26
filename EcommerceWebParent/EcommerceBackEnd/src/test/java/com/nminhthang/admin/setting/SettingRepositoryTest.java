@@ -1,13 +1,14 @@
 package com.nminhthang.admin.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingCategory;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingCategory;
 
 import java.util.List;
 
@@ -67,6 +68,21 @@ public class SettingRepositoryTest {
 
         Assertions.assertThat(listGeneralSettings.size()).isGreaterThan(0);
         listGeneralSettings.forEach(System.out::println);
+    }
+
+    @Test
+    public void testCreateOrderAndPaymentSettings() {
+        Setting orderConfirmationSubject = new Setting("ORDER_CONFIRMATION_SUBJECT", "Confirmation of your order ID #[[orderId]]", SettingCategory.MAIL_TEMPLATE);
+        Setting orderConfirmationContent = new Setting("ORDER_CONFIRMATION_CONTENT", "Dear [[name]], This email is to confirm that...", SettingCategory.MAIL_TEMPLATE);
+        Setting paypalApiBaseUrl = new Setting("PAYPAL_API_BASE_URL", "https://api-m.sandbox.paypal.com", SettingCategory.PAYMENT);
+        Setting paypalApiClientId = new Setting("PAYPAL_API_CLIENT_ID", "PAYPAL_CLIENT_ID", SettingCategory.PAYMENT);
+        Setting paypalApiClientSecret = new Setting("PAYPAL_API_CLIENT_SECRET", "PAYPAL_CLIENT_SECRET", SettingCategory.PAYMENT);
+
+        List<Setting> settingList = List.of(orderConfirmationContent, orderConfirmationSubject, paypalApiBaseUrl, paypalApiClientId, paypalApiClientSecret);
+
+        Iterable<Setting> settings = settingRepository.saveAll(settingList);
+
+        Assertions.assertThat(settings).isNotNull();
     }
 
 }

@@ -20,11 +20,11 @@ public class MvcConfig implements WebMvcConfigurer {
 
     public void exposeDirectory(String pathPattern, ResourceHandlerRegistry registry) {
         Path path = Paths.get(pathPattern);
+
         String absolutePath = path.toFile().getAbsolutePath();
 
         String logicalPath = pathPattern.replace("..", "") + "**";
-        System.out.println(logicalPath);
-        System.out.println(absolutePath);
+
         registry.addResourceHandler(logicalPath)
                 .addResourceLocations("file:///" + absolutePath + "/");
 

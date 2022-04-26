@@ -1,9 +1,9 @@
 package com.nminhthang.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingBag;
-
 import java.util.List;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingBag;
 
 public class EmailSettingBag extends SettingBag {
 
@@ -50,4 +50,14 @@ public class EmailSettingBag extends SettingBag {
     public String getCustomerVerifyContent() {
         return super.getValue("CUSTOMER_VERIFY_CONTENT");
     }
+
+    public String getOrderConfirmationSubject() {
+        return super.getValue("ORDER_CONFIRMATION_SUBJECT");
+    }
+
+    public String getOrderConfirmationContent() {
+        return super.getValue("ORDER_CONFIRMATION_CONTENT");
+    }
+
+
 }

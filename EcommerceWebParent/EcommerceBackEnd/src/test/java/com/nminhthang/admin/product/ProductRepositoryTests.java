@@ -3,7 +3,8 @@ package com.nminhthang.admin.product;
 import com.nminhthang.admin.brand.BrandRepository;
 import com.nminhthang.common.entity.Brand;
 import com.nminhthang.common.entity.Category;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;

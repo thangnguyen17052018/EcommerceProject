@@ -1,6 +1,6 @@
 package com.nminhthang.site.product;
 
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
 import com.nminhthang.product.ProductRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

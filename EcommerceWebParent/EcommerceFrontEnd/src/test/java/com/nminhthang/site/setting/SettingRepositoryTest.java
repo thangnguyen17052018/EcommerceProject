@@ -1,7 +1,7 @@
 package com.nminhthang.site.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingCategory;
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingCategory;
 import com.nminhthang.setting.SettingRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;

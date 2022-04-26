@@ -49,51 +49,44 @@
 					<div th:replace="product/product_overview :: content"></div>
 				</div>
 				<div class="tab-pane p-5" id="description" role="tabpanel">
-					<th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
-						<th:block th:if="${#authorization.expression('hasAuthority(''Sales'')')}">
-							<div th:replace="product/product_description_readonly :: content"></div>
-						</th:block>
+					<th:block th:if="${isReadOnlyForSales}">
+						<div th:replace="product/product_description_readonly :: content"></div>
 					</th:block>
 
-					<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
+					<th:block th:unless="${isReadOnlyForSales}">
 						<div th:replace="product/product_description :: content"></div>
 					</th:block>
 				</div>
 				<div class="tab-pane p-5" id="images" role="tabpanel">
-					<th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
-						<th:block th:if="${#authorization.expression('hasAuthority(''Sales'')')}">
-							<div th:replace="product/product_images_readonly :: content"></div>
-						</th:block>
+					<th:block th:if="${isReadOnlyForSales}">
+						<div th:replace="product/product_images_readonly :: content"></div>
 					</th:block>
 
-					<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
+					<th:block th:unless="${isReadOnlyForSales}">
 						<div th:replace="product/product_images :: content"></div>
 					</th:block>
 				</div>
 				<div class="tab-pane p-2" id="details" role="tabpanel">
-					<th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
-						<th:block th:if="${#authorization.expression('hasAuthority(''Sales'')')}">
-							<div th:replace="product/product_details_readonly :: content"></div>
-						</th:block>
+					<th:block th:if="${isReadOnlyForSales}">
+						<div th:replace="product/product_details_readonly :: content"></div>
 					</th:block>
 
-					<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
+					<th:block th:unless="${isReadOnlyForSales}">
 						<div th:replace="product/product_details :: content"></div>
-						<div>
-							<input type="button" class="btn btn-primary-color ml-3" value="Add more detail"
-								onclick="addNewDetailSection()">
-						</div>
-						<input type="hidden" id="counter" value="0">
+							<div>
+								<input type="button" class="btn btn-primary-color ml-3" value="Add more detail"
+									onclick="addNewDetailSection()">
+							</div>
+							<input type="hidden" id="counter" value="0">
 					</th:block>
 				</div>
+
 				<div class="tab-pane p-5" id="shipping" role="tabpanel">
-					<th:block th:if="${!#authorization.expression('hasAuthority(''Admin'')') && !#authorization.expression('hasAuthority(''Editor'')') }">
-						<th:block th:if="${#authorization.expression('hasAuthority(''Sales'')')}">
-							<div th:replace="product/product_shipping_readonly :: content"></div>
-						</th:block>
+					<th:block th:if="${isReadOnlyForSales}">
+						<div th:replace="product/product_shipping_readonly :: content"></div>
 					</th:block>
 
-					<th:block th:if="${#authorization.expression('hasAuthority(''Admin'')') || #authorization.expression('hasAuthority(''Editor'')') }">
+					<th:block th:unless="${isReadOnlyForSales}">
 						<div th:replace="product/product_shipping :: content"></div>
 					</th:block>
 				</div>

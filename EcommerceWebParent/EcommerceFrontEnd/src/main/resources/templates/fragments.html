@@ -58,8 +58,8 @@
 							</li>
 
 							<li class="nav-item li-hover">
-								<a class="nav-link text-nav-link">
-									Addresses
+								<a class="nav-link text-nav-link" th:href="@{/address_book}">
+									Addresses Book
 								</a>
 							</li>
 
@@ -150,27 +150,27 @@
 						</a>
 					</li>
 					<th:block sec:authorize="!isAuthenticated()">
-					<li class="navbar-item li-hover">
-						<a class="nav-link" th:href="@{/login}">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							Login	
-						</a>
-					</li>
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/login}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Login
+							</a>
+						</li>
 					</th:block>
 
 					<th:block sec:authorize="!isAuthenticated()">
-					<li class="navbar-item li-hover">
-						<a class="nav-link" th:href="@{/register}">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							Register
-						</a>
-					</li>
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/register}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Register
+							</a>
+						</li>
 					</th:block>
 					<li class="navbar-item li-hover">
 						<a class="nav-link" th:href="@{/Contact}">
@@ -197,7 +197,7 @@
 							<li><a th:href="@{AboutUs}">about us</a></li>
 							<li><a th:href="@{PrivacyPolicy}">privacy policy</a></li>
 							<li><a th:href="@{AffiliateProgram}">affiliate program</a></li>
-							<li><a th:href="@{CareAndMaintenance}">care and maintenance</a></li>	
+							<li><a th:href="@{CareAndMaintenance}">care and maintenance</a></li>
 						</ul>
 					</div>
 					<div class="footer-col">
@@ -215,7 +215,8 @@
 							<li><a th:href="@{'/c/' + home-office}">home office</a></li>
 							<li><a th:href="@{'/c/' + bedroom-furniture}">bed room furniture</a></li>
 							<li><a th:href="@{'/c/' + living-room-furniture}">living room furniture</a></li>
-							<li><a th:href="@{'/c/' + kitchen-and-dining-furniture}">kitchen and dining furniture</a></li>
+							<li><a th:href="@{'/c/' + kitchen-and-dining-furniture}">kitchen and dining furniture</a>
+							</li>
 						</ul>
 					</div>
 					<div class="footer-col">
@@ -288,6 +289,18 @@
 				</ul>
 			</nav>
 		</div>
+	</div>
+
+	<div th:fragment="format_currency(amount)" th:remove="tag">
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'before'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'after'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+	</div>
+
+	<div th:fragment="format_time(dateTime)" th:remove="tag">
+		<span th:text="${#dates.format(dateTime, 'dd-MM-yyyy HH:mm:ss')}"></span>
+	</div>
+
+	<div th:fragment="currency_input(amount)" th:remove="tag">
+		<input type="text" readonly class="form-control" th:value="${(CURRENCY_SYMBOL_POSITION == 'before' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'after' ? CURRENCY_SYMBOL : '')}">
 	</div>
 
 </body>

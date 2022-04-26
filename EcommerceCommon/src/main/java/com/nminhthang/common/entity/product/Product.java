@@ -1,23 +1,49 @@
-package com.nminhthang.common.entity;
+package com.nminhthang.common.entity.product;
 
-import lombok.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.hibernate.Hibernate;
 
-import javax.persistence.*;
-import java.util.*;
+import com.nminhthang.common.entity.Brand;
+import com.nminhthang.common.entity.Category;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @Setter
 @RequiredArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
 @Entity
 @Table(name = "product")
 public class Product {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	protected Integer id;
+	
     @Column(length = 256, nullable = false, unique = true)
     private String name;
     @Column(length = 256, nullable = false, unique = true)
@@ -36,8 +62,8 @@ public class Product {
     @Column(name = "in_stock")
     private boolean inStock;
 
-    private double cost;
-    private double price;
+    private float cost;
+    private float price;
     @Column(name = "discount_percent")
     private float discountPercent;
 
@@ -63,10 +89,6 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductDetail> details = new ArrayList<>();
 
-    
-    
-    
-    
     @Transient
     public String getImagePath() {
         return "/images/product-image.png";
@@ -92,7 +114,7 @@ public class Product {
     }
 
     @Transient
-    public double getDiscountPrice() {
+    public float getDiscountPrice() {
         if (discountPercent > 0) return price - (price * discountPercent/100);
         return price;
     }

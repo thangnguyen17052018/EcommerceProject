@@ -1,9 +1,10 @@
 package com.nminhthang.setting;
 
-import com.nminhthang.common.entity.Setting;
-import com.nminhthang.common.entity.SettingCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.nminhthang.common.entity.setting.Setting;
+import com.nminhthang.common.entity.setting.SettingCategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,11 @@ public class SettingService {
         settings.addAll(settingRepository.findAllBySettingCategory(SettingCategory.MAIL_TEMPLATE));
 
         return new EmailSettingBag(settings);
+    }
+
+    public CurrencySettingBag getCurrencySettings() {
+        List<Setting> settings = settingRepository.findAllBySettingCategory(SettingCategory.CURRENCY);
+        return new CurrencySettingBag(settings);
     }
 
 }
