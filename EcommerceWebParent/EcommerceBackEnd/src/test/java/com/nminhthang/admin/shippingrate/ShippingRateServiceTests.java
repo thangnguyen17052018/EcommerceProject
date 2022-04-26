@@ -16,8 +16,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.nminhthang.admin.product.ProductRepository;
-import com.nminhthang.common.entity.Product;
 import com.nminhthang.common.entity.ShippingRate;
+import com.nminhthang.common.entity.product.Product;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)

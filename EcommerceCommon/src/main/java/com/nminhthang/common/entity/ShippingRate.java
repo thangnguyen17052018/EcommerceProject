@@ -2,26 +2,24 @@ package com.nminhthang.common.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @Builder
 @Entity
 @Table(name = "shipping_rates")
-public class ShippingRate  {
-	@Id
-	@GeneratedValue(strategy =  GenerationType.IDENTITY)
-	private Integer id;
+public class ShippingRate  extends IdBasedEntity {
+
+	
 	private float rate;
 	private int days;
 	

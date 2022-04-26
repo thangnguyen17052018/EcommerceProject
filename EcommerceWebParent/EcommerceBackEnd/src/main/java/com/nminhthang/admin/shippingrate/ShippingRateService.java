@@ -13,8 +13,8 @@ import com.nminhthang.admin.paging.PagingAndSortingHelper;
 import com.nminhthang.admin.product.ProductRepository;
 import com.nminhthang.admin.setting.country.CountryRepository;
 import com.nminhthang.common.entity.Country;
-import com.nminhthang.common.entity.Product;
 import com.nminhthang.common.entity.ShippingRate;
+import com.nminhthang.common.entity.product.Product;
 
 @Service
 @Transactional

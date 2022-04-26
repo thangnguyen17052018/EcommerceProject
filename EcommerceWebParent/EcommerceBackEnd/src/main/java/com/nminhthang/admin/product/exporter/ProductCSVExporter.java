@@ -2,7 +2,8 @@ package com.nminhthang.admin.product.exporter;
 
 import com.nminhthang.admin.AbstractExporter;
 import com.nminhthang.common.entity.Brand;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
+
 import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;

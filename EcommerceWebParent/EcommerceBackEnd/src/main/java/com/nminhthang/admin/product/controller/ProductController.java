@@ -10,7 +10,8 @@ import com.nminhthang.admin.product.exporter.ProductCSVExporter;
 import com.nminhthang.admin.security.UserDetailsImp;
 import com.nminhthang.common.entity.Brand;
 import com.nminhthang.common.entity.Category;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

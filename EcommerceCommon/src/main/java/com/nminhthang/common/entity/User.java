@@ -1,24 +1,34 @@
 package com.nminhthang.common.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "user")
-public class User {
+public class User extends IdBasedEntity {
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+
 
     @Column(length = 128, nullable = false, unique = true)
     private String email;

@@ -1,8 +1,9 @@
 package com.nminhthang.setting;
 
-import com.nminhthang.common.entity.Setting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.nminhthang.common.entity.setting.Setting;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;

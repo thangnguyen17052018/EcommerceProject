@@ -13,27 +13,27 @@
     <div>&nbsp;</div>
 
     <form th:action="@{/update_account_details}" method="post" th:object="${customer}"
-          style="max-width: 600px; margin: 0 auto">
+          style="max-width: 600px; margin: 0 auto" class="box-shadow-form">
         <input type="hidden" th:field="*{id}">
         <input type="hidden" name="redirect" th:value="${param.redirect}" />
         <div th:if="${message != null}" class="alert alert-success text-center">
             [[${message}]]
         </div>
-        <div class="border border-secondary rounded p-3">
-            <div class="form-group row">
+        <div class="rounded p-5">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Authentication Type:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{authenticationType}" class="form-control" readonly="readonly"/>
                 </div>
             </div>
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">E-mail:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{email}" class="form-control" readonly="readonly"/>
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">First Name:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{firstName}" class="form-control"
@@ -41,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Last Name:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{lastName}" class="form-control"
@@ -50,7 +50,7 @@
             </div>
 
             <th:block th:if="${customer.authenticationType.name() == 'DATABASE'}">
-                <div class="form-group row">
+                <div class="form-group row my-5">
                     <label class="col-sm-4 col-form-label">Password:</label>
                     <div class="col-sm-8">
                         <input type="password" th:field="*{password}" class="form-control"
@@ -60,7 +60,7 @@
                     </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row my-5">
                     <label class="col-sm-4 col-form-label">Re-type Password:</label>
                     <div class="col-sm-8">
                         <input type="password" id="confirmPassword" class="form-control"
@@ -71,7 +71,7 @@
                 </div>
             </th:block>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Phone Number:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{phoneNumber}" class="form-control"
@@ -79,7 +79,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Address Line 1:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{addressLine1}" class="form-control"
@@ -87,7 +87,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Address Line 2:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{addressLine2}" class="form-control"
@@ -95,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">City:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{city}" class="form-control"
@@ -103,7 +103,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Country:</label>
                 <div class="col-sm-8">
                     <select class="form-control" th:field="*{country}">
@@ -114,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">State/Province:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{state}" class="form-control"
@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row my-5">
                 <label class="col-sm-4 col-form-label">Postal Code:</label>
                 <div class="col-sm-8">
                     <input type="text" th:field="*{postalCode}" class="form-control"
@@ -132,7 +132,7 @@
             </div>
 
             <div class="text-center">
-                <input type="submit" value="Update" class="btn btn-primary" />
+                <input type="submit" value="Update" class="btn btn-primary-color" />
             </div>
         </div>
     </form>
