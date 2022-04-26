@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head th:replace="fragments :: header_link('Checkout Page', 'none')">
+    <head th:replace="fragments :: header_link('Checkout Page', 'none')">
 <body>
 <div class="container-fluid">
     <div th:replace="fragments :: header_menu"></div>
@@ -33,11 +33,13 @@
                 <div class="card-header"><h5>Payment Method</h5></div>
                 <div class="card-body">
                     <div th:if="${checkoutInfo.codSupported}">
-                        <p>
-                            <input type="radio"/> Cash on Delivery (COD)
-                            &nbsp;
-                            <button class="btn btn-primary">Place Order with COD</button>
-                        </p>
+                        <form th:action="@{/place_order}" method="post">
+                            <p>
+                                <input type="radio" name="paymentMethod" id="radioCOD" value="COD"/> Cash on Delivery (COD)
+                                &nbsp;
+                                <button class="btn btn-primary d-none" id="buttonSubmit" type="submit">Place Order with COD</button>
+                            </p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -83,5 +85,17 @@
     <div th:replace="fragments :: footer_menu"></div>
 
 </div>
+<script type="text/javascript">
+    contextPath = "[[@{/}]]";
+    var csrfHeaderName = "[[${_csrf.headerName}]]";
+    var csrfValue = "[[${_csrf.token}]]";
+
+    $(document).ready(function () {
+        $("#radioCOD").on("click", function () {
+            $("#buttonSubmit").removeClass("d-none");
+        });
+    });
+
+</script>
 </body>
 </html>

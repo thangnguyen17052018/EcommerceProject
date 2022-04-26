@@ -1,6 +1,10 @@
-//package com.nminhthang.order;
-//
-//import org.springframework.data.repository.CrudRepository;
-//
-//public interface OrderRepository extends CrudRepository {
-//}
+package com.nminhthang.order;
+
+import com.nminhthang.common.entity.order.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface OrderRepository extends JpaRepository<Order, Integer> {
+
+
+
+}

@@ -30,7 +30,6 @@ public class OrderDetail extends IdBasedEntity {
 	    private float unitPrice;
 	    private float subtotal;
 	  
-	  
 		@ManyToOne
 		@JoinColumn(name = "product_id")
 		private Product product;
