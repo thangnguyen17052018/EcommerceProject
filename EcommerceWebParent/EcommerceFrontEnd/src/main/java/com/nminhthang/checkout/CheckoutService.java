@@ -1,7 +1,7 @@
 package com.nminhthang.checkout;
 
 import com.nminhthang.common.entity.CartItem;
-import com.nminhthang.common.entity.Product;
+import com.nminhthang.common.entity.product.Product;
 import com.nminhthang.common.entity.ShippingRate;
 import org.springframework.stereotype.Service;
 
