@@ -1,6 +1,7 @@
 package com.nminhthang.common.entity;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -55,5 +56,18 @@ public class Country extends IdBasedEntity {
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Country country = (Country) o;
+        return Objects.equals(id, country.id) && Objects.equals(code, country.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, code);
     }
 }

@@ -89,10 +89,6 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ProductDetail> details = new ArrayList<>();
 
-    
-    
-    
-    
     @Transient
     public String getImagePath() {
         return "/images/product-image.png";

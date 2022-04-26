@@ -68,6 +68,8 @@ public class AddressController {
 		
 		if ("checkout".equals(redirectOption)) {
 			redirectURL += "?redirect=checkout";
+		} else if ("cart".equals(redirectOption)) {
+			redirectURL += "?redirect=cart";
 		}
 		
 		ra.addFlashAttribute("message", "The address has been saved successfully.");

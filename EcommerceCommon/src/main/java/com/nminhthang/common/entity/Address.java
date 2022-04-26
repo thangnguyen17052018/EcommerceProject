@@ -19,8 +19,9 @@ import lombok.Setter;
 @Builder
 @Entity
 @Table(name = "addresses")
+
 public class Address extends IdBasedEntity{
-	
+
 
 	@Column(name = "first_name", nullable = false, length = 45)
 	private String firstName;
@@ -59,7 +60,7 @@ public class Address extends IdBasedEntity{
 
 	@Override
 	public String toString() {
-		String address =firstName;
+		String address = firstName;
 		if(lastName != null && !lastName.isEmpty()) {
 			address += " " + lastName;
 		}
@@ -80,7 +81,7 @@ public class Address extends IdBasedEntity{
 			address += ", " + state;
 		}
 		
-		address += country.getName();
+		address += ", " + country.getName();
 		
 	
 		if(!postalCode.isEmpty()) {
@@ -91,7 +92,6 @@ public class Address extends IdBasedEntity{
 		if(!phoneNumber.isEmpty()) {
 			address += ". Phone Number : " + phoneNumber;
 		}
-		
 		
 		return address;
 	}
