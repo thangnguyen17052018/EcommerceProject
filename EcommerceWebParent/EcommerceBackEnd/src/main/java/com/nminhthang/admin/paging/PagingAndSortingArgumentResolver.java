@@ -26,8 +26,8 @@ public class PagingAndSortingArgumentResolver implements HandlerMethodArgumentRe
 		
 		String reverseSortDir = sortDir.equals("asc") ? "desc" : "asc";
 		model.addAttribute("sortField", sortField);
-		model.addAttribute("sortDir", sortDir);
-		model.addAttribute("reverseSortDir", reverseSortDir);
+		model.addAttribute("sortOrder", sortDir);
+		model.addAttribute("reverseSortOrder", reverseSortDir);
 		model.addAttribute("keyword", keyword);
 		model.addAttribute("moduleURL", annotation.moduleURL());	
 		model.addAttribute("module", annotation.module());	

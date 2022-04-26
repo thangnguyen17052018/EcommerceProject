@@ -23,7 +23,6 @@ public class OrderService {
 	
 	public void listByPage(int pageNum, PagingAndSortingHelper helper) {
 
-		
 		String sortField = helper.getSortField();
 		String sortDir = helper.getSortDir();
 		String keyword = helper.getKeyword();
