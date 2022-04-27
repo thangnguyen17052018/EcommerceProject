@@ -54,15 +54,15 @@ function updateQuantity(productId, quantity) {
 		beforeSend: function(xhr){
 			xhr.setRequestHeader(csrfHeaderName, csrfValue);
 		}
-	}).done(function(updatedSubtoltal){
-		updateSubtoltal(updatedSubtoltal, productId);
+	}).done(function(updatedSubtotal){
+		updateSubtotal(updatedSubtotal, productId);
 		updateTotal();
 	}).fail(function(){
-		showErrorModal("Error while updateing product quantity.");
+		showErrorModal("Error while updating product quantity.");
 	});
 }
 
-function updateSubtoltal(updatedSubtotal, productId) {
+function updateSubtotal(updatedSubtotal, productId) {
 	$("#subtotal" + productId).text(formatCurrency(updatedSubtotal));
 }
 
@@ -112,13 +112,14 @@ function removeProductHTML(rowNumber) {
 }
 
 function updateCountNumbers() {
-	$(".divCount").each(function(index, elemnet) {
-		elemnet.innerHTML = "" + (index + 1);
+	$(".divCount").each(function(index, element) {
+		element.innerHTML = "" + (index + 1);
 	});
 }
 
 function formatCurrency(amount){
-
+	// alert($.number(amount, decimalDigits, decimalSeparator, thousandsSeparator));
+	// alert("Amount: " + amount + " decimalDigits: " + decimalDigits + " decimalSeparator: " + decimalSeparator + " thousandsSeparator: " + thousandsSeparator);
 	return $.number(amount, decimalDigits, decimalSeparator, thousandsSeparator);
 }
 

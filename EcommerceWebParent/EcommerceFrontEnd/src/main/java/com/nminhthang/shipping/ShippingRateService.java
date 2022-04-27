@@ -15,8 +15,10 @@ public class ShippingRateService {
     public ShippingRate getShippingRateForCustomer(Customer customer) {
         String state = customer.getState();
 
-        if (state != null || state.isEmpty()) {
+        if (state != null || !state.isEmpty()) {
             state = customer.getState();
+        } else {
+            return new ShippingRate();
         }
 
         return shippingRateRepository.findByCountryAndState(customer.getCountry(), state);

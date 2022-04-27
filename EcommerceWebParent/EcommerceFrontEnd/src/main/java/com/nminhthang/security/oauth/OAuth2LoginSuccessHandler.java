@@ -28,6 +28,7 @@ public class OAuth2LoginSuccessHandler extends SavedRequestAwareAuthenticationSu
         String name = oauth2User.getName();
         String email = oauth2User.getEmail();
         String countryCode = request.getLocale().getCountry();
+        System.out.println("COUNTRY CODE: " + countryCode);
         String clientName = oauth2User.getClientName();
 
         System.out.println("OAuth2LoginSuccessHandler:" + name + " | " + email);
