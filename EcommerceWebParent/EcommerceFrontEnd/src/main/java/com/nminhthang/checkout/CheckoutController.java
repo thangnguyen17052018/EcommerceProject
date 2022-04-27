@@ -2,12 +2,14 @@ package com.nminhthang.checkout;
 
 import com.nminhthang.Utility;
 import com.nminhthang.address.AddressService;
+import com.nminhthang.checkout.paypal.PayPalService;
 import com.nminhthang.common.entity.Address;
 import com.nminhthang.common.entity.CartItem;
 import com.nminhthang.common.entity.Customer;
 import com.nminhthang.common.entity.ShippingRate;
 import com.nminhthang.common.entity.order.Order;
 import com.nminhthang.common.entity.order.PaymentMethod;
+import com.nminhthang.common.exception.PayPalApiException;
 import com.nminhthang.customer.CustomerService;
 import com.nminhthang.order.OrderService;
 import com.nminhthang.setting.CurrencySettingBag;
@@ -42,6 +44,7 @@ public class CheckoutController {
     @Autowired private ShippingRateService shippingRateService;
     @Autowired private OrderService orderService;
     @Autowired private SettingService settingService;
+    @Autowired private PayPalService payPalService;
 
     @GetMapping("/checkout")
     public String showCheckoutPage(Model model, HttpServletRequest request) {
@@ -147,6 +150,29 @@ public class CheckoutController {
         helper.setText(content, true);
         mailSender.send(message);
 
+    }
+
+    @PostMapping("/process_paypal_order")
+    public String processPayPalOrder(HttpServletRequest request, Model model) throws UnsupportedEncodingException, MessagingException {
+        String orderId = request.getParameter("orderId");
+        String pageTitle = "Checkout Failure";
+        String message = null;
+        System.out.println("OrderID: " +  orderId);
+        try {
+            if (payPalService.validateOrder(orderId)) {
+                return placeOrder(request);
+            } else {
+                pageTitle = "Checkout Failure";
+                message = "ERROR: Transaction could not be completed because order information is invalid";
+            }
+        } catch (PayPalApiException e) {
+            message = "ERROR: Transaction failed due to error: " + e.getMessage();
+        }
+
+        model.addAttribute("pageTitle", pageTitle);
+        model.addAttribute("message", message);
+
+        return "message";
     }
 
 }
