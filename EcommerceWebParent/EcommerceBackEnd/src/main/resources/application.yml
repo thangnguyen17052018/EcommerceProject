@@ -22,7 +22,7 @@ spring:
     lazy-initialization: true
   mvc:
     pathmatch:
-      matching-strategy: ant_path_matcher
+      matching-strategy: ant-path-matcher
   servlet:
     multipart:
       max-file-size: 5MB
