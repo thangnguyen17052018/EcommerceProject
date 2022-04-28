@@ -30,7 +30,7 @@ public class ShoppingCartController {
 	@Autowired private AddressService addressService;
 
 	@GetMapping("/cart")
-	public String viewCart(Model model, HttpServletRequest request) {
+	public String viewCart(Model model, HttpServletRequest request) throws CustomerNotFoundException {
 		Customer customer = getAuthenticatedCustomer(request);
 		List<CartItem> cartItems = shoppingCartService.listCartItem(customer);
 		
@@ -59,8 +59,11 @@ public class ShoppingCartController {
 		return "cart/shopping_cart";
 	}
 	
-	private Customer getAuthenticatedCustomer(HttpServletRequest request) {
+	private Customer getAuthenticatedCustomer(HttpServletRequest request) throws CustomerNotFoundException {
 		String email = Utility.getEmailOfAuthenticatedCustomer(request);
+		if (email == null) {
+			throw new CustomerNotFoundException("No authenticated customer");
+		}
 
 		return customerService.getCustomerByEmail(email);
 	}
