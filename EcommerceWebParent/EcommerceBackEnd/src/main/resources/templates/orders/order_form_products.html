@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<div th:fragment="content" th:remove="tag">
+		<div id="productList">
+
+			<th:block th:each="detail, status : ${order.orderDetails}">
+				<div class="border rounded p-1" th:with="product = ${detail.product}" th:id="'row' + ${status.count}">
+					<input type="hidden" name="detailId" th:value="${detail.id}" />
+					<input type="hidden" name="productId" th:value="${product.id}" class="hiddenProductId" />
+
+					<div class="row">
+						<div class="col-1 text-center">
+							<div class="divCount">[[${status.count}]]</div>
+							<div><a class="fas fa-trash icon-purple linkRemove fa-2x" href=""
+									th:rowNumber="${status.count}"></a></div>
+						</div>
+						<div class="col-4">
+							<img th:src="@{${product.mainImagePath}}" class="img-fluid" />
+						</div>
+						<div class="col-7">
+							<div class="row m-2">
+								<b>[[${product.name}]]</b>
+							</div>
+
+							<div class="d-flex m-2">
+								<table>
+									<tr>
+										<td>Product Cost:</td>
+										<td>
+											<input type="text" required class="form-control m-1 cost-input"
+												name="productDetailCost" th:rowNumber="${status.count}"
+												th:value="${detail.productCost}" />
+										</td>
+									</tr>
+									<tr>
+										<td>Quantity:</td>
+										<td>
+											<input type="number" step="1" min="1" max="20"
+												class="form-control m-1 quantity-input" name="quantity"
+												th:id="'quantity' + ${status.count}" th:rowNumber="${status.count}"
+												th:value="${detail.quantity}" />
+										</td>
+									</tr>
+									<tr>
+										<td>Unit Price:</td>
+										<td>
+											<input type="text" required class="form-control m-1 price-input"
+												name="productPrice" th:id="'price' + ${status.count}"
+												th:rowNumber="${status.count}" th:value="${detail.unitPrice}"/>
+										</td>
+									</tr>
+									<tr>
+										<td>Subtotal:</td>
+										<td>
+											<input type="text" readonly="readonly"
+												class="form-control m-1 subtotal-output" name="productSubtotal"
+												th:id="'subtotal' + ${status.count}" th:value="${detail.subtotal}" />
+										</td>
+									</tr>
+									<tr>
+										<td>Shipping Cost:</td>
+										<td>
+											<input type="text" required class="form-control m-1 ship-input"
+												name="productShipCost" th:value="${detail.shippingCost}" />
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+
+
+
+				</div>
+				<div th:id="'blankLine' + ${status.count}" class="row">&nbsp;</div>
+			</th:block>
+
+		</div>
+		<div class="d-flex justify-content-center">
+			<a th:href="@{/orders/search_product}" id="linkAddProduct" class="btn btn-primary-color">Add a Product</a>
+		</div>
+	</div>

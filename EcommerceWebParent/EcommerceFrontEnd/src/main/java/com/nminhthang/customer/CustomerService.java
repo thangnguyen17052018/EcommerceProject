@@ -95,7 +95,7 @@ public class CustomerService {
 		customer.setPostalCode("");
         System.out.println(countryCode);
 		customer.setCountry(countryRepository.findByCode(countryCode));
-
+		System.out.println(countryRepository.findByCode(countryCode));
 		customerRepository.save(customer);
 	}
 

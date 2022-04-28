@@ -7,7 +7,6 @@ public enum OrderStatus {
 		public String defaultDescription() {
 			return "Order was placed by the customer";
 		}
-
 	},
 
 	CANCELLED {

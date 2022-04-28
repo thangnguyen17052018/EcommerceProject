@@ -31,7 +31,7 @@ public class ShippingRateServiceTests {
 	
 	@Test
 	public void testCalculateShippingCost_NoRateFound() {
-		Integer productId = 1;
+		Integer productId = 3;
 		Integer countryId = 234;
 		String state = "ABCDE";
 		
@@ -48,7 +48,7 @@ public class ShippingRateServiceTests {
 	
 	@Test
 	public void testCalculateShippingCost_RateFound() throws ShippingRateNotFoundException {
-		Integer productId = 1;
+		Integer productId = 3;
 		Integer countryId = 234;
 		String state = "New York";
 		

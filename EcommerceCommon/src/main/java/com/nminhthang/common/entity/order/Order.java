@@ -1,6 +1,7 @@
 package com.nminhthang.common.entity.order;
 
 import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "orders")
 public class Order extends IdBasedEntity {
-	
+
 	@Column(name = "first_name", nullable = false, length = 45)
 	private String firstName;
 
