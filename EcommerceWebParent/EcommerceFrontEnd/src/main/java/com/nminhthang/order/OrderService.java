@@ -4,11 +4,10 @@ import com.nminhthang.checkout.CheckoutInfo;
 import com.nminhthang.common.entity.Address;
 import com.nminhthang.common.entity.CartItem;
 import com.nminhthang.common.entity.Customer;
-import com.nminhthang.common.entity.order.Order;
-import com.nminhthang.common.entity.order.OrderDetail;
-import com.nminhthang.common.entity.order.OrderStatus;
-import com.nminhthang.common.entity.order.PaymentMethod;
+import com.nminhthang.common.entity.order.*;
 import com.nminhthang.common.entity.product.Product;
+import com.nminhthang.common.exception.OrderNotFoundException;
+import org.hibernate.sql.ordering.antlr.OrderByTranslation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -68,6 +67,14 @@ public class OrderService {
             orderDetails.add(orderDetail);
         }
 
+        OrderTrack track = new OrderTrack();
+        track.setOrder(newOrder);
+        track.setStatus(OrderStatus.NEW);
+        track.setNotes(OrderStatus.NEW.defaultDescription());
+        track.setUpdatedTime(new Date());
+
+        newOrder.getOrderTracks().add(track);
+
         return orderRepository.save(newOrder);
     }
 
@@ -88,6 +95,33 @@ public class OrderService {
 
     public Order getOrder(Integer id, Customer customer) {
         return orderRepository.findByIdAndCustomer(id, customer);
+    }
+
+    public void setOrderReturnRequested(OrderReturnRequest request, Customer customer) throws OrderNotFoundException {
+        Order order = orderRepository.findByIdAndCustomer(request.getOrderId(), customer);
+        System.out.println("Customer: " + customer);
+        if (order == null) {
+            throw new OrderNotFoundException("Could not find any order with order ID: " + request.getOrderId());
+        }
+
+        if (order.isReturnRequested()) return;
+
+        OrderTrack track = new OrderTrack();
+        track.setOrder(order);
+        track.setUpdatedTime(new Date());
+        track.setStatus(OrderStatus.RETURN_REQUESTED);
+
+        String note = "Reason: " + request.getReason();
+        if (!"".equals(request.getNote())) {
+            note += "." + request.getNote();
+        }
+
+        track.setNotes(note);
+
+        order.getOrderTracks().add(track);
+        order.setStatus(OrderStatus.RETURN_REQUESTED);
+
+        orderRepository.save(order);
     }
 
 }
