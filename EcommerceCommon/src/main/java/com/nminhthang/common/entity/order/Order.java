@@ -1,19 +1,11 @@
 package com.nminhthang.common.entity.order;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import com.nminhthang.common.entity.*;
 
@@ -82,6 +74,9 @@ public class Order extends IdBasedEntity {
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<OrderDetail> orderDetails = new HashSet<>();
 
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+	@OrderBy("updatedTime ASC")
+	private List<OrderTrack> orderTracks = new ArrayList<>();
 
 	public Order() {
 
@@ -162,5 +157,114 @@ public class Order extends IdBasedEntity {
 		setCountry(address.getCountry().getName());
 		setPostalCode(address.getPostalCode());
 		setState(address.getState());
+	}
+
+	public List<OrderTrack> getOrderTracks() {
+		return orderTracks;
+	}
+
+	public void setOrderTracks(List<OrderTrack> orderTracks) {
+		this.orderTracks = orderTracks;
+	}
+
+	@Transient
+	public String getDeliverDateOnForm() {
+		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		return dateFormatter.format(this.deliverDate);
+	}
+
+	public void setDeliverDateOnForm(String dateString) {
+		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+
+		try {
+			this.deliverDate = dateFormatter.parse(dateString);
+		} catch (ParseException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	@Transient
+	public String getRecipientName() {
+		String name = firstName;
+
+		if (lastName != null && !lastName.isEmpty()) name += " " + lastName;
+		return name;
+	}
+
+	@Transient
+	public String getRecipientAddress() {
+		String address = addressLine1;
+
+		if (addressLine2 != null && !addressLine2.isEmpty()) address += ", " + addressLine2;
+
+		if (!city.isEmpty()) address += ", " + city;
+
+		if (state != null && !state.isEmpty()) address += ", " + state;
+
+		address += ", " + country;
+
+		if (!postalCode.isEmpty()) address += ". " + postalCode;
+
+		return address;
+	}
+
+	@Transient
+	public boolean isCOD() {
+		return paymentMethod.equals(PaymentMethod.COD);
+	}
+
+	@Transient
+	public boolean isProcessing() {
+		return hasStatus(OrderStatus.PROCESSING);
+	}
+
+	@Transient
+	public boolean isPicked() {
+		return hasStatus(OrderStatus.PICKED);
+	}
+
+	@Transient
+	public boolean isShipping() {
+		return hasStatus(OrderStatus.SHIPPING);
+	}
+
+	@Transient
+	public boolean isDelivered() {
+		return hasStatus(OrderStatus.DELIVERED);
+	}
+
+	@Transient
+	public boolean isReturnRequested() {
+		return hasStatus(OrderStatus.RETURN_REQUESTED);
+	}
+
+	@Transient
+	public boolean isReturned() {
+		return hasStatus(OrderStatus.RETURNED);
+	}
+
+	public boolean hasStatus(OrderStatus status) {
+		for (OrderTrack aTrack : orderTracks) {
+			if (aTrack.getStatus().equals(status)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	@Transient
+	public String getProductNames() {
+		String productName = "";
+
+		productName = "<ul>";
+
+		for (OrderDetail detail : orderDetails) {
+			productName += "<li>" + detail.getProduct().getShortName() + "</li>";
+		}
+
+		productName += "</ul>";
+
+		return productName;
 	}
 }
