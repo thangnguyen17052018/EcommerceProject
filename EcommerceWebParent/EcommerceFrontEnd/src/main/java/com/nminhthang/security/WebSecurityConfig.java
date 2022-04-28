@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 
@@ -32,7 +33,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private DatabaseLoginSuccessHandler databaseLoginSuccessHandler;
-	
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+
 	@Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -57,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
         		.antMatchers("/customer", "/cart", "/account_details", "/update_account_details", "/address_book/**",
-                        "/checkout", "/place_order").authenticated()
+                        "/checkout", "/place_order", "/process_paypal_order").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()

@@ -4,6 +4,7 @@ server:
     context-path: /EcommerceFurniture
 spring:
   datasource:
+<<<<<<< HEAD
     password:
     url: jdbc:mysql://localhost:3306/ecommercedb
     username: root

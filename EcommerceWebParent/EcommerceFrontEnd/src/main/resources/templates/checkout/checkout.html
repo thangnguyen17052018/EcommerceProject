@@ -43,6 +43,10 @@
                     </div>
 
                     <div id="paypal-button-container"></div>
+                    <form th:action="@{/process_paypal_order}" method="post" id="paypalForm">
+                        <input type="hidden" name="orderId" id="orderId">
+                        <input type="hidden" name="paymentMethod" value="PAYPAL">
+                    </form>
                 </div>
             </div>
         </div>
@@ -99,6 +103,11 @@
         });
     });
 
+    function validateOrder(orderId) {
+        $("#orderId").val(orderId);
+        $("#paypalForm").submit();
+    }
+
     paypal.Buttons({
         enableStandardCardFields: true,
         style: {
@@ -122,7 +131,7 @@
                         address_line_1: "[[${customer.addressLine1}]]",
                         address_line_2: "[[${customer.addressLine2}]]",
                         admin_area_1: "[[${customer.state}]]",
-                        admin_area_2: "[[${customer.city}]]",
+                        admin_area_2: "[[${customer.state}]]",
                         postal_code: "[[${customer.postalCode}]]",
                         country_code: "[[${customer.country.code}]]"
                     },
@@ -156,9 +165,8 @@
                 console.log(details);
                 orderId = details.id;
                 totalAmount = details.purchase_units[0].amount.value;
-                // validateOrder(orderId);
+                validateOrder(orderId);
 
-                alert("Transaction completed. Order ID: " + orderId + ". Amount paid: " + totalAmount);
                 console.log("Transaction completed. Order ID: " + orderId + ". Amount paid: " + totalAmount);
             });
         },
