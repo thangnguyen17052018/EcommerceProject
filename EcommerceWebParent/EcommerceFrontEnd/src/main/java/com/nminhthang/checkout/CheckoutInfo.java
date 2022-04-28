@@ -1,5 +1,6 @@
 package com.nminhthang.checkout;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -63,5 +64,10 @@ public class CheckoutInfo {
 
     public void setPaymentTotal(float paymentTotal) {
         this.paymentTotal = paymentTotal;
+    }
+
+    public String getPaymentTotal4PayPal() {
+        DecimalFormat formatter = new DecimalFormat("######.##");
+        return formatter.format(paymentTotal);
     }
 }

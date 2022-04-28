@@ -54,6 +54,40 @@
                 </tbody>
             </table>
         </div>
+        <div class="medium-details mt-5">
+            <table class="table table-striped table-bordered table-hover table-responsive-xl">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Brand ID</th>
+                        <th>Brand Logo</th>
+                        <th th:replace="fragments :: column_link('name', 'Brand Name', 'none')"></th>
+                        <th>Categories</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="brand : ${listBrands}">
+                        <td>[[${brand.id}]]</td>
+                        <td>
+                            <img th:src="@{${brand.logoPath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+                        </td>
+                        <td>[[${brand.name}]]</td>
+
+                        <td>
+                            <span th:each="category : ${brand.categories}" class="badge badge-secondary mr-2">
+                                [[${category.name}]]
+                            </span>
+                        </td>
+
+                        <td>
+                            <div th:replace="fragments :: edit(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                            &nbsp;
+                            <div th:replace="fragments :: delete(${brand.id}, 'brand', '/brands/', true)"></div>&nbsp;
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
         
         <div class="less-details"> 
 			<div th:each="brand : ${listBrands}" class="row row-margin">

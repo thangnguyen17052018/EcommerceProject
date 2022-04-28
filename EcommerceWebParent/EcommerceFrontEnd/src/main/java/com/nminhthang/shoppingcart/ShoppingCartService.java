@@ -59,13 +59,17 @@ public class ShoppingCartService {
 		cartRepository.updateQuantity(quantity, customer.getId(), productId);
 		
 		Product product = productRepository.findById(productId).get();
-		float subtotal = (float) (product.getDiscountPrice() * quantity);
-		
+		float subtotal = (product.getDiscountPrice() * quantity);
+		System.out.println(subtotal);
 		return subtotal;
 	}
 	
 	public void removeProduct(Integer productId, Customer customer) {
 		cartRepository.deleteByCustomerAndProduct(customer.getId(), productId);
+	}
+
+	public void deleteByCustomer(Customer customer) {
+		cartRepository.deleteByCustomer(customer.getId());
 	}
 	
 }
