@@ -1038,9 +1038,9 @@ ul{
 }
 @media screen and (min-width: 768px) and (max-width: 1024px){
 	/* medium screen */
-	div.full-details { display: none }
+	div.full-details { display: block }
 	div.less-details { display: none }
-	div.medium-details { display: block}
+	div.medium-details { display: none }
 
 	.hideable-column { display: none}
 	
