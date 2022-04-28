@@ -1,14 +1,9 @@
 package com.nminhthang.order;
 
-import com.nminhthang.checkout.CheckoutInfo;
-import com.nminhthang.common.entity.Address;
-import com.nminhthang.common.entity.CartItem;
-import com.nminhthang.common.entity.Customer;
-import com.nminhthang.common.entity.order.Order;
-import com.nminhthang.common.entity.order.OrderDetail;
-import com.nminhthang.common.entity.order.OrderStatus;
-import com.nminhthang.common.entity.order.PaymentMethod;
-import com.nminhthang.common.entity.product.Product;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,9 +11,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import com.nminhthang.checkout.CheckoutInfo;
+import com.nminhthang.common.entity.Address;
+import com.nminhthang.common.entity.CartItem;
+import com.nminhthang.common.entity.Customer;
+import com.nminhthang.common.entity.order.Order;
+import com.nminhthang.common.entity.order.OrderDetail;
+import com.nminhthang.common.entity.order.OrderStatus;
+import com.nminhthang.common.entity.order.OrderTrack;
+import com.nminhthang.common.entity.order.PaymentMethod;
+import com.nminhthang.common.entity.product.Product;
 
 @Service
 public class OrderService {
@@ -67,7 +69,15 @@ public class OrderService {
 
             orderDetails.add(orderDetail);
         }
-
+        
+        OrderTrack track = new OrderTrack();
+		track.setOrder(newOrder);
+		track.setStatus(OrderStatus.NEW);
+		track.setNotes(OrderStatus.NEW.defaultDescription());
+		track.setUpdatedTime(new Date());
+		
+		newOrder.getOrderTracks().add(track);
+        
         return orderRepository.save(newOrder);
     }
 
