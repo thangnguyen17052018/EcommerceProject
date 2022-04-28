@@ -161,7 +161,8 @@ function processFormBeforeSubmit() {
 }
 
 function removeThousandSeparatorForField(fieldRef) {
-	fieldRef.val(fieldRef.val().replace(",", ""));
+	fieldRef.val(fieldRef.val().replace(/,(?=\d{3})/g, ''));
+	console.log(fieldRef.val());
 }
 
 function setCountryName() {

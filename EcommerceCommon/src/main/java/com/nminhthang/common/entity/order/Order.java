@@ -131,7 +131,7 @@ public class Order extends IdBasedEntity {
 		
 		@Transient
 		public String getDeliverDateOnForm() {
-			DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+			DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 			return dateFormatter.format(this.deliverDate);
 		}
 		
