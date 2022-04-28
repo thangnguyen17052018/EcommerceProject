@@ -4,9 +4,7 @@ server:
     context-path: /EcommerceAdmin
 spring:
   datasource:
-
-    password: kien1203&wY$kApG
-
+    password: chaukhanhst
     url: jdbc:mysql://localhost:3306/ecommercedb
     username: root
   devtools:

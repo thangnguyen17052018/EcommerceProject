@@ -1,9 +1,10 @@
-package com.nminhthang.common.entity;
+package com.nminhthang.common.entity.order;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,10 +18,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.nminhthang.common.entity.order.Order;
-import com.nminhthang.common.entity.order.OrderStatus;
+import com.nminhthang.common.entity.Customer;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "order_track")
 public class OrderTrack {
@@ -41,38 +49,6 @@ public class OrderTrack {
 	@ManyToOne
 	@JoinColumn(name = "order_id")
 	private Order order;
-
-	public String getNotes() {
-		return notes;
-	}
-
-	public void setNotes(String notes) {
-		this.notes = notes;
-	}
-
-	public Date getUpdatedTime() {
-		return updatedTime;
-	}
-
-	public void setUpdatedTime(Date updatedTime) {
-		this.updatedTime = updatedTime;
-	}
-
-	public OrderStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(OrderStatus status) {
-		this.status = status;
-	}
-
-	public Order getOrder() {
-		return order;
-	}
-
-	public void setOrder(Order order) {
-		this.order = order;
-	}
 	
 	@Transient
 	public String getUpdatedTimeOnForm() {
@@ -89,5 +65,10 @@ public class OrderTrack {
 			e.printStackTrace();
 		}
 	}
+
+	public OrderTrack() {
+
+	}
+	
 	
 }

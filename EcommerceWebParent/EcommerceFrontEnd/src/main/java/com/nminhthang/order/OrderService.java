@@ -10,6 +10,10 @@ import com.nminhthang.common.entity.order.OrderStatus;
 import com.nminhthang.common.entity.order.PaymentMethod;
 import com.nminhthang.common.entity.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -19,12 +23,19 @@ import java.util.Set;
 @Service
 public class OrderService {
 
+    public static final int  ORDERS_PER_PAGE = 2;
     @Autowired private OrderRepository orderRepository;
 
     public Order createOrder(Customer customer, Address address, List<CartItem> cartItems, PaymentMethod paymentMethod, CheckoutInfo checkoutInfo) {
         Order newOrder = new Order();
         newOrder.setOrderTime(new Date());
-        newOrder.setStatus(OrderStatus.NEW);
+
+        if (paymentMethod.equals(PaymentMethod.PAYPAL)) {
+            newOrder.setStatus(OrderStatus.PAID);
+        } else {
+            newOrder.setStatus(OrderStatus.NEW);
+        }
+
         newOrder.setCustomer(customer);
         newOrder.setProductCost(checkoutInfo.getProductCost());
         newOrder.setSubtotal(checkoutInfo.getProductTotal());
@@ -58,6 +69,25 @@ public class OrderService {
         }
 
         return orderRepository.save(newOrder);
+    }
+
+    public Page<Order> listForCustomerByPage(Customer customer, int pageNum, String sortField, String sortDir, String keyword) {
+        Sort sort = Sort.by(sortField);
+        sort = sortDir.equals("asc") ? sort.ascending() : sort.descending();
+
+        Pageable pageable = PageRequest.of(pageNum - 1, ORDERS_PER_PAGE, sort);
+
+        if (keyword != null) {
+            System.out.println("Keyword: " + keyword);
+            System.out.println("ID: " + customer.getId());
+            return orderRepository.findAll(keyword, customer.getId(), pageable);
+        }
+
+        return orderRepository.findAll(customer.getId(), pageable);
+    }
+
+    public Order getOrder(Integer id, Customer customer) {
+        return orderRepository.findByIdAndCustomer(id, customer);
     }
 
 }

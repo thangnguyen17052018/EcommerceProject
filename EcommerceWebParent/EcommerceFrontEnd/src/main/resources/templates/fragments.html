@@ -77,7 +77,7 @@
 							</li>
 
 							<li class="nav-item li-hover">
-								<a class="nav-link text-nav-link">
+								<a class="nav-link text-nav-link" th:href="@{/orders}">
 
 									Orders
 								</a>
@@ -173,7 +173,7 @@
 						</li>
 					</th:block>
 					<li class="navbar-item li-hover">
-						<a class="nav-link" th:href="@{/Contact}">
+						<a class="nav-link" th:href="@{/contact}">
 							<span></span>
 							<span></span>
 							<span></span>
@@ -255,7 +255,7 @@
 	</div>
 
 	<a th:fragment="page_link(pageNum, pageLabel, module)" class="page-link"
-		th:href="@{'/' + ${module} + '/page/' + ${pageNum} +  ${keyword != null ? '?keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
+		th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '?keyword=' + keyword : ''}}">[[${pageLabel}]]</a>
 
 	<div th:fragment="pagination(moduleUrl, entityName)" th:remove="tag">
 		<div class="text-center m-4">
@@ -301,6 +301,24 @@
 
 	<div th:fragment="currency_input(amount)" th:remove="tag">
 		<input type="text" readonly class="form-control" th:value="${(CURRENCY_SYMBOL_POSITION == 'before' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'after' ? CURRENCY_SYMBOL : '')}">
+	</div>
+
+	<div th:fragment="search_form()" th:remove="tag">
+		<form th:action="@{${moduleURL} + '/page/1'}" class="form-inline m-3">
+			<input type="hidden" name="sortField" th:value="${sortField}" />
+			<input type="hidden" name="sortDir" th:value="${sortOrder}" />
+
+			Filter:&nbsp;
+			<input type="search" name="orderKeyword" th:value="${orderKeyword}" class="form-control" required/>
+			&nbsp;&nbsp;
+			<button type="submit" class="btn btn-primary">
+				<i class="fas fa-search"></i>
+			</button>
+			&nbsp;&nbsp;
+			<button type="button" class="btn btn-secondary" onclick="clearFilter()">
+				<i class="fas fa-eraser"></i>
+			</button>
+		</form>
 	</div>
 
 </body>

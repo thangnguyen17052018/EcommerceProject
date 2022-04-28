@@ -143,8 +143,11 @@
 		<div id="sectionEmptyCartMessage" th:class="'m-1 text-center' + ${#lists.isEmpty(cartItems) ? '' : ' d-none'}">
 			<h3>You have not chosen any product yet.</h3>
 		</div>
+
+
+
 	</div>
-	<div th:replace="fragments :: footer_menu"></div>
+			<div th:replace="fragments :: footer_menu"></div>
 </div>
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]";

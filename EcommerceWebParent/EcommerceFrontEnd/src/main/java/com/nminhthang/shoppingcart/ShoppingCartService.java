@@ -59,8 +59,8 @@ public class ShoppingCartService {
 		cartRepository.updateQuantity(quantity, customer.getId(), productId);
 		
 		Product product = productRepository.findById(productId).get();
-		float subtotal = (float) (product.getDiscountPrice() * quantity);
-		
+		float subtotal = (product.getDiscountPrice() * quantity);
+		System.out.println(subtotal);
 		return subtotal;
 	}
 	
