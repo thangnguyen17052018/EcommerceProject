@@ -31,5 +31,9 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
     @Modifying
     @Query("UPDATE Product p SET p.enabled= :enabled WHERE p.id = :id")
     void updateEnabledStatus(Integer id, boolean enabled);
+
+	@Query("SELECT p FROM Product p WHERE p.name LIKE %?1%")
+	public Page<Product> searchProductsByName(String keyword, Pageable pageable);
+
 }
 

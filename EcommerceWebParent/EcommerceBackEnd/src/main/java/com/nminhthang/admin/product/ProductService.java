@@ -1,8 +1,12 @@
 package com.nminhthang.admin.product;
 
 
-import com.nminhthang.common.entity.product.Product;
-import com.nminhthang.common.exception.ProductNotFoundException;
+import java.util.Date;
+import java.util.List;
+import java.util.NoSuchElementException;
+
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,10 +14,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
-import java.util.Date;
-import java.util.List;
-import java.util.NoSuchElementException;
+import com.nminhthang.admin.paging.PagingAndSortingHelper;
+import com.nminhthang.common.entity.product.Product;
+import com.nminhthang.common.exception.ProductNotFoundException;
 
 @Service
 public class ProductService {
@@ -55,6 +58,17 @@ public class ProductService {
         return productRepository.findAllBy(pageable);
     }
 
+    
+	public void searchProducts(int pageNum, PagingAndSortingHelper helper) {
+		Pageable pageable = helper.createPageable(PRODUCT_PER_PAGE, pageNum);
+		
+		String keyword = helper.getKeyword();	
+		
+		Page<Product> page = productRepository.searchProductsByName(keyword, pageable);		
+		
+		helper.updateModelAttributes(pageNum, page);
+	}
+    
     public Product save(Product product) {
         if (product.getId() == null) {
             product.setCreatedTime(new Date());

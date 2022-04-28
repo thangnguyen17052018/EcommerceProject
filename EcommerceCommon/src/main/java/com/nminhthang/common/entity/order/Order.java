@@ -1,7 +1,11 @@
 package com.nminhthang.common.entity.order;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -12,13 +16,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.Customer;
 import com.nminhthang.common.entity.IdBasedEntity;
-import com.nminhthang.common.entity.ShippingRate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -87,6 +90,12 @@ public class Order extends IdBasedEntity {
 		@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
 		private Set<OrderDetail> orderDetails = new HashSet<>();
 
+		
+		@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+		@OrderBy("updatedTime ASC")
+		private List<OrderTrack> orderTracks = new ArrayList<>();
+		
+		
 
 		public Order() {
 			
@@ -118,6 +127,12 @@ public class Order extends IdBasedEntity {
 			destination += country;
 			
 			return destination;
+		}
+		
+		@Transient
+		public String getDeliverDateOnForm() {
+			DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+			return dateFormatter.format(this.deliverDate);
 		}
 		
 }

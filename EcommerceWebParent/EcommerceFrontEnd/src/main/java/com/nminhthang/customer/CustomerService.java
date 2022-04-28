@@ -94,7 +94,7 @@ public class CustomerService {
 		customer.setPhoneNumber("");
 		customer.setPostalCode("");
 		customer.setCountry(countryRepository.findByCode(countryCode));
-
+		System.out.println(countryRepository.findByCode(countryCode));
 		customerRepository.save(customer);
 	}
 

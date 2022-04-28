@@ -36,11 +36,11 @@ function increaseQuantity(link) {
 	quantityInput = $("#quantity" + productId);
 	newQuantity = parseInt(quantityInput.val());
 
-	if (newQuantity <= 5) {
+	if (newQuantity <= 20) {
 		quantityInput.val(newQuantity);
 		updateQuantity(productId, newQuantity);
 	} else {
-		showWarningModal("Maximum quantity is 5");
+		showWarningModal("Maximum quantity is 20");
 	}
 }
 
@@ -55,14 +55,14 @@ function updateQuantity(productId, quantity) {
 			xhr.setRequestHeader(csrfHeaderName, csrfValue);
 		}
 	}).done(function(updatedSubtoltal){
-		updateSubtoltal(updatedSubtoltal, productId);
+		updateSubtotal(updatedSubtoltal, productId);
 		updateTotal();
 	}).fail(function(){
 		showErrorModal("Error while updateing product quantity.");
 	});
 }
 
-function updateSubtoltal(updatedSubtotal, productId) {
+function updateSubtotal(updatedSubtotal, productId) {
 	$("#subtotal" + productId).text(formatCurrency(updatedSubtotal));
 }
 

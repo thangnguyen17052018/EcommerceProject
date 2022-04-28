@@ -16,6 +16,7 @@ import com.nminhthang.admin.paging.PagingAndSortingHelper;
 import com.nminhthang.admin.paging.PagingAndSortingParam;
 import com.nminhthang.admin.security.UserDetailsImp;
 import com.nminhthang.admin.setting.SettingService;
+import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.order.Order;
 import com.nminhthang.common.entity.setting.Setting;
 import com.nminhthang.common.exception.OrderNotFoundException;
@@ -90,4 +91,26 @@ public class OrderController {
 		return defaultRedirectURL;
 	}
 	
+
+	@GetMapping("/orders/edit/{id}")
+	public String editOrder(@PathVariable("id") Integer id, Model model, RedirectAttributes ra,
+			HttpServletRequest request) {
+		try {
+			Order order = orderService.get(id);;
+			
+			List<Country> listCountries = orderService.listAllCountries();
+			
+			model.addAttribute("pageTitle", "Edit Order (ID: " + id + ")");
+			model.addAttribute("order", order);
+			model.addAttribute("listCountries", listCountries);
+			
+			return "orders/order_form";
+			
+		} catch (OrderNotFoundException ex) {
+			ra.addFlashAttribute("message", ex.getMessage());
+			return defaultRedirectURL;
+		}
+		
+	}	
+
 }

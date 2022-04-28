@@ -1,5 +1,6 @@
 package com.nminhthang.admin.order;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.nminhthang.admin.paging.PagingAndSortingHelper;
 import com.nminhthang.admin.setting.country.CountryRepository;
+import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.order.Order;
 import com.nminhthang.common.exception.OrderNotFoundException;
 
@@ -68,5 +70,9 @@ public class OrderService {
 		orderRepo.deleteById(id);
 	}
 	
+	
+	public List<Country> listAllCountries() {
+		return countryRepo.findAllByOrderByNameAsc();
+	}
 
 }
