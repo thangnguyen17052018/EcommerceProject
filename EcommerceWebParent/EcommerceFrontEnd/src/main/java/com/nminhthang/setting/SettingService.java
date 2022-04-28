@@ -1,5 +1,6 @@
 package com.nminhthang.setting;
 
+import com.nminhthang.common.entity.Currency;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,10 @@ import java.util.List;
 public class SettingService {
 
     @Autowired
-    SettingRepository settingRepository;
+    private SettingRepository settingRepository;
+
+    @Autowired
+    private CurrencyRepository currencyRepository;
 
     public List<Setting> listAllSettings() {
         return (List<Setting>) settingRepository.findAll();
@@ -32,6 +36,25 @@ public class SettingService {
         settings.addAll(settingRepository.findAllBySettingCategory(SettingCategory.MAIL_TEMPLATE));
 
         return new EmailSettingBag(settings);
+    }
+
+    public CurrencySettingBag getCurrencySettings() {
+        List<Setting> settings = settingRepository.findAllBySettingCategory(SettingCategory.CURRENCY);
+        return new CurrencySettingBag(settings);
+    }
+
+    public PaymentSettingBag getPaymentSettings() {
+        List<Setting> settings = settingRepository.findAllBySettingCategory(SettingCategory.PAYMENT);
+        return new PaymentSettingBag(settings);
+    }
+
+    public String getCurrencyCode() {
+        Setting setting = settingRepository.findByKey("CURRENCY_ID");
+        Integer currencyId = Integer.parseInt(setting.getValue());
+
+        Currency currency = currencyRepository.findById(currencyId).get();
+
+        return currency.getCode();
     }
 
 }

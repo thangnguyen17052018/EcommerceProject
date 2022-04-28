@@ -62,8 +62,8 @@ public class Product {
     @Column(name = "in_stock")
     private boolean inStock;
 
-    private double cost;
-    private double price;
+    private float cost;
+    private float price;
     @Column(name = "discount_percent")
     private float discountPercent;
 
@@ -114,7 +114,7 @@ public class Product {
     }
 
     @Transient
-    public double getDiscountPrice() {
+    public float getDiscountPrice() {
         if (discountPercent > 0) return price - (price * discountPercent/100);
         return price;
     }

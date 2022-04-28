@@ -52,6 +52,37 @@
                 </tbody>
             </table>
         </div>
+        
+        <div class="medium-details mt-5">
+            <table class="table table-striped table-bordered table-hover table-responsive-xl">
+                <thead class="thead-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Category Image</th>
+                        <th th:replace="fragments :: column_link('name', 'Category Name', 'none')"></th>
+                        <th>Enabled</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="category : ${listCategories}">
+                        <td>[[${category.id}]]</td>
+                        <td>
+                            <img th:src="@{${category.imagePath}}" id="thumbnail" class="img-fluid img-thumbnail h-auto" max-width="100%" width="120px" height="120px">
+                        </td>
+                        <td>[[${category.name}]]</td>
+                        <td>
+                            <div th:replace="fragments :: status(${category.enabled}, 'category', '/categories/' + ${category.id})"></div>
+                        </td>
+                        <td>
+                            <div th:replace="fragments :: edit(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
+                            &nbsp;
+                            <div th:replace="fragments :: delete(${category.id}, 'category', '/categories/', ${!category.hasChildren})"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
 		<div class="less-details"> 
 			<div th:each="category : ${listCategories}" class="row row-margin mt-4">
