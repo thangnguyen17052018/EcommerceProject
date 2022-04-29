@@ -28,8 +28,6 @@ import lombok.Setter;
 @Table(name = "user")
 public class User extends IdBasedEntity {
 
-
-
     @Column(length = 128, nullable = false, unique = true)
     private String email;
 
