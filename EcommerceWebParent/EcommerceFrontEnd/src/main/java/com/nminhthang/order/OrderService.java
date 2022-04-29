@@ -1,9 +1,21 @@
 package com.nminhthang.order;
 
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
 import com.nminhthang.checkout.CheckoutInfo;
 import com.nminhthang.common.entity.Address;
 import com.nminhthang.common.entity.CartItem;
 import com.nminhthang.common.entity.Customer;
+
 import com.nminhthang.common.entity.order.*;
 import com.nminhthang.common.entity.product.Product;
 import com.nminhthang.common.exception.OrderNotFoundException;
@@ -67,6 +79,7 @@ public class OrderService {
             orderDetails.add(orderDetail);
         }
 
+
         OrderTrack track = new OrderTrack();
         track.setOrder(newOrder);
         track.setStatus(OrderStatus.NEW);
@@ -74,6 +87,7 @@ public class OrderService {
         track.setUpdatedTime(new Date());
 
         newOrder.getOrderTracks().add(track);
+
 
         return orderRepository.save(newOrder);
     }
