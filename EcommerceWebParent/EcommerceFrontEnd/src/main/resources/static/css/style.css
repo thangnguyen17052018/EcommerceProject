@@ -1208,3 +1208,14 @@ ul{
 	height: 55px;
 	top: 100%;
 }
+
+.bg-card {
+	background:#d4edda;
+}
+
+.bg-linear {
+	background:#28a745;
+	border-radius: 6px;
+    padding: 4px;
+    color: #fff;
+}

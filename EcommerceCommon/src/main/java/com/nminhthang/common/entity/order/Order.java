@@ -1,6 +1,7 @@
 package com.nminhthang.common.entity.order;
 
 import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -21,7 +22,7 @@ import lombok.Setter;
 @Entity
 @Table(name = "orders")
 public class Order extends IdBasedEntity {
-	
+
 	@Column(name = "first_name", nullable = false, length = 45)
 	private String firstName;
 
@@ -169,12 +170,12 @@ public class Order extends IdBasedEntity {
 
 	@Transient
 	public String getDeliverDateOnForm() {
-		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 		return dateFormatter.format(this.deliverDate);
 	}
 
 	public void setDeliverDateOnForm(String dateString) {
-		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 
 		try {
 			this.deliverDate = dateFormatter.parse(dateString);
@@ -248,6 +249,8 @@ public class Order extends IdBasedEntity {
 			if (aTrack.getStatus().equals(status)) {
 				return true;
 			}
+			if (aTrack.getStatus().equals(OrderStatus.NEW))
+				return true;
 		}
 
 		return false;

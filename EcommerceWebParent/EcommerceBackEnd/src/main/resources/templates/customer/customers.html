@@ -24,8 +24,8 @@
                         <th th:replace="fragments :: column_link('firstName', 'First Name', 'none')"></th>
                         <th th:replace="fragments :: column_link('lastName', 'Last Name', 'none')"></th>
                         <th th:replace="fragments :: column_link('email', 'E-mail', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('city', 'City', 'none')"></th>
-                        <th class="hideable-column" th:replace="fragments :: column_link('state', 'State', 'none')"></th>
+                        <th th:replace="fragments :: column_link('city', 'City', 'none')"></th>
+                        <th th:replace="fragments :: column_link('state', 'State', 'none')"></th>
                         <th th:replace="fragments :: column_link('country', 'Country', 'none')"></th>
                         <th th:replace="fragments :: column_link('enabled', 'Enabled', 'none')"></th>
                         <th>Action</th>
@@ -37,8 +37,8 @@
                         <td>[[${customer.firstName}]]</td>
                         <td>[[${customer.lastName}]]</td>
                         <td>[[${customer.email}]]</td>
-                        <td class="hideable-column">[[${customer.city}]]</td>
-                        <td class="hideable-column">[[${customer.state}]]</td>
+                        <td>[[${customer.city}]]</td>
+                        <td>[[${customer.state}]]</td>
                         <td>[[${customer.country.name}]]</td>
                         <td>
                             <div th:replace="fragments :: status(${customer.enabled}, 'customer', '/customers/' + ${customer.id})"></div>

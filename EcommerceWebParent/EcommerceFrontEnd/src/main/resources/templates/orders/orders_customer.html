@@ -36,7 +36,6 @@
           <a class="fas fa-file-alt fa-2x icon-green linkDetail"
              th:href="@{'/orders/detail/' + ${order.id}}"
              title="View details of this order"></a>
-          <span>[[${order.isDelivered()}]]</span>
           <th:block th:if="${order.isDelivered() == true}">
             &nbsp;&nbsp;&nbsp;
             <a class="fas fa-undo fa-2x icon-dark linkReturnOrder" href=""
@@ -96,7 +95,7 @@
 
   <div th:replace="fragments :: pagination('orders', 'orders')"></div>
 
-<!--  <div th:replace="orders/return_order_modal :: content"></div>-->
+  <div th:replace="orders/return_order_modal :: content"></div>
 
   <div class="modal fade" id="orderDetailsModal">
     <div class="modal-dialog modal-xl">
