@@ -43,12 +43,18 @@ public class OrderController {
 	}
 	
 	@GetMapping("/orders/page/{pageNum}")
-	public String listByPage(@PagingAndSortingParam(listName = "listOrders", moduleURL = "/orders", module = "orders") PagingAndSortingHelper helper,
-			@PathVariable(name = "pageNum") int pageNum,HttpServletRequest request) {
+	public String listByPage(
+			@PagingAndSortingParam(listName = "listOrders", moduleURL = "/orders", module="orders") PagingAndSortingHelper helper,
+			@PathVariable(name = "pageNum") int pageNum,
+			HttpServletRequest request,
+			@AuthenticationPrincipal UserDetailsImp loggedUser) {
 
 		orderService.listByPage(pageNum, helper);
 		loadCurrencySetting(request);
-
+		
+		if (!loggedUser.hasRole("Admin") && !loggedUser.hasRole("Sales") && loggedUser.hasRole("Shipper")) {
+			return "orders/orders_shipper";
+		}
 		
 		return "orders/orders";
 	}
@@ -70,13 +76,13 @@ public class OrderController {
 			Order order = orderService.get(id);
 			loadCurrencySetting(request);			
 			
-			boolean isVisibleForAdminOrSalesperson = false;
+			boolean isVisibleForAdminOrSales = false;
 			
-			if (loggedUser.hasRole("Admin") || loggedUser.hasRole("Salesperson")) {
-				isVisibleForAdminOrSalesperson = true;
+			if (loggedUser.hasRole("Admin") || loggedUser.hasRole("Sales")) {
+				isVisibleForAdminOrSales = true;
 			}
 			
-			model.addAttribute("isVisibleForAdminOrSalesperson", isVisibleForAdminOrSalesperson);
+			model.addAttribute("isVisibleForAdminOrSales", isVisibleForAdminOrSales);
 			model.addAttribute("order", order);
 			
 			return "orders/order_details_modal";
@@ -144,7 +150,7 @@ public class OrderController {
 		String[] trackNotes = request.getParameterValues("trackNotes");
 		
 		List<OrderTrack> orderTracks = order.getOrderTracks();
-		DateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy'T'hh:mm:ss");
+		DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss");
 		
 		for (int i = 0; i < trackIds.length; i++) {
 			OrderTrack trackRecord = new OrderTrack();
@@ -166,6 +172,8 @@ public class OrderController {
 			
 			orderTracks.add(trackRecord);
 		}
+		OrderStatus statusToUpdate = OrderStatus.valueOf(trackStatuses[trackIds.length-1]);
+		order.setStatus(statusToUpdate);
 	}
 
 	private void updateProductDetails(Order order, HttpServletRequest request) {
