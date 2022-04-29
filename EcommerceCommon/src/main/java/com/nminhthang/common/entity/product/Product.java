@@ -157,7 +157,11 @@ public class Product {
 		this.id = id;
 	}
 
-	@Override
+    public Product(String name) {
+        this.name = name;
+    }
+
+    @Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", alias=" + alias + ", shortDescription=" + shortDescription
 				+ ", fullDescription=" + fullDescription + ", createdTime=" + createdTime + ", updatedTime="

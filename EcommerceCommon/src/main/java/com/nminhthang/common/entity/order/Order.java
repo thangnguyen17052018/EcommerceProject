@@ -83,6 +83,14 @@ public class Order extends IdBasedEntity {
 
 	}
 
+	public Order(Integer id, Date orderTime, float productCost, float subtotal, float total) {
+		this.id = id;
+		this.orderTime = orderTime;
+		this.productCost = productCost;
+		this.subtotal = subtotal;
+		this.total = total;
+	}
+
 	public void copyAddressFromCustomer() {
 		setFirstName(customer.getFirstName());
 		setLastName(customer.getLastName());

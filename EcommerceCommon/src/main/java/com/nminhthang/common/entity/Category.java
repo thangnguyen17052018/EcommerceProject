@@ -86,4 +86,7 @@ public class Category {
     @Transient
     private boolean hasChildren;
 
+    public Category(String name) {
+        this.name = name;
+    }
 }

@@ -18,8 +18,6 @@ import lombok.Setter;
 @Builder
 public class State extends IdBasedEntity {
 
-
-
     @Column(nullable = false, length = 45)
     private String name;
 
