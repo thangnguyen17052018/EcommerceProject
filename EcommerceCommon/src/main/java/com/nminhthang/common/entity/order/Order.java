@@ -249,6 +249,8 @@ public class Order extends IdBasedEntity {
 			if (aTrack.getStatus().equals(status)) {
 				return true;
 			}
+			if (aTrack.getStatus().equals(OrderStatus.NEW))
+				return true;
 		}
 
 		return false;
