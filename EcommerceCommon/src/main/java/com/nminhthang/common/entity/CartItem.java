@@ -22,7 +22,6 @@ import lombok.Setter;
 @Table(name="cart_item")
 public class CartItem extends IdBasedEntity {
 	
-	
 	@ManyToOne
 	@JoinColumn(name="customer_id")
 	private Customer customer;

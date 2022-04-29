@@ -74,7 +74,7 @@ public class CheckoutController {
         PaymentSettingBag paymentSettings = settingService.getPaymentSettings();
         String paypalClientId = paymentSettings.getClientID();
         String paypalClientSecret = paymentSettings.getClientSecret();
-
+        
         model.addAttribute("paypalClientId", paypalClientId);
         model.addAttribute("paypalClientSecret", paypalClientSecret);
         model.addAttribute("customer", customer);

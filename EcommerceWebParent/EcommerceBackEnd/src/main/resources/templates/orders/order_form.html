@@ -9,7 +9,7 @@
 		<h2 class="head-text">Manage Orders | [[${pageTitle}]]</h2>
 	</div>
 		
-	<form class="box-shadow-form my-5" th:action="@{/order/save}" th:object="${order}" method="post" onsubmit="return processFormBeforeSubmit();"
+	<form class="box-shadow-form my-5" th:action="@{/orders/save}" th:object="${order}" method="post" onsubmit="return processFormBeforeSubmit();"
 		style="max-width: 900px; margin: 0 auto;">
 	<input type="hidden" th:field="*{id}" />
 	<div class="p-5">

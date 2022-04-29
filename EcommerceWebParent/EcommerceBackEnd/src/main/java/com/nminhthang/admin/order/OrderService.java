@@ -1,5 +1,6 @@
 package com.nminhthang.admin.order;
 
+import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -14,6 +15,8 @@ import com.nminhthang.admin.paging.PagingAndSortingHelper;
 import com.nminhthang.admin.setting.country.CountryRepository;
 import com.nminhthang.common.entity.Country;
 import com.nminhthang.common.entity.order.Order;
+import com.nminhthang.common.entity.order.OrderStatus;
+import com.nminhthang.common.entity.order.OrderTrack;
 import com.nminhthang.common.exception.OrderNotFoundException;
 
 @Service
@@ -73,6 +76,36 @@ public class OrderService {
 	
 	public List<Country> listAllCountries() {
 		return countryRepo.findAllByOrderByNameAsc();
+	}
+
+	public void save(Order orderInForm) {
+		Order orderInDB = orderRepo.findById(orderInForm.getId()).get();
+		orderInForm.setOrderTime(orderInDB.getOrderTime());
+		orderInForm.setCustomer(orderInDB.getCustomer());
+		
+		orderRepo.save(orderInForm);
+	}
+	
+	public void updateStatus(Integer orderId, String status) {
+		Order orderInDB = orderRepo.findById(orderId).get();
+		OrderStatus statusToUpdate = OrderStatus.valueOf(status);
+		
+		if (!orderInDB.hasStatus(statusToUpdate)) {
+			List<OrderTrack> orderTracks = orderInDB.getOrderTracks();
+			
+			OrderTrack track = new OrderTrack();
+			track.setOrder(orderInDB);
+			track.setStatus(statusToUpdate);
+			track.setUpdatedTime(new Date());
+			track.setNotes(statusToUpdate.defaultDescription());
+			
+			orderTracks.add(track);
+			
+			orderInDB.setStatus(statusToUpdate);
+			
+			orderRepo.save(orderInDB);
+		}
+		
 	}
 
 }

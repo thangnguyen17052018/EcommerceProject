@@ -7,6 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import com.nminhthang.admin.paging.SearchRepository;
 import com.nminhthang.common.entity.order.Order;
 
+import java.util.Date;
+import java.util.List;
+
 public interface OrderRepository extends SearchRepository<Order, Integer> {
 	
 	@Query("SELECT o FROM Order o WHERE CONCAT('#', o.id) LIKE %?1% OR "
@@ -23,4 +26,9 @@ public interface OrderRepository extends SearchRepository<Order, Integer> {
 	
 	
 	public Long countById(Integer id);
+
+	@Query("SELECT NEW com.nminhthang.common.entity.order.Order(o.id, o.orderTime, o.productCost,"
+			+ " o.subtotal, o.total) FROM Order o WHERE"
+			+ " o.orderTime BETWEEN ?1 AND ?2 ORDER BY o.orderTime ASC")
+	List<Order> findByOrderTimeBetween(Date startTime, Date endTime);
 }
