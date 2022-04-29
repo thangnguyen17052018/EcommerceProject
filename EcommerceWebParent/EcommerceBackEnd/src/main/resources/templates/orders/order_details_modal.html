@@ -28,7 +28,7 @@
 					</div>
 				</div>
 
-				<th:block th:if="${isVisibleForAdminOrSalesperson}">
+				<th:block th:if="${isVisibleForAdminOrSales}">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label">Customer:</label>
 						<div class="col-sm-10">
@@ -68,7 +68,7 @@
 					</div>
 				</div>
 
-				<th:block th:if="${isVisibleForAdminOrSalesperson}">
+				<th:block th:if="${isVisibleForAdminOrSales}">
 					<div class="form-group row">
 						<label class="col-sm-2 col-form-label"></label>
 						<div class="col-sm-10">
@@ -109,7 +109,7 @@
 							<b>[[${product.name}]]</b>
 						</div>
 
-						<th:block th:if="${isVisibleForAdminOrSalesperson}">
+						<th:block th:if="${isVisibleForAdminOrSales}">
 							<div>
 								Product Cost:
 								<div th:replace="fragments :: format_currency(${detail.productCost})" />
@@ -210,7 +210,8 @@
 					</thead>
 					<tbody>
 						<tr th:each="track : ${order.orderTracks}">
-							<td>[[${track.updatedTime}]]</td>
+							<td><div th:replace="fragments :: format_time(${track.updatedTime})"></div></td>
+							
 							<td>[[${track.status}]]</td>
 							<td><i>[[${track.notes}]]</i></td>
 						</tr>
