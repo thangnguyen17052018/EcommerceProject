@@ -82,8 +82,13 @@ public class OrderService {
 
         OrderTrack track = new OrderTrack();
         track.setOrder(newOrder);
-        track.setStatus(OrderStatus.NEW);
-        track.setNotes(OrderStatus.NEW.defaultDescription());
+        if (paymentMethod.equals(PaymentMethod.PAYPAL)) {
+            track.setStatus(OrderStatus.PAID);
+            track.setNotes(OrderStatus.PAID.defaultDescription());
+        } else {
+            track.setStatus(OrderStatus.NEW);
+            track.setNotes(OrderStatus.NEW.defaultDescription());
+        }
         track.setUpdatedTime(new Date());
 
         newOrder.getOrderTracks().add(track);
