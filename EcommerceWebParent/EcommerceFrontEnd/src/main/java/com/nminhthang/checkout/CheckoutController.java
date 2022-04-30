@@ -146,7 +146,7 @@ public class CheckoutController {
         content = content.replace("[[shippingAddress]]", order.getShippingAddress());
         content = content.replace("[[total]]", totalAmount);
         content = content.replace("[[paymentMethod]]", order.getPaymentMethod().toString());
-
+        content = content.replace("[[orderLink]]", "http://localhost:8000/EcommerceFurniture/orders/detail/" + String.valueOf(order.getId()));
         helper.setText(content, true);
         mailSender.send(message);
 

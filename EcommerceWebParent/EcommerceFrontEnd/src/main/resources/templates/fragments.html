@@ -48,7 +48,7 @@
 					<ul class="navbar-nav">
 						<th:block sec:authorize="isAuthenticated()">
 
-							<li class="nav-item li-hover">
+							<li class="nav-item li-hover text-subnav">
 								<b>
 
 									<a class="nav-link text-nav-link" th:href="@{/account_details}"
@@ -57,39 +57,27 @@
 								</b>
 							</li>
 
-							<li class="nav-item li-hover">
+							<li class="nav-item li-hover text-subnav">
 								<a class="nav-link text-nav-link" th:href="@{/address_book}">
 									Addresses Book
 								</a>
 							</li>
 
-							<li class="nav-item li-hover">
-								<a class="nav-link text-nav-link">
-									Questions
-								</a>
-							</li>
 
-
-							<li class="nav-item li-hover">
-								<a class="nav-link text-nav-link">
-									Reviews
-								</a>
-							</li>
-
-							<li class="nav-item li-hover">
+							<li class="nav-item li-hover text-subnav">
 								<a class="nav-link text-nav-link" th:href="@{/orders}">
 
 									Orders
 								</a>
 							</li>
 
-							<li class="nav-item li-hover">
+							<li class="nav-item li-hover text-subnav">
 								<a class="nav-link text-nav-link" th:href="@{/cart}">
 									<i class="fas fa-shopping-cart fa-2x"></i>
 								</a>
 							</li>
 
-							<li class="nav-item li-hover">
+							<li class="nav-item li-hover text-subnav">
 								<a class="nav-link text-nav-link" href="javascript:document.logoutForm.submit()">
 									Logout
 								</a>
@@ -120,15 +108,15 @@
 				<ul class="navbar-nav">
 
 					<li class="navbar-item li-hover">
-
-						<a class="nav-link" th:href="@{/Careers}">
+						<a class="nav-link" th:href="@{/AboutUs}">
 							<span></span>
 							<span></span>
 							<span></span>
 							<span></span>
-							Careers
+							About Us
 						</a>
 					</li>
+
 
 					<li class="navbar-item li-hover">
 						<a class="nav-link" th:href="@{/Payments}">
@@ -141,7 +129,7 @@
 					</li>
 
 					<li class="navbar-item li-hover">
-						<a class="nav-link" th:href="@{/ShippingsDelivery}">
+						<a class="nav-link" th:href="@{/Shipping&Delivery}">
 							<span></span>
 							<span></span>
 							<span></span>
@@ -172,15 +160,6 @@
 							</a>
 						</li>
 					</th:block>
-					<li class="navbar-item li-hover">
-						<a class="nav-link" th:href="@{/contact}">
-							<span></span>
-							<span></span>
-							<span></span>
-							<span></span>
-							Contact
-						</a>
-					</li>
 
 				</ul>
 			</div>
@@ -194,19 +173,17 @@
 					<div class="footer-col">
 						<h4>company</h4>
 						<ul class="mt-4">
-							<li><a th:href="@{AboutUs}">about us</a></li>
-							<li><a th:href="@{PrivacyPolicy}">privacy policy</a></li>
-							<li><a th:href="@{AffiliateProgram}">affiliate program</a></li>
-							<li><a th:href="@{CareAndMaintenance}">care and maintenance</a></li>
+							<li><a th:href="@{/PrivacyPolicy}">privacy policy</a></li>
+							<li><a th:href="@{/AffiliateProgram}">affiliate program</a></li>
+							<li><a th:href="@{/CareAndMaintenance}">care and maintenance</a></li>
 						</ul>
 					</div>
 					<div class="footer-col">
 						<h4>get help</h4>
 						<ul class="mt-4">
-							<li><a th:href="@{FAQ}">FAQ</a></li>
-							<li><a th:href="@{Returns}">returns</a></li>
-							<li><a th:href="@{Shipping}">shipping</a></li>
-							<li><a th:href="@{DiversityAndInclusion}">diversity and inclusion</a></li>
+							<li><a th:href="@{/FAQ}">FAQ</a></li>
+							<li><a th:href="@{/Returns}">returns</a></li>
+							<li><a th:href="@{/DiversityAndInclusion}">diversity and inclusion</a></li>
 						</ul>
 					</div>
 					<div class="footer-col">
@@ -292,7 +269,10 @@
 	</div>
 
 	<div th:fragment="format_currency(amount)" th:remove="tag">
-		<span th:if="${CURRENCY_SYMBOL_POSITION == 'before'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'after'}" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+		<span th:if="${CURRENCY_SYMBOL_POSITION == 'before'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>[[${#numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE,
+		DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]<span th:if="${CURRENCY_SYMBOL_POSITION == 'after'}"
+			th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 	</div>
 
 	<div th:fragment="format_time(dateTime)" th:remove="tag">
@@ -300,7 +280,8 @@
 	</div>
 
 	<div th:fragment="currency_input(amount)" th:remove="tag">
-		<input type="text" readonly class="form-control" th:value="${(CURRENCY_SYMBOL_POSITION == 'before' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'after' ? CURRENCY_SYMBOL : '')}">
+		<input type="text" readonly class="form-control"
+			th:value="${(CURRENCY_SYMBOL_POSITION == 'before' ? CURRENCY_SYMBOL : '') + #numbers.formatDecimal(amount, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE) + (CURRENCY_SYMBOL_POSITION == 'after' ? CURRENCY_SYMBOL : '')}">
 	</div>
 
 	<div th:fragment="search_form()" th:remove="tag">
@@ -309,15 +290,11 @@
 			<input type="hidden" name="sortDir" th:value="${sortOrder}" />
 
 			Filter:&nbsp;
-			<input type="search" name="orderKeyword" th:value="${orderKeyword}" class="form-control" required/>
+			<input type="search" name="orderKeyword" th:value="${orderKeyword}" class="form-control" required />
 			&nbsp;&nbsp;
-			<button type="submit" class="btn btn-primary">
-				<i class="fas fa-search"></i>
-			</button>
+			<input type="submit" value="Search" class="btn btn-primary-color">
 			&nbsp;&nbsp;
-			<button type="button" class="btn btn-secondary" onclick="clearFilter()">
-				<i class="fas fa-eraser"></i>
-			</button>
+			<input type="button" value="Clear" class="btn btn-primary-color btn-second-color" onclick="clearFilter()">
 		</form>
 	</div>
 

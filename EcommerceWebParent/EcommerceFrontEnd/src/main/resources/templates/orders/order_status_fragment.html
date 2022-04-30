@@ -4,7 +4,7 @@
 
 <div th:fragment="content(statusVar, iconName, statusName)" class="col">
 	<th:block th:if="${statusVar}">
-		<i th:class="'fas ' + ${iconName} + ' fa-2x icon-green'"></i>
+		<i th:class="'fas ' + ${iconName} + ' fa-2x icon-purple'"></i>
 	</th:block>
 	<th:block th:unless="${statusVar}">
 		<a th:class="'fas ' + ${iconName} + ' fa-2x icon-dark linkUpdateStatus'"

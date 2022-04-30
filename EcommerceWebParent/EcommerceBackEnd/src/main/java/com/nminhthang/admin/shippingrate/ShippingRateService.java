@@ -83,7 +83,7 @@ public class ShippingRateService {
 			throw new ShippingRateNotFoundException("No shipping rate found for the given "
 					+ "destination. You have to enter shipping cost manually.");
 		}
-		
+
 		Product product = productRepo.findById(productId).get();
 		
 		float dimWeight = (product.getLength() * product.getWidth() * product.getHeight()) / DIM_DIVISOR;
