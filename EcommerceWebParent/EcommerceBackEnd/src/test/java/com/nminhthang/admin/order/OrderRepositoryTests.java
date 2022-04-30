@@ -76,9 +76,9 @@ public class OrderRepositoryTests {
 	
 	@Test
 	public void testCreateNewOrderWithMultipleProduct() {
-		Customer customer = entityManager.find(Customer.class, 1);
-		Product product1 = entityManager.find(Product.class, 13);
-		Product product2 = entityManager.find(Product.class, 14);
+		Customer customer = entityManager.find(Customer.class, 3);
+		Product product1 = entityManager.find(Product.class, 15);
+		Product product2 = entityManager.find(Product.class, 16);
 		
 		Order mainOrder = new Order();
 		mainOrder.setOrderTime(new Date());
@@ -180,7 +180,7 @@ public class OrderRepositoryTests {
 
 	@Test
 	public void testUpdateOrderTracks() {
-		Integer orderId = 1;
+		Integer orderId = 14;
 		Order order = repo.findById(orderId).get();
 		
 		OrderTrack newTrack = new OrderTrack();

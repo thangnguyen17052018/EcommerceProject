@@ -29,14 +29,14 @@
 		<div class="row m-1">
 			<div class="col-sm-8" style="padding-left:11px">
 				<th:block th:each="item, status : ${cartItems}">
-					<div class="row border rounded p-1" th:with="product = ${item.product}" th:id="'row' + ${status.count}">
+					<div class="row border rounded p-1" th:with="product = ${item.product}"
+						th:id="'row' + ${status.count}">
 						<div class="col-1 text-center">
 							<div class="divCount">[[${status.count}]]</div>
 
 							<div>
-								<a class="fas fa-trash icon-purple linkRemove fa-2x mt-2" 
-								th:rowNumber="${status.count}"
-								th:href="@{'/cart/remove/' + ${product.id}}">
+								<a class="fas fa-trash icon-purple linkRemove fa-2x mt-2" th:rowNumber="${status.count}"
+									th:href="@{'/cart/remove/' + ${product.id}}">
 								</a>
 							</div>
 						</div>
@@ -46,9 +46,9 @@
 						</div>
 
 						<div class="col-6">
-							<div class="mt-3"> 
-								<a th:href="@{'/p/' + ${product.alias}}" target="_blank"
-									th:title="${product.name}" class="text-color"><b>[[${product.shortName}]]</b></a>
+							<div class="mt-3">
+								<a th:href="@{'/p/' + ${product.alias}}" target="_blank" th:title="${product.name}"
+									class="text-color"><b>[[${product.shortName}]]</b></a>
 							</div>
 
 
@@ -56,7 +56,8 @@
 							<nav class="mt-3">
 								<ul class="pagination align-items-center">
 									<li class="page-item text-center minus">
-										<a class="page_link linkMinus text-color" th:pid="${product.id}" href=""><i class="fa-thin fa-minus" style="font-family: 'FontAwesome'"></i></a>
+										<a class="page_link linkMinus text-color" th:pid="${product.id}" href=""><i
+												class="fa-thin fa-minus" style="font-family: 'FontAwesome'"></i></a>
 									</li>
 									<li class="page-item">
 										<input type="text" th:value="${item.quantity}"
@@ -64,7 +65,8 @@
 											class="form-control text-center" style="width: 100px;" />
 									</li>
 									<li class="page-item text-center plus">
-										<a class="page_link linkPlus text-color" th:pid="${product.id}" href=""><i class="fa-thin fa-plus" style="font-family: 'FontAwesome'"></i></a>
+										<a class="page_link linkPlus text-color" th:pid="${product.id}" href=""><i
+												class="fa-thin fa-plus" style="font-family: 'FontAwesome'"></i></a>
 									</li>
 								</ul>
 							</nav>
@@ -79,26 +81,31 @@
 											<div th:replace="product/product_info :: price(${product.price})"></div>
 										</span></del>
 								</div>
-								
+
 								<div class="mt-2" style="font-size: 14px;">
 									<span th:if="${product.discountPercent > 0}">
 										<span style="color: darkred">
-											<div th:replace="product/product_info :: price(${product.discountPrice})"></div>
+											<div th:replace="product/product_info :: price(${product.discountPrice})">
+											</div>
 										</span>
 										([[${#numbers.formatDecimal(product.discountPercent, 1, THOUSANDS_POINT_TYPE,
 										DECIMAL_DIGITS,
 										DECIMAL_POINT_TYPE)}]]% off)
 									</span>
 								</div>
-								
-								
+
+
 							</div>
 
 							<div class="mt-2" style="font-size: 19px;">
 								<span>=&nbsp;</span>
-								<span th:if="${CURRENCY_SYMBOL_POSITION} == 'before'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-								<span th:id="'subtotal' + ${product.id}" class="subtotal">[[${#numbers.formatDecimal(item.subtotal, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
-								<span th:if="${CURRENCY_SYMBOL_POSITION} == 'after'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+								<span th:if="${CURRENCY_SYMBOL_POSITION} == 'before'"
+									th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
+								<span th:id="'subtotal' + ${product.id}"
+									class="subtotal">[[${#numbers.formatDecimal(item.subtotal, 1, THOUSANDS_POINT_TYPE,
+									DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
+								<span th:if="${CURRENCY_SYMBOL_POSITION} == 'after'"
+									th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 							</div>
 
 						</div>
@@ -106,18 +113,19 @@
 					<div class="row m-1" th:id="'blankLine' + ${status.count}">&nbsp;</div>
 				</th:block>
 			</div>
-			
+
 			<div class="col-sm-4" th:unless="${#lists.isEmpty(cartItems)}" id="sectionTotal">
 				<div>
 					<span class="h3">Estimated Total:</span>
 				</div>
-				
+
 				<div class="mt-2" style="font-size: 24px;">
 					<span th:if="${CURRENCY_SYMBOL_POSITION} == 'before'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
-					<span th:id="total">[[${#numbers.formatDecimal(estimatedTotal, 1, THOUSANDS_POINT_TYPE, DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
+					<span th:id="total">[[${#numbers.formatDecimal(estimatedTotal, 1, THOUSANDS_POINT_TYPE,
+						DECIMAL_DIGITS, DECIMAL_POINT_TYPE)}]]</span>
 					<span th:if="${CURRENCY_SYMBOL_POSITION} == 'after'" th:remove="tag">[[${CURRENCY_SYMBOL}]]</span>
 				</div>
-				
+
 				<div class="mt-2">
 					<div th:if="${shippingSupported}">
 						<form th:action="@{/checkout}">
@@ -133,31 +141,32 @@
 						<div th:unless="${usePrimaryAddressAsDefault}">
 							<a th:href="@{/address_book(redirect=cart)}" class="h6">Use another shipping address</a>
 						</div>
+					</div>
 				</div>
+
+
 			</div>
 
+			<div th:replace="modal_fragments :: modal_dialog"></div>
 
 		</div>
-		
-		<div th:replace="modal_fragments :: modal_dialog"></div>
-		<div id="sectionEmptyCartMessage" th:class="'m-1 text-center' + ${#lists.isEmpty(cartItems) ? '' : ' d-none'}">
+
+		<div id="sectionEmptyCartMessage"
+			th:class="'m-1 text-center' + ${#lists.isEmpty(cartItems) ? '' : ' d-none'}">
 			<h3>You have not chosen any product yet.</h3>
 		</div>
 
-
-
+		<div th:replace="fragments :: footer_menu"></div>
 	</div>
-			<div th:replace="fragments :: footer_menu"></div>
-</div>
 	<script type="text/javascript">
 		contextPath = "[[@{/}]]";
 		var csrfHeaderName = "[[${_csrf.headerName}]]";
 		var csrfValue = "[[${_csrf.token}]]";
-		
+
 		decimalDigits = "[[${DECIMAL_DIGITS}]]";
 		decimalPointType = "[[${DECIMAL_POINT_TYPE}]]";
 		thousandsPointType = "[[${THOUSANDS_POINT_TYPE}]]";
-		
+
 	</script>
 	<script type="text/javascript" th:src="@{/js/quantity_control.js}"> </script>
 	<script type="text/javascript" th:src="@{/js/shopping_cart.js}"></script>

@@ -147,41 +147,6 @@
 						</li>
 					</th:block>
 
-					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
-						<li class="navbar-item li-hover">
-							<a class="nav-link" th:href="@{/salesreport}">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								Salesreport
-							</a>
-						</li>
-					</th:block>
-
-					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-						<li class="navbar-item li-hover">
-							<a class="nav-link" th:href="@{/articles}">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								Articles
-							</a>
-						</li>
-					</th:block>
-
-					<th:block sec:authorize="hasAnyAuthority('Admin', 'Editor')">
-						<li class="navbar-item li-hover">
-							<a class="nav-link" th:href="@{/menu}">
-								<span></span>
-								<span></span>
-								<span></span>
-								<span></span>
-								Menu
-							</a>
-						</li>
-					</th:block>
 
 					<li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
 						<a class="nav-link" th:href="@{/settings}">

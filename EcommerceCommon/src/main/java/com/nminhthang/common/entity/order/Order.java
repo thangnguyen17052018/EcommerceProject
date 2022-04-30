@@ -149,8 +149,8 @@ public class Order extends IdBasedEntity {
 
 	@Transient
 	public String getDestination() {
-		String destination =  city + ", ";
-		if (state != null && !state.isEmpty()) destination += state + ", ";
+		String destination =  city;
+		if (state != null && !state.isEmpty()) destination += ", " + state + ", ";
 		destination += country;
 
 		return destination;
