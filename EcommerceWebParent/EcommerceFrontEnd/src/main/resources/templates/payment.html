@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+	lang="en">
+
+<head th:replace="fragments :: header_link('Home - Ecommerce Furniture', 'none')">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<body>
+	<div class="container-fluid">
+
+		<div th:replace="fragments :: header_menu"></div>
+
+		<div>
+			<h1 class="text-color text-center head-text">Payment Methods</h1>
+		</div>
+
+		<div class="container">
+			<p><b>1) Which forms of payment do you accept?</b></p>
+			<p class="ml-3"><span>We currently support following payment options on our website:</span></p>
+			<ol class="ml-5">
+				<li>Credit Card.</li>
+				<li>Debit Card.</li>
+				<li>Net Banking</li>
+				<li>Cash On Delivery</li>
+			</ol>
+			<p><b>2) What is Cash On Delivery payment?</b></p>
+			<p class="ml-3"><span>Cash On Delivery allows you to pay for your order in cash when the shipper delivers
+					it.</span></p>
+			<p class="ml-3"><span>To place an order using “Cash On Delivery” you need to select “Cash On Delivery”
+					payment option on website’s payment page. Orders using “Cash On Delivery” payment option can be
+					placed in two
+					ways.</span>
+			</p>
+			<ol class="ml-5">
+				<li>Placing order online at
+					home: Place order using “Cash On Delivery” in comfort of your home and carry the copy of order
+					confirmation mail to the store for payment.</span></li>
+				<li>Placing order online at store: You can also place order online at company owned store premises as
+					well and produce the mail copy for payment at store.</span></li>
+			</ol>
+
+			<p><b>3) How does Part Payment work?</b></p>
+			<ul class="ml-3">
+				<li>We do not offer part
+					payment
+					option for
+					any for any of our products.</span></li>
+			</ul>
+			<p><b>4) Can I return the order to shipper and take my cash back from him?</b></p>
+			<ul class="ml-3">
+				<li>No, the shipper is not an authorized person to accept a parcel return and return your cash. In an
+					unlikely event, if you want to return the product, please contact our customer support team or check
+					product return policy.</span></li>
+			</ul>
+			<p><b>5) What should I keep handy for my online transaction?</b></p>
+			<ul class="ml-3">
+				<li><span>Please keep following
+						things
+						ready at
+						the time of online transactions:</span></li>
+			</ul>
+			<ol class="ml-5">
+				<li><span> For Credit Cards keep your card which has the details of card
+						holder name, number, CVV and expiry date and your 3D secure password / OAC.</span></li>
+				<li><span> For Debit Cards keep your card which has the details of card holder
+						name, number, CVV and expiry date. You will be redirected to the bank site for 3D secure
+						authorization. So keep your OAC or IPIN handy as well.</span></li>
+				<li><span> For Net Banking you need to keep your account number as well as
+						your IPIN handy.</span></li>
+				<li><span> For Cash On Delivery you need prepare money to check out.</span></li>
+			</ol>
+			<p><b>6) Is it safe to use my credit card, debit card or net banking?</b></p>
+			<ul class="ml-3">
+				<li>Online shopping with Ecommerce Furniture HKT is absolutely safe. Transactions with Ecommerce Furniture HKT are via the 
+					payment gateway PayU which is both VeriSign Secured® as well as PCI compliant. The VeriSign Secured® Seal is the most trusted
+					security mark on the Internet. PCI stands for Payment Card Industry and PayU is compliant with the global
+					information security standards defined for organizations which handle cardholder information. Be assured
+					that your card or account information is encrypted as it travels over the Internet making it well and truly safe.</span>
+				</li>
+			</ul>
+			<p><b>7) Does Ecommerce Furniture HKT store my card or account information?</b></p>
+			<ul class="ml-3">
+				<li>Ecommerce Furniture HKT does not collect or store your account information at all. Your transaction is authorized at multiple points, first
+					by PayU and subsequently by Visa/Mastercard/American Express/Banks directly without any information passing
+					through us. However we monitor and review transactions on an on-going basis, to identify possible fraudulent
+					situations and take immediate corrective actions to mitigate/limit any damage caused/likely to be caused
+					from the same.</span></li>
+			</ul>
+			<p><b>8) Will I be asked to share card information, account information or passwords over phone or
+					email?</b>
+			</p>
+			<ul class="ml-3">
+				<li>Ecommerce Furniture HKT will never request you to share any of your payment details over email or over phone. In fact you should
+					not be sharing this information with anyone else.</span></li>
+			</ul>
+			<p><b>9) What should I do if a transaction fails?</b></p>
+			<ul class="ml-3">
+				<li>Transactions could fail due
+					to
+					multiple
+					reasons. Please check for the following:</span></li>
+			</ul>
+			<ol class="ml-5">
+				<li><span> Information passed on to payment gateway is accurate i.e.: name,
+						account
+						details, billing address, password (for net banking)</span></li>
+				<li><span> Your Internet connection is not disrupted in the process</span>
+				</li>
+			</ol>
+			<p class="ml-3"><span>If your account has been debited after a payment failure, it will be rolled back
+					within 7 working days. Please direct all questions and further clarifications regarding the above statement to
+					<a href="mailto:someone@yoursite.com?subject=Mail from Our Site" class="text-color">haukienthang@gmail.com</a>
+					or call our customer support team for any help.</span></p>
+		</div>
+	</div>
+
+
+	<div th:replace="fragments :: footer_menu"></div>
+
+
+</body>
+
+</html>

@@ -18,7 +18,7 @@
                 <div class="card-body text-muted">
                     <p>
                         <b>Ship to: </b>&nbsp; [[${shippingAddress}]]
-                        <a th:href="@{/address_book(redirect=checkout)}">[Ship to another address]</a>
+                        <a class="text-color" th:href="@{/address_book(redirect=checkout)}">[Ship to another address]</a>
                     </p>
                     <p>
                         <b>Days to deliver: </b>[[${checkoutInfo.deliverDays}]] day(s)
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="card mt-3 mb-3 bg-warning">
+            <div class="card mt-3 mb-3">
                 <div class="card-header text-muted"><h4> <b> Payment Method </b></h4></div>
                 <div class="card-body text-muted">
                     <div th:if="${checkoutInfo.codSupported}">
@@ -38,7 +38,7 @@
                             <p>
                                 <input type="radio" name="paymentMethod" id="radioCOD" value="COD"/> Cash on Delivery (COD)
                                 &nbsp;
-                                <button class="btn btn-primary d-none" id="buttonSubmit" type="submit">Place Order with COD</button>
+                                <button class="btn btn-primary d-none btn-placeCOD" id="buttonSubmit" type="submit">Place Order with COD</button>
                             </p>
                         </form>
                     </div>
@@ -53,7 +53,7 @@
         </div>
 
         <div class="col-sm-4">
-            <div class="card bg-warning">
+            <div class="card">
                 <div class="card-header text-muted"> <h4> <b> Order Summary </b></hh4></div>
                 <div class="card-body text-muted">
                     <div>
@@ -62,7 +62,7 @@
                                 <tr th:with="product = ${item.product}">
                                     <td>[[${item.quantity}]] X &nbsp;&nbsp;</td>
                                     <td width="70%">
-                                        <a th:href="@{'/p/' + ${product.alias}}" target="_blank">[[${product.shortName}]]</a>
+                                        <a class="text-color" th:href="@{'/p/' + ${product.alias}}" target="_blank">[[${product.shortName}]]</a>
                                         <small>Ship: <div th:replace="fragments :: format_currency(${item.shippingCost})"></div></small>
                                     </td>
                                     <td class="pl-3" >

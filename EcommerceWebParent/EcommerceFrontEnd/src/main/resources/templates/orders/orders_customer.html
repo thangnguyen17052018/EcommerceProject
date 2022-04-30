@@ -33,12 +33,12 @@
         </td>
         <td><span th:class="'textOrderStatus' + ${order.id}">[[${order.status}]]</span></td>
         <td>
-          <a class="fas fa-file-alt fa-2x icon-green linkDetail"
+          <a class="fas fa-file-alt fa-2x icon-purple linkDetail"
              th:href="@{'/orders/detail/' + ${order.id}}"
              title="View details of this order"></a>
-          <th:block th:if="${order.isDelivered() == true}">
+          <th:block th:if="${order.returnRequested == false  && order.returned == false}">
             &nbsp;&nbsp;&nbsp;
-            <a class="fas fa-undo fa-2x icon-dark linkReturnOrder" href=""
+            <a class="fas fa-undo fa-2x icon-purple linkReturnOrder" href=""
                th:classappend="'linkReturn' + ${order.id}"
                th:orderId="${order.id}"
                title="Return this order"></a>
@@ -60,12 +60,11 @@
               </div>
               <div class="col">
                 <div class="float-right">
-                  <a class="fas fa-file-alt fa-2x icon-green linkDetail"
+                  <a class="fas fa-file-alt fa-2x icon-purple linkDetail"
                      th:href="@{'/orders/detail/' + ${order.id}}"></a>
-
-                  <th:block th:if="${order.returnRequested == false && order.delivered == true && order.returned == false}">
+                  <th:block th:if="${order.returnRequested == false && order.returned == false}">
                     &nbsp;
-                    <a class="fas fa-undo fa-2x icon-dark linkReturnOrder" href=""
+                    <a class="fas fa-undo fa-2x icon-purple linkReturnOrder" href=""
                        th:classappend="'linkReturn' + ${order.id}"
                        th:orderId="${order.id}"
                        title="Return this order"></a>

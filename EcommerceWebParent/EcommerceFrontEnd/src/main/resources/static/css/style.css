@@ -50,6 +50,9 @@ html {
 /* Start Common */
 
 /* Responsive */
+.btn-second-color {
+	background: #6c757d !important;
+}
 
 .head-text {
 	margin-top: 7.5rem;
@@ -58,7 +61,13 @@ html {
 .btn:focus {
 	box-shadow: none;
 }
-
+.btn-placeCOD {
+	border-radius: 10px;
+	background: var(--color-primary);
+	border:none;
+	color: white;
+	padding: 0.5rem 1rem;
+}
 .fixed-top {
 	left: 1rem;
 	right: 1rem;
@@ -74,7 +83,11 @@ html {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
-
+.text-subnav {
+	background: linear-gradient(to right, #cc2b5e, #541269);
+		-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
 .text-color:hover {
 	opacity: 0.6;
 }
