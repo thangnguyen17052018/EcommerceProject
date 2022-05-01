@@ -45,12 +45,13 @@ function increaseQuantity(link) {
 	productId = link.attr("pid");
 	quantityInput = $("#quantity" + productId);
 	newQuantity = parseInt(quantityInput.val());
+	quantityInStock = $("#quantityInStock" + productId);
 
-	if (newQuantity <= 20) {
+	if (parseInt(quantityInStock.val()) >= 0) {
 		quantityInput.val(newQuantity);
 		updateQuantity(productId, newQuantity);
 	} else {
-		showWarningModal("Maximum quantity is 20");
+		showWarningModal("Out of Stock");
 	}
 }
 
