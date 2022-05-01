@@ -19,19 +19,23 @@ public class ShoppingCartService {
 	@Autowired private CartItemRepository cartRepository;
 	@Autowired private ProductRepository productRepository;
 	
-	public Integer addProduct(Integer productId, Integer quantity, Customer customer) throws ShoppinngCartException {
+	public Integer addProduct(Integer productId, Integer quantity, Customer customer) throws ShoppingCartException {
 		Integer updatedQuantity = quantity;
+		System.out.println(quantity);
+
 		Product product = new Product(productId);
-		
+		Product productInDB = productRepository.findById(productId).get();
+
 		CartItem cartItem =  cartRepository.findByCustomerAndProduct(customer, product);
 		
 		if(cartItem != null) {
 			updatedQuantity = cartItem.getQuantity() + quantity;
-			
-			if(updatedQuantity > 5) {
-				throw new ShoppinngCartException("Could not add more " + quantity + " item(s)"
+			System.out.println(updatedQuantity);
+			System.out.println(productInDB.getQuantityInStock());
+			if(quantity > productInDB.getQuantityInStock()) {
+				throw new ShoppingCartException("Could not add more " + quantity + " item(s)"
 						+ " because there's are already " + cartItem.getQuantity() + " item(s)"
-								+ " in your shopping cart. Maximum allowed quantity is 5.");
+								+ " in your shopping cart. Quantity in stock is " + productInDB.getQuantityInStock());
 			}
 		}
 		else {
@@ -41,10 +45,11 @@ public class ShoppingCartService {
 		}
 		
 		cartItem.setQuantity(updatedQuantity);
-		
+		productInDB.setQuantityInStock(productInDB.getQuantityInStock() - quantity);
+		productRepository.save(productInDB);
 		cartRepository.save(cartItem);
 		
-		return updatedQuantity;
+		return quantity;
 	}
 	
 	
@@ -60,16 +65,23 @@ public class ShoppingCartService {
 		
 		Product product = productRepository.findById(productId).get();
 		float subtotal = (product.getDiscountPrice() * quantity);
+
 		System.out.println(subtotal);
 		return subtotal;
 	}
 	
 	public void removeProduct(Integer productId, Customer customer) {
+		Product product = productRepository.findById(productId).get();
+
 		cartRepository.deleteByCustomerAndProduct(customer.getId(), productId);
 	}
 
 	public void deleteByCustomer(Customer customer) {
 		cartRepository.deleteByCustomer(customer.getId());
 	}
-	
+
+	public CartItem findByProductIdAndCustomer(Product product, Customer customer) {
+		return cartRepository.findByCustomerAndProduct(customer, product);
+	}
+
 }

@@ -60,7 +60,9 @@ public class Product {
 
     private boolean enabled;
     @Column(name = "in_stock")
-    private boolean inStock;
+    private boolean     inStock;
+
+    private int quantityInStock;
 
     private float cost;
     private float price;
@@ -162,15 +164,30 @@ public class Product {
     }
 
     @Override
-	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", alias=" + alias + ", shortDescription=" + shortDescription
-				+ ", fullDescription=" + fullDescription + ", createdTime=" + createdTime + ", updatedTime="
-				+ updatedTime + ", enabled=" + enabled + ", inStock=" + inStock + ", cost=" + cost + ", price=" + price
-				+ ", discountPercent=" + discountPercent + ", length=" + length + ", width=" + width + ", height="
-				+ height + ", weight=" + weight + ", category=" + category + ", brand=" + brand + ", mainImage="
-				+ mainImage + ", images=" + images + ", details=" + details + "]";
-	}
-
-	
-
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", alias='" + alias + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", fullDescription='" + fullDescription + '\'' +
+                ", createdTime=" + createdTime +
+                ", updatedTime=" + updatedTime +
+                ", enabled=" + enabled +
+                ", inStock=" + inStock +
+                ", quantityInStock=" + quantityInStock +
+                ", cost=" + cost +
+                ", price=" + price +
+                ", discountPercent=" + discountPercent +
+                ", length=" + length +
+                ", width=" + width +
+                ", height=" + height +
+                ", weight=" + weight +
+                ", category=" + category +
+                ", brand=" + brand +
+                ", mainImage='" + mainImage + '\'' +
+                ", images=" + images +
+                ", details=" + details +
+                '}';
+    }
 }

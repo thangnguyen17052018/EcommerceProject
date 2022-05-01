@@ -38,7 +38,7 @@ public class ShoppingCartController {
 		for(CartItem item : cartItems) {
 			estimatedTotal+=item.getSubtotal();
 		}
-
+		
 		Address defaultAddress = addressService.getDefaultAddress(customer);
 		ShippingRate shippingRate = null;
 		boolean usePrimaryAddressAsDefault = false;
@@ -50,12 +50,13 @@ public class ShoppingCartController {
 			shippingRate = shippingRateService.getShippingRateForCustomer(customer);
 		}
 		boolean isShippingRateIsSupported = (shippingRate != null);
+		
 
 		model.addAttribute("usePrimaryAddressAsDefault", usePrimaryAddressAsDefault);
 		model.addAttribute("shippingSupported", isShippingRateIsSupported);
 		model.addAttribute("cartItems",cartItems);
 		model.addAttribute("estimatedTotal",estimatedTotal);
-		
+
 		return "cart/shopping_cart";
 	}
 	

@@ -12,6 +12,16 @@ $(document).ready(function() {
 		increaseQuantity($(this));
 	});
 
+	$(".linkMinusCart").on("click", function(evt) {
+		evt.preventDefault();
+		decreaseQuantity($(this));
+	});
+
+	$(".linkPlusCart").on("click", function(evt) {
+		evt.preventDefault();
+		increaseQuantity($(this));
+	});
+
 	$(".linkRemove").on("click", function(evt) {
 		evt.preventDefault();
 		removeProduct($(this));
@@ -19,20 +29,20 @@ $(document).ready(function() {
 });
 
 function decreaseQuantity(link) {
-	prodictId = link.attr("pid");
+	productId = link.attr("pid");
 	quantityInput = $("#quantity" + productId);
 	newQuantity = parseInt(quantityInput.val());
 
 	if (newQuantity > 0) {
 		quantityInput.val(newQuantity);
-		updateQuantity(prodictId, newQuantity);
+		updateQuantity(productId, newQuantity);
 	} else {
 		showWarningModal("Minimum quantity is 1");
 	}
 }
 
 function increaseQuantity(link) {
-	prodictId = link.attr("pid");
+	productId = link.attr("pid");
 	quantityInput = $("#quantity" + productId);
 	newQuantity = parseInt(quantityInput.val());
 
