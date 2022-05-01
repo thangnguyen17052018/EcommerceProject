@@ -147,6 +147,18 @@
 						</li>
 					</th:block>
 
+					<th:block sec:authorize="hasAnyAuthority('Admin', 'Sales')">
+						<li class="navbar-item li-hover">
+							<a class="nav-link" th:href="@{/reports}">
+								<span></span>
+								<span></span>
+								<span></span>
+								<span></span>
+								Sales Report
+							</a>
+						</li>
+					</th:block>
+
 
 					<li class="navbar-item li-hover" sec:authorize="hasAuthority('Admin')">
 						<a class="nav-link" th:href="@{/settings}">
