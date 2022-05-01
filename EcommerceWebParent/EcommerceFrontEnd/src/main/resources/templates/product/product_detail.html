@@ -84,7 +84,7 @@
 							<span th:if="${product.quantityInStock > 0}" class="text-color" id="inStockText"><b>In Stock: [[${product.quantityInStock}]]</b></span>
 							<span th:unless="${product.quantityInStock > 0}" class="text-danger"><b>Out of Stock</b></span>
 						</div>
-						<input type="hidden" name="quantityInStock" th:value="${product.quantityInStock}" id="quantityInStock">
+						<input type="hidden" name="quantityInStock" th:value="${product.quantityInStock - 1}" id="quantityInStock">
 						<th:block th:if="${product.quantityInStock}">
 
 							<nav class="mt-2">

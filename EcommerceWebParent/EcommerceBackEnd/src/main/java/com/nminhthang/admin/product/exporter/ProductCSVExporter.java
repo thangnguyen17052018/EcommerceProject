@@ -20,7 +20,7 @@ public class ProductCSVExporter extends AbstractExporter<Product> {
                         "Price", "Discount Percent", "Length", "Width", "Height", "Weight",
                         "Category", "Brand"};
     String[] fieldMapping = {"id", "name", "alias", "shortDescription", "fullDescription",
-                             "createdTime", "updatedTime", "enabled", "inStock", "cost", "price",
+                             "createdTime", "updatedTime", "enabled", "quantityInStock", "cost", "price",
                              "discountPercent", "length", "width", "height", "weight", "category", "brand"};
 
     @Override
