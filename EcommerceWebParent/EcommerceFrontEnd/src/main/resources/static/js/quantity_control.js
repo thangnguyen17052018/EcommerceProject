@@ -17,13 +17,13 @@ $(document).ready(function() {
 
 	});
 	$(".linkPlus").on("click", function(evt) {
-		var quantityInStock =parseInt($("#quantityInStock").val());
+		var quantityInStock = parseInt($("#quantityInStock").val());
 		evt.preventDefault();
 		productId = $(this).attr("pid");
 		quantityInput = $("#quantity" + productId);
 		newQuantity = parseInt(quantityInput.val()) + 1;
 
-		if (parseInt(quantityInput.val()) <= quantityInStock) {
+		if (quantityInStock > 0) {
 			quantityInput.val((newQuantity));
 			$("#quantityInStock").val(quantityInStock - 1);
 		}
