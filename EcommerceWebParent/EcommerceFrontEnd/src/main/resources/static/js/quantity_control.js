@@ -9,6 +9,7 @@ $(document).ready(function() {
 
 		if (newQuantity > 0) {
 			quantityInput.val((newQuantity));
+			$("#quantityInStock").val(quantityInStock + 1);
 		}
 		else {
 			showWarningModal("Minimum quantity is 1")
