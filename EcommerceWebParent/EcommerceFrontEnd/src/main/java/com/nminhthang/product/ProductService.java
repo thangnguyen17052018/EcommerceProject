@@ -38,4 +38,12 @@ public class ProductService {
         return productRepository.search(keyword, pageable);
     }
 
+    public Product findById(Integer productId) {
+        return productRepository.findById(productId).get();
+    }
+
+    public Product save(Product product) {
+        return productRepository.save(product);
+    }
+
 }

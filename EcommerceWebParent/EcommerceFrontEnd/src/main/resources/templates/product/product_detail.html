@@ -80,12 +80,12 @@
 					<div th:utext="${product.shortDescription}"></div>
 
 					<div class="mt-5">
-						<div>
-							<span th:if="${product.inStock}" class="text-color"><b>In Stock</b></span>
-							<span th:unless="${product.inStock}" class="text-danger"><b>Out of Stock</b></span>
+						<div  id="divQuantity">
+							<span th:if="${product.quantityInStock > 0}" class="text-color" id="inStockText"><b>In Stock: [[${product.quantityInStock}]]</b></span>
+							<span th:unless="${product.quantityInStock > 0}" class="text-danger"><b>Out of Stock</b></span>
 						</div>
-
-						<th:block th:if="${product.inStock}">
+						<input type="hidden" name="quantityInStock" th:value="${product.quantityInStock}" id="quantityInStock">
+						<th:block th:if="${product.quantityInStock}">
 
 							<nav class="mt-2">
 								<ul class="pagination align-items-center">
@@ -95,7 +95,7 @@
 									<li class="page-item">
 										<input type="text" th:value="1" th:id="'quantity' + ${product.id}"
 											onkeydown="return false;" class="form-control text-center"
-											style="width: 72px;" />
+											style="width: 72px;"/>
 									</li>
 									<li class="page-item text-center plus">
 										<a class="page_link linkPlus text-color" th:pid="${product.id}" href=""><i class="fa-thin fa-plus" style="font-family: 'FontAwesome'"></i></a>

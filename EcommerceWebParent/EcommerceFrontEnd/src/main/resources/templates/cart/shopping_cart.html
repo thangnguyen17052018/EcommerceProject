@@ -56,7 +56,7 @@
 							<nav class="mt-3">
 								<ul class="pagination align-items-center">
 									<li class="page-item text-center minus">
-										<a class="page_link linkMinus text-color" th:pid="${product.id}" href=""><i
+										<a class="page_link linkMinusCart text-color" th:pid="${product.id}" href=""><i
 												class="fa-thin fa-minus" style="font-family: 'FontAwesome'"></i></a>
 									</li>
 									<li class="page-item">
@@ -65,9 +65,10 @@
 											class="form-control text-center" style="width: 100px;" />
 									</li>
 									<li class="page-item text-center plus">
-										<a class="page_link linkPlus text-color" th:pid="${product.id}" href=""><i
+										<a class="page_link linkPlusCart text-color" th:pid="${product.id}" href=""><i
 												class="fa-thin fa-plus" style="font-family: 'FontAwesome'"></i></a>
 									</li>
+									<input type="hidden" name="quantityInStock" th:value="${product.quantityInStock}" th:id="'quantityInStock' + ${product.id}">
 								</ul>
 							</nav>
 
