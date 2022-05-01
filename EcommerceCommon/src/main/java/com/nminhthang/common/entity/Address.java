@@ -75,13 +75,6 @@ public class Address extends IdBasedEntity{
 			address += ", " + addressLine2;
 		}
 		
-		if(!city.isEmpty()) {
-			address += ", " + city;
-		}
-		
-		if(state != null && !state.isEmpty()) {
-			address += ", " + state;
-		}
 		
 		address += ", " + country.getName();
 		
