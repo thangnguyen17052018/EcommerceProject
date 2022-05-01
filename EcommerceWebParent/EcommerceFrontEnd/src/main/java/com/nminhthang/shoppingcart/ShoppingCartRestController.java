@@ -64,6 +64,9 @@ public class ShoppingCartRestController {
 
 			float subtotal = shoppingCartService.updateQuantity(productId, quantity, customer);
 			product.setQuantityInStock(product.getQuantityInStock() - numberProductTakeInStock);
+			if (product.getQuantityInStock() == 0) {
+				product.setInStock(false);
+			}
 			productService.save(product);
 			return String.valueOf(subtotal);
 		}
