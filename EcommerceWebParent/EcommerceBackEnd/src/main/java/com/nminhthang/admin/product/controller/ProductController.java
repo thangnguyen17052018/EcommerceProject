@@ -96,7 +96,7 @@ public class ProductController {
         List<Brand> listBrands = brandService.listAll();
 
         Product product = Product.builder()
-                .inStock(true)
+                .quantityInStock(0)
                 .enabled(true)
                 .images(new HashSet<>())
                 .details(new ArrayList<>())
