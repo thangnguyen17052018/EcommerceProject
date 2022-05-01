@@ -26,7 +26,7 @@ public abstract class AbstractReportService {
         System.out.println("Start time: " + startTime);
         System.out.println("End time: " + endTime);
 
-        dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
 
         return getReportDataByDateRangeInternal(startTime, endTime, reportType);
     }
@@ -48,13 +48,13 @@ public abstract class AbstractReportService {
         System.out.println("Start time: " + startTime);
         System.out.println("End time: " + endTime);
 
-        dateFormatter = new SimpleDateFormat("yyyy-MM");
+        dateFormatter = new SimpleDateFormat("MM-yyyy");
 
         return getReportDataByDateRangeInternal(startTime, endTime, reportType);
     }
 
     public List<ReportItem> getReportDataByDateRange(Date startTime, Date endTime, ReportType reportType) {
-        dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
         return getReportDataByDateRangeInternal(startTime, endTime, reportType);
     }
 

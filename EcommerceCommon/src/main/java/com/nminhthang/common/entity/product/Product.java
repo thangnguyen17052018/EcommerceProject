@@ -59,8 +59,6 @@ public class Product {
     private Date updatedTime;
 
     private boolean enabled;
-    @Column(name = "in_stock")
-    private boolean     inStock;
 
     private int quantityInStock;
 
@@ -174,7 +172,6 @@ public class Product {
                 ", createdTime=" + createdTime +
                 ", updatedTime=" + updatedTime +
                 ", enabled=" + enabled +
-                ", inStock=" + inStock +
                 ", quantityInStock=" + quantityInStock +
                 ", cost=" + cost +
                 ", price=" + price +
