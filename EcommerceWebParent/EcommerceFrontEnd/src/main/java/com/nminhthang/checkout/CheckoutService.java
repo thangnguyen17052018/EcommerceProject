@@ -10,9 +10,7 @@ import java.util.List;
 @Service
 public class CheckoutService {
 
-    private static final int DIM_DIVISOR = 139;
-    private static final float CONVERSION_FACTOR_METER_TO_INCH = 39.3700787f;
-    private static final float CONVERSION_FACTOR_KILOGRAM_TO_POUND = 2.20462262f;
+    private static final float DIM_DIVISOR =  (float)3.53060706;	
 
     public CheckoutInfo prepareCheckout(List<CartItem> cartItems, ShippingRate shippingRate) {
         CheckoutInfo checkoutInfo = new CheckoutInfo();
@@ -37,13 +35,13 @@ public class CheckoutService {
 
         for (CartItem item : cartItems) {
             Product product = item.getProduct();
-            float productLength = product.getLength() * CONVERSION_FACTOR_METER_TO_INCH;
-            float productWidth = product.getLength() * CONVERSION_FACTOR_METER_TO_INCH;
-            float productHeight = product.getHeight() * CONVERSION_FACTOR_METER_TO_INCH;
+            float productLength = product.getLength();
+            float productWidth = product.getLength();
+            float productHeight = product.getHeight();
             
             float dimWeight = (productLength * productWidth * productHeight) / DIM_DIVISOR;
             
-            float productWeigth = product.getWeight() * CONVERSION_FACTOR_KILOGRAM_TO_POUND;
+            float productWeigth = product.getWeight();
             float finalWeight = productWeigth > dimWeight ? productWeigth : dimWeight;
             
             float shippingCost = finalWeight * item.getQuantity() * shippingRate.getRate();

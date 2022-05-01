@@ -108,15 +108,8 @@ public class Customer extends IdBasedEntity {
 			address += ", " + addressLine2;
 		}
 		
-		if(!city.isEmpty()) {
-			address += ", " + city;
-		}
 		
-		if(state != null && !state.isEmpty()) {
-			address += ", " + state;
-		}
-		
-		address += country.getName();
+		address +=  ", " + country.getName();
 		
 	
 		if(!postalCode.isEmpty()) {

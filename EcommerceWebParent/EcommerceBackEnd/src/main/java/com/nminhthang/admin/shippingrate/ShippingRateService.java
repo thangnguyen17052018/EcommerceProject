@@ -20,7 +20,7 @@ import com.nminhthang.common.entity.product.Product;
 @Transactional
 public class ShippingRateService {
 	public static final int RATES_PER_PAGE = 10;
-	private static final int DIM_DIVISOR = 139;	
+	private static final float DIM_DIVISOR = (float)3.53060706;	
 	@Autowired private ShippingRateRepository shipRepo;
 	@Autowired private CountryRepository countryRepo;
 	@Autowired private ProductRepository productRepo;
