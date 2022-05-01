@@ -89,24 +89,14 @@
         	</th:block>
         </div>
     </div>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">In Stock:</label>
+    <th:block th:unless="${isReadOnlyForSales}">
+    <div class="form-group row" id="quantity-in-stock">
+        <label class="col-sm-2 col-form-label">Quantity In Stock:</label>
         <div class="col-sm-10">
-            <th:block th:if="${isReadOnlyForSales}">
-                <label class="container-checkbox">
-                    <input type="checkbox" th:field="*{inStock}" disabled="disabled">
-                    <span class="checkmark"></span>
-                </label>
-	        </th:block>
-
-            <th:block th:unless="${isReadOnlyForSales}">
-	            <label class="container-checkbox">
-		            <input type="checkbox" th:field="*{inStock}">
-		            <span class="checkmark"></span>
-	            </label>
-	        </th:block>
+            <input type="number" class="form-control" th:field="*{quantityInStock}" min="1" step="1">
         </div>
     </div>
+    </th:block>
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Cost:</label>
         <div class="col-sm-10">
@@ -127,6 +117,18 @@
     </div>
 
 </div>
+
+<script>
+    // $(document).ready(function () {
+    //     $('.container-checkbox input[name=inStock]').on('change', function() {
+    //         if ($('.container-checkbox input[name=inStock]').is(':checked'))
+    //             alert("checked");
+    //         else {
+    //             alert("unchecked");
+    //         }
+    //     });
+    // });
+</script>
 
 </body>
 </html>

@@ -68,7 +68,7 @@ public class ProductRepositoryTests {
                 .createdTime(new Date())
                 .updatedTime(new Date())
                 .enabled(true)
-                .inStock(true)
+                .quantityInStock(1)
                 .price(456)
                 .build();
 
@@ -93,7 +93,7 @@ public class ProductRepositoryTests {
                 .createdTime(new Date())
                 .updatedTime(new Date())
                 .enabled(false)
-                .inStock(false)
+                .quantityInStock(0)
                 .price(133)
                 .build();
 
