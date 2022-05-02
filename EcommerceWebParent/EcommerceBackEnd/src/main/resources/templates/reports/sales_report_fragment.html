@@ -3,7 +3,7 @@
 <body>
 <div th:fragment="content(reportType)" th:remove="tag">
 	<div th:with="buttonClass = 'button-sales-by' + ${reportType}">
-		<button period="last_7_days" class="btn btn-primary m-1" th:classappend="${buttonClass}">Last 7 days</button>
+		<button period="last_7_days" class="btn btn-primary-color2 m-1" th:classappend="${buttonClass}">Last 7 days</button>
 		<button period="last_28_days" class="btn btn-second-light m-1" th:classappend="${buttonClass}">Last 28 days</button>
 		<button period="last_6_months" class="btn btn-second-light m-1" th:classappend="${buttonClass}">Last 6 Months</button>
 		<button period="last_year" class="btn btn-second-light m-1" th:classappend="${buttonClass}">Last Year</button>

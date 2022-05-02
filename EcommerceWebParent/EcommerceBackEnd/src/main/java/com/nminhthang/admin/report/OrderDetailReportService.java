@@ -21,17 +21,18 @@ public class OrderDetailReportService extends AbstractReportService {
 	protected List<ReportItem> getReportDataByDateRangeInternal(
 			Date startDate, Date endDate, ReportType reportType) {
 		List<OrderDetail> listOrderDetails = null;
-		
+
 		if (reportType.equals(ReportType.CATEGORY)) {
 			listOrderDetails = repo.findWithCategoryAndTimeBetween(startDate, endDate);
 		} else if (reportType.equals(ReportType.PRODUCT)) {
 			listOrderDetails = repo.findWithProductAndTimeBetween(startDate, endDate);
 		}
 		
-		//printRawData(listOrderDetails);
 		
 		List<ReportItem> listReportItems = new ArrayList<>();
-		
+		System.out.println("List Order Details: ");
+
+		printRawData(listOrderDetails);
 		for (OrderDetail detail : listOrderDetails) {
 			String identifier = "";
 			
@@ -40,11 +41,14 @@ public class OrderDetailReportService extends AbstractReportService {
 			} else if (reportType.equals(ReportType.PRODUCT)) {
 				identifier = detail.getProduct().getShortName();
 			}
+
 			
 			ReportItem reportItem = new ReportItem(identifier);
 			
 			float grossSales = detail.getSubtotal() + detail.getShippingCost();
 			float netSales = detail.getSubtotal() - detail.getProductCost();
+			
+			//System.out.println(detail.getId() + "aa " +  detail.getSubtotal() + ",                   bb : " + detail.getProductCost());
 			
 			int itemIndex = listReportItems.indexOf(reportItem);
 			
@@ -58,7 +62,9 @@ public class OrderDetailReportService extends AbstractReportService {
 			}
 		}
 		
-		//printReportData(listReportItems);
+		
+		System.out.println("List Report Item: ");
+		printReportData(listReportItems);
 		
 		return listReportItems;
 	}
@@ -73,7 +79,7 @@ public class OrderDetailReportService extends AbstractReportService {
 	private void printRawData(List<OrderDetail> listOrderDetails) {
 		for (OrderDetail detail : listOrderDetails) {
 			System.out.printf("%d, %-20s, %10.2f, %10.2f, %10.2f \n",
-					detail.getQuantity(), detail.getProduct().getShortName().substring(0, 20),
+					detail.getQuantity(), detail.getProduct().getShortName(),
 					detail.getSubtotal(), detail.getProductCost(), detail.getShippingCost());
 		}
 	}

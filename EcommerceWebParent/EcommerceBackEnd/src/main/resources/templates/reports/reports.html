@@ -46,8 +46,8 @@
 	currencySymbolPosition = "[[${CURRENCY_SYMBOL_POSITION}]]";
 	decimalDigits = "[[${DECIMAL_DIGITS}]]";
 	
-	prefixCurrencySymbol = currencySymbolPosition == 'Before price' ? currencySymbol : '';
-	suffixCurrencySymbol = currencySymbolPosition == 'After price' ? currencySymbol : '';
+	prefixCurrencySymbol = currencySymbolPosition == 'before' ? currencySymbol : '';
+	suffixCurrencySymbol = currencySymbolPosition == 'after' ? currencySymbol : '';
 	
 	$(document).ready(function() {
 		google.charts.load('current', {'packages': ['corechart', 'table']});

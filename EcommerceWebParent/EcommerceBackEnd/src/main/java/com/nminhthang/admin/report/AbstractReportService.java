@@ -24,6 +24,7 @@ public abstract class AbstractReportService {
         Date startTime = cal.getTime();
 
         dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        
 
         return getReportDataByDateRangeInternal(startTime, endTime, reportType);
     }
