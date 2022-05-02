@@ -4,10 +4,10 @@ var MILLISECONDS_A_DAY = 24 * 60 * 60 * 1000;
 function setupButtonEventHandlers(reportType, callbackFunction) {
 	$(".button-sales-by" + reportType).on("click", function() {
 		$(".button-sales-by" + reportType).each(function(e) {
-			$(this).removeClass('btn-primary').addClass('btn-light');
+			$(this).removeClass('btn-primary-color2').addClass('btn-light');
 		});
 		
-		$(this).removeClass('btn-light').addClass('btn-primary');
+		$(this).removeClass('btn-light').addClass('btn-primary-color2');
 		
 		period = $(this).attr("period");
 		if (period) {

@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface OrderDetailRepository extends CrudRepository<OrderDetail, Integer> {
 
-    @Query("SELECT NEW com.nminhthang.common.entity.order.OrderDetail(d.product.category.name, d.quantity,"
-            + " d.productCost, d.shippingCost, d.subtotal)"
+	@Query("SELECT NEW com.nminhthang.common.entity.order.OrderDetail(d.product.category.name, d.quantity,"
+            + " d.productCost, d.shippingCost, d.subtotal, d.product)"
             + " FROM OrderDetail d WHERE d.order.orderTime BETWEEN ?1 AND ?2")
     List<OrderDetail> findWithCategoryAndTimeBetween(Date startTime, Date endTime);
 
