@@ -222,6 +222,13 @@ public class ProductController {
         exporter.export(listProducts, response);
     }
 
+    @GetMapping("/products/export/outOfStock")
+    public void exportToOutOfStock(HttpServletResponse response) throws IOException {
+        List<Product> listProducts = productService.listOutOfStock();
+        ProductCSVExporter exporter = new ProductCSVExporter();
+        exporter.export(listProducts, response);
+    }
+
     @GetMapping("/products/detail/{id}")
     public String viewProductDetails(@PathVariable(name = "id") Integer id,
                               Model model,

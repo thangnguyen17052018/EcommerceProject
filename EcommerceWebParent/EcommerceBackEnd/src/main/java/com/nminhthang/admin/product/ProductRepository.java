@@ -8,6 +8,8 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.nminhthang.common.entity.product.Product;
 
+import java.util.List;
+
 public interface ProductRepository extends PagingAndSortingRepository<Product, Integer> {
 
     @Query("SELECT p FROM Product p")
@@ -25,6 +27,8 @@ public interface ProductRepository extends PagingAndSortingRepository<Product, I
     @Query("SELECT p FROM Product p WHERE p.quantityInStock = 0")
     Page<Product> searchOutOfStock(Pageable pageable);
 
+    @Query("SELECT p FROM Product p WHERE p.quantityInStock = 0")
+    List<Product> listOutOfStock();
 
     Long countById(Integer id);
 
