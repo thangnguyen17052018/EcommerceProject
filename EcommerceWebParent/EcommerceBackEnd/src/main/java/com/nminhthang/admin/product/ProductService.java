@@ -32,7 +32,7 @@ public class ProductService {
         return (List<Product>) productRepository.findAll(sort);
     }
 
-    public Page<Product> listByPage(int pageNum, String sortDir, String keyword, Integer categoryId) {
+    public Page<Product> listByPage(int pageNum, String sortDir, String keyword, Integer categoryId, Integer listOutOfStock) {
         Sort sort = Sort.by("name");
 
         if (sortDir.equals("asc")) {
@@ -42,6 +42,10 @@ public class ProductService {
         }
 
         Pageable pageable = PageRequest.of(pageNum - 1, PRODUCT_PER_PAGE, sort);
+
+        if (listOutOfStock != null && listOutOfStock > 0) {
+            return productRepository.searchOutOfStock(pageable);
+        }
 
         if (categoryId != null && categoryId > 0) {
             String categoryIdMatch = "-" + categoryId + "-";
