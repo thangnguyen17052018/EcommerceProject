@@ -43,9 +43,7 @@
 	</div>
 
 	<a th:fragment="page_link(pageNum, pageLabel)" class="page-link"
-		th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''}}">[[${pageLabel}]]</a>
-
-
+		th:href="@{'/' + ${module} + '/page/' + ${pageNum} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortOrder} + ${keyword != null ? '&keyword=' + keyword : ''} + ${categoryId != null ? '&categoryId=' + categoryId : ''} + ${listOutOfStock != null ? '&listOutOfStock=' + listOutOfStock : ''}}">[[${pageLabel}]]</a>
 
 	<div th:fragment="menu_link">
 
