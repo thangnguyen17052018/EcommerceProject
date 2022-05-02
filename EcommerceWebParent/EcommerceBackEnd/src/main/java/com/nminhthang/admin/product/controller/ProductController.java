@@ -47,19 +47,20 @@ public class ProductController {
 
     @GetMapping("/products")
     public String listFirstPage(@Param("sortDir") String sortDir, Model model) {
-        return listByPage(model, 1, sortDir, null, 0);
+        return listByPage(model, 1, sortDir, null, 0, null);
     }
 
     @GetMapping("/products/page/{pageNum}")
     public String listByPage(Model model, @PathVariable(name = "pageNum") int pageNum,
                              @Param("sortDir") String sortDir,
                              @Param("keyword") String keyword,
-                             @Param("categoryId") Integer categoryId) {
+                             @Param("categoryId") Integer categoryId,
+                             @Param("listOutOfStock") Integer listOutOfStock) {
         if (sortDir == null || sortDir.isEmpty()) {
             sortDir = "asc";
         }
 
-        Page<Product> listProductsPage = productService.listByPage(pageNum, sortDir, keyword, categoryId);
+        Page<Product> listProductsPage = productService.listByPage(pageNum, sortDir, keyword, categoryId, listOutOfStock);
         List<Product> listProducts = listProductsPage.getContent();
         List<Category> listCategories = categoryService.listAllCategoriesUsedInForm();
 
@@ -75,6 +76,7 @@ public class ProductController {
         model.addAttribute("sortOrder", sortDir);
         model.addAttribute("reverseSortOrder", reverseSortDir);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("listOutOfStock", listOutOfStock);
         model.addAttribute("listProducts", listProducts);
         model.addAttribute("listCategories", listCategories);
         model.addAttribute("startCount", startCount);
@@ -85,8 +87,7 @@ public class ProductController {
         model.addAttribute("sortField", "name");
         model.addAttribute("module", "products");
         if (categoryId != null) model.addAttribute("categoryId", categoryId);
-        
-        
+
         
         return "product/products";
     }
@@ -236,5 +237,6 @@ public class ProductController {
             return "redirect:/products";
         }
     }
+
 
 }
