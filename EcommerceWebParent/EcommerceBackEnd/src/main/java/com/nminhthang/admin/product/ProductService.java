@@ -144,4 +144,8 @@ public class ProductService {
         productRepository.updateEnabledStatus(id, enabled);
     }
 
+    public List<Product> listOutOfStock() {
+        return productRepository.listOutOfStock();
+    }
+
 }
