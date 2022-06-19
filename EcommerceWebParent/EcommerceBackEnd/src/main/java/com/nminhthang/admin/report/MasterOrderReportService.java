@@ -34,6 +34,8 @@ public class MasterOrderReportService extends AbstractReportService {
     }
 
     private void calculateSalesForReportData(List<Order> listOrders, List<ReportItem> listReportItems) {
+    	
+    	
         for (Order order : listOrders) {
             String orderDateString = dateFormatter.format(order.getOrderTime());
 
@@ -47,10 +49,12 @@ public class MasterOrderReportService extends AbstractReportService {
 				reportItem.addGrossSales(order.getTotal());
 				reportItem.addNetSales(order.getSubtotal() - order.getProductCost());
 				reportItem.increaseOrdersCount();
-				//System.out.println("aa " + order.getSubtotal() + ", bb " + order.getProductCost());
-                  
+				System.out.println("Gross2 : " + order.getTotal() + ", Net2 : " + (order.getSubtotal() - order.getProductCost()));
             }
         }
+        
+
+
         
        
     }

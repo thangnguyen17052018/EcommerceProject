@@ -17,7 +17,7 @@ function addToCart() {
 	}).done(function(response) {
         if (response > 0) {
             showModalDialog("Shopping Cart", response + " item(s) of this product were added to your shopping cart.");
-            $("#quantityInStock").val(parseInt($("#quantityInStock").val()) - response);
+            $("#quantityInStock").val(parseInt($("#quantityInStock").val()) - 1);
 			// if (parseInt($("#inStockText").text()) != undefined && parseInt($("#inStockText").text()) != undefined > 0) {
 			// 	$("#inStockText").text("In Stock: " + $("#quantityInStock").val());
 			// } else {
