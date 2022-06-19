@@ -18,7 +18,7 @@ function loadSalesReportByDate(period) {
 	} else {
 		requestURL = contextPath + "reports/sales_by_date/" + period;		
 	}
-	
+
 	$.get(requestURL, function(responseJSON) {
 		prepareChartDataForSalesReportByDate(responseJSON);
 		customizeChartForSalesReportByDate(period);
@@ -49,7 +49,7 @@ function prepareChartDataForSalesReportByDate(responseJSON) {
 
 function customizeChartForSalesReportByDate(period) {
 	chartOptions = {
-		title: getChartTitle(period),
+		//title: getChartTitle(period),
 		'height': 360,
 		legend: {position: 'top'},
 		
@@ -65,17 +65,18 @@ function customizeChartForSalesReportByDate(period) {
 		}
 	};
 }
-
+/*
 function getChartTitle(period){
 	if(period == "last_7_days"){
 		return "Sales in last 7 Days";
 	}
-	if(period == "last_28_days"){
+	else if(period == "last_28_days"){
 		return "Sales in last 28 Days";
 	}
-	return "";
-}
 
+	else return "";
+}
+*/
 function drawChartForSalesReportByDate() {
 	var salesChart = new google.visualization.ColumnChart(document.getElementById('chart_sales_by_date'));
 	salesChart.draw(data, chartOptions);

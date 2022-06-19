@@ -53,12 +53,14 @@
         <label class="col-sm-2 col-form-label">Category:</label>
         <div class="col-sm-10">
             <th:block th:unless="${isReadOnlyForSales}">
+                <th:block th:if="${product.category != null}">
                 <select class="form-control" th:field="*{category}" required>
                     <th:block th:each="cat : ${product.brand.categories}">
                         <option th:value="${cat.id}">[[${cat.name}]]</option>
                     </th:block>
                 </select>
-
+                </th:block>
+                
                 <th:block th:if="${product.category == null}">
                     <select class="form-control" th:field="*{category}" required>
                     </select>
@@ -93,7 +95,7 @@
     <div class="form-group row" id="quantity-in-stock">
         <label class="col-sm-2 col-form-label">Quantity In Stock:</label>
         <div class="col-sm-10">
-            <input type="number" class="form-control" th:field="*{quantityInStock}" min="1" step="1">
+            <input type="number" class="form-control" th:field="*{quantityInStock}" min="0" step="1">
         </div>
     </div>
     </th:block>

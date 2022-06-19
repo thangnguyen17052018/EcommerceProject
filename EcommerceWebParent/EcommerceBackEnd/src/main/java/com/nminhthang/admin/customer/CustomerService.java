@@ -54,7 +54,7 @@ public class CustomerService {
 
     public void save(Customer customerInForm) {
         Customer customerInDB = customerRepository.findById(customerInForm.getId()).get();
-        if (!customerInForm.getPassword().isEmpty()) {
+        if (!(customerInForm.getPassword() == null)) {
             String encodedPassword = passwordEncoder.encode(customerInForm.getPassword());
             customerInForm.setPassword(encodedPassword);
         } else {

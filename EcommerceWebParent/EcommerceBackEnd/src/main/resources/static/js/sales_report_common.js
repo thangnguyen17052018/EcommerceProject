@@ -10,6 +10,7 @@ function setupButtonEventHandlers(reportType, callbackFunction) {
 		$(this).removeClass('btn-light').addClass('btn-primary-color2');
 		
 		period = $(this).attr("period");
+
 		if (period) {
 			callbackFunction(period);
 			$("#divCustomDateRange" + reportType).addClass("d-none");
@@ -46,7 +47,9 @@ function calculateDays(reportType) {
 	startDate = startDateField.valueAsDate;
 	endDate = endDateField.valueAsDate;
 	
+	/* Đổi ngày sang MILLISECONDS_A_DAY */
 	differenceInMilliseconds = endDate - startDate;
+
 	return differenceInMilliseconds / MILLISECONDS_A_DAY;
 }
 	
